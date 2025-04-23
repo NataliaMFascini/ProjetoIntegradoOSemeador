@@ -17,6 +17,8 @@ namespace LivrariaEBiblioteca
         public decimal valor = 0;
         public int codLivro = 0;
         public int codUsu = 0;
+        public string nome;
+        public string cargo;
         public int quantTotal = 0;
 
         Livros livros = new Livros();
@@ -26,13 +28,14 @@ namespace LivrariaEBiblioteca
             InitializeComponent();
         }
 
-        public frmVender(string nomeUsu, int codUsuario)
+        public frmVender(string nomeUsu, int codUsuario, string cargo)
         {
             InitializeComponent();
 
             txtVendedor.Text = nomeUsu;
-
+            nome = nomeUsu;
             codUsu = codUsuario;
+            this.cargo = cargo;
         }
 
         public void limparComponentes()
