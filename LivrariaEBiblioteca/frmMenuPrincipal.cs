@@ -48,7 +48,7 @@ namespace LivrariaEBiblioteca
 
         private void btnVendas_Click(object sender, EventArgs e)
         {
-            frmVender abrir = new frmVender(nome, codUsu); 
+            frmVender abrir = new frmVender(nome, codUsu, cargo); 
             abrir.Show();
             this.Hide();
         }
@@ -91,7 +91,7 @@ namespace LivrariaEBiblioteca
 
         private void btnBuscarlivros_Click(object sender, EventArgs e)
         {
-            frmBuscarLivro abrir = new frmBuscarLivro();
+            frmBuscarLivro abrir = new frmBuscarLivro(this.nome, this.codUsu, this.cargo, "Menu");
             abrir.Show();
             this.Hide();
         }

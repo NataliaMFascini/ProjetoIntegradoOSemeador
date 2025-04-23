@@ -13,21 +13,31 @@ namespace LivrariaEBiblioteca
 {
     public partial class frmCadastroLocatario : Form
     {
+        public string nome;
+        public int codUsu;
+        public string cargo;
         public frmCadastroLocatario()
         {
             InitializeComponent();
         }
+        public frmCadastroLocatario(string nome, int codUsu, string cargo)
+        {
+            InitializeComponent();
+            this.cargo = cargo;
+            this.nome = nome;
+            this.codUsu = codUsu;
+        }
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            frmMenuPrincipal abrir = new frmMenuPrincipal();
+            frmMenuPrincipal abrir = new frmMenuPrincipal(this.cargo, this.nome, this.codUsu);
             abrir.Show();
             this.Hide();
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            if(cadastrarLocatario() == 1)
+            if (cadastrarLocatario() == 1)
             {
                 MessageBox.Show("Cadastro realizado com sucesso.");
             }
