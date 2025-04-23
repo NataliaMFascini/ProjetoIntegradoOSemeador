@@ -87,6 +87,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNovo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNovo.Image = ((System.Drawing.Image)(resources.GetObject("btnNovo.Image")));
             this.btnNovo.Location = new System.Drawing.Point(0, 0);
             this.btnNovo.MaximumSize = new System.Drawing.Size(175, 60);
             this.btnNovo.MinimumSize = new System.Drawing.Size(145, 47);
@@ -94,6 +95,8 @@
             this.btnNovo.Size = new System.Drawing.Size(145, 47);
             this.btnNovo.TabIndex = 1;
             this.btnNovo.Text = " &Novo";
+            this.btnNovo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNovo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNovo.UseVisualStyleBackColor = true;
             this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
@@ -103,19 +106,22 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCadastra.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCadastra.Location = new System.Drawing.Point(175, 0);
+            this.btnCadastra.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastra.Image")));
+            this.btnCadastra.Location = new System.Drawing.Point(166, 0);
             this.btnCadastra.MaximumSize = new System.Drawing.Size(175, 60);
             this.btnCadastra.MinimumSize = new System.Drawing.Size(145, 47);
             this.btnCadastra.Name = "btnCadastra";
-            this.btnCadastra.Size = new System.Drawing.Size(145, 47);
+            this.btnCadastra.Size = new System.Drawing.Size(155, 47);
             this.btnCadastra.TabIndex = 19;
             this.btnCadastra.Text = " &Cadastrar";
+            this.btnCadastra.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCadastra.UseVisualStyleBackColor = true;
             this.btnCadastra.Click += new System.EventHandler(this.btnCadastra_Click);
             // 
             // btnAlterar
             // 
             this.btnAlterar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlterar.Image = ((System.Drawing.Image)(resources.GetObject("btnAlterar.Image")));
             this.btnAlterar.Location = new System.Drawing.Point(0, 0);
             this.btnAlterar.MaximumSize = new System.Drawing.Size(175, 60);
             this.btnAlterar.MinimumSize = new System.Drawing.Size(145, 47);
@@ -123,6 +129,8 @@
             this.btnAlterar.Size = new System.Drawing.Size(145, 47);
             this.btnAlterar.TabIndex = 21;
             this.btnAlterar.Text = " &Alterar";
+            this.btnAlterar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAlterar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAlterar.UseVisualStyleBackColor = true;
             this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
@@ -132,6 +140,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemover.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemover.Image = ((System.Drawing.Image)(resources.GetObject("btnRemover.Image")));
             this.btnRemover.Location = new System.Drawing.Point(175, 0);
             this.btnRemover.MaximumSize = new System.Drawing.Size(175, 60);
             this.btnRemover.MinimumSize = new System.Drawing.Size(145, 47);
@@ -139,6 +148,8 @@
             this.btnRemover.Size = new System.Drawing.Size(145, 47);
             this.btnRemover.TabIndex = 22;
             this.btnRemover.Text = " &Remover";
+            this.btnRemover.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRemover.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRemover.UseVisualStyleBackColor = true;
             this.btnRemover.Click += new System.EventHandler(this.btnRemover_Click);
             // 
@@ -148,13 +159,16 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
             this.btnBuscar.Location = new System.Drawing.Point(15, 12);
             this.btnBuscar.MaximumSize = new System.Drawing.Size(175, 60);
             this.btnBuscar.MinimumSize = new System.Drawing.Size(145, 47);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(145, 47);
+            this.btnBuscar.Size = new System.Drawing.Size(145, 60);
             this.btnBuscar.TabIndex = 23;
             this.btnBuscar.Text = " &Buscar";
+            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
@@ -503,11 +517,14 @@
             // 
             this.btnVoltar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnVoltar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVoltar.Image = ((System.Drawing.Image)(resources.GetObject("btnVoltar.Image")));
             this.btnVoltar.Location = new System.Drawing.Point(617, 14);
             this.btnVoltar.Name = "btnVoltar";
-            this.btnVoltar.Size = new System.Drawing.Size(155, 45);
+            this.btnVoltar.Size = new System.Drawing.Size(155, 58);
             this.btnVoltar.TabIndex = 24;
             this.btnVoltar.Text = " &Voltar";
+            this.btnVoltar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnVoltar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVoltar.UseVisualStyleBackColor = true;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
