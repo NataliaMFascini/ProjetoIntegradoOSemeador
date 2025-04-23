@@ -19,6 +19,7 @@ namespace LivrariaEBiblioteca
         public frmCadastroLocatario()
         {
             InitializeComponent();
+            desabilitarCampos();
         }
         public frmCadastroLocatario(string nome, int codUsu, string cargo)
         {
@@ -33,6 +34,24 @@ namespace LivrariaEBiblioteca
             frmMenuPrincipal abrir = new frmMenuPrincipal(this.cargo, this.nome, this.codUsu);
             abrir.Show();
             this.Hide();
+        }
+
+        public void limparComponentes()
+        {
+            txtLocatario.Clear();
+            txtEmail.Clear();
+            mskCpf.Clear();
+            mskTelefone.Clear();
+            ltbListadelivros.Items.Clear();
+        }
+
+        public void desabilitarCampos()
+        {
+            btnAlterar.Enabled = false;
+            btnRemover.Enabled = false;
+            btnCadastrar.Enabled = false;
+            btnLimpar.Enabled = false;
+
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
@@ -79,6 +98,17 @@ namespace LivrariaEBiblioteca
         private void frmCadastroLocatario_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            limparComponentes();
+        }
+
+        private void btnNovo_Click(object sender, EventArgs e)
+        {
+            btnCadastrar.Enabled = true;
+            btnLimpar.Enabled = true;
         }
     }
 }
