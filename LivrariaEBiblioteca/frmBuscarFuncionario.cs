@@ -61,5 +61,10 @@ namespace LivrariaEBiblioteca
         {
             habilitarComponentes();
         }
+
+        private void frmBuscarFuncionario_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
