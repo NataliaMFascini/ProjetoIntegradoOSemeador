@@ -12,7 +12,7 @@ nome varchar(100) not null,
 cargo varchar(50) default 'Voluntario' check(cargo in('Voluntario', 'Dirigente', 'Diretor')),
 cpf char(14) not null unique,
 diaTrabalho varchar(15) check(diaTrabalho in ('Segunda-feira', 'Terca-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sabado', 'Domingo')),
-telCel char(10)not null,
+telCel char(14)not null,
 login varchar(50) not null unique,
 senha varchar(20) not null,
 email varchar(100),
@@ -27,6 +27,9 @@ foto varbinary(255),
 dataCadastro dateTime,
 primary key (codUsu)
 );
+
+insert into tbUsuario(nome, cargo, cpf, diaTrabalho, telCel, login, senha, email, cep, logradouro, numero, complemento, bairro, cidade, estado, foto, dataCadastro) 
+	values ('Eduardo Fascini', 'Diretor', '004.564.158-74', 'Segunda-feira', '(11)98624-2300', 'admin', '123', 'eduardo@conversoft.com.br', '04805-340', 'Rua Gomes Pedrosa', '56', 'Nenhum', 'Cidade Dutra', 'Sao Paulo', 'SP', 'foto aqui', CURRENT_TIMESTAMP);
 
 --tabela locatarios
 create table tbLocatario(
@@ -72,8 +75,9 @@ foreign key(codLoc) references tbLocatario(codLoc)
 create table tbVendas(
 codVenda int not null auto_increment,
 dataVenda dateTime,
-quantidade int default 0,
+nomeLivro varchar(100),
 valorTotal decimal(9,2) default 0 check(valorTotal >=0),
+pagamento varchar(20),
 codLivro int not null,
 codUsu int not null,
 primary key(codVenda),
@@ -81,11 +85,17 @@ foreign key (codLivro) references tbLivro(codLivro),
 foreign key (codUsu) references tbUsuario(codUsu)
 );
 
+--insert into tbVendas(dataVenda, quantidade, valorTotal) values (@dataVenda, @quantidade, @valorTotal);
+
 --tabela estoque(talvez mudar)
 create table tbEstoque(
 codEsto int not null,
-quantidade int default 0,
-empVen bool,
+entradaVen int default 0 check(entradaVen >= 0),
+saidaVen int default 0 check(saidaVen >= 0),
+entradaEmp int default 0 check(entradaEmp >= 0),
+saidaEmp int default 0 check(saidaEmp >= 0),
+empVen char(3) not null check (empVen in ('Emp', 'Ven')),
+nomeLivro varchar(100),
 codLivro int not null,
 primary key(codEsto),
 foreign key (codLivro) references tbLivro(codLivro)
@@ -105,3 +115,8 @@ desc tbVendas;
 desc tbEstoque;
 
 select * from tbLivro;
+select * from tbUsuario;
+select * from tbLocatario;
+select * from tbVendas;
+select * from tbEmprestimo;
+select * from tbEstoque;
