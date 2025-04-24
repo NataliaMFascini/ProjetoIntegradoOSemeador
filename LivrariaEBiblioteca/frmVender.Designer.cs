@@ -417,6 +417,7 @@
             this.Name = "frmVender";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "O Semeador - Livraria";
+            this.Load += new System.EventHandler(this.frmVender_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pctLivro)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

@@ -114,12 +114,30 @@ namespace LivrariaEBiblioteca
         private void btnVender_Click(object sender, EventArgs e)
         {
             frmVender abrirVender = new frmVender();
+
+            
+            abrirVender.ReceberDadosLivro(
+                txtTitulo.Text,
+                txtAutor.Text,
+                txtEditora.Text,
+                txtValor.Text,
+                txtIsbn.Text,
+                txtIdLivro.Text
+            );
+
             abrirVender.ShowDialog();
         }
 
         private void btnEmprestar_Click(object sender, EventArgs e)
         {
             frmEmprestimo abrirEmpre = new frmEmprestimo();
+
+            abrirEmpre.ReceberDadosLivro(txtTitulo.Text,
+                txtAutor.Text,
+                txtEditora.Text,
+                txtValor.Text,
+                txtIsbn.Text,
+                txtIdLivro.Text);
             abrirEmpre.ShowDialog();
         }
 

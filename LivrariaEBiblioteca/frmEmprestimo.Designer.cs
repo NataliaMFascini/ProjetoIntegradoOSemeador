@@ -401,6 +401,7 @@
             this.Name = "frmEmprestimo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "O Semeador - Empréstimo";
+            this.Load += new System.EventHandler(this.frmEmprestimo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pctLivro)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

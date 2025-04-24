@@ -19,6 +19,15 @@ namespace LivrariaEBiblioteca
 
         Livros livros = new Livros();
 
+
+        public void ReceberDadosLivro(string titulo, string autor, string editora, string valor, string isbn, string idLivro)
+        {
+            txtTitulo.Text = titulo;
+            txtAutor.Text = autor;
+            txtEditora.Text = editora;
+            txtIsbn.Text = isbn;
+            txtIdLivro.Text = idLivro;
+        }
         public frmEmprestimo()
         {
             InitializeComponent();
@@ -166,6 +175,11 @@ namespace LivrariaEBiblioteca
             {
                 escanearLivro(txtIsbn.Text);
             }
+        }
+
+        private void frmEmprestimo_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

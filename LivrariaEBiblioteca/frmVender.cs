@@ -21,14 +21,27 @@ namespace LivrariaEBiblioteca
 
         Livros livros = new Livros();
 
+       public  void ReceberDadosLivro(string titulo, string autor, string editora, string valor, string isbn, string idLivro)
+        {
+            txtTitulo.Text = titulo;
+            txtAutor.Text = autor;
+            txtEditora.Text = editora;
+            txtValor.Text = valor;
+            txtIsbn.Text = isbn;
+            txtIdLivro.Text = idLivro;
+        }
         public frmVender()
         {
             InitializeComponent();
+           
+
         }
 
-        public frmVender(string nomeUsu, int codUsuario)
+        public frmVender(string nomeUsu, int codUsuario, string idLivro)
         {
             InitializeComponent();
+
+            txtIdLivro.Text = idLivro;
 
             txtVendedor.Text = nomeUsu;
 
@@ -298,6 +311,11 @@ namespace LivrariaEBiblioteca
                 txtValorTotal.Text = "R$ " + valorTotal.ToString();
                 ltbCarrinho.Items.RemoveAt(ltbCarrinho.SelectedIndex);
             }
+        }
+
+        private void frmVender_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

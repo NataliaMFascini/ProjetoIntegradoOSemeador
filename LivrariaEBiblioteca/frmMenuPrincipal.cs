@@ -48,7 +48,7 @@ namespace LivrariaEBiblioteca
 
         private void btnVendas_Click(object sender, EventArgs e)
         {
-            frmVender abrir = new frmVender(nome, codUsu); 
+            frmVender abrir = new frmVender(); 
             abrir.Show();
             this.Hide();
         }
