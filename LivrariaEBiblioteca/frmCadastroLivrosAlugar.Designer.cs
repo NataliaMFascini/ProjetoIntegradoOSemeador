@@ -97,7 +97,7 @@
             // 
             this.txtQuantidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtQuantidade.Location = new System.Drawing.Point(256, 396);
-            this.txtQuantidade.MaxLength = 4;
+            this.txtQuantidade.MaxLength = 10;
             this.txtQuantidade.Name = "txtQuantidade";
             this.txtQuantidade.Size = new System.Drawing.Size(155, 31);
             this.txtQuantidade.TabIndex = 7;
@@ -128,7 +128,7 @@
             this.txtIdLivro.Enabled = false;
             this.txtIdLivro.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdLivro.Location = new System.Drawing.Point(256, 145);
-            this.txtIdLivro.MaxLength = 100;
+            this.txtIdLivro.MaxLength = 10;
             this.txtIdLivro.Name = "txtIdLivro";
             this.txtIdLivro.Size = new System.Drawing.Size(181, 31);
             this.txtIdLivro.TabIndex = 1;
@@ -409,6 +409,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.rdbVenda);
             this.Controls.Add(this.rdbEmprestimo);

@@ -15,10 +15,21 @@ namespace LivrariaEBiblioteca
 {
     public partial class frmCadastroUsuario : Form
     {
+        public string nome;
+        public int codUsu;
+        public string cargo;
         public frmCadastroUsuario()
         {
             InitializeComponent();
             desabilitarCampos();
+        }
+        public frmCadastroUsuario(string nome, int codUsu, string cargo)
+        {
+            InitializeComponent();
+            desabilitarCampos();
+            this.nome = nome;
+            this.cargo = cargo;
+            this.codUsu = codUsu;
         }
         public void desabilitarCampos()
         {
@@ -100,13 +111,9 @@ namespace LivrariaEBiblioteca
         {
             MessageBox.Show(nomeCampo + " é um campo obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
         }
-
-
-
-
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            frmMenuPrincipal abrir = new frmMenuPrincipal();
+            frmMenuPrincipal abrir = new frmMenuPrincipal(this.cargo, this.nome, this.codUsu);
             abrir.Show();
             this.Hide();
         }
@@ -380,7 +387,7 @@ namespace LivrariaEBiblioteca
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            frmBuscarFuncionario abrir = new frmBuscarFuncionario();
+            frmBuscarFuncionario abrir = new frmBuscarFuncionario(this.nome, this.codUsu, this.cargo, "Usuario");
             abrir.Show();
             this.Hide();
         }
