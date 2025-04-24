@@ -79,16 +79,56 @@
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
+            // btnNovo
+            // 
+            this.btnNovo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNovo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNovo.Image = ((System.Drawing.Image)(resources.GetObject("btnNovo.Image")));
+            this.btnNovo.Location = new System.Drawing.Point(0, 0);
+            this.btnNovo.MaximumSize = new System.Drawing.Size(175, 60);
+            this.btnNovo.MinimumSize = new System.Drawing.Size(145, 47);
+            this.btnNovo.Name = "btnNovo";
+            this.btnNovo.Size = new System.Drawing.Size(145, 47);
+            this.btnNovo.TabIndex = 1;
+            this.btnNovo.Text = " &Novo";
+            this.btnNovo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNovo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnNovo.UseVisualStyleBackColor = true;
+            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
+            // 
+            // btnCadastra
+            // 
+            this.btnCadastra.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCadastra.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCadastra.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastra.Image")));
+            this.btnCadastra.Location = new System.Drawing.Point(151, 0);
+            this.btnCadastra.MaximumSize = new System.Drawing.Size(175, 60);
+            this.btnCadastra.MinimumSize = new System.Drawing.Size(145, 47);
+            this.btnCadastra.Name = "btnCadastra";
+            this.btnCadastra.Size = new System.Drawing.Size(155, 47);
+            this.btnCadastra.TabIndex = 19;
+            this.btnCadastra.Text = " &Cadastrar";
+            this.btnCadastra.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCadastra.UseVisualStyleBackColor = true;
+            this.btnCadastra.Click += new System.EventHandler(this.btnCadastra_Click);
+            // 
             // btnAlterar
             // 
             this.btnAlterar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAlterar.Location = new System.Drawing.Point(461, 13);
+            this.btnAlterar.Image = ((System.Drawing.Image)(resources.GetObject("btnAlterar.Image")));
+            this.btnAlterar.Location = new System.Drawing.Point(144, 3);
             this.btnAlterar.MaximumSize = new System.Drawing.Size(175, 60);
             this.btnAlterar.MinimumSize = new System.Drawing.Size(145, 47);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(145, 47);
             this.btnAlterar.TabIndex = 21;
             this.btnAlterar.Text = " &Alterar";
+            this.btnAlterar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAlterar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAlterar.UseVisualStyleBackColor = true;
             this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
@@ -98,13 +138,16 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemover.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemover.Location = new System.Drawing.Point(607, 13);
+            this.btnRemover.Image = ((System.Drawing.Image)(resources.GetObject("btnRemover.Image")));
+            this.btnRemover.Location = new System.Drawing.Point(295, 3);
             this.btnRemover.MaximumSize = new System.Drawing.Size(175, 60);
             this.btnRemover.MinimumSize = new System.Drawing.Size(145, 47);
             this.btnRemover.Name = "btnRemover";
-            this.btnRemover.Size = new System.Drawing.Size(175, 47);
+            this.btnRemover.Size = new System.Drawing.Size(160, 47);
             this.btnRemover.TabIndex = 22;
             this.btnRemover.Text = " &Remover";
+            this.btnRemover.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRemover.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRemover.UseVisualStyleBackColor = true;
             this.btnRemover.Click += new System.EventHandler(this.btnRemover_Click);
             // 
@@ -114,13 +157,16 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
             this.btnBuscar.Location = new System.Drawing.Point(15, 12);
             this.btnBuscar.MaximumSize = new System.Drawing.Size(175, 60);
             this.btnBuscar.MinimumSize = new System.Drawing.Size(145, 47);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(145, 47);
+            this.btnBuscar.Size = new System.Drawing.Size(145, 60);
             this.btnBuscar.TabIndex = 23;
             this.btnBuscar.Text = " &Buscar";
+            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
@@ -470,11 +516,14 @@
             // 
             this.btnVoltar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnVoltar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVoltar.Image = ((System.Drawing.Image)(resources.GetObject("btnVoltar.Image")));
             this.btnVoltar.Location = new System.Drawing.Point(617, 14);
             this.btnVoltar.Name = "btnVoltar";
-            this.btnVoltar.Size = new System.Drawing.Size(155, 45);
+            this.btnVoltar.Size = new System.Drawing.Size(155, 58);
             this.btnVoltar.TabIndex = 24;
             this.btnVoltar.Text = " &Voltar";
+            this.btnVoltar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnVoltar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVoltar.UseVisualStyleBackColor = true;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
@@ -492,6 +541,33 @@
             this.cbbCargo.Name = "cbbCargo";
             this.cbbCargo.Size = new System.Drawing.Size(178, 33);
             this.cbbCargo.TabIndex = 5;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.btnCadastra);
+            this.panel1.Controls.Add(this.btnNovo);
+            this.panel1.Location = new System.Drawing.Point(5, 499);
+            this.panel1.MaximumSize = new System.Drawing.Size(500, 150);
+            this.panel1.MinimumSize = new System.Drawing.Size(320, 65);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(320, 65);
+            this.panel1.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.btnLimpar);
+            this.panel2.Controls.Add(this.btnRemover);
+            this.panel2.Controls.Add(this.btnAlterar);
+            this.panel2.Location = new System.Drawing.Point(312, 496);
+            this.panel2.MaximumSize = new System.Drawing.Size(500, 150);
+            this.panel2.MinimumSize = new System.Drawing.Size(320, 65);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(460, 65);
+            this.panel2.TabIndex = 44;
             // 
             // lblRepetirSenha
             // 
@@ -546,12 +622,16 @@
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
+            this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpar.Image")));
             this.btnLimpar.Location = new System.Drawing.Point(314, 13);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(145, 45);
             this.btnLimpar.TabIndex = 20;
             this.btnLimpar.Text = "&Limpar";
+            this.btnLimpar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLimpar.UseVisualStyleBackColor = true;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
@@ -644,6 +724,8 @@
             this.Controls.Add(this.txtComplemento);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtNomeCompleto);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "frmCadastroUsuario";
