@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCadastroUsuario));
-            this.btnNovo = new System.Windows.Forms.Button();
-            this.btnCadastra = new System.Windows.Forms.Button();
             this.btnAlterar = new System.Windows.Forms.Button();
             this.btnRemover = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
@@ -67,18 +65,18 @@
             this.btnAdicionarFoto = new System.Windows.Forms.Button();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.cbbCargo = new System.Windows.Forms.ComboBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.lblRepetirSenha = new System.Windows.Forms.Label();
             this.txtRepetirSenha = new System.Windows.Forms.TextBox();
             this.pnlBordaRepetir = new System.Windows.Forms.Panel();
             this.lbl_IDUsuario = new System.Windows.Forms.Label();
             this.txtIDUsuario = new System.Windows.Forms.TextBox();
             this.btnLimpar = new System.Windows.Forms.Button();
+            this.btnNovo = new System.Windows.Forms.Button();
+            this.btnCadastra = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.ptbUsuario)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.pnlBordaRepetir.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnNovo
@@ -388,6 +386,7 @@
             "Sábado",
             "Domingo"});
             this.cbbDiaDeTrabalho.Location = new System.Drawing.Point(376, 233);
+            this.cbbDiaDeTrabalho.MaxLength = 15;
             this.cbbDiaDeTrabalho.Name = "cbbDiaDeTrabalho";
             this.cbbDiaDeTrabalho.Size = new System.Drawing.Size(178, 33);
             this.cbbDiaDeTrabalho.TabIndex = 7;
@@ -538,6 +537,7 @@
             "Dirigente",
             "Diretor"});
             this.cbbCargo.Location = new System.Drawing.Point(375, 173);
+            this.cbbCargo.MaxLength = 50;
             this.cbbCargo.Name = "cbbCargo";
             this.cbbCargo.Size = new System.Drawing.Size(178, 33);
             this.cbbCargo.TabIndex = 5;
@@ -622,17 +622,62 @@
             // 
             // btnLimpar
             // 
+
             this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpar.Image")));
-            this.btnLimpar.Location = new System.Drawing.Point(7, 3);
+            this.btnLimpar.Location = new System.Drawing.Point(314, 13);
             this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(131, 47);
+            this.btnLimpar.Size = new System.Drawing.Size(145, 45);
             this.btnLimpar.TabIndex = 20;
-            this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.Text = "&Limpar";
             this.btnLimpar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLimpar.UseVisualStyleBackColor = true;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
+            // 
+            // btnNovo
+            // 
+            this.btnNovo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNovo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNovo.Location = new System.Drawing.Point(12, 11);
+            this.btnNovo.MaximumSize = new System.Drawing.Size(175, 60);
+            this.btnNovo.MinimumSize = new System.Drawing.Size(145, 47);
+            this.btnNovo.Name = "btnNovo";
+            this.btnNovo.Size = new System.Drawing.Size(145, 47);
+            this.btnNovo.TabIndex = 1;
+            this.btnNovo.Text = " &Novo";
+            this.btnNovo.UseVisualStyleBackColor = true;
+            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
+            // 
+            // btnCadastra
+            // 
+            this.btnCadastra.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCadastra.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCadastra.Location = new System.Drawing.Point(164, 12);
+            this.btnCadastra.MaximumSize = new System.Drawing.Size(175, 60);
+            this.btnCadastra.MinimumSize = new System.Drawing.Size(145, 47);
+            this.btnCadastra.Name = "btnCadastra";
+            this.btnCadastra.Size = new System.Drawing.Size(145, 47);
+            this.btnCadastra.TabIndex = 19;
+            this.btnCadastra.Text = " &Cadastrar";
+            this.btnCadastra.UseVisualStyleBackColor = true;
+            this.btnCadastra.Click += new System.EventHandler(this.btnCadastra_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnRemover);
+            this.panel1.Controls.Add(this.btnNovo);
+            this.panel1.Controls.Add(this.btnAlterar);
+            this.panel1.Controls.Add(this.btnCadastra);
+            this.panel1.Controls.Add(this.btnLimpar);
+            this.panel1.Location = new System.Drawing.Point(-3, 499);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(784, 63);
+            this.panel1.TabIndex = 49;
             // 
             // frmCadastroUsuario
             // 
@@ -640,6 +685,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.txtIDUsuario);
             this.Controls.Add(this.pnlBordaRepetir);
             this.Controls.Add(this.lblRepetirSenha);
@@ -687,19 +733,15 @@
             this.Text = "O Semeador - Cadastro de usuario";
             this.Load += new System.EventHandler(this.frmCadastroUsuario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ptbUsuario)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.pnlBordaRepetir.ResumeLayout(false);
             this.pnlBordaRepetir.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnNovo;
-        private System.Windows.Forms.Button btnCadastra;
         private System.Windows.Forms.Button btnAlterar;
         private System.Windows.Forms.Button btnRemover;
         private System.Windows.Forms.Button btnBuscar;
@@ -736,13 +778,14 @@
         private System.Windows.Forms.Button btnAdicionarFoto;
         private System.Windows.Forms.Button btnVoltar;
         private System.Windows.Forms.ComboBox cbbCargo;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lblRepetirSenha;
         private System.Windows.Forms.TextBox txtRepetirSenha;
         private System.Windows.Forms.Panel pnlBordaRepetir;
         private System.Windows.Forms.Label lbl_IDUsuario;
         private System.Windows.Forms.TextBox txtIDUsuario;
         private System.Windows.Forms.Button btnLimpar;
+        private System.Windows.Forms.Button btnNovo;
+        private System.Windows.Forms.Button btnCadastra;
+        private System.Windows.Forms.Panel panel1;
     }
 }

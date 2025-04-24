@@ -88,6 +88,7 @@
             // 
             this.txtIdLivro.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdLivro.Location = new System.Drawing.Point(180, 105);
+            this.txtIdLivro.MaxLength = 20;
             this.txtIdLivro.Name = "txtIdLivro";
             this.txtIdLivro.Size = new System.Drawing.Size(135, 31);
             this.txtIdLivro.TabIndex = 2;
@@ -127,6 +128,7 @@
             // 
             this.txtIsbn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIsbn.Location = new System.Drawing.Point(330, 105);
+            this.txtIsbn.MaxLength = 20;
             this.txtIsbn.Name = "txtIsbn";
             this.txtIsbn.Size = new System.Drawing.Size(135, 31);
             this.txtIsbn.TabIndex = 1;
@@ -148,6 +150,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTitulo.Location = new System.Drawing.Point(180, 162);
+            this.txtTitulo.MaxLength = 100;
             this.txtTitulo.Name = "txtTitulo";
             this.txtTitulo.Size = new System.Drawing.Size(588, 31);
             this.txtTitulo.TabIndex = 3;
@@ -166,6 +169,7 @@
             // 
             this.txtAutor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAutor.Location = new System.Drawing.Point(180, 219);
+            this.txtAutor.MaxLength = 100;
             this.txtAutor.Name = "txtAutor";
             this.txtAutor.Size = new System.Drawing.Size(276, 31);
             this.txtAutor.TabIndex = 4;
@@ -196,6 +200,7 @@
             // 
             this.txtEditora.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEditora.Location = new System.Drawing.Point(180, 276);
+            this.txtEditora.MaxLength = 50;
             this.txtEditora.Name = "txtEditora";
             this.txtEditora.Size = new System.Drawing.Size(135, 31);
             this.txtEditora.TabIndex = 5;
@@ -206,6 +211,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtLocatario.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLocatario.Location = new System.Drawing.Point(482, 105);
+            this.txtLocatario.MaxLength = 100;
             this.txtLocatario.Name = "txtLocatario";
             this.txtLocatario.Size = new System.Drawing.Size(286, 31);
             this.txtLocatario.TabIndex = 2;
