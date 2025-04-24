@@ -77,6 +77,7 @@ codVenda int not null auto_increment,
 dataVenda dateTime,
 nomeLivro varchar(100),
 valorTotal decimal(9,2) default 0 check(valorTotal >=0),
+quantidade int,
 pagamento varchar(20),
 codLivro int not null,
 codUsu int not null,
@@ -106,6 +107,7 @@ insert into tbLivro (empVen, isbn, nome, autor, quant, valor, editora, anoPublic
 
 insert into tbLivro (empVen, isbn, nome, autor, quant, valor, editora, anoPublicacao, foto)	values ('Ven', '9788539604579', 'Logica de Programacao', 'Gley Fabiano Cardoso Xavier', 5, 70.00, 'Senac', 2024, 'foto aqui');
 
+insert into tbEstoque(entradaVen, empVen, codLivro, nomeLivro) values (100, 'Ven', 2, 'Logica de Programacao');
 --visualizar
 desc tbUsuario;
 desc tbLocatario;

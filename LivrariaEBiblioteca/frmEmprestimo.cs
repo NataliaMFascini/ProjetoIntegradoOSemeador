@@ -15,6 +15,9 @@ namespace LivrariaEBiblioteca
     {
         public int codLivro = 0;
         public int codLoc = 0;
+        public string nome;
+        public int codUsu;
+        public string cargo;
 
         Livros livros = new Livros();
 
@@ -22,6 +25,15 @@ namespace LivrariaEBiblioteca
         {
             InitializeComponent();
             DesavilitarCampos();
+        }
+        public frmEmprestimo(string nome, int codUsu, string cargo)
+        {
+            InitializeComponent();
+            DesavilitarCampos();
+
+            this.nome = nome;
+            this.codUsu = codUsu;
+            this.cargo = cargo;
         }
 
         public void DesavilitarCampos() 
@@ -60,14 +72,14 @@ namespace LivrariaEBiblioteca
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            frmMenuPrincipal abrir = new frmMenuPrincipal();
+            frmMenuPrincipal abrir = new frmMenuPrincipal(this.cargo, this.nome, this.codUsu);
             abrir.Show();
             this.Hide();
         }
 
         private void btnVender_Click(object sender, EventArgs e)
         {
-            frmVender abrir = new frmVender();
+            frmVender abrir = new frmVender(this.nome, this.codUsu, this.cargo);
             abrir.Show();
             this.Hide();
         }
