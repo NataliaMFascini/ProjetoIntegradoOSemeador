@@ -33,7 +33,7 @@
             this.btnVender = new System.Windows.Forms.Button();
             this.txtIdLivro = new System.Windows.Forms.TextBox();
             this.pctLivro = new System.Windows.Forms.PictureBox();
-            this.ltbListadeLivros = new System.Windows.Forms.ListBox();
+            this.ltbCarrinho = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtIsbn = new System.Windows.Forms.TextBox();
             this.lblTitulo = new System.Windows.Forms.Label();
@@ -100,18 +100,18 @@
             this.pctLivro.TabIndex = 3;
             this.pctLivro.TabStop = false;
             // 
-            // ltbListadeLivros
+            // ltbCarrinho
             // 
-            this.ltbListadeLivros.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ltbCarrinho.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ltbListadeLivros.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ltbListadeLivros.FormattingEnabled = true;
-            this.ltbListadeLivros.ItemHeight = 25;
-            this.ltbListadeLivros.Location = new System.Drawing.Point(16, 313);
-            this.ltbListadeLivros.Name = "ltbListadeLivros";
-            this.ltbListadeLivros.Size = new System.Drawing.Size(752, 179);
-            this.ltbListadeLivros.TabIndex = 7;
+            this.ltbCarrinho.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ltbCarrinho.FormattingEnabled = true;
+            this.ltbCarrinho.ItemHeight = 25;
+            this.ltbCarrinho.Location = new System.Drawing.Point(16, 313);
+            this.ltbCarrinho.Name = "ltbCarrinho";
+            this.ltbCarrinho.Size = new System.Drawing.Size(752, 179);
+            this.ltbCarrinho.TabIndex = 7;
             // 
             // label2
             // 
@@ -130,6 +130,7 @@
             this.txtIsbn.Name = "txtIsbn";
             this.txtIsbn.Size = new System.Drawing.Size(135, 31);
             this.txtIsbn.TabIndex = 1;
+            this.txtIsbn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtIsbn_KeyDown_1);
             // 
             // lblTitulo
             // 
@@ -374,7 +375,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.mskDataDevolucao);
             this.Controls.Add(this.dtpDataEmprestimo);
-            this.Controls.Add(this.ltbListadeLivros);
+            this.Controls.Add(this.ltbCarrinho);
             this.Controls.Add(this.pctLivro);
             this.Controls.Add(this.txtAutor);
             this.Controls.Add(this.txtTitulo);
@@ -414,7 +415,7 @@
         private System.Windows.Forms.Button btnVender;
         private System.Windows.Forms.TextBox txtIdLivro;
         private System.Windows.Forms.PictureBox pctLivro;
-        private System.Windows.Forms.ListBox ltbListadeLivros;
+        private System.Windows.Forms.ListBox ltbCarrinho;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtIsbn;
         private System.Windows.Forms.Label lblTitulo;
