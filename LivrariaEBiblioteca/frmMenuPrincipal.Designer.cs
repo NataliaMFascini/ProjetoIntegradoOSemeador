@@ -108,11 +108,14 @@
             this.btnSair.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSair.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnSair.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSair.Location = new System.Drawing.Point(603, 26);
+            this.btnSair.Image = ((System.Drawing.Image)(resources.GetObject("btnSair.Image")));
+            this.btnSair.Location = new System.Drawing.Point(603, 12);
             this.btnSair.Name = "btnSair";
-            this.btnSair.Size = new System.Drawing.Size(169, 39);
+            this.btnSair.Size = new System.Drawing.Size(169, 53);
             this.btnSair.TabIndex = 9;
             this.btnSair.Text = "Sair";
+            this.btnSair.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSair.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSair.UseVisualStyleBackColor = true;
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
