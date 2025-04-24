@@ -59,6 +59,8 @@ namespace LivrariaEBiblioteca
             if(ultimaTela == "Usuario")
             {
                 frmCadastroUsuario abrir = new frmCadastroUsuario(this.nome, this.codUsu, this.cargo);
+                abrir.Show();
+                this.Hide();
             }
         }
 

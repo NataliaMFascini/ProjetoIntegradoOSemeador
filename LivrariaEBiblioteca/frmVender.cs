@@ -55,14 +55,14 @@ namespace LivrariaEBiblioteca
 
         private void btnEmprestar_Click(object sender, EventArgs e)
         {
-            frmEmprestimo abrir = new frmEmprestimo();
+            frmEmprestimo abrir = new frmEmprestimo(this.nome, this.codUsu, this.cargo);
             abrir.Show();
             this.Hide();
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            frmMenuPrincipal abrir = new frmMenuPrincipal();
+            frmMenuPrincipal abrir = new frmMenuPrincipal(this.cargo, this.nome, this.codUsu);
             abrir.Show();
             this.Hide();
         }
@@ -114,7 +114,6 @@ namespace LivrariaEBiblioteca
                 //{
                 ltbCarrinho.Items.Add(txtTitulo.Text + " - R$ " + txtValor.Text);
 
-                quantTotal++;
                 //Tem que separar por livro
                 separarLivros();
 
@@ -207,6 +206,8 @@ namespace LivrariaEBiblioteca
             {
                 escanearLivro(txtIsbn.Text);
                 codLivro = Convert.ToInt32(txtIdLivro.Text);
+                MessageBox.Show("Há " + livros.checarEstoque(codLivro, "Ven") + " em estoque", "Estoque", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                livros.checarEstoque(codLivro, "Ven");
             }
 
         }
@@ -224,7 +225,8 @@ namespace LivrariaEBiblioteca
                 {
                     MessageBox.Show("Erro ao registrar a venda.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
                 }
-            }else
+            }
+            else
             {
                 MessageBox.Show("Carrinho vazio.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
             }
@@ -235,10 +237,10 @@ namespace LivrariaEBiblioteca
             MySqlCommand comm = new MySqlCommand();
             int resp = 0;
 
-            comm.CommandText = "insert into tbVendas(dataVenda, nomeLivro, valorTotal, pagamento, codUsu, codLivro) values (@dataVenda, @nomeLivro, @valorTotal, @pagamento, @codUsu, @codLivro);";
+            comm.CommandText = "insert into tbVendas(dataVenda, nomeLivro, valorTotal, quantidade, pagamento, codUsu, codLivro) values (@dataVenda, @nomeLivro, @valorTotal, @quantidade, @pagamento, @codUsu, @codLivro);";
             comm.CommandType = CommandType.Text;
 
-            
+
             for (int i = 0; i < Livros.ListaLivros.Count; i++)
             {
                 comm.Parameters.Clear();
@@ -246,7 +248,8 @@ namespace LivrariaEBiblioteca
                 comm.Parameters.Add("@dataVenda", MySqlDbType.DateTime).Value = DateTime.Now;
                 comm.Parameters.Add("@nomeLivro", MySqlDbType.VarChar, 100).Value = livros.nomeRetorno(i);
                 comm.Parameters.Add("@valorTotal", MySqlDbType.Decimal).Value = livros.valorRetorno(i);
-                comm.Parameters.Add("@pagamento", MySqlDbType.VarChar, 50).Value = cbbFormaPagamento.SelectedText;
+                comm.Parameters.Add("@quantidade", MySqlDbType.Int32).Value = quantidadeRetorno(i);
+                comm.Parameters.Add("@pagamento", MySqlDbType.VarChar, 50).Value = cbbFormaPagamento.Text;
                 comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
                 comm.Parameters.Add("@codUsu", MySqlDbType.Int32).Value = codigoUsuario;
 
@@ -270,7 +273,7 @@ namespace LivrariaEBiblioteca
             for (int i = 0; i < Livros.ListaLivros.Count; i++)
             {
                 comm.Parameters.Clear();
-                comm.Parameters.Add("@saidaVen", MySqlDbType.Int32).Value = livros.quantidadeRetorno(i);
+                comm.Parameters.Add("@saidaVen", MySqlDbType.Int32).Value = quantidadeRetorno(i);
                 comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
 
                 comm.Connection = Conexao.obterConexao();
@@ -279,8 +282,21 @@ namespace LivrariaEBiblioteca
 
                 Conexao.fecharConexao();
             }
-
             return resp;
+        }
+        public int quantidadeRetorno(int index)
+        {
+            int quantTotal = 0;
+
+            for (int i = 0; i < Livros.ListaLivros.Count - 1; i++)
+            {
+                if (Livros.ListaLivros[index].idLivro == Livros.ListaLivros[i + 1].idLivro)
+                {
+                    quantTotal++;
+                }
+            }
+
+            return quantTotal;
         }
 
         private void ltbCarrinho_MouseDoubleClick(object sender, MouseEventArgs e)

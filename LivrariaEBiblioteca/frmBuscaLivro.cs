@@ -133,7 +133,7 @@ namespace LivrariaEBiblioteca
 
         private void btnEmprestar_Click(object sender, EventArgs e)
         {
-            frmEmprestimo abrirEmpre = new frmEmprestimo();
+            frmEmprestimo abrirEmpre = new frmEmprestimo(this.nome, this.codUsu, this.cargo);
             abrirEmpre.ShowDialog();
         }
 
@@ -153,7 +153,19 @@ namespace LivrariaEBiblioteca
             }
             if(ultimaTela == "Cadastro")
             {
-                frmCadastroLivrosAlugar abrir = new frmCadastroLivrosAlugar(this.cargo, this.codUsu, this.cargo);
+                frmCadastroLivrosAlugar abrir = new frmCadastroLivrosAlugar(this.nome, this.codUsu, this.cargo);
+                abrir.Show();
+                this.Hide();
+            }
+            if(ultimaTela == "Venda")
+            {
+                frmVender abrir = new frmVender(this.nome, this.codUsu, this.cargo);
+                abrir.Show();
+                this.Hide();
+            }
+            if (ultimaTela == "Emprestimo")
+            {
+                frmEmprestimo abrir = new frmEmprestimo(this.nome, this.codUsu, this.cargo);
                 abrir.Show();
                 this.Hide();
             }
