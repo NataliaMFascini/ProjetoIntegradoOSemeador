@@ -130,6 +130,7 @@
             this.btnRemover.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRemover.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRemover.UseVisualStyleBackColor = true;
+            this.btnRemover.Click += new System.EventHandler(this.btnRemover_Click);
             // 
             // btnBuscar
             // 
@@ -362,7 +363,6 @@
             this.Name = "frmCadastroLocatario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "O Semeador - Cadastro de locatário";
-            this.Load += new System.EventHandler(this.frmCadastroLocatario_Load);
             this.gpbDadosLocatario.ResumeLayout(false);
             this.gpbDadosLocatario.PerformLayout();
             this.panel1.ResumeLayout(false);
