@@ -133,6 +133,7 @@
             this.btnPesquisar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPesquisar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPesquisar.UseVisualStyleBackColor = true;
+            this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
             // 
             // btnLimpar
             // 
@@ -182,6 +183,7 @@
             this.Name = "frmBuscarFuncionario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "O Semeador - Buscar funcionário";
+            this.Load += new System.EventHandler(this.frmBuscarFuncionario_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

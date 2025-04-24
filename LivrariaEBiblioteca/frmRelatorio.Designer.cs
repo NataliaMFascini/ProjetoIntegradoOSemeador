@@ -89,6 +89,31 @@
             this.tlpRelatorios.Size = new System.Drawing.Size(156, 561);
             this.tlpRelatorios.TabIndex = 1;
             // 
+            this.btnVendas.AutoSize = true;
+            this.btnVendas.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnVendas.ColumnCount = 1;
+            this.btnVendas.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.btnVendas.Controls.Add(this.btnEmprestimos, 0, 4);
+            this.btnVendas.Controls.Add(this.button1, 0, 3);
+            this.btnVendas.Controls.Add(this.btnLocatarios, 0, 2);
+            this.btnVendas.Controls.Add(this.btnUsuarios, 0, 1);
+            this.btnVendas.Controls.Add(this.btnListaLivros, 0, 0);
+            this.btnVendas.Controls.Add(this.btnVoltar, 0, 6);
+            this.btnVendas.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnVendas.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVendas.Location = new System.Drawing.Point(628, 0);
+            this.btnVendas.Name = "btnVendas";
+            this.btnVendas.RowCount = 7;
+            this.btnVendas.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.btnVendas.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.btnVendas.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.btnVendas.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.btnVendas.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.btnVendas.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.btnVendas.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.btnVendas.Size = new System.Drawing.Size(156, 561);
+            this.btnVendas.TabIndex = 1;
+            // 
             // btnEmprestimos
             // 
             this.btnEmprestimos.Location = new System.Drawing.Point(3, 323);
@@ -128,6 +153,7 @@
             this.btnUsuarios.Text = "Lista de &usuários";
             this.btnUsuarios.UseVisualStyleBackColor = true;
             this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
+
             // 
             // btnListaLivros
             // 
@@ -141,21 +167,27 @@
             // 
             // btnVoltar
             // 
+            this.btnVoltar.Image = ((System.Drawing.Image)(resources.GetObject("btnVoltar.Image")));
             this.btnVoltar.Location = new System.Drawing.Point(3, 483);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(147, 65);
             this.btnVoltar.TabIndex = 10;
             this.btnVoltar.Text = "&Voltar";
+            this.btnVoltar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnVoltar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVoltar.UseVisualStyleBackColor = true;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
             // btnImprimir
             // 
+            this.btnImprimir.Image = ((System.Drawing.Image)(resources.GetObject("btnImprimir.Image")));
             this.btnImprimir.Location = new System.Drawing.Point(3, 3);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(147, 65);
             this.btnImprimir.TabIndex = 8;
             this.btnImprimir.Text = "&Imprimir";
+            this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnImprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnImprimir.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
@@ -178,11 +210,15 @@
             // 
             // btnExportar
             // 
-            this.btnExportar.Location = new System.Drawing.Point(218, 3);
+
+            this.btnExportar.Image = ((System.Drawing.Image)(resources.GetObject("btnExportar.Image")));
+            this.btnExportar.Location = new System.Drawing.Point(317, 3);
             this.btnExportar.Name = "btnExportar";
             this.btnExportar.Size = new System.Drawing.Size(147, 65);
             this.btnExportar.TabIndex = 9;
             this.btnExportar.Text = "&Exportar";
+            this.btnExportar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExportar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnExportar.UseVisualStyleBackColor = true;
             // 
             // btnLimpar
