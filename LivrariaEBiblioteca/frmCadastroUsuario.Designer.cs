@@ -74,17 +74,15 @@
             this.btnNovo = new System.Windows.Forms.Button();
             this.btnCadastra = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.ptbUsuario)).BeginInit();
             this.pnlBordaRepetir.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAlterar
             // 
             this.btnAlterar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAlterar.Location = new System.Drawing.Point(0, 0);
+            this.btnAlterar.Location = new System.Drawing.Point(461, 13);
             this.btnAlterar.MaximumSize = new System.Drawing.Size(175, 60);
             this.btnAlterar.MinimumSize = new System.Drawing.Size(145, 47);
             this.btnAlterar.Name = "btnAlterar";
@@ -100,11 +98,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemover.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemover.Location = new System.Drawing.Point(175, 0);
+            this.btnRemover.Location = new System.Drawing.Point(607, 13);
             this.btnRemover.MaximumSize = new System.Drawing.Size(175, 60);
             this.btnRemover.MinimumSize = new System.Drawing.Size(145, 47);
             this.btnRemover.Name = "btnRemover";
-            this.btnRemover.Size = new System.Drawing.Size(145, 47);
+            this.btnRemover.Size = new System.Drawing.Size(175, 47);
             this.btnRemover.TabIndex = 22;
             this.btnRemover.Text = " &Remover";
             this.btnRemover.UseVisualStyleBackColor = true;
@@ -548,11 +546,12 @@
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(305, 451);
+            this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpar.Location = new System.Drawing.Point(314, 13);
             this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(131, 42);
+            this.btnLimpar.Size = new System.Drawing.Size(145, 45);
             this.btnLimpar.TabIndex = 20;
-            this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.Text = "&Limpar";
             this.btnLimpar.UseVisualStyleBackColor = true;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
@@ -562,7 +561,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNovo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNovo.Location = new System.Drawing.Point(0, 0);
+            this.btnNovo.Location = new System.Drawing.Point(12, 11);
             this.btnNovo.MaximumSize = new System.Drawing.Size(175, 60);
             this.btnNovo.MinimumSize = new System.Drawing.Size(145, 47);
             this.btnNovo.Name = "btnNovo";
@@ -578,7 +577,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCadastra.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCadastra.Location = new System.Drawing.Point(175, 0);
+            this.btnCadastra.Location = new System.Drawing.Point(164, 12);
             this.btnCadastra.MaximumSize = new System.Drawing.Size(175, 60);
             this.btnCadastra.MinimumSize = new System.Drawing.Size(145, 47);
             this.btnCadastra.Name = "btnCadastra";
@@ -590,29 +589,15 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.btnCadastra);
+            this.panel1.Controls.Add(this.btnRemover);
             this.panel1.Controls.Add(this.btnNovo);
-            this.panel1.Location = new System.Drawing.Point(15, 499);
-            this.panel1.MaximumSize = new System.Drawing.Size(500, 150);
-            this.panel1.MinimumSize = new System.Drawing.Size(320, 65);
+            this.panel1.Controls.Add(this.btnAlterar);
+            this.panel1.Controls.Add(this.btnCadastra);
+            this.panel1.Controls.Add(this.btnLimpar);
+            this.panel1.Location = new System.Drawing.Point(-3, 499);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(320, 65);
-            this.panel1.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.btnRemover);
-            this.panel2.Controls.Add(this.btnAlterar);
-            this.panel2.Location = new System.Drawing.Point(411, 499);
-            this.panel2.MaximumSize = new System.Drawing.Size(500, 150);
-            this.panel2.MinimumSize = new System.Drawing.Size(320, 65);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(320, 65);
-            this.panel2.TabIndex = 44;
+            this.panel1.Size = new System.Drawing.Size(784, 63);
+            this.panel1.TabIndex = 49;
             // 
             // frmCadastroUsuario
             // 
@@ -620,13 +605,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.btnLimpar);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.txtIDUsuario);
             this.Controls.Add(this.pnlBordaRepetir);
             this.Controls.Add(this.lblRepetirSenha);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.cbbCargo);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.btnAdicionarFoto);
@@ -671,7 +654,6 @@
             this.pnlBordaRepetir.ResumeLayout(false);
             this.pnlBordaRepetir.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -723,6 +705,5 @@
         private System.Windows.Forms.Button btnNovo;
         private System.Windows.Forms.Button btnCadastra;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
     }
 }
