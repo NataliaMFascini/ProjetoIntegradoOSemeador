@@ -307,7 +307,7 @@ namespace LivrariaEBiblioteca
             {
                 if (cadastrarLivro() == 1 && adicionarEstoque() == 1)
                 {
-                    MessageBox.Show("Cadastro realizado com sucesso.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Alteração realizada com sucesso.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     limparCampos();
 
                     txtIsbn.Focus();

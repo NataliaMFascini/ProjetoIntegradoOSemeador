@@ -124,7 +124,6 @@
             this.btnAlterar.TabIndex = 21;
             this.btnAlterar.Text = " &Alterar";
             this.btnAlterar.UseVisualStyleBackColor = true;
-            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
             // btnRemover
             // 
@@ -377,7 +376,6 @@
             this.cbbDiaDeTrabalho.Name = "cbbDiaDeTrabalho";
             this.cbbDiaDeTrabalho.Size = new System.Drawing.Size(178, 33);
             this.cbbDiaDeTrabalho.TabIndex = 7;
-            this.cbbDiaDeTrabalho.SelectedIndexChanged += new System.EventHandler(this.cbbDiaDeTrabalho_SelectedIndexChanged);
             // 
             // mskCep
             // 
@@ -664,7 +662,6 @@
             this.Name = "frmCadastroUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "O Semeador - Cadastro de usuario";
-            this.Load += new System.EventHandler(this.frmCadastroUsuario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ptbUsuario)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

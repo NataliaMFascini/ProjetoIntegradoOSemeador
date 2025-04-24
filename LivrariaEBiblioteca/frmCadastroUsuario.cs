@@ -111,11 +111,6 @@ namespace LivrariaEBiblioteca
             this.Hide();
         }
 
-        private void cbbDiaDeTrabalho_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnCadastra_Click(object sender, EventArgs e)
         {
             if (txtNomeCompleto.Text.Equals(""))
@@ -315,11 +310,6 @@ namespace LivrariaEBiblioteca
             }
         }
 
-        private void frmCadastroUsuario_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnRemover_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show("Deseja remover esse usuário?", "Mensagem do Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
@@ -346,11 +336,6 @@ namespace LivrariaEBiblioteca
             Conexao.fecharConexao();
 
             return resp;
-        }
-
-        private void btnAlterar_Click(object sender, EventArgs e)
-        {
-
         }
         public int alterarUsuario(int codUsu)
         {
