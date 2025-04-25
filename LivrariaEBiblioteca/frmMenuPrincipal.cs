@@ -62,7 +62,7 @@ namespace LivrariaEBiblioteca
 
         private void btnCadastrarlivros_Click(object sender, EventArgs e)
         {
-            frmCadastroLivrosAlugar abrir = new frmCadastroLivrosAlugar (); 
+            frmCadastroLivrosAlugar abrir = new frmCadastroLivrosAlugar(); 
             abrir.Show();
             this.Hide();
         }

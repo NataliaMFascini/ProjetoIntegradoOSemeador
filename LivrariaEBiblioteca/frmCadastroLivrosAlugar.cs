@@ -19,21 +19,6 @@ namespace LivrariaEBiblioteca
             desabilitarCampos();
         }
 
-        public void limparComponentes()
-        {
-            txtAno.Clear();
-            txtAutor.Clear();
-            txtEditora.Clear();
-            txtIdLivro.Clear();
-            txtIsbn.Clear();
-            txtQuantidade.Clear();
-            txtTitulo.Clear();
-            txtValor.Clear();
-            rdbEmprestimo.Checked = false;
-            rdbVenda.Checked = false;
-            pctLivro.Image = null;
-        }
-
         public frmCadastroLivrosAlugar(string livro)
         {
             InitializeComponent();
@@ -175,7 +160,7 @@ namespace LivrariaEBiblioteca
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
-            limparComponentes();
+            limparCampos();
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)

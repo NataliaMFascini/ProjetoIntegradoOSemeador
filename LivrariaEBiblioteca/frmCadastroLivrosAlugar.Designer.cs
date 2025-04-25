@@ -71,7 +71,7 @@
             this.txtAutor.MaxLength = 100;
             this.txtAutor.Name = "txtAutor";
             this.txtAutor.Size = new System.Drawing.Size(439, 31);
-            this.txtAutor.TabIndex = 4;
+            this.txtAutor.TabIndex = 2;
             // 
             // txtTitulo
             // 
@@ -82,7 +82,7 @@
             this.txtTitulo.MaxLength = 100;
             this.txtTitulo.Name = "txtTitulo";
             this.txtTitulo.Size = new System.Drawing.Size(439, 31);
-            this.txtTitulo.TabIndex = 3;
+            this.txtTitulo.TabIndex = 1;
             // 
             // txtValor
             // 
@@ -91,7 +91,7 @@
             this.txtValor.MaxLength = 12;
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(130, 31);
-            this.txtValor.TabIndex = 8;
+            this.txtValor.TabIndex = 6;
             // 
             // txtQuantidade
             // 
@@ -100,7 +100,7 @@
             this.txtQuantidade.MaxLength = 4;
             this.txtQuantidade.Name = "txtQuantidade";
             this.txtQuantidade.Size = new System.Drawing.Size(155, 31);
-            this.txtQuantidade.TabIndex = 7;
+            this.txtQuantidade.TabIndex = 5;
             // 
             // txtEditora
             // 
@@ -111,7 +111,7 @@
             this.txtEditora.MaxLength = 50;
             this.txtEditora.Name = "txtEditora";
             this.txtEditora.Size = new System.Drawing.Size(182, 31);
-            this.txtEditora.TabIndex = 5;
+            this.txtEditora.TabIndex = 3;
             // 
             // txtAno
             // 
@@ -121,7 +121,7 @@
             this.txtAno.MaxLength = 4;
             this.txtAno.Name = "txtAno";
             this.txtAno.Size = new System.Drawing.Size(130, 31);
-            this.txtAno.TabIndex = 6;
+            this.txtAno.TabIndex = 4;
             // 
             // txtIdLivro
             // 
@@ -141,7 +141,7 @@
             this.txtIsbn.MaxLength = 20;
             this.txtIsbn.Name = "txtIsbn";
             this.txtIsbn.Size = new System.Drawing.Size(179, 31);
-            this.txtIsbn.TabIndex = 2;
+            this.txtIsbn.TabIndex = 0;
             // 
             // lblIsbn
             // 
@@ -246,7 +246,7 @@
             this.btnAdicionar.MinimumSize = new System.Drawing.Size(145, 47);
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(145, 47);
-            this.btnAdicionar.TabIndex = 12;
+            this.btnAdicionar.TabIndex = 9;
             this.btnAdicionar.Text = "Adicionar";
             this.btnAdicionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdicionar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -263,7 +263,7 @@
             this.btnBuscar.MinimumSize = new System.Drawing.Size(145, 47);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(145, 47);
-            this.btnBuscar.TabIndex = 0;
+            this.btnBuscar.TabIndex = 11;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -282,7 +282,7 @@
             this.btnAlterar.MinimumSize = new System.Drawing.Size(145, 47);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(145, 51);
-            this.btnAlterar.TabIndex = 15;
+            this.btnAlterar.TabIndex = 13;
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAlterar.UseVisualStyleBackColor = true;
@@ -300,7 +300,7 @@
             this.btnLimpar.MinimumSize = new System.Drawing.Size(145, 47);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(145, 51);
-            this.btnLimpar.TabIndex = 16;
+            this.btnLimpar.TabIndex = 10;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -319,7 +319,7 @@
             this.btnRemover.MinimumSize = new System.Drawing.Size(145, 47);
             this.btnRemover.Name = "btnRemover";
             this.btnRemover.Size = new System.Drawing.Size(145, 47);
-            this.btnRemover.TabIndex = 13;
+            this.btnRemover.TabIndex = 12;
             this.btnRemover.Text = "Remover";
             this.btnRemover.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRemover.UseVisualStyleBackColor = true;
@@ -335,7 +335,7 @@
             this.btnVoltar.MinimumSize = new System.Drawing.Size(145, 47);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(145, 47);
-            this.btnVoltar.TabIndex = 17;
+            this.btnVoltar.TabIndex = 14;
             this.btnVoltar.Text = "Voltar";
             this.btnVoltar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVoltar.UseVisualStyleBackColor = true;
@@ -373,7 +373,7 @@
             this.btnAdicionarFoto.Location = new System.Drawing.Point(55, 344);
             this.btnAdicionarFoto.Name = "btnAdicionarFoto";
             this.btnAdicionarFoto.Size = new System.Drawing.Size(181, 83);
-            this.btnAdicionarFoto.TabIndex = 10;
+            this.btnAdicionarFoto.TabIndex = 8;
             this.btnAdicionarFoto.Text = "Adicionar foto";
             this.btnAdicionarFoto.UseVisualStyleBackColor = true;
             this.btnAdicionarFoto.Click += new System.EventHandler(this.btnAdicionarFoto_Click);
@@ -386,7 +386,7 @@
             this.rdbEmprestimo.Location = new System.Drawing.Point(565, 364);
             this.rdbEmprestimo.Name = "rdbEmprestimo";
             this.rdbEmprestimo.Size = new System.Drawing.Size(143, 29);
-            this.rdbEmprestimo.TabIndex = 9;
+            this.rdbEmprestimo.TabIndex = 7;
             this.rdbEmprestimo.TabStop = true;
             this.rdbEmprestimo.Text = "Empréstimo";
             this.rdbEmprestimo.UseVisualStyleBackColor = true;
@@ -400,7 +400,7 @@
             this.rdbVenda.Location = new System.Drawing.Point(565, 396);
             this.rdbVenda.Name = "rdbVenda";
             this.rdbVenda.Size = new System.Drawing.Size(92, 29);
-            this.rdbVenda.TabIndex = 9;
+            this.rdbVenda.TabIndex = 7;
             this.rdbVenda.TabStop = true;
             this.rdbVenda.Text = "Venda";
             this.rdbVenda.UseVisualStyleBackColor = true;
