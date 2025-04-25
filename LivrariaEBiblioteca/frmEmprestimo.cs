@@ -16,6 +16,8 @@ namespace LivrariaEBiblioteca
     {
         public int codLivro = 0;
         public int codLoc = 0;
+        public int codUsu = 0;
+        public int codEmp = 0;
 
         Livros livros = new Livros();
 
@@ -24,8 +26,16 @@ namespace LivrariaEBiblioteca
             InitializeComponent();
             DesavilitarCampos();
         }
+        //public frmEmprestimo(string codEmp, int codEmprestimo) problema de amanha
+        //{
+        //    InitializeComponent();
 
-        public void DesavilitarCampos() 
+        //    txtNEmprestimo.Text = codEmp;
+
+        //    codEmp = codEmprestimo;
+        //}
+
+        public void DesavilitarCampos()
         {
             txtIdLivro.Enabled = false;
             txtNEmprestimo.Enabled = false;
@@ -68,16 +78,13 @@ namespace LivrariaEBiblioteca
                 MessageBox.Show("Favor, Preencha todos os componentes", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtIsbn.Focus();
             }
-            if (txtLocatario.Equals(""))
-            {
-                MessageBox.Show("Favor, Preencha todos os componentes", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtLocatario.Focus();
-            }
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
+            checarComponentes();
             ltbCarrinho.Items.Add(txtTitulo.Text);
+            separarLivros();
             txtNEmprestimo.Focus();
         }
 
@@ -108,7 +115,7 @@ namespace LivrariaEBiblioteca
             MySqlCommand comm = new MySqlCommand();
             int resp = 0;
 
-            comm.CommandText = "insert into tbEmprestimo(dataVenda, nomeLivro, valorTotal, pagamento, codUsu, codLivro) values (@dataVenda, @nomeLivro, @valorTotal, @pagamento, @codUsu, @codLivro);";
+            comm.CommandText = "insert into tbEmprestimo(codEmp, dataEmp, dataDev, codLivro, codLoc) values (@codEmp, @dataEmp, @dataDev, @codLivro, @codLoc );";
             comm.CommandType = CommandType.Text;
 
 
@@ -116,8 +123,9 @@ namespace LivrariaEBiblioteca
             {
                 comm.Parameters.Clear();
 
-                comm.Parameters.Add("@dataEmprestimo", MySqlDbType.DateTime).Value = DateTime.Now;
-                comm.Parameters.Add("@nomeLivro", MySqlDbType.VarChar, 100).Value = livros.nomeRetorno(i);
+                comm.Parameters.Add("@codEmp", MySqlDbType.Int32).Value = codEmp;
+                comm.Parameters.Add("@dataEmp", MySqlDbType.DateTime).Value = DateTime.Now;
+                //comm.Parameters.Add("@dataDev", MySqlDbType.DateTime).Value = DateTime.; problema de amanha
                 comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
                 comm.Parameters.Add("@codLoc", MySqlDbType.Int32).Value = codLoc;
 
@@ -131,22 +139,57 @@ namespace LivrariaEBiblioteca
             return resp;
         }
 
+        public int saidaEstoque()
+        {
+            MySqlCommand comm = new MySqlCommand();
+            int resp = 0;
+
+            comm.CommandText = "update tbEstoque set saidaEmp = @saidaEmp where codLivro = @codLivro";
+            comm.CommandType = CommandType.Text;
+            for (int i = 0; i < Livros.ListaLivros.Count; i++)
+            {
+                comm.Parameters.Clear();
+                comm.Parameters.Add("@saidaEmp", MySqlDbType.Int32).Value = livros.quantidadeRetorno(i);
+                comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
+
+                comm.Connection = Conexao.obterConexao();
+
+                resp = comm.ExecuteNonQuery();
+
+                Conexao.fecharConexao();
+            }
+
+            return resp;
+        }
+
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
-            checarComponentes();
+            if (ltbCarrinho.Items.Count != 0)
 
-            if (ltbCarrinho.Items.Count == 0)
             {
-                if (registrarEmprestimo(codLoc) == 1)
+                if (registrarEmprestimo(codUsu) == 1 && saidaEstoque() == 1)
                 {
                     MessageBox.Show("Empréstimo registrada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                     limparComponentes();
                 }
                 else
                 {
-                    MessageBox.Show("Erro ao registrar empréstimo.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                    MessageBox.Show("Erro ao registrar o empréstimo.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
                 }
             }
+            else
+            {
+                MessageBox.Show("Carrinho vazio.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+            }
+        }
+        public void separarLivros()
+        {
+            Livros livros = new Livros();
+
+            livros.idLivro = Convert.ToInt32(txtIdLivro.Text);
+            livros.nomeLivro = txtTitulo.Text;
+
+            Livros.ListaLivros.Add(livros);
         }
 
             public void escanearLivro(string isbn)
@@ -188,6 +231,7 @@ namespace LivrariaEBiblioteca
             if (e.KeyCode == Keys.Enter)
             {
                 escanearLivro(txtIsbn.Text);
+                codLivro = Convert.ToInt32(txtIdLivro.Text);
             }
         }
     }
