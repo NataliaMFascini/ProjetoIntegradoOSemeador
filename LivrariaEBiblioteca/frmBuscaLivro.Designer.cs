@@ -67,18 +67,11 @@
             // 
             this.btnBuscar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-<<<<<<< HEAD
+            this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
             this.btnBuscar.Location = new System.Drawing.Point(3, 311);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(150, 74);
             this.btnBuscar.TabIndex = 8;
-=======
-            this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
-            this.btnBuscar.Location = new System.Drawing.Point(632, 333);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(95, 35);
-            this.btnBuscar.TabIndex = 10;
->>>>>>> cd5debe9b4e1946e8ce9b17949d22d62b0ed21f6
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -120,18 +113,11 @@
             this.txtTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-<<<<<<< HEAD
-            this.txtTitulo.Location = new System.Drawing.Point(173, 253);
-=======
-            this.txtTitulo.Location = new System.Drawing.Point(184, 154);
-            this.txtTitulo.MaxLength = 100;
->>>>>>> cd5debe9b4e1946e8ce9b17949d22d62b0ed21f6
+            this.txtTitulo.Location = new System.Drawing.Point(173, 253)
             this.txtTitulo.Name = "txtTitulo";
             this.txtTitulo.Size = new System.Drawing.Size(434, 31);
             this.txtTitulo.TabIndex = 3;
             // 
-<<<<<<< HEAD
-=======
             // lblAutor
             // 
             this.lblAutor.AutoSize = true;
@@ -153,7 +139,6 @@
             this.txtAutor.Size = new System.Drawing.Size(583, 31);
             this.txtAutor.TabIndex = 4;
             // 
->>>>>>> cd5debe9b4e1946e8ce9b17949d22d62b0ed21f6
             // lblPequisar
             // 
             this.lblPequisar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -174,17 +159,10 @@
             this.ltbPesquisar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ltbPesquisar.FormattingEnabled = true;
             this.ltbPesquisar.ItemHeight = 25;
-<<<<<<< HEAD
             this.ltbPesquisar.Location = new System.Drawing.Point(31, 315);
             this.ltbPesquisar.Name = "ltbPesquisar";
             this.ltbPesquisar.Size = new System.Drawing.Size(587, 154);
             this.ltbPesquisar.TabIndex = 8;
-=======
-            this.ltbPesquisar.Location = new System.Drawing.Point(12, 333);
-            this.ltbPesquisar.Name = "ltbPesquisar";
-            this.ltbPesquisar.Size = new System.Drawing.Size(636, 154);
-            this.ltbPesquisar.TabIndex = 9;
->>>>>>> cd5debe9b4e1946e8ce9b17949d22d62b0ed21f6
             this.ltbPesquisar.SelectedIndexChanged += new System.EventHandler(this.ltbPesquisar_SelectedIndexChanged);
             // 
             // lblResultado
@@ -201,18 +179,11 @@
             // 
             this.btnLimpar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-<<<<<<< HEAD
+            this.btnLimpar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpar.Image")));
             this.btnLimpar.Location = new System.Drawing.Point(3, 391);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(150, 74);
             this.btnLimpar.TabIndex = 9;
-=======
-            this.btnLimpar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpar.Image")));
-            this.btnLimpar.Location = new System.Drawing.Point(632, 385);
-            this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(94, 35);
-            this.btnLimpar.TabIndex = 11;
->>>>>>> cd5debe9b4e1946e8ce9b17949d22d62b0ed21f6
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -245,8 +216,6 @@
             this.rdbIdLivro.UseVisualStyleBackColor = true;
             this.rdbIdLivro.CheckedChanged += new System.EventHandler(this.rdbIdLivro_CheckedChanged);
             // 
-<<<<<<< HEAD
-=======
             // lblAno
             // 
             this.lblAno.AutoSize = true;
@@ -324,16 +293,11 @@
             this.txtValor.Size = new System.Drawing.Size(129, 31);
             this.txtValor.TabIndex = 8;
             // 
->>>>>>> cd5debe9b4e1946e8ce9b17949d22d62b0ed21f6
             // txtIsbn
             // 
             this.txtIsbn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-<<<<<<< HEAD
             this.txtIsbn.Location = new System.Drawing.Point(333, 192);
-=======
-            this.txtIsbn.Location = new System.Drawing.Point(344, 93);
             this.txtIsbn.MaxLength = 20;
->>>>>>> cd5debe9b4e1946e8ce9b17949d22d62b0ed21f6
             this.txtIsbn.Name = "txtIsbn";
             this.txtIsbn.Size = new System.Drawing.Size(136, 31);
             this.txtIsbn.TabIndex = 2;
@@ -341,12 +305,8 @@
             // txtIdLivro
             // 
             this.txtIdLivro.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-<<<<<<< HEAD
             this.txtIdLivro.Location = new System.Drawing.Point(173, 192);
-=======
-            this.txtIdLivro.Location = new System.Drawing.Point(184, 93);
             this.txtIdLivro.MaxLength = 10;
->>>>>>> cd5debe9b4e1946e8ce9b17949d22d62b0ed21f6
             this.txtIdLivro.Name = "txtIdLivro";
             this.txtIdLivro.Size = new System.Drawing.Size(136, 31);
             this.txtIdLivro.TabIndex = 1;
@@ -355,18 +315,11 @@
             // 
             this.btnVoltar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnVoltar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-<<<<<<< HEAD
+            this.btnVoltar.Image = ((System.Drawing.Image)(resources.GetObject("btnVoltar.Image")));
             this.btnVoltar.Location = new System.Drawing.Point(3, 3);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(150, 75);
             this.btnVoltar.TabIndex = 12;
-=======
-            this.btnVoltar.Image = ((System.Drawing.Image)(resources.GetObject("btnVoltar.Image")));
-            this.btnVoltar.Location = new System.Drawing.Point(638, 496);
-            this.btnVoltar.Name = "btnVoltar";
-            this.btnVoltar.Size = new System.Drawing.Size(130, 49);
-            this.btnVoltar.TabIndex = 14;
->>>>>>> cd5debe9b4e1946e8ce9b17949d22d62b0ed21f6
             this.btnVoltar.Text = "Voltar";
             this.btnVoltar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnVoltar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -377,18 +330,11 @@
             // 
             this.btnVender.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnVender.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-<<<<<<< HEAD
+            this.btnVender.Image = ((System.Drawing.Image)(resources.GetObject("btnVender.Image")));
             this.btnVender.Location = new System.Drawing.Point(3, 3);
             this.btnVender.Name = "btnVender";
             this.btnVender.Size = new System.Drawing.Size(210, 74);
             this.btnVender.TabIndex = 10;
-=======
-            this.btnVender.Image = ((System.Drawing.Image)(resources.GetObject("btnVender.Image")));
-            this.btnVender.Location = new System.Drawing.Point(12, 496);
-            this.btnVender.Name = "btnVender";
-            this.btnVender.Size = new System.Drawing.Size(113, 35);
-            this.btnVender.TabIndex = 12;
->>>>>>> cd5debe9b4e1946e8ce9b17949d22d62b0ed21f6
             this.btnVender.Text = "Vender";
             this.btnVender.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnVender.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -399,18 +345,11 @@
             // 
             this.btnEmprestar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnEmprestar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-<<<<<<< HEAD
+            this.btnEmprestar.Image = ((System.Drawing.Image)(resources.GetObject("btnEmprestar.Image")));
             this.btnEmprestar.Location = new System.Drawing.Point(219, 3);
             this.btnEmprestar.Name = "btnEmprestar";
             this.btnEmprestar.Size = new System.Drawing.Size(209, 74);
             this.btnEmprestar.TabIndex = 11;
-=======
-            this.btnEmprestar.Image = ((System.Drawing.Image)(resources.GetObject("btnEmprestar.Image")));
-            this.btnEmprestar.Location = new System.Drawing.Point(184, 496);
-            this.btnEmprestar.Name = "btnEmprestar";
-            this.btnEmprestar.Size = new System.Drawing.Size(113, 35);
-            this.btnEmprestar.TabIndex = 13;
->>>>>>> cd5debe9b4e1946e8ce9b17949d22d62b0ed21f6
             this.btnEmprestar.Text = "Emprestar";
             this.btnEmprestar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEmprestar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;

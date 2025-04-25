@@ -117,17 +117,11 @@
             // 
             // btnEmprestimos
             // 
-<<<<<<< HEAD
             this.btnEmprestimos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnEmprestimos.Location = new System.Drawing.Point(3, 323);
             this.btnEmprestimos.Name = "btnEmprestimos";
             this.btnEmprestimos.Size = new System.Drawing.Size(150, 74);
-=======
             this.btnEmprestimos.Image = ((System.Drawing.Image)(resources.GetObject("btnEmprestimos.Image")));
-            this.btnEmprestimos.Location = new System.Drawing.Point(3, 323);
-            this.btnEmprestimos.Name = "btnEmprestimos";
-            this.btnEmprestimos.Size = new System.Drawing.Size(180, 65);
->>>>>>> cd5debe9b4e1946e8ce9b17949d22d62b0ed21f6
             this.btnEmprestimos.TabIndex = 6;
             this.btnEmprestimos.Text = "Relatorio de &empréstimos";
             this.btnEmprestimos.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -137,11 +131,8 @@
             // 
             // btnVendas
             // 
-<<<<<<< HEAD
             this.btnVendas.Dock = System.Windows.Forms.DockStyle.Fill;
-=======
             this.btnVendas.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
->>>>>>> cd5debe9b4e1946e8ce9b17949d22d62b0ed21f6
             this.btnVendas.Location = new System.Drawing.Point(3, 243);
             this.btnVendas.Name = "btnVendas";
             this.btnVendas.Size = new System.Drawing.Size(150, 74);
@@ -154,17 +145,11 @@
             // 
             // btnLocatarios
             // 
-<<<<<<< HEAD
             this.btnLocatarios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnLocatarios.Location = new System.Drawing.Point(3, 163);
             this.btnLocatarios.Name = "btnLocatarios";
             this.btnLocatarios.Size = new System.Drawing.Size(150, 74);
-=======
             this.btnLocatarios.Image = ((System.Drawing.Image)(resources.GetObject("btnLocatarios.Image")));
-            this.btnLocatarios.Location = new System.Drawing.Point(3, 243);
-            this.btnLocatarios.Name = "btnLocatarios";
-            this.btnLocatarios.Size = new System.Drawing.Size(180, 70);
->>>>>>> cd5debe9b4e1946e8ce9b17949d22d62b0ed21f6
             this.btnLocatarios.TabIndex = 4;
             this.btnLocatarios.Text = "Lista de &locatários";
             this.btnLocatarios.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -174,59 +159,41 @@
             // 
             // btnUsuarios
             // 
-<<<<<<< HEAD
             this.btnUsuarios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnUsuarios.Location = new System.Drawing.Point(3, 83);
             this.btnUsuarios.Name = "btnUsuarios";
             this.btnUsuarios.Size = new System.Drawing.Size(150, 74);
-=======
             this.btnUsuarios.Image = ((System.Drawing.Image)(resources.GetObject("btnUsuarios.Image")));
             this.btnUsuarios.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUsuarios.Location = new System.Drawing.Point(3, 83);
-            this.btnUsuarios.Name = "btnUsuarios";
-            this.btnUsuarios.Size = new System.Drawing.Size(180, 70);
->>>>>>> cd5debe9b4e1946e8ce9b17949d22d62b0ed21f6
             this.btnUsuarios.TabIndex = 3;
             this.btnUsuarios.Text = "Lista de &usuários";
             this.btnUsuarios.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnUsuarios.UseVisualStyleBackColor = true;
             this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
-
             // 
             // btnListaLivros
             // 
-<<<<<<< HEAD
             this.btnListaLivros.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnListaLivros.Location = new System.Drawing.Point(3, 3);
             this.btnListaLivros.Name = "btnListaLivros";
             this.btnListaLivros.Size = new System.Drawing.Size(150, 74);
             this.btnListaLivros.TabIndex = 2;
             this.btnListaLivros.Text = "&Lista de livros";
-=======
             this.btnListaLivros.Image = ((System.Drawing.Image)(resources.GetObject("btnListaLivros.Image")));
-            this.btnListaLivros.Location = new System.Drawing.Point(3, 3);
-            this.btnListaLivros.Name = "btnListaLivros";
-            this.btnListaLivros.Size = new System.Drawing.Size(180, 70);
-            this.btnListaLivros.TabIndex = 2;
-            this.btnListaLivros.Text = "&Estoque de livros";
             this.btnListaLivros.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnListaLivros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
->>>>>>> cd5debe9b4e1946e8ce9b17949d22d62b0ed21f6
             this.btnListaLivros.UseVisualStyleBackColor = true;
             this.btnListaLivros.Click += new System.EventHandler(this.btnListaLivros_Click);
             // 
             // btnVoltar
             // 
-<<<<<<< HEAD
             this.btnVoltar.Dock = System.Windows.Forms.DockStyle.Fill;
-=======
             this.btnVoltar.Image = ((System.Drawing.Image)(resources.GetObject("btnVoltar.Image")));
->>>>>>> cd5debe9b4e1946e8ce9b17949d22d62b0ed21f6
             this.btnVoltar.Location = new System.Drawing.Point(3, 483);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(150, 75);
             this.btnVoltar.TabIndex = 10;
-            this.btnVoltar.Text = " ";
+            this.btnVoltar.Text = "Voltar";
             this.btnVoltar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnVoltar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVoltar.UseVisualStyleBackColor = true;
@@ -234,11 +201,8 @@
             // 
             // btnImprimir
             // 
-<<<<<<< HEAD
             this.btnImprimir.Dock = System.Windows.Forms.DockStyle.Fill;
-=======
             this.btnImprimir.Image = ((System.Drawing.Image)(resources.GetObject("btnImprimir.Image")));
->>>>>>> cd5debe9b4e1946e8ce9b17949d22d62b0ed21f6
             this.btnImprimir.Location = new System.Drawing.Point(3, 3);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(209, 74);
@@ -279,14 +243,9 @@
             // 
             // btnExportar
             // 
-<<<<<<< HEAD
             this.btnExportar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnExportar.Location = new System.Drawing.Point(218, 3);
-=======
-
             this.btnExportar.Image = ((System.Drawing.Image)(resources.GetObject("btnExportar.Image")));
-            this.btnExportar.Location = new System.Drawing.Point(302, 3);
->>>>>>> cd5debe9b4e1946e8ce9b17949d22d62b0ed21f6
             this.btnExportar.Name = "btnExportar";
             this.btnExportar.Size = new System.Drawing.Size(209, 74);
             this.btnExportar.TabIndex = 9;

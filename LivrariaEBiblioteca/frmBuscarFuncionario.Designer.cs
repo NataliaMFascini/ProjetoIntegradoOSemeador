@@ -211,11 +211,7 @@
             this.Name = "frmBuscarFuncionario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "O Semeador - Buscar funcionário";
-<<<<<<< HEAD
             this.tableLayoutPanel1.ResumeLayout(false);
-=======
-            this.Load += new System.EventHandler(this.frmBuscarFuncionario_Load);
->>>>>>> cd5debe9b4e1946e8ce9b17949d22d62b0ed21f6
             this.ResumeLayout(false);
             this.PerformLayout();
 
