@@ -49,9 +49,15 @@
             this.mskCpf = new System.Windows.Forms.MaskedTextBox();
             this.mskTelefone = new System.Windows.Forms.MaskedTextBox();
             this.ltbListadelivros = new System.Windows.Forms.ListBox();
+<<<<<<< HEAD
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lblBuscarLivro = new System.Windows.Forms.Label();
+=======
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnLimpar = new System.Windows.Forms.Button();
+>>>>>>> cd5debe9b4e1946e8ce9b17949d22d62b0ed21f6
             this.gpbDadosLocatario.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -70,6 +76,7 @@
             this.btnNovo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnNovo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNovo.UseVisualStyleBackColor = true;
+            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
             // btnCadastrar
             // 
@@ -113,6 +120,7 @@
             this.btnRemover.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRemover.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRemover.UseVisualStyleBackColor = true;
+            this.btnRemover.Click += new System.EventHandler(this.btnRemover_Click);
             // 
             // btnBuscar
             // 
@@ -337,14 +345,30 @@
             this.lblBuscarLivro.TabIndex = 20;
             this.lblBuscarLivro.Text = "Gerenciar locatário";
             // 
+            // btnLimpar
+            // 
+            this.btnLimpar.Location = new System.Drawing.Point(281, 14);
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(127, 42);
+            this.btnLimpar.TabIndex = 18;
+            this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
+            // 
             // frmCadastroLocatario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+<<<<<<< HEAD
             this.Controls.Add(this.lblBuscarLivro);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tableLayoutPanel1);
+=======
+            this.Controls.Add(this.btnLimpar);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+>>>>>>> cd5debe9b4e1946e8ce9b17949d22d62b0ed21f6
             this.Controls.Add(this.ltbListadelivros);
             this.Controls.Add(this.gpbDadosLocatario);
             this.Controls.Add(this.lbllistadelivros);
@@ -352,7 +376,6 @@
             this.Name = "frmCadastroLocatario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "O Semeador - Cadastro de locatário";
-            this.Load += new System.EventHandler(this.frmCadastroLocatario_Load);
             this.gpbDadosLocatario.ResumeLayout(false);
             this.gpbDadosLocatario.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -384,8 +407,12 @@
         private System.Windows.Forms.MaskedTextBox mskTelefone;
         private System.Windows.Forms.ListBox ltbListadelivros;
         private System.Windows.Forms.Button btnGerarPront;
+<<<<<<< HEAD
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label lblBuscarLivro;
+=======
+        private System.Windows.Forms.Button btnLimpar;
+>>>>>>> cd5debe9b4e1946e8ce9b17949d22d62b0ed21f6
     }
 }
