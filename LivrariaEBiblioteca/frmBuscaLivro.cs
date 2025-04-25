@@ -14,10 +14,24 @@ namespace LivrariaEBiblioteca
 {
     public partial class frmBuscarLivro : Form
     {
+        public string nome;
+        public int codUsu;
+        public string cargo;
+        public string ultimaTela;
         public frmBuscarLivro()
         {
             InitializeComponent();
             desabilitarCampos();
+        }
+        public frmBuscarLivro(string nome, int codUsu, string cargo, string ultimaTela)
+        {
+            InitializeComponent();
+            desabilitarCampos();
+
+            this.nome = nome;
+            this.cargo = cargo;
+            this.codUsu = codUsu;
+            this.ultimaTela = ultimaTela; 
         }
 
         public void habilitarCampos()
@@ -113,13 +127,13 @@ namespace LivrariaEBiblioteca
 
         private void btnVender_Click(object sender, EventArgs e)
         {
-            frmVender abrirVender = new frmVender();
+            frmVender abrirVender = new frmVender(this.nome, this.codUsu, this.cargo);
             abrirVender.ShowDialog();
         }
 
         private void btnEmprestar_Click(object sender, EventArgs e)
         {
-            frmEmprestimo abrirEmpre = new frmEmprestimo();
+            frmEmprestimo abrirEmpre = new frmEmprestimo(this.nome, this.codUsu, this.cargo);
             abrirEmpre.ShowDialog();
         }
 
@@ -131,9 +145,30 @@ namespace LivrariaEBiblioteca
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            frmMenuPrincipal abrir = new frmMenuPrincipal();
-            abrir.Show();
-            this.Hide();
+            if (ultimaTela == "Menu")
+            {
+                frmMenuPrincipal abrir = new frmMenuPrincipal(this.cargo, this.nome, this.codUsu);
+                abrir.Show();
+                this.Hide();
+            }
+            if(ultimaTela == "Cadastro")
+            {
+                frmCadastroLivrosAlugar abrir = new frmCadastroLivrosAlugar(this.nome, this.codUsu, this.cargo);
+                abrir.Show();
+                this.Hide();
+            }
+            if(ultimaTela == "Venda")
+            {
+                frmVender abrir = new frmVender(this.nome, this.codUsu, this.cargo);
+                abrir.Show();
+                this.Hide();
+            }
+            if (ultimaTela == "Emprestimo")
+            {
+                frmEmprestimo abrir = new frmEmprestimo(this.nome, this.codUsu, this.cargo);
+                abrir.Show();
+                this.Hide();
+            }
         }
 
         private void rdbIdLivro_CheckedChanged(object sender, EventArgs e)

@@ -41,35 +41,35 @@ namespace LivrariaEBiblioteca
 
         private void btnEmprestimo_Click(object sender, EventArgs e)
         {
-            frmEmprestimo abrir = new frmEmprestimo();
+            frmEmprestimo abrir = new frmEmprestimo(nome, codUsu, cargo);
             abrir.Show();
             this.Hide();
         }
 
         private void btnVendas_Click(object sender, EventArgs e)
         {
-            frmVender abrir = new frmVender(nome, codUsu); 
+            frmVender abrir = new frmVender(nome, codUsu, cargo); 
             abrir.Show();
             this.Hide();
         }
 
         private void btnCadastroLocatario_Click(object sender, EventArgs e)
         {
-            frmCadastroLocatario abrir = new frmCadastroLocatario();
+            frmCadastroLocatario abrir = new frmCadastroLocatario(nome, codUsu, cargo);
             abrir.Show();
             this.Hide();
         }
 
         private void btnCadastrarlivros_Click(object sender, EventArgs e)
         {
-            frmCadastroLivrosAlugar abrir = new frmCadastroLivrosAlugar (); 
+            frmCadastroLivrosAlugar abrir = new frmCadastroLivrosAlugar (nome, codUsu, cargo); 
             abrir.Show();
             this.Hide();
         }
 
         private void btnCadastrausuario_Click(object sender, EventArgs e)
         {
-            frmCadastroUsuario abrir = new frmCadastroUsuario();
+            frmCadastroUsuario abrir = new frmCadastroUsuario(nome, codUsu, cargo);
             abrir.Show();
             this.Hide();
         }
@@ -84,14 +84,14 @@ namespace LivrariaEBiblioteca
 
         private void btnRelatorio_Click(object sender, EventArgs e)
         {
-            frmRelatorio abrir = new frmRelatorio();
+            frmRelatorio abrir = new frmRelatorio(nome, codUsu, cargo);
             abrir.Show();
             this.Hide();
         }
 
         private void btnBuscarlivros_Click(object sender, EventArgs e)
         {
-            frmBuscarLivro abrir = new frmBuscarLivro();
+            frmBuscarLivro abrir = new frmBuscarLivro(this.nome, this.codUsu, this.cargo, "Menu");
             abrir.Show();
             this.Hide();
         }
