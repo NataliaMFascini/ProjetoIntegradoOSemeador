@@ -27,6 +27,7 @@ namespace LivrariaEBiblioteca
         {
             InitializeComponent();
             desabilitarCampos();
+            limparComponentes();
 
             this.nome = nome;
             this.cargo = cargo;
@@ -74,8 +75,21 @@ namespace LivrariaEBiblioteca
             txtEditora.Text = string.Empty;
             rdbIdLivro.Checked = false;
             rdbTitulo.Checked = false;
-            ltbPesquisar.Text = string.Empty;
+            ltbPesquisar.Items.Clear();
+
+        }
+        public void LimparCampos_pesquisar()
+        {
+
+            rdbIdLivro.Checked = false;
+            rdbTitulo.Checked = false;
+
             
+            txtTitulo.Clear();
+            txtTitulo.Focus();
+            txtTitulo.Enabled = false;
+            
+
         }
 
         public void pesquisarPorCodigo(int codigo)
@@ -184,6 +198,11 @@ namespace LivrariaEBiblioteca
         }
 
         private void ltbPesquisar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmBuscarLivro_Load(object sender, EventArgs e)
         {
 
         }

@@ -132,6 +132,7 @@
             this.txtIsbn.Name = "txtIsbn";
             this.txtIsbn.Size = new System.Drawing.Size(135, 31);
             this.txtIsbn.TabIndex = 1;
+            this.txtIsbn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtIsbn_KeyDown_1);
             // 
             // lblTitulo
             // 

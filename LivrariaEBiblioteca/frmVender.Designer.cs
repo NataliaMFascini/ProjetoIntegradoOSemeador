@@ -160,6 +160,7 @@
             this.txtIsbn.Name = "txtIsbn";
             this.txtIsbn.Size = new System.Drawing.Size(207, 31);
             this.txtIsbn.TabIndex = 2;
+            this.txtIsbn.TextChanged += new System.EventHandler(this.btnEmprestar_Click);
             this.txtIsbn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtIsbn_KeyDown);
             // 
             // lblAutor

@@ -31,13 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRelatorio));
             this.dgvRelatorio = new System.Windows.Forms.DataGridView();
             this.btnVendas = new System.Windows.Forms.TableLayoutPanel();
-            this.btnListaLivros = new System.Windows.Forms.Button();
-            this.btnUsuarios = new System.Windows.Forms.Button();
-            this.btnLocatarios = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnEmprestimos = new System.Windows.Forms.Button();
-            this.btnImprimir = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnLocatarios = new System.Windows.Forms.Button();
+            this.btnUsuarios = new System.Windows.Forms.Button();
+            this.btnListaLivros = new System.Windows.Forms.Button();
             this.btnVoltar = new System.Windows.Forms.Button();
+            this.btnImprimir = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnExportar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorio)).BeginInit();
@@ -85,32 +85,14 @@
             this.btnVendas.Size = new System.Drawing.Size(156, 561);
             this.btnVendas.TabIndex = 1;
             // 
-            // btnListaLivros
+            // btnEmprestimos
             // 
-            this.btnListaLivros.Location = new System.Drawing.Point(3, 3);
-            this.btnListaLivros.Name = "btnListaLivros";
-            this.btnListaLivros.Size = new System.Drawing.Size(150, 70);
-            this.btnListaLivros.TabIndex = 2;
-            this.btnListaLivros.Text = "&Estoque de livros";
-            this.btnListaLivros.UseVisualStyleBackColor = true;
-            // 
-            // btnUsuarios
-            // 
-            this.btnUsuarios.Location = new System.Drawing.Point(3, 83);
-            this.btnUsuarios.Name = "btnUsuarios";
-            this.btnUsuarios.Size = new System.Drawing.Size(150, 70);
-            this.btnUsuarios.TabIndex = 3;
-            this.btnUsuarios.Text = "Lista de &usuários";
-            this.btnUsuarios.UseVisualStyleBackColor = true;
-            // 
-            // btnLocatarios
-            // 
-            this.btnLocatarios.Location = new System.Drawing.Point(3, 163);
-            this.btnLocatarios.Name = "btnLocatarios";
-            this.btnLocatarios.Size = new System.Drawing.Size(150, 70);
-            this.btnLocatarios.TabIndex = 4;
-            this.btnLocatarios.Text = "Lista de &locatários";
-            this.btnLocatarios.UseVisualStyleBackColor = true;
+            this.btnEmprestimos.Location = new System.Drawing.Point(3, 323);
+            this.btnEmprestimos.Name = "btnEmprestimos";
+            this.btnEmprestimos.Size = new System.Drawing.Size(147, 65);
+            this.btnEmprestimos.TabIndex = 6;
+            this.btnEmprestimos.Text = "Relatorio de &empréstimos";
+            this.btnEmprestimos.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -121,23 +103,32 @@
             this.button1.Text = "&Relatório de vendas";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // btnEmprestimos
+            // btnLocatarios
             // 
-            this.btnEmprestimos.Location = new System.Drawing.Point(3, 323);
-            this.btnEmprestimos.Name = "btnEmprestimos";
-            this.btnEmprestimos.Size = new System.Drawing.Size(147, 65);
-            this.btnEmprestimos.TabIndex = 6;
-            this.btnEmprestimos.Text = "Relatorio de &empréstimos";
-            this.btnEmprestimos.UseVisualStyleBackColor = true;
+            this.btnLocatarios.Location = new System.Drawing.Point(3, 163);
+            this.btnLocatarios.Name = "btnLocatarios";
+            this.btnLocatarios.Size = new System.Drawing.Size(150, 70);
+            this.btnLocatarios.TabIndex = 4;
+            this.btnLocatarios.Text = "Lista de &locatários";
+            this.btnLocatarios.UseVisualStyleBackColor = true;
             // 
-            // btnImprimir
+            // btnUsuarios
             // 
-            this.btnImprimir.Location = new System.Drawing.Point(3, 3);
-            this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(147, 65);
-            this.btnImprimir.TabIndex = 8;
-            this.btnImprimir.Text = "&Imprimir";
-            this.btnImprimir.UseVisualStyleBackColor = true;
+            this.btnUsuarios.Location = new System.Drawing.Point(3, 83);
+            this.btnUsuarios.Name = "btnUsuarios";
+            this.btnUsuarios.Size = new System.Drawing.Size(150, 70);
+            this.btnUsuarios.TabIndex = 3;
+            this.btnUsuarios.Text = "Lista de &usuários";
+            this.btnUsuarios.UseVisualStyleBackColor = true;
+            // 
+            // btnListaLivros
+            // 
+            this.btnListaLivros.Location = new System.Drawing.Point(3, 3);
+            this.btnListaLivros.Name = "btnListaLivros";
+            this.btnListaLivros.Size = new System.Drawing.Size(150, 70);
+            this.btnListaLivros.TabIndex = 2;
+            this.btnListaLivros.Text = "&Estoque de livros";
+            this.btnListaLivros.UseVisualStyleBackColor = true;
             // 
             // btnVoltar
             // 
@@ -148,6 +139,15 @@
             this.btnVoltar.Text = "&Voltar";
             this.btnVoltar.UseVisualStyleBackColor = true;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
+            // 
+            // btnImprimir
+            // 
+            this.btnImprimir.Location = new System.Drawing.Point(3, 3);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(147, 65);
+            this.btnImprimir.TabIndex = 8;
+            this.btnImprimir.Text = "&Imprimir";
+            this.btnImprimir.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
             // 

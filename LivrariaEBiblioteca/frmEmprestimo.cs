@@ -160,11 +160,13 @@ namespace LivrariaEBiblioteca
             }
         }
 
-        private void frmEmprestimo_KeyDown(object sender, KeyEventArgs e)
+        
+        private void txtIsbn_KeyDown_1(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 escanearLivro(txtIsbn.Text);
+                codLivro = Convert.ToInt32(txtIdLivro.Text);
             }
         }
     }

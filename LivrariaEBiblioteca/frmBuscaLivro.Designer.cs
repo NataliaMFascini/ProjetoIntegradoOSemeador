@@ -404,6 +404,7 @@
             this.Name = "frmBuscarLivro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "O Semeador - Buscar Livro";
+            this.Load += new System.EventHandler(this.frmBuscarLivro_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pctLivro)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
