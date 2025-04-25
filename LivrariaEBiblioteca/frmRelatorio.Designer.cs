@@ -39,8 +39,9 @@
             this.btnVoltar = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnExportar = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
+            this.btnExportar = new System.Windows.Forms.Button();
+            this.btnEstoque = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorio)).BeginInit();
             this.tlpRelatorios.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -68,6 +69,7 @@
             this.tlpRelatorios.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tlpRelatorios.ColumnCount = 1;
             this.tlpRelatorios.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpRelatorios.Controls.Add(this.btnEstoque, 0, 5);
             this.tlpRelatorios.Controls.Add(this.btnEmprestimos, 0, 4);
             this.tlpRelatorios.Controls.Add(this.btnVendas, 0, 3);
             this.tlpRelatorios.Controls.Add(this.btnLocatarios, 0, 2);
@@ -91,9 +93,10 @@
             // 
             // btnEmprestimos
             // 
+            this.btnEmprestimos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnEmprestimos.Location = new System.Drawing.Point(3, 323);
             this.btnEmprestimos.Name = "btnEmprestimos";
-            this.btnEmprestimos.Size = new System.Drawing.Size(147, 65);
+            this.btnEmprestimos.Size = new System.Drawing.Size(150, 74);
             this.btnEmprestimos.TabIndex = 6;
             this.btnEmprestimos.Text = "Relatório de &empréstimos";
             this.btnEmprestimos.UseVisualStyleBackColor = true;
@@ -101,9 +104,10 @@
             // 
             // btnVendas
             // 
+            this.btnVendas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnVendas.Location = new System.Drawing.Point(3, 243);
             this.btnVendas.Name = "btnVendas";
-            this.btnVendas.Size = new System.Drawing.Size(147, 65);
+            this.btnVendas.Size = new System.Drawing.Size(150, 74);
             this.btnVendas.TabIndex = 5;
             this.btnVendas.Text = "&Relatório de vendas";
             this.btnVendas.UseVisualStyleBackColor = true;
@@ -111,9 +115,10 @@
             // 
             // btnLocatarios
             // 
+            this.btnLocatarios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnLocatarios.Location = new System.Drawing.Point(3, 163);
             this.btnLocatarios.Name = "btnLocatarios";
-            this.btnLocatarios.Size = new System.Drawing.Size(150, 70);
+            this.btnLocatarios.Size = new System.Drawing.Size(150, 74);
             this.btnLocatarios.TabIndex = 4;
             this.btnLocatarios.Text = "Lista de &locatários";
             this.btnLocatarios.UseVisualStyleBackColor = true;
@@ -121,9 +126,10 @@
             // 
             // btnUsuarios
             // 
+            this.btnUsuarios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnUsuarios.Location = new System.Drawing.Point(3, 83);
             this.btnUsuarios.Name = "btnUsuarios";
-            this.btnUsuarios.Size = new System.Drawing.Size(150, 70);
+            this.btnUsuarios.Size = new System.Drawing.Size(150, 74);
             this.btnUsuarios.TabIndex = 3;
             this.btnUsuarios.Text = "Lista de &usuários";
             this.btnUsuarios.UseVisualStyleBackColor = true;
@@ -131,19 +137,21 @@
             // 
             // btnListaLivros
             // 
+            this.btnListaLivros.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnListaLivros.Location = new System.Drawing.Point(3, 3);
             this.btnListaLivros.Name = "btnListaLivros";
-            this.btnListaLivros.Size = new System.Drawing.Size(150, 70);
+            this.btnListaLivros.Size = new System.Drawing.Size(150, 74);
             this.btnListaLivros.TabIndex = 2;
-            this.btnListaLivros.Text = "&Estoque de livros";
+            this.btnListaLivros.Text = "&Lista de livros";
             this.btnListaLivros.UseVisualStyleBackColor = true;
             this.btnListaLivros.Click += new System.EventHandler(this.btnListaLivros_Click);
             // 
             // btnVoltar
             // 
+            this.btnVoltar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnVoltar.Location = new System.Drawing.Point(3, 483);
             this.btnVoltar.Name = "btnVoltar";
-            this.btnVoltar.Size = new System.Drawing.Size(147, 65);
+            this.btnVoltar.Size = new System.Drawing.Size(150, 75);
             this.btnVoltar.TabIndex = 10;
             this.btnVoltar.Text = "&Voltar";
             this.btnVoltar.UseVisualStyleBackColor = true;
@@ -151,9 +159,10 @@
             // 
             // btnImprimir
             // 
+            this.btnImprimir.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnImprimir.Location = new System.Drawing.Point(3, 3);
             this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(147, 65);
+            this.btnImprimir.Size = new System.Drawing.Size(209, 74);
             this.btnImprimir.TabIndex = 8;
             this.btnImprimir.Text = "&Imprimir";
             this.btnImprimir.UseVisualStyleBackColor = true;
@@ -176,24 +185,37 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(628, 80);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
+            // btnLimpar
+            // 
+            this.btnLimpar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnLimpar.Location = new System.Drawing.Point(433, 3);
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(192, 74);
+            this.btnLimpar.TabIndex = 10;
+            this.btnLimpar.Text = "Li&mpar";
+            this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
+            // 
             // btnExportar
             // 
+            this.btnExportar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnExportar.Location = new System.Drawing.Point(218, 3);
             this.btnExportar.Name = "btnExportar";
-            this.btnExportar.Size = new System.Drawing.Size(147, 65);
+            this.btnExportar.Size = new System.Drawing.Size(209, 74);
             this.btnExportar.TabIndex = 9;
             this.btnExportar.Text = "&Exportar";
             this.btnExportar.UseVisualStyleBackColor = true;
             // 
-            // btnLimpar
+            // btnEstoque
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(433, 3);
-            this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(147, 65);
-            this.btnLimpar.TabIndex = 10;
-            this.btnLimpar.Text = "&Limpar";
-            this.btnLimpar.UseVisualStyleBackColor = true;
-            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
+            this.btnEstoque.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnEstoque.Location = new System.Drawing.Point(3, 403);
+            this.btnEstoque.Name = "btnEstoque";
+            this.btnEstoque.Size = new System.Drawing.Size(150, 74);
+            this.btnEstoque.TabIndex = 11;
+            this.btnEstoque.Text = "&Dados do estoque";
+            this.btnEstoque.UseVisualStyleBackColor = true;
+            this.btnEstoque.Click += new System.EventHandler(this.btnEstoque_Click);
             // 
             // frmRelatorio
             // 
@@ -231,5 +253,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button btnExportar;
         private System.Windows.Forms.Button btnLimpar;
+        private System.Windows.Forms.Button btnEstoque;
     }
 }
