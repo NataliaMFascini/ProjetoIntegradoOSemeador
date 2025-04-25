@@ -49,26 +49,22 @@
             this.mskCpf = new System.Windows.Forms.MaskedTextBox();
             this.mskTelefone = new System.Windows.Forms.MaskedTextBox();
             this.ltbListadelivros = new System.Windows.Forms.ListBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnLimpar = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblBuscarLivro = new System.Windows.Forms.Label();
             this.gpbDadosLocatario.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnNovo
             // 
-            this.btnNovo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNovo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnNovo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNovo.Image = ((System.Drawing.Image)(resources.GetObject("btnNovo.Image")));
-            this.btnNovo.Location = new System.Drawing.Point(0, 0);
-            this.btnNovo.MaximumSize = new System.Drawing.Size(175, 60);
-            this.btnNovo.MinimumSize = new System.Drawing.Size(145, 47);
+            this.btnNovo.Location = new System.Drawing.Point(3, 3);
             this.btnNovo.Name = "btnNovo";
-            this.btnNovo.Size = new System.Drawing.Size(145, 47);
+            this.btnNovo.Size = new System.Drawing.Size(190, 74);
             this.btnNovo.TabIndex = 10;
             this.btnNovo.Text = "&Novo";
             this.btnNovo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -78,16 +74,12 @@
             // 
             // btnCadastrar
             // 
-            this.btnCadastrar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCadastrar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCadastrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCadastrar.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastrar.Image")));
-            this.btnCadastrar.Location = new System.Drawing.Point(200, 0);
-            this.btnCadastrar.MaximumSize = new System.Drawing.Size(175, 60);
-            this.btnCadastrar.MinimumSize = new System.Drawing.Size(145, 47);
+            this.btnCadastrar.Location = new System.Drawing.Point(199, 3);
             this.btnCadastrar.Name = "btnCadastrar";
-            this.btnCadastrar.Size = new System.Drawing.Size(155, 47);
+            this.btnCadastrar.Size = new System.Drawing.Size(190, 74);
             this.btnCadastrar.TabIndex = 8;
             this.btnCadastrar.Text = "&Cadastrar";
             this.btnCadastrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -97,16 +89,12 @@
             // 
             // btnAlterar
             // 
-            this.btnAlterar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAlterar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAlterar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAlterar.Image = ((System.Drawing.Image)(resources.GetObject("btnAlterar.Image")));
-            this.btnAlterar.Location = new System.Drawing.Point(27, 0);
-            this.btnAlterar.MaximumSize = new System.Drawing.Size(175, 60);
-            this.btnAlterar.MinimumSize = new System.Drawing.Size(145, 47);
+            this.btnAlterar.Location = new System.Drawing.Point(395, 3);
             this.btnAlterar.Name = "btnAlterar";
-            this.btnAlterar.Size = new System.Drawing.Size(145, 47);
+            this.btnAlterar.Size = new System.Drawing.Size(190, 74);
             this.btnAlterar.TabIndex = 13;
             this.btnAlterar.Text = "&Alterar";
             this.btnAlterar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -115,16 +103,12 @@
             // 
             // btnRemover
             // 
-            this.btnRemover.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRemover.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnRemover.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRemover.Image = ((System.Drawing.Image)(resources.GetObject("btnRemover.Image")));
-            this.btnRemover.Location = new System.Drawing.Point(231, 0);
-            this.btnRemover.MaximumSize = new System.Drawing.Size(175, 60);
-            this.btnRemover.MinimumSize = new System.Drawing.Size(145, 47);
+            this.btnRemover.Location = new System.Drawing.Point(591, 3);
             this.btnRemover.Name = "btnRemover";
-            this.btnRemover.Size = new System.Drawing.Size(145, 47);
+            this.btnRemover.Size = new System.Drawing.Size(190, 74);
             this.btnRemover.TabIndex = 14;
             this.btnRemover.Text = "&Remover";
             this.btnRemover.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -134,11 +118,12 @@
             // 
             // btnBuscar
             // 
+            this.btnBuscar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
-            this.btnBuscar.Location = new System.Drawing.Point(12, 12);
+            this.btnBuscar.Location = new System.Drawing.Point(3, 3);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(155, 45);
+            this.btnBuscar.Size = new System.Drawing.Size(208, 74);
             this.btnBuscar.TabIndex = 0;
             this.btnBuscar.Text = "&Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -171,17 +156,17 @@
             this.txtEmail.Location = new System.Drawing.Point(24, 174);
             this.txtEmail.MaxLength = 50;
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(409, 31);
+            this.txtEmail.Size = new System.Drawing.Size(469, 31);
             this.txtEmail.TabIndex = 6;
             // 
             // btnVoltar
             // 
-            this.btnVoltar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnVoltar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnVoltar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVoltar.Image = ((System.Drawing.Image)(resources.GetObject("btnVoltar.Image")));
-            this.btnVoltar.Location = new System.Drawing.Point(617, 12);
+            this.btnVoltar.Location = new System.Drawing.Point(217, 3);
             this.btnVoltar.Name = "btnVoltar";
-            this.btnVoltar.Size = new System.Drawing.Size(155, 45);
+            this.btnVoltar.Size = new System.Drawing.Size(208, 74);
             this.btnVoltar.TabIndex = 15;
             this.btnVoltar.Text = "&Voltar";
             this.btnVoltar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -221,7 +206,7 @@
             // 
             this.lblTelefone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTelefone.AutoSize = true;
-            this.lblTelefone.Location = new System.Drawing.Point(460, 149);
+            this.lblTelefone.Location = new System.Drawing.Point(499, 149);
             this.lblTelefone.Name = "lblTelefone";
             this.lblTelefone.Size = new System.Drawing.Size(96, 25);
             this.lblTelefone.TabIndex = 15;
@@ -240,7 +225,7 @@
             // 
             this.lbllistadelivros.AutoSize = true;
             this.lbllistadelivros.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbllistadelivros.Location = new System.Drawing.Point(12, 289);
+            this.lbllistadelivros.Location = new System.Drawing.Point(12, 296);
             this.lbllistadelivros.Name = "lbllistadelivros";
             this.lbllistadelivros.Size = new System.Drawing.Size(145, 25);
             this.lbllistadelivros.TabIndex = 17;
@@ -262,7 +247,7 @@
             this.gpbDadosLocatario.Controls.Add(this.txtProntuario);
             this.gpbDadosLocatario.Controls.Add(this.txtLocatario);
             this.gpbDadosLocatario.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpbDadosLocatario.Location = new System.Drawing.Point(12, 63);
+            this.gpbDadosLocatario.Location = new System.Drawing.Point(12, 70);
             this.gpbDadosLocatario.Name = "gpbDadosLocatario";
             this.gpbDadosLocatario.Size = new System.Drawing.Size(760, 223);
             this.gpbDadosLocatario.TabIndex = 1;
@@ -291,10 +276,10 @@
             // mskTelefone
             // 
             this.mskTelefone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mskTelefone.Location = new System.Drawing.Point(460, 174);
+            this.mskTelefone.Location = new System.Drawing.Point(499, 174);
             this.mskTelefone.Mask = "(99) 9999-9999";
             this.mskTelefone.Name = "mskTelefone";
-            this.mskTelefone.Size = new System.Drawing.Size(161, 31);
+            this.mskTelefone.Size = new System.Drawing.Size(187, 31);
             this.mskTelefone.TabIndex = 7;
             // 
             // ltbListadelivros
@@ -305,36 +290,64 @@
             this.ltbListadelivros.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ltbListadelivros.FormattingEnabled = true;
             this.ltbListadelivros.ItemHeight = 25;
-            this.ltbListadelivros.Location = new System.Drawing.Point(12, 317);
+            this.ltbListadelivros.Location = new System.Drawing.Point(12, 324);
             this.ltbListadelivros.Name = "ltbListadelivros";
             this.ltbListadelivros.Size = new System.Drawing.Size(760, 154);
             this.ltbListadelivros.TabIndex = 8;
             // 
-            // panel1
+            // tableLayoutPanel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.btnNovo);
-            this.panel1.Controls.Add(this.btnCadastrar);
-            this.panel1.Location = new System.Drawing.Point(12, 494);
-            this.panel1.MaximumSize = new System.Drawing.Size(500, 150);
-            this.panel1.MinimumSize = new System.Drawing.Size(376, 65);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(376, 65);
-            this.panel1.TabIndex = 9;
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Controls.Add(this.btnNovo, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnRemover, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnCadastrar, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnAlterar, 2, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 481);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 80);
+            this.tableLayoutPanel1.TabIndex = 18;
             // 
-            // panel2
+            // tableLayoutPanel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.btnAlterar);
-            this.panel2.Controls.Add(this.btnRemover);
-            this.panel2.Location = new System.Drawing.Point(396, 494);
-            this.panel2.MaximumSize = new System.Drawing.Size(500, 150);
-            this.panel2.MinimumSize = new System.Drawing.Size(376, 65);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(376, 65);
-            this.panel2.TabIndex = 12;
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.btnVoltar, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnBuscar, 0, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(356, 0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(428, 80);
+            this.tableLayoutPanel2.TabIndex = 19;
+            // 
+            // lblBuscarLivro
+            // 
+            this.lblBuscarLivro.AutoSize = true;
+            this.lblBuscarLivro.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBuscarLivro.Location = new System.Drawing.Point(24, 19);
+            this.lblBuscarLivro.Name = "lblBuscarLivro";
+            this.lblBuscarLivro.Size = new System.Drawing.Size(307, 37);
+            this.lblBuscarLivro.TabIndex = 20;
+            this.lblBuscarLivro.Text = "Gerenciar locatário";
+            // 
+            // btnLimpar
+            // 
+            this.btnLimpar.Location = new System.Drawing.Point(281, 14);
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(127, 42);
+            this.btnLimpar.TabIndex = 18;
+            this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // btnLimpar
             // 
@@ -351,22 +364,23 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.lblBuscarLivro);
+            this.Controls.Add(this.tableLayoutPanel2);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.ltbListadelivros);
             this.Controls.Add(this.gpbDadosLocatario);
             this.Controls.Add(this.lbllistadelivros);
-            this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.btnVoltar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmCadastroLocatario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "O Semeador - Cadastro de locatário";
             this.gpbDadosLocatario.ResumeLayout(false);
             this.gpbDadosLocatario.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -393,9 +407,10 @@
         private System.Windows.Forms.MaskedTextBox mskCpf;
         private System.Windows.Forms.MaskedTextBox mskTelefone;
         private System.Windows.Forms.ListBox ltbListadelivros;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnGerarPront;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Label lblBuscarLivro;
         private System.Windows.Forms.Button btnLimpar;
     }
 }

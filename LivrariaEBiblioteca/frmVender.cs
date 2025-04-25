@@ -109,9 +109,6 @@ namespace LivrariaEBiblioteca
 
             else
             {
-
-                //if (completarVenda) 
-                //{
                 ltbCarrinho.Items.Add(txtTitulo.Text + " - R$ " + txtValor.Text);
 
                 //Tem que separar por livro
@@ -121,15 +118,8 @@ namespace LivrariaEBiblioteca
 
                 valorTotal = valorTotal + valor;
                 txtValorTotal.Text = "R$" + valorTotal.ToString();
-                //}
-                //else
-                //{
-
-                //}
             }
         }
-
-        //separar quantidade por livros????????
         public void separarLivros()
         {
             Livros livros = new Livros();
@@ -151,7 +141,6 @@ namespace LivrariaEBiblioteca
             abrir.Show();
             this.Hide();
         }
-
         public void escanearLivro(string isbn)
         {
             string tipo;
@@ -206,8 +195,10 @@ namespace LivrariaEBiblioteca
             {
                 escanearLivro(txtIsbn.Text);
                 codLivro = Convert.ToInt32(txtIdLivro.Text);
-                MessageBox.Show("Há " + livros.checarEstoque(codLivro, "Ven") + " em estoque", "Estoque", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                livros.checarEstoque(codLivro, "Ven");
+                if(livros.checarEstoque(codLivro, "Ven") <= 5)
+                {
+                    MessageBox.Show("Resta " + livros.checarEstoque(codLivro, "Ven") + " em estoque.", "Aviso do estoque", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                }
             }
 
         }
@@ -237,7 +228,7 @@ namespace LivrariaEBiblioteca
             MySqlCommand comm = new MySqlCommand();
             int resp = 0;
 
-            comm.CommandText = "insert into tbVendas(dataVenda, nomeLivro, valorTotal, quantidade, pagamento, codUsu, codLivro) values (@dataVenda, @nomeLivro, @valorTotal, @quantidade, @pagamento, @codUsu, @codLivro);";
+            comm.CommandText = "insert into tbVendas(dataVenda, nomeLivro, valorTotal, pagamento, nomeVendedor, codUsu, codLivro) values (@dataVenda, @nomeLivro, @valorTotal, @pagamento, @nomeVendedor, @codUsu, @codLivro);";
             comm.CommandType = CommandType.Text;
 
 
@@ -248,8 +239,8 @@ namespace LivrariaEBiblioteca
                 comm.Parameters.Add("@dataVenda", MySqlDbType.DateTime).Value = DateTime.Now;
                 comm.Parameters.Add("@nomeLivro", MySqlDbType.VarChar, 100).Value = livros.nomeRetorno(i);
                 comm.Parameters.Add("@valorTotal", MySqlDbType.Decimal).Value = livros.valorRetorno(i);
-                comm.Parameters.Add("@quantidade", MySqlDbType.Int32).Value = quantidadeRetorno(i);
                 comm.Parameters.Add("@pagamento", MySqlDbType.VarChar, 50).Value = cbbFormaPagamento.Text;
+                comm.Parameters.Add("@nomeVendedor", MySqlDbType.VarChar, 100).Value = this.nome;
                 comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
                 comm.Parameters.Add("@codUsu", MySqlDbType.Int32).Value = codigoUsuario;
 
@@ -268,12 +259,13 @@ namespace LivrariaEBiblioteca
             MySqlCommand comm = new MySqlCommand();
             int resp = 0;
 
-            comm.CommandText = "update tbEstoque set saidaVen = @saidaVen where codLivro = @codLivro";
+            comm.CommandText = "update tbEstoque set saidaVen = @saidaVen, empVen = @empVen where codLivro = @codLivro";
             comm.CommandType = CommandType.Text;
             for (int i = 0; i < Livros.ListaLivros.Count; i++)
             {
                 comm.Parameters.Clear();
                 comm.Parameters.Add("@saidaVen", MySqlDbType.Int32).Value = quantidadeRetorno(i);
+                comm.Parameters.Add("@empVen", MySqlDbType.Int32).Value = "Ven";
                 comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
 
                 comm.Connection = Conexao.obterConexao();
@@ -295,7 +287,6 @@ namespace LivrariaEBiblioteca
                     quantTotal++;
                 }
             }
-
             return quantTotal;
         }
 

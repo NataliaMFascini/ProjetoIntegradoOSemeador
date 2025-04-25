@@ -18,6 +18,8 @@ namespace LivrariaEBiblioteca
         public string nome;
         public int codUsu;
         public string cargo;
+        public int codPesquisa;
+
         public frmCadastroUsuario()
         {
             InitializeComponent();
@@ -30,6 +32,16 @@ namespace LivrariaEBiblioteca
             this.nome = nome;
             this.cargo = cargo;
             this.codUsu = codUsu;
+        }
+        //retorno da pesquisa
+        public frmCadastroUsuario(string nome, int codUsu, string cargo, int codPesquisa)
+        {
+            InitializeComponent();
+            desabilitarCampos();
+            this.nome = nome;
+            this.cargo = cargo;
+            this.codUsu = codUsu;
+            this.codPesquisa = codPesquisa;
         }
         public void desabilitarCampos()
         {
@@ -322,7 +334,7 @@ namespace LivrariaEBiblioteca
             DialogResult resultado = MessageBox.Show("Deseja remover esse usuário?", "Mensagem do Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (resultado == DialogResult.Yes)
             {
-                excluirUsuario(Convert.ToInt32(txtIDUsuario.Text));
+                excluirUsuario(Convert.ToInt32(codPesquisa));
                 limparCampos();
             }
         }
