@@ -50,6 +50,7 @@
             this.mskTelefone = new System.Windows.Forms.MaskedTextBox();
             this.ltbListadelivros = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnLimpar = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lblBuscarLivro = new System.Windows.Forms.Label();
             this.gpbDadosLocatario.SuspendLayout();
@@ -64,7 +65,7 @@
             this.btnNovo.Image = ((System.Drawing.Image)(resources.GetObject("btnNovo.Image")));
             this.btnNovo.Location = new System.Drawing.Point(3, 3);
             this.btnNovo.Name = "btnNovo";
-            this.btnNovo.Size = new System.Drawing.Size(190, 74);
+            this.btnNovo.Size = new System.Drawing.Size(150, 74);
             this.btnNovo.TabIndex = 10;
             this.btnNovo.Text = "&Novo";
             this.btnNovo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -77,9 +78,9 @@
             this.btnCadastrar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCadastrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCadastrar.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastrar.Image")));
-            this.btnCadastrar.Location = new System.Drawing.Point(199, 3);
+            this.btnCadastrar.Location = new System.Drawing.Point(159, 3);
             this.btnCadastrar.Name = "btnCadastrar";
-            this.btnCadastrar.Size = new System.Drawing.Size(190, 74);
+            this.btnCadastrar.Size = new System.Drawing.Size(150, 74);
             this.btnCadastrar.TabIndex = 8;
             this.btnCadastrar.Text = "&Cadastrar";
             this.btnCadastrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -92,9 +93,9 @@
             this.btnAlterar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAlterar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAlterar.Image = ((System.Drawing.Image)(resources.GetObject("btnAlterar.Image")));
-            this.btnAlterar.Location = new System.Drawing.Point(395, 3);
+            this.btnAlterar.Location = new System.Drawing.Point(315, 3);
             this.btnAlterar.Name = "btnAlterar";
-            this.btnAlterar.Size = new System.Drawing.Size(190, 74);
+            this.btnAlterar.Size = new System.Drawing.Size(150, 74);
             this.btnAlterar.TabIndex = 13;
             this.btnAlterar.Text = "&Alterar";
             this.btnAlterar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -106,9 +107,9 @@
             this.btnRemover.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnRemover.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRemover.Image = ((System.Drawing.Image)(resources.GetObject("btnRemover.Image")));
-            this.btnRemover.Location = new System.Drawing.Point(591, 3);
+            this.btnRemover.Location = new System.Drawing.Point(471, 3);
             this.btnRemover.Name = "btnRemover";
-            this.btnRemover.Size = new System.Drawing.Size(190, 74);
+            this.btnRemover.Size = new System.Drawing.Size(150, 74);
             this.btnRemover.TabIndex = 14;
             this.btnRemover.Text = "&Remover";
             this.btnRemover.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -297,11 +298,13 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnCount = 5;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.btnLimpar, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnNovo, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnRemover, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnCadastrar, 1, 0);
@@ -313,6 +316,21 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 80);
             this.tableLayoutPanel1.TabIndex = 18;
+            // 
+            // btnLimpar
+            // 
+            this.btnLimpar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpar.Image")));
+            this.btnLimpar.Location = new System.Drawing.Point(627, 3);
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(154, 74);
+            this.btnLimpar.TabIndex = 15;
+            this.btnLimpar.Text = "&Limpar";
+            this.btnLimpar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -339,26 +357,6 @@
             this.lblBuscarLivro.TabIndex = 20;
             this.lblBuscarLivro.Text = "Gerenciar locatário";
             // 
-            // btnLimpar
-            // 
-            this.btnLimpar.Location = new System.Drawing.Point(281, 14);
-            this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(127, 42);
-            this.btnLimpar.TabIndex = 18;
-            this.btnLimpar.Text = "Limpar";
-            this.btnLimpar.UseVisualStyleBackColor = true;
-            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
-            // 
-            // btnLimpar
-            // 
-            this.btnLimpar.Location = new System.Drawing.Point(281, 14);
-            this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(127, 42);
-            this.btnLimpar.TabIndex = 18;
-            this.btnLimpar.Text = "Limpar";
-            this.btnLimpar.UseVisualStyleBackColor = true;
-            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
-            // 
             // frmCadastroLocatario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -367,9 +365,6 @@
             this.Controls.Add(this.lblBuscarLivro);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.btnLimpar);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.ltbListadelivros);
             this.Controls.Add(this.gpbDadosLocatario);
             this.Controls.Add(this.lbllistadelivros);

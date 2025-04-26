@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCadastroUsuario));
+            this.btnNovo = new System.Windows.Forms.Button();
+            this.btnCadastra = new System.Windows.Forms.Button();
             this.btnAlterar = new System.Windows.Forms.Button();
             this.btnRemover = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
@@ -87,9 +89,9 @@
             this.btnNovo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnNovo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNovo.Image = ((System.Drawing.Image)(resources.GetObject("btnNovo.Image")));
-            this.btnNovo.Location = new System.Drawing.Point(0, 0);
+            this.btnNovo.Location = new System.Drawing.Point(3, 3);
             this.btnNovo.Name = "btnNovo";
-            this.btnNovo.Size = new System.Drawing.Size(150, 74);
+            this.btnNovo.Size = new System.Drawing.Size(151, 74);
             this.btnNovo.TabIndex = 1;
             this.btnNovo.Text = " &Novo";
             this.btnNovo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -101,12 +103,13 @@
             // 
             this.btnCadastra.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCadastra.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCadastra.Location = new System.Drawing.Point(159, 3);
-            this.btnCadastra.Name = "btnCadastra";
-            this.btnCadastra.Size = new System.Drawing.Size(150, 74);
             this.btnCadastra.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastra.Image")));
+            this.btnCadastra.Location = new System.Drawing.Point(160, 3);
+            this.btnCadastra.Name = "btnCadastra";
+            this.btnCadastra.Size = new System.Drawing.Size(153, 74);
             this.btnCadastra.TabIndex = 19;
             this.btnCadastra.Text = " &Cadastrar";
+            this.btnCadastra.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCadastra.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCadastra.UseVisualStyleBackColor = true;
             this.btnCadastra.Click += new System.EventHandler(this.btnCadastra_Click);
@@ -115,11 +118,10 @@
             // 
             this.btnAlterar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAlterar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAlterar.Location = new System.Drawing.Point(471, 3);
             this.btnAlterar.Image = ((System.Drawing.Image)(resources.GetObject("btnAlterar.Image")));
-            this.btnAlterar.Location = new System.Drawing.Point(144, 3);
+            this.btnAlterar.Location = new System.Drawing.Point(472, 3);
             this.btnAlterar.Name = "btnAlterar";
-            this.btnAlterar.Size = new System.Drawing.Size(150, 74);
+            this.btnAlterar.Size = new System.Drawing.Size(151, 74);
             this.btnAlterar.TabIndex = 21;
             this.btnAlterar.Text = " &Alterar";
             this.btnAlterar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -130,10 +132,10 @@
             // 
             this.btnRemover.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnRemover.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemover.Location = new System.Drawing.Point(627, 3);
-            this.btnRemover.Name = "btnRemover";
-            this.btnRemover.Size = new System.Drawing.Size(154, 74);
             this.btnRemover.Image = ((System.Drawing.Image)(resources.GetObject("btnRemover.Image")));
+            this.btnRemover.Location = new System.Drawing.Point(629, 3);
+            this.btnRemover.Name = "btnRemover";
+            this.btnRemover.Size = new System.Drawing.Size(152, 74);
             this.btnRemover.TabIndex = 22;
             this.btnRemover.Text = " &Remover";
             this.btnRemover.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -145,10 +147,10 @@
             // 
             this.btnBuscar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
             this.btnBuscar.Location = new System.Drawing.Point(3, 3);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(208, 74);
-            this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
             this.btnBuscar.TabIndex = 23;
             this.btnBuscar.Text = " &Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -182,22 +184,28 @@
             // 
             this.btnVoltar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnVoltar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVoltar.Image = ((System.Drawing.Image)(resources.GetObject("btnVoltar.Image")));
             this.btnVoltar.Location = new System.Drawing.Point(217, 3);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(208, 74);
             this.btnVoltar.TabIndex = 24;
             this.btnVoltar.Text = " &Voltar";
+            this.btnVoltar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnVoltar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVoltar.UseVisualStyleBackColor = true;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
             // btnLimpar
             // 
             this.btnLimpar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnLimpar.Location = new System.Drawing.Point(315, 3);
+            this.btnLimpar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpar.Image")));
+            this.btnLimpar.Location = new System.Drawing.Point(319, 3);
             this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(150, 74);
+            this.btnLimpar.Size = new System.Drawing.Size(147, 74);
             this.btnLimpar.TabIndex = 20;
             this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLimpar.UseVisualStyleBackColor = true;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
@@ -205,8 +213,8 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 5;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.28061F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.51531F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.Controls.Add(this.btnNovo, 0, 0);
@@ -532,10 +540,9 @@
             "Sábado",
             "Domingo"});
             this.cbbDiaDeTrabalho.Location = new System.Drawing.Point(576, 177);
-            this.cbbDiaDeTrabalho.MaxLength = 15;
             this.cbbDiaDeTrabalho.Name = "cbbDiaDeTrabalho";
             this.cbbDiaDeTrabalho.Size = new System.Drawing.Size(178, 33);
-            this.cbbDiaDeTrabalho.TabIndex = 7;
+            this.cbbDiaDeTrabalho.TabIndex = 70;
             // 
             // mskTelefone
             // 
@@ -664,236 +671,6 @@
             this.lblBuscarLivro.Size = new System.Drawing.Size(289, 37);
             this.lblBuscarLivro.TabIndex = 53;
             this.lblBuscarLivro.Text = "Gerenciar usuário";
-            this.ptbUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ptbUsuario.Location = new System.Drawing.Point(583, 112);
-            this.ptbUsuario.Name = "ptbUsuario";
-            this.ptbUsuario.Size = new System.Drawing.Size(189, 200);
-            this.ptbUsuario.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.ptbUsuario.TabIndex = 41;
-            this.ptbUsuario.TabStop = false;
-            // 
-            // btnAdicionarFoto
-            // 
-            this.btnAdicionarFoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdicionarFoto.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdicionarFoto.Location = new System.Drawing.Point(583, 314);
-            this.btnAdicionarFoto.Name = "btnAdicionarFoto";
-            this.btnAdicionarFoto.Size = new System.Drawing.Size(189, 33);
-            this.btnAdicionarFoto.TabIndex = 18;
-            this.btnAdicionarFoto.Text = "Adicionar foto";
-            this.btnAdicionarFoto.UseVisualStyleBackColor = true;
-            this.btnAdicionarFoto.Click += new System.EventHandler(this.btnAdicionarFoto_Click);
-            // 
-            // btnVoltar
-            // 
-            this.btnVoltar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnVoltar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVoltar.Image = ((System.Drawing.Image)(resources.GetObject("btnVoltar.Image")));
-            this.btnVoltar.Location = new System.Drawing.Point(617, 14);
-            this.btnVoltar.Name = "btnVoltar";
-            this.btnVoltar.Size = new System.Drawing.Size(155, 58);
-            this.btnVoltar.TabIndex = 24;
-            this.btnVoltar.Text = " &Voltar";
-            this.btnVoltar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnVoltar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnVoltar.UseVisualStyleBackColor = true;
-            this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
-            // 
-            // cbbCargo
-            // 
-            this.cbbCargo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbbCargo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbbCargo.FormattingEnabled = true;
-            this.cbbCargo.Items.AddRange(new object[] {
-            "Voluntário",
-            "Dirigente",
-            "Diretor"});
-            this.cbbCargo.Location = new System.Drawing.Point(375, 173);
-            this.cbbCargo.MaxLength = 50;
-            this.cbbCargo.Name = "cbbCargo";
-            this.cbbCargo.Size = new System.Drawing.Size(178, 33);
-            this.cbbCargo.TabIndex = 5;
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.btnCadastra);
-            this.panel1.Controls.Add(this.btnNovo);
-            this.panel1.Location = new System.Drawing.Point(5, 499);
-            this.panel1.MaximumSize = new System.Drawing.Size(500, 150);
-            this.panel1.MinimumSize = new System.Drawing.Size(320, 65);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(320, 65);
-            this.panel1.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.btnLimpar);
-            this.panel2.Controls.Add(this.btnRemover);
-            this.panel2.Controls.Add(this.btnAlterar);
-            this.panel2.Location = new System.Drawing.Point(312, 496);
-            this.panel2.MaximumSize = new System.Drawing.Size(500, 150);
-            this.panel2.MinimumSize = new System.Drawing.Size(320, 65);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(460, 65);
-            this.panel2.TabIndex = 44;
-            // 
-            // lblRepetirSenha
-            // 
-            this.lblRepetirSenha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblRepetirSenha.AutoSize = true;
-            this.lblRepetirSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRepetirSenha.Location = new System.Drawing.Point(411, 267);
-            this.lblRepetirSenha.Name = "lblRepetirSenha";
-            this.lblRepetirSenha.Size = new System.Drawing.Size(146, 25);
-            this.lblRepetirSenha.TabIndex = 46;
-            this.lblRepetirSenha.Text = "Repetir senha";
-            // 
-            // txtRepetirSenha
-            // 
-            this.txtRepetirSenha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRepetirSenha.Font = new System.Drawing.Font("Wingdings", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.txtRepetirSenha.Location = new System.Drawing.Point(2, 3);
-            this.txtRepetirSenha.MaxLength = 20;
-            this.txtRepetirSenha.Name = "txtRepetirSenha";
-            this.txtRepetirSenha.PasswordChar = 'l';
-            this.txtRepetirSenha.Size = new System.Drawing.Size(145, 31);
-            this.txtRepetirSenha.TabIndex = 11;
-            this.txtRepetirSenha.TextChanged += new System.EventHandler(this.txtRepetirSenha_TextChanged);
-            // 
-            // pnlBordaRepetir
-            // 
-            this.pnlBordaRepetir.AutoSize = true;
-            this.pnlBordaRepetir.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pnlBordaRepetir.Controls.Add(this.txtRepetirSenha);
-            this.pnlBordaRepetir.Location = new System.Drawing.Point(411, 290);
-            this.pnlBordaRepetir.Name = "pnlBordaRepetir";
-            this.pnlBordaRepetir.Size = new System.Drawing.Size(150, 37);
-            this.pnlBordaRepetir.TabIndex = 10;
-            // 
-            // lbl_IDUsuario
-            // 
-            this.lbl_IDUsuario.AutoSize = true;
-            this.lbl_IDUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_IDUsuario.Location = new System.Drawing.Point(232, 51);
-            this.lbl_IDUsuario.Name = "lbl_IDUsuario";
-            this.lbl_IDUsuario.Size = new System.Drawing.Size(142, 25);
-            this.lbl_IDUsuario.TabIndex = 16;
-            this.lbl_IDUsuario.Text = "ID do Usuário";
-            // 
-            // txtIDUsuario
-            // 
-            this.txtIDUsuario.Enabled = false;
-            this.txtIDUsuario.Location = new System.Drawing.Point(386, 53);
-            this.txtIDUsuario.Name = "txtIDUsuario";
-            this.txtIDUsuario.Size = new System.Drawing.Size(167, 20);
-            this.txtIDUsuario.TabIndex = 48;
-            // 
-            // btnLimpar
-            // 
-
-            this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpar.Image")));
-            this.btnLimpar.Location = new System.Drawing.Point(314, 13);
-            this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(145, 45);
-            this.btnLimpar.TabIndex = 20;
-            this.btnLimpar.Text = "&Limpar";
-            this.btnLimpar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnLimpar.UseVisualStyleBackColor = true;
-            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
-            // 
-            // btnNovo
-            // 
-            this.btnNovo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNovo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNovo.Location = new System.Drawing.Point(12, 11);
-            this.btnNovo.MaximumSize = new System.Drawing.Size(175, 60);
-            this.btnNovo.MinimumSize = new System.Drawing.Size(145, 47);
-            this.btnNovo.Name = "btnNovo";
-            this.btnNovo.Size = new System.Drawing.Size(145, 47);
-            this.btnNovo.TabIndex = 1;
-            this.btnNovo.Text = " &Novo";
-            this.btnNovo.UseVisualStyleBackColor = true;
-            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
-            // 
-            // btnCadastra
-            // 
-            this.btnCadastra.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCadastra.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCadastra.Location = new System.Drawing.Point(164, 12);
-            this.btnCadastra.MaximumSize = new System.Drawing.Size(175, 60);
-            this.btnCadastra.MinimumSize = new System.Drawing.Size(145, 47);
-            this.btnCadastra.Name = "btnCadastra";
-            this.btnCadastra.Size = new System.Drawing.Size(145, 47);
-            this.btnCadastra.TabIndex = 19;
-            this.btnCadastra.Text = " &Cadastrar";
-            this.btnCadastra.UseVisualStyleBackColor = true;
-            this.btnCadastra.Click += new System.EventHandler(this.btnCadastra_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnRemover);
-            this.panel1.Controls.Add(this.btnNovo);
-            this.panel1.Controls.Add(this.btnAlterar);
-            this.panel1.Controls.Add(this.btnCadastra);
-            this.panel1.Controls.Add(this.btnLimpar);
-            this.panel1.Location = new System.Drawing.Point(-3, 499);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(784, 63);
-            this.panel1.TabIndex = 49;
-            // 
-            // btnNovo
-            // 
-            this.btnNovo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNovo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNovo.Location = new System.Drawing.Point(12, 11);
-            this.btnNovo.MaximumSize = new System.Drawing.Size(175, 60);
-            this.btnNovo.MinimumSize = new System.Drawing.Size(145, 47);
-            this.btnNovo.Name = "btnNovo";
-            this.btnNovo.Size = new System.Drawing.Size(145, 47);
-            this.btnNovo.TabIndex = 1;
-            this.btnNovo.Text = " &Novo";
-            this.btnNovo.UseVisualStyleBackColor = true;
-            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
-            // 
-            // btnCadastra
-            // 
-            this.btnCadastra.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCadastra.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCadastra.Location = new System.Drawing.Point(164, 12);
-            this.btnCadastra.MaximumSize = new System.Drawing.Size(175, 60);
-            this.btnCadastra.MinimumSize = new System.Drawing.Size(145, 47);
-            this.btnCadastra.Name = "btnCadastra";
-            this.btnCadastra.Size = new System.Drawing.Size(145, 47);
-            this.btnCadastra.TabIndex = 19;
-            this.btnCadastra.Text = " &Cadastrar";
-            this.btnCadastra.UseVisualStyleBackColor = true;
-            this.btnCadastra.Click += new System.EventHandler(this.btnCadastra_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnRemover);
-            this.panel1.Controls.Add(this.btnNovo);
-            this.panel1.Controls.Add(this.btnAlterar);
-            this.panel1.Controls.Add(this.btnCadastra);
-            this.panel1.Controls.Add(this.btnLimpar);
-            this.panel1.Location = new System.Drawing.Point(-3, 499);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(784, 63);
-            this.panel1.TabIndex = 49;
             // 
             // frmCadastroUsuario
             // 
@@ -908,47 +685,6 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.btnAdicionarFoto);
             this.Controls.Add(this.ptbUsuario);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.txtIDUsuario);
-            this.Controls.Add(this.pnlBordaRepetir);
-            this.Controls.Add(this.lblRepetirSenha);
-            this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.cbbCargo);
-            this.Controls.Add(this.btnVoltar);
-            this.Controls.Add(this.btnAdicionarFoto);
-            this.Controls.Add(this.ptbUsuario);
-            this.Controls.Add(this.lblSenha);
-            this.Controls.Add(this.lblLogin);
-            this.Controls.Add(this.lblEstado);
-            this.Controls.Add(this.lblCidade);
-            this.Controls.Add(this.txtSenha);
-            this.Controls.Add(this.txtLogin);
-            this.Controls.Add(this.cbbEstado);
-            this.Controls.Add(this.txtCidade);
-            this.Controls.Add(this.mskCep);
-            this.Controls.Add(this.cbbDiaDeTrabalho);
-            this.Controls.Add(this.mskTelefone);
-            this.Controls.Add(this.mskCpf);
-            this.Controls.Add(this.lblBairro);
-            this.Controls.Add(this.lblLogradouro);
-            this.Controls.Add(this.lblComplemento);
-            this.Controls.Add(this.lblNumero);
-            this.Controls.Add(this.lblCep);
-            this.Controls.Add(this.lblEmail);
-            this.Controls.Add(this.lblDiaDeTrabalho);
-            this.Controls.Add(this.lblTelefone);
-            this.Controls.Add(this.lblCpf);
-            this.Controls.Add(this.lblCargo);
-            this.Controls.Add(this.lbl_IDUsuario);
-            this.Controls.Add(this.lblNomeCompleto);
-            this.Controls.Add(this.txtLogradouro);
-            this.Controls.Add(this.txtBairro);
-            this.Controls.Add(this.txtNumero);
-            this.Controls.Add(this.txtComplemento);
-            this.Controls.Add(this.txtEmail);
-            this.Controls.Add(this.txtNomeCompleto);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "frmCadastroUsuario";
@@ -963,18 +699,15 @@
             this.pnlBordaRepetir.ResumeLayout(false);
             this.pnlBordaRepetir.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.pnlBordaRepetir.ResumeLayout(false);
-            this.pnlBordaRepetir.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.pnlBordaRepetir.ResumeLayout(false);
-            this.pnlBordaRepetir.PerformLayout();
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnNovo;
+        private System.Windows.Forms.Button btnCadastra;
         private System.Windows.Forms.Button btnAlterar;
         private System.Windows.Forms.Button btnRemover;
         private System.Windows.Forms.Button btnBuscar;
@@ -1020,15 +753,5 @@
         private System.Windows.Forms.TextBox txtNomeCompleto;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label lblBuscarLivro;
-        private System.Windows.Forms.ComboBox cbbCargo;
-        private System.Windows.Forms.Label lblRepetirSenha;
-        private System.Windows.Forms.TextBox txtRepetirSenha;
-        private System.Windows.Forms.Panel pnlBordaRepetir;
-        private System.Windows.Forms.Label lbl_IDUsuario;
-        private System.Windows.Forms.TextBox txtIDUsuario;
-        private System.Windows.Forms.Button btnLimpar;
-        private System.Windows.Forms.Button btnNovo;
-        private System.Windows.Forms.Button btnCadastra;
-        private System.Windows.Forms.Panel panel1;
     }
 }
