@@ -331,7 +331,7 @@
             this.mskDataDevolucao.Location = new System.Drawing.Point(487, 299);
             this.mskDataDevolucao.Mask = "00/00/0000";
             this.mskDataDevolucao.Name = "mskDataDevolucao";
-            this.mskDataDevolucao.Size = new System.Drawing.Size(117, 31);
+            this.mskDataDevolucao.Size = new System.Drawing.Size(155, 31);
             this.mskDataDevolucao.TabIndex = 6;
             this.mskDataDevolucao.ValidatingType = typeof(System.DateTime);
             // 
@@ -358,7 +358,9 @@
             // 
             // txtNEmprestimo
             // 
-            this.txtNEmprestimo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNEmprestimo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNEmprestimo.Enabled = false;
             this.txtNEmprestimo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNEmprestimo.Location = new System.Drawing.Point(487, 128);
             this.txtNEmprestimo.Name = "txtNEmprestimo";
