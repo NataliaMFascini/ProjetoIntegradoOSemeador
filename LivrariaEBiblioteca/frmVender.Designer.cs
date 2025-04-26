@@ -30,19 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVender));
             this.pctLivro = new System.Windows.Forms.PictureBox();
-            this.lblIdLivro = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.txtIdLivro = new System.Windows.Forms.TextBox();
             this.ltbCarrinho = new System.Windows.Forms.ListBox();
-            this.lblTitulo = new System.Windows.Forms.Label();
-            this.txtTitulo = new System.Windows.Forms.TextBox();
-            this.lblIsbn = new System.Windows.Forms.Label();
-            this.txtIsbn = new System.Windows.Forms.TextBox();
-            this.lblAutor = new System.Windows.Forms.Label();
-            this.txtAutor = new System.Windows.Forms.TextBox();
-            this.lblEditora = new System.Windows.Forms.Label();
             this.lblValor = new System.Windows.Forms.Label();
-            this.txtEditora = new System.Windows.Forms.TextBox();
             this.txtValor = new System.Windows.Forms.TextBox();
             this.lblFormaPagamento = new System.Windows.Forms.Label();
             this.lblValorTotal = new System.Windows.Forms.Label();
@@ -55,44 +45,46 @@
             this.btnVoltar = new System.Windows.Forms.Button();
             this.lblVendedor = new System.Windows.Forms.Label();
             this.txtVendedor = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.gpbDadoslivro = new System.Windows.Forms.GroupBox();
+            this.txtAutor = new System.Windows.Forms.TextBox();
+            this.txtTitulo = new System.Windows.Forms.TextBox();
+            this.txtIsbn = new System.Windows.Forms.TextBox();
+            this.lblAutor = new System.Windows.Forms.Label();
+            this.txtEditora = new System.Windows.Forms.TextBox();
+            this.txtIdLivro = new System.Windows.Forms.TextBox();
+            this.lblTitulo = new System.Windows.Forms.Label();
+            this.lblIsbn = new System.Windows.Forms.Label();
+            this.lblEditora = new System.Windows.Forms.Label();
+            this.lblIdLivro = new System.Windows.Forms.Label();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblBuscarLivro = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pctLivro)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.gpbDadoslivro.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // pctLivro
             // 
-            this.pctLivro.Location = new System.Drawing.Point(30, 95);
+            this.pctLivro.Location = new System.Drawing.Point(31, 116);
             this.pctLivro.Name = "pctLivro";
-            this.pctLivro.Size = new System.Drawing.Size(155, 245);
+            this.pctLivro.Size = new System.Drawing.Size(134, 196);
             this.pctLivro.TabIndex = 0;
             this.pctLivro.TabStop = false;
             // 
-            // lblIdLivro
-            // 
-            this.lblIdLivro.AutoSize = true;
-            this.lblIdLivro.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIdLivro.Location = new System.Drawing.Point(191, 95);
-            this.lblIdLivro.Name = "lblIdLivro";
-            this.lblIdLivro.Size = new System.Drawing.Size(115, 25);
-            this.lblIdLivro.TabIndex = 1;
-            this.lblIdLivro.Text = "ID do Livro";
-            // 
             // btnBuscar
             // 
-            this.btnBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBuscar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscar.Location = new System.Drawing.Point(188, 3);
-            this.btnBuscar.MaximumSize = new System.Drawing.Size(175, 60);
-            this.btnBuscar.MinimumSize = new System.Drawing.Size(145, 47);
+            this.btnBuscar.Location = new System.Drawing.Point(591, 3);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(145, 47);
+            this.btnBuscar.Size = new System.Drawing.Size(190, 74);
             this.btnBuscar.TabIndex = 10;
+            this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
             this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
@@ -101,9 +93,10 @@
             this.txtIdLivro.Enabled = false;
             this.txtIdLivro.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdLivro.Location = new System.Drawing.Point(191, 123);
+            this.txtIdLivro.MaxLength = 10;
             this.txtIdLivro.Name = "txtIdLivro";
             this.txtIdLivro.Size = new System.Drawing.Size(207, 31);
-            this.txtIdLivro.TabIndex = 3;
+            this.txtIdLivro.TabIndex = 1;
             // 
             // ltbCarrinho
             // 
@@ -115,7 +108,7 @@
             this.ltbCarrinho.ItemHeight = 25;
             this.ltbCarrinho.Location = new System.Drawing.Point(30, 344);
             this.ltbCarrinho.Name = "ltbCarrinho";
-            this.ltbCarrinho.Size = new System.Drawing.Size(718, 154);
+            this.ltbCarrinho.Size = new System.Drawing.Size(718, 129);
             this.ltbCarrinho.TabIndex = 6;
             this.ltbCarrinho.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ltbCarrinho_KeyDown);
             this.ltbCarrinho.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ltbCarrinho_MouseDoubleClick);
@@ -136,9 +129,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTitulo.Location = new System.Drawing.Point(191, 185);
+            this.txtTitulo.MaxLength = 100;
             this.txtTitulo.Name = "txtTitulo";
             this.txtTitulo.Size = new System.Drawing.Size(557, 31);
-            this.txtTitulo.TabIndex = 1;
+            this.txtTitulo.TabIndex = 3;
             // 
             // lblIsbn
             // 
@@ -154,9 +148,10 @@
             // 
             this.txtIsbn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIsbn.Location = new System.Drawing.Point(541, 123);
+            this.txtIsbn.MaxLength = 20;
             this.txtIsbn.Name = "txtIsbn";
             this.txtIsbn.Size = new System.Drawing.Size(207, 31);
-            this.txtIsbn.TabIndex = 0;
+            this.txtIsbn.TabIndex = 2;
             this.txtIsbn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtIsbn_KeyDown);
             // 
             // lblAutor
@@ -175,9 +170,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAutor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAutor.Location = new System.Drawing.Point(191, 247);
+            this.txtAutor.MaxLength = 100;
             this.txtAutor.Name = "txtAutor";
             this.txtAutor.Size = new System.Drawing.Size(276, 31);
-            this.txtAutor.TabIndex = 2;
+            this.txtAutor.TabIndex = 4;
             // 
             // lblEditora
             // 
@@ -191,10 +187,10 @@
             // 
             // lblValor
             // 
-            this.lblValor.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblValor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblValor.AutoSize = true;
             this.lblValor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblValor.Location = new System.Drawing.Point(336, 281);
+            this.lblValor.Location = new System.Drawing.Point(175, 219);
             this.lblValor.Name = "lblValor";
             this.lblValor.Size = new System.Drawing.Size(62, 25);
             this.lblValor.TabIndex = 1;
@@ -204,25 +200,27 @@
             // 
             this.txtEditora.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEditora.Location = new System.Drawing.Point(191, 309);
+            this.txtEditora.MaxLength = 50;
             this.txtEditora.Name = "txtEditora";
             this.txtEditora.Size = new System.Drawing.Size(139, 31);
-            this.txtEditora.TabIndex = 3;
+            this.txtEditora.TabIndex = 5;
             // 
             // txtValor
             // 
-            this.txtValor.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtValor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtValor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtValor.Location = new System.Drawing.Point(336, 309);
+            this.txtValor.Location = new System.Drawing.Point(243, 216);
             this.txtValor.Name = "txtValor";
-            this.txtValor.Size = new System.Drawing.Size(135, 31);
+            this.txtValor.Size = new System.Drawing.Size(122, 31);
             this.txtValor.TabIndex = 4;
+            this.txtValor.MaxLength = 12;
             // 
             // lblFormaPagamento
             // 
             this.lblFormaPagamento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFormaPagamento.AutoSize = true;
             this.lblFormaPagamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFormaPagamento.Location = new System.Drawing.Point(482, 219);
+            this.lblFormaPagamento.Location = new System.Drawing.Point(563, 180);
             this.lblFormaPagamento.Name = "lblFormaPagamento";
             this.lblFormaPagamento.Size = new System.Drawing.Size(218, 25);
             this.lblFormaPagamento.TabIndex = 1;
@@ -233,7 +231,7 @@
             this.lblValorTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblValorTotal.AutoSize = true;
             this.lblValorTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblValorTotal.Location = new System.Drawing.Point(482, 282);
+            this.lblValorTotal.Location = new System.Drawing.Point(563, 280);
             this.lblValorTotal.Name = "lblValorTotal";
             this.lblValorTotal.Size = new System.Drawing.Size(116, 25);
             this.lblValorTotal.TabIndex = 1;
@@ -244,58 +242,56 @@
             this.txtValorTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtValorTotal.Enabled = false;
             this.txtValorTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtValorTotal.Location = new System.Drawing.Point(482, 310);
+            this.txtValorTotal.Location = new System.Drawing.Point(563, 309);
+            this.txtValorTotal.MaxLength = 12;
             this.txtValorTotal.Name = "txtValorTotal";
             this.txtValorTotal.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtValorTotal.Size = new System.Drawing.Size(266, 31);
+            this.txtValorTotal.Size = new System.Drawing.Size(185, 31);
             this.txtValorTotal.TabIndex = 3;
             // 
             // btnFinalizar
             // 
-            this.btnFinalizar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFinalizar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnFinalizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFinalizar.Location = new System.Drawing.Point(0, 3);
-            this.btnFinalizar.MaximumSize = new System.Drawing.Size(175, 60);
-            this.btnFinalizar.MinimumSize = new System.Drawing.Size(145, 47);
+            this.btnFinalizar.Location = new System.Drawing.Point(395, 3);
             this.btnFinalizar.Name = "btnFinalizar";
-            this.btnFinalizar.Size = new System.Drawing.Size(145, 47);
+            this.btnFinalizar.Size = new System.Drawing.Size(190, 74);
             this.btnFinalizar.TabIndex = 9;
+            this.btnFinalizar.Image = ((System.Drawing.Image)(resources.GetObject("btnFinalizar.Image")));
             this.btnFinalizar.Text = "Finalizar";
+            this.btnFinalizar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnFinalizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnFinalizar.UseVisualStyleBackColor = true;
             this.btnFinalizar.Click += new System.EventHandler(this.btnFinalizar_Click);
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLimpar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnLimpar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpar.Location = new System.Drawing.Point(184, 3);
-            this.btnLimpar.MaximumSize = new System.Drawing.Size(175, 60);
-            this.btnLimpar.MinimumSize = new System.Drawing.Size(145, 47);
+            this.btnLimpar.Location = new System.Drawing.Point(199, 3);
             this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(145, 47);
+            this.btnLimpar.Size = new System.Drawing.Size(190, 74);
             this.btnLimpar.TabIndex = 8;
+            this.btnLimpar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpar.Image")));
             this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLimpar.UseVisualStyleBackColor = true;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // btnAdicionar
             // 
-            this.btnAdicionar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdicionar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAdicionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdicionar.Location = new System.Drawing.Point(0, 3);
-            this.btnAdicionar.MaximumSize = new System.Drawing.Size(175, 60);
-            this.btnAdicionar.MinimumSize = new System.Drawing.Size(145, 47);
+            this.btnAdicionar.Location = new System.Drawing.Point(3, 3);
             this.btnAdicionar.Name = "btnAdicionar";
-            this.btnAdicionar.Size = new System.Drawing.Size(145, 47);
+            this.btnAdicionar.Size = new System.Drawing.Size(190, 74);
             this.btnAdicionar.TabIndex = 7;
+            this.btnAdicionar.Image = ((System.Drawing.Image)(resources.GetObject("btnAdicionar.Image")));
             this.btnAdicionar.Text = "Adicionar";
+            this.btnAdicionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAdicionar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAdicionar.UseVisualStyleBackColor = true;
             this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
             // 
@@ -308,39 +304,47 @@
             "PIX",
             "Dinheiro",
             "Cartão"});
-            this.cbbFormaPagamento.Location = new System.Drawing.Point(482, 246);
+            this.cbbFormaPagamento.Location = new System.Drawing.Point(563, 209);
             this.cbbFormaPagamento.Name = "cbbFormaPagamento";
-            this.cbbFormaPagamento.Size = new System.Drawing.Size(266, 33);
+            this.cbbFormaPagamento.Size = new System.Drawing.Size(188, 33);
             this.cbbFormaPagamento.TabIndex = 5;
             // 
             // btnEmprestar
             // 
+            this.btnEmprestar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnEmprestar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEmprestar.Location = new System.Drawing.Point(30, 24);
+            this.btnEmprestar.Location = new System.Drawing.Point(3, 3);
             this.btnEmprestar.Name = "btnEmprestar";
-            this.btnEmprestar.Size = new System.Drawing.Size(155, 45);
+            this.btnEmprestar.Size = new System.Drawing.Size(208, 74);
+            this.btnEmprestar.Image = ((System.Drawing.Image)(resources.GetObject("btnEmprestar.Image")));
             this.btnEmprestar.TabIndex = 11;
             this.btnEmprestar.Text = "Empréstimo";
+            this.btnEmprestar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEmprestar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEmprestar.UseVisualStyleBackColor = true;
             this.btnEmprestar.Click += new System.EventHandler(this.btnEmprestar_Click);
             // 
             // btnVoltar
             // 
-            this.btnVoltar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnVoltar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnVoltar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVoltar.Location = new System.Drawing.Point(617, 24);
+            this.btnVoltar.Location = new System.Drawing.Point(217, 3);
             this.btnVoltar.Name = "btnVoltar";
-            this.btnVoltar.Size = new System.Drawing.Size(155, 45);
+            this.btnVoltar.Size = new System.Drawing.Size(208, 74);
+            this.btnVoltar.Image = ((System.Drawing.Image)(resources.GetObject("btnVoltar.Image")));
             this.btnVoltar.TabIndex = 12;
             this.btnVoltar.Text = "Voltar";
+            this.btnVoltar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnVoltar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVoltar.UseVisualStyleBackColor = true;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
             // lblVendedor
             // 
+            this.lblVendedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblVendedor.AutoSize = true;
             this.lblVendedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVendedor.Location = new System.Drawing.Point(218, 34);
+            this.lblVendedor.Location = new System.Drawing.Point(563, 116);
             this.lblVendedor.Name = "lblVendedor";
             this.lblVendedor.Size = new System.Drawing.Size(105, 25);
             this.lblVendedor.TabIndex = 1;
@@ -348,69 +352,202 @@
             // 
             // txtVendedor
             // 
-            this.txtVendedor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtVendedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtVendedor.Enabled = false;
             this.txtVendedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtVendedor.Location = new System.Drawing.Point(329, 31);
+            this.txtVendedor.Location = new System.Drawing.Point(563, 145);
             this.txtVendedor.Name = "txtVendedor";
-            this.txtVendedor.Size = new System.Drawing.Size(244, 31);
+            this.txtVendedor.Size = new System.Drawing.Size(188, 31);
             this.txtVendedor.TabIndex = 3;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Controls.Add(this.btnAdicionar, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnBuscar, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnLimpar, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnFinalizar, 2, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 481);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 80);
+            this.tableLayoutPanel1.TabIndex = 13;
+            // 
+            // gpbDadoslivro
+            // 
+            this.gpbDadoslivro.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.btnAdicionar);
-            this.panel1.Controls.Add(this.btnLimpar);
-            this.panel1.Location = new System.Drawing.Point(12, 501);
-            this.panel1.MaximumSize = new System.Drawing.Size(500, 150);
-            this.panel1.MinimumSize = new System.Drawing.Size(376, 65);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(376, 65);
-            this.panel1.TabIndex = 6;
+            this.gpbDadoslivro.Controls.Add(this.txtAutor);
+            this.gpbDadoslivro.Controls.Add(this.txtTitulo);
+            this.gpbDadoslivro.Controls.Add(this.txtIsbn);
+            this.gpbDadoslivro.Controls.Add(this.lblAutor);
+            this.gpbDadoslivro.Controls.Add(this.txtEditora);
+            this.gpbDadoslivro.Controls.Add(this.txtIdLivro);
+            this.gpbDadoslivro.Controls.Add(this.lblTitulo);
+            this.gpbDadoslivro.Controls.Add(this.lblIsbn);
+            this.gpbDadoslivro.Controls.Add(this.txtValor);
+            this.gpbDadoslivro.Controls.Add(this.lblEditora);
+            this.gpbDadoslivro.Controls.Add(this.lblIdLivro);
+            this.gpbDadoslivro.Controls.Add(this.lblValor);
+            this.gpbDadoslivro.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpbDadoslivro.Location = new System.Drawing.Point(170, 87);
+            this.gpbDadoslivro.Name = "gpbDadoslivro";
+            this.gpbDadoslivro.Size = new System.Drawing.Size(382, 253);
+            this.gpbDadoslivro.TabIndex = 14;
+            this.gpbDadoslivro.TabStop = false;
+            this.gpbDadoslivro.Text = "Dados do livro";
             // 
-            // panel2
+            // txtAutor
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtAutor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.btnFinalizar);
-            this.panel2.Controls.Add(this.btnBuscar);
-            this.panel2.Location = new System.Drawing.Point(405, 501);
-            this.panel2.MaximumSize = new System.Drawing.Size(500, 150);
-            this.panel2.MinimumSize = new System.Drawing.Size(376, 65);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(376, 65);
-            this.panel2.TabIndex = 7;
+
+            this.txtAutor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAutor.Location = new System.Drawing.Point(6, 180);
+            this.txtAutor.Name = "txtAutor";
+            this.txtAutor.Size = new System.Drawing.Size(214, 31);
+            this.txtAutor.TabIndex = 11;
+            // 
+            // txtTitulo
+            // 
+            this.txtTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTitulo.Location = new System.Drawing.Point(6, 118);
+            this.txtTitulo.Name = "txtTitulo";
+            this.txtTitulo.Size = new System.Drawing.Size(359, 31);
+            this.txtTitulo.TabIndex = 5;
+            // 
+            // txtIsbn
+            // 
+            this.txtIsbn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtIsbn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIsbn.Location = new System.Drawing.Point(197, 58);
+            this.txtIsbn.Name = "txtIsbn";
+            this.txtIsbn.Size = new System.Drawing.Size(168, 31);
+            this.txtIsbn.TabIndex = 4;
+            // 
+            // lblAutor
+            // 
+            this.lblAutor.AutoSize = true;
+            this.lblAutor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAutor.Location = new System.Drawing.Point(6, 152);
+            this.lblAutor.Name = "lblAutor";
+            this.lblAutor.Size = new System.Drawing.Size(63, 25);
+            this.lblAutor.TabIndex = 6;
+            this.lblAutor.Text = "Autor";
+            // 
+            // txtEditora
+            // 
+            this.txtEditora.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEditora.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEditora.Location = new System.Drawing.Point(226, 180);
+            this.txtEditora.Name = "txtEditora";
+            this.txtEditora.Size = new System.Drawing.Size(139, 31);
+            this.txtEditora.TabIndex = 12;
+            // 
+            // txtIdLivro
+            // 
+            this.txtIdLivro.Enabled = false;
+            this.txtIdLivro.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIdLivro.Location = new System.Drawing.Point(6, 56);
+            this.txtIdLivro.Name = "txtIdLivro";
+            this.txtIdLivro.Size = new System.Drawing.Size(152, 31);
+            this.txtIdLivro.TabIndex = 13;
+            // 
+            // lblTitulo
+            // 
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Location = new System.Drawing.Point(6, 90);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(65, 25);
+            this.lblTitulo.TabIndex = 7;
+            this.lblTitulo.Text = "Titulo";
+            // 
+            // lblIsbn
+            // 
+            this.lblIsbn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblIsbn.AutoSize = true;
+            this.lblIsbn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIsbn.Location = new System.Drawing.Point(197, 30);
+            this.lblIsbn.Name = "lblIsbn";
+            this.lblIsbn.Size = new System.Drawing.Size(60, 25);
+            this.lblIsbn.TabIndex = 8;
+            this.lblIsbn.Text = "ISBN";
+            // 
+            // lblEditora
+            // 
+            this.lblEditora.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblEditora.AutoSize = true;
+            this.lblEditora.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEditora.Location = new System.Drawing.Point(226, 152);
+            this.lblEditora.Name = "lblEditora";
+            this.lblEditora.Size = new System.Drawing.Size(80, 25);
+            this.lblEditora.TabIndex = 9;
+            this.lblEditora.Text = "Editora";
+            // 
+            // lblIdLivro
+            // 
+            this.lblIdLivro.AutoSize = true;
+            this.lblIdLivro.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIdLivro.Location = new System.Drawing.Point(6, 28);
+            this.lblIdLivro.Name = "lblIdLivro";
+            this.lblIdLivro.Size = new System.Drawing.Size(115, 25);
+            this.lblIdLivro.TabIndex = 10;
+            this.lblIdLivro.Text = "ID do Livro";
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.btnVoltar, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnEmprestar, 0, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(353, 1);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(428, 80);
+            this.tableLayoutPanel2.TabIndex = 15;
+            // 
+            // lblBuscarLivro
+            // 
+            this.lblBuscarLivro.AutoSize = true;
+            this.lblBuscarLivro.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBuscarLivro.Location = new System.Drawing.Point(24, 19);
+            this.lblBuscarLivro.Name = "lblBuscarLivro";
+            this.lblBuscarLivro.Size = new System.Drawing.Size(132, 37);
+            this.lblBuscarLivro.TabIndex = 55;
+            this.lblBuscarLivro.Text = "Vendas";
             // 
             // frmVender
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.lblBuscarLivro);
+            this.Controls.Add(this.tableLayoutPanel2);
+            this.Controls.Add(this.gpbDadoslivro);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.cbbFormaPagamento);
             this.Controls.Add(this.ltbCarrinho);
-            this.Controls.Add(this.txtAutor);
-            this.Controls.Add(this.txtTitulo);
             this.Controls.Add(this.txtVendedor);
             this.Controls.Add(this.txtValorTotal);
-            this.Controls.Add(this.txtValor);
-            this.Controls.Add(this.txtIsbn);
             this.Controls.Add(this.lblVendedor);
-            this.Controls.Add(this.lblAutor);
             this.Controls.Add(this.lblValorTotal);
-            this.Controls.Add(this.txtEditora);
             this.Controls.Add(this.lblFormaPagamento);
-            this.Controls.Add(this.txtIdLivro);
-            this.Controls.Add(this.lblValor);
-            this.Controls.Add(this.lblTitulo);
-            this.Controls.Add(this.lblIsbn);
-            this.Controls.Add(this.lblEditora);
-            this.Controls.Add(this.btnVoltar);
-            this.Controls.Add(this.btnEmprestar);
-            this.Controls.Add(this.lblIdLivro);
             this.Controls.Add(this.pctLivro);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(800, 600);
@@ -418,8 +555,10 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "O Semeador - Livraria";
             ((System.ComponentModel.ISupportInitialize)(this.pctLivro)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.gpbDadoslivro.ResumeLayout(false);
+            this.gpbDadoslivro.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -428,19 +567,9 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pctLivro;
-        private System.Windows.Forms.Label lblIdLivro;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.TextBox txtIdLivro;
         private System.Windows.Forms.ListBox ltbCarrinho;
-        private System.Windows.Forms.Label lblTitulo;
-        private System.Windows.Forms.TextBox txtTitulo;
-        private System.Windows.Forms.Label lblIsbn;
-        private System.Windows.Forms.TextBox txtIsbn;
-        private System.Windows.Forms.Label lblAutor;
-        private System.Windows.Forms.TextBox txtAutor;
-        private System.Windows.Forms.Label lblEditora;
         private System.Windows.Forms.Label lblValor;
-        private System.Windows.Forms.TextBox txtEditora;
         private System.Windows.Forms.TextBox txtValor;
         private System.Windows.Forms.Label lblFormaPagamento;
         private System.Windows.Forms.Label lblValorTotal;
@@ -453,7 +582,19 @@
         private System.Windows.Forms.Button btnVoltar;
         private System.Windows.Forms.Label lblVendedor;
         private System.Windows.Forms.TextBox txtVendedor;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.GroupBox gpbDadoslivro;
+        private System.Windows.Forms.TextBox txtAutor;
+        private System.Windows.Forms.TextBox txtTitulo;
+        private System.Windows.Forms.TextBox txtIsbn;
+        private System.Windows.Forms.Label lblAutor;
+        private System.Windows.Forms.TextBox txtEditora;
+        private System.Windows.Forms.TextBox txtIdLivro;
+        private System.Windows.Forms.Label lblTitulo;
+        private System.Windows.Forms.Label lblIsbn;
+        private System.Windows.Forms.Label lblEditora;
+        private System.Windows.Forms.Label lblIdLivro;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Label lblBuscarLivro;
     }
 }

@@ -14,22 +14,31 @@ namespace LivrariaEBiblioteca
 {
     public partial class frmBuscarLivro : Form
     {
+        public string nome;
+        public int codUsu;
+        public string cargo;
+        public string ultimaTela;
         public frmBuscarLivro()
         {
             InitializeComponent();
             desabilitarCampos();
+        }
+        public frmBuscarLivro(string nome, int codUsu, string cargo, string ultimaTela)
+        {
+            InitializeComponent();
+            desabilitarCampos();
+
+            this.nome = nome;
+            this.cargo = cargo;
+            this.codUsu = codUsu;
+            this.ultimaTela = ultimaTela; 
         }
 
         public void habilitarCampos()
         {
             txtIdLivro.Enabled = true;
             txtIsbn.Enabled = true;
-            txtAno.Enabled = true;
             txtTitulo.Enabled = true;
-            txtAutor.Enabled = true;
-            txtQuantidade.Enabled = true;
-            txtValor.Enabled = true;
-            txtEditora.Enabled = true;
             btnBuscar.Enabled = true;
             btnLimpar.Enabled = true;
         }
@@ -38,12 +47,7 @@ namespace LivrariaEBiblioteca
         {
             txtIdLivro.Enabled = false;
             txtIsbn.Enabled = false;
-            txtAno.Enabled = false;
             txtTitulo.Enabled = false;
-            txtAutor.Enabled = false;
-            txtQuantidade.Enabled = false;
-            txtValor.Enabled = false;
-            txtEditora.Enabled = false;
             btnBuscar.Enabled = false;
             btnLimpar.Enabled = false;
         }
@@ -52,12 +56,7 @@ namespace LivrariaEBiblioteca
         {
             txtIdLivro.Text = string.Empty;
             txtIsbn.Text = string.Empty;
-            txtAno.Text = string.Empty;
             txtTitulo.Text = string.Empty;
-            txtAutor.Text = string.Empty;
-            txtQuantidade.Text = string.Empty;
-            txtValor.Text = string.Empty;
-            txtEditora.Text = string.Empty;
             rdbIdLivro.Checked = false;
             rdbTitulo.Checked = false;
             ltbPesquisar.Text = string.Empty;
@@ -113,13 +112,13 @@ namespace LivrariaEBiblioteca
 
         private void btnVender_Click(object sender, EventArgs e)
         {
-            frmVender abrirVender = new frmVender();
+            frmVender abrirVender = new frmVender(this.nome, this.codUsu, this.cargo);
             abrirVender.ShowDialog();
         }
 
         private void btnEmprestar_Click(object sender, EventArgs e)
         {
-            frmEmprestimo abrirEmpre = new frmEmprestimo();
+            frmEmprestimo abrirEmpre = new frmEmprestimo(this.nome, this.codUsu, this.cargo);
             abrirEmpre.ShowDialog();
         }
 
@@ -131,9 +130,30 @@ namespace LivrariaEBiblioteca
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            frmMenuPrincipal abrir = new frmMenuPrincipal();
-            abrir.Show();
-            this.Hide();
+            if (ultimaTela == "Menu")
+            {
+                frmMenuPrincipal abrir = new frmMenuPrincipal(this.cargo, this.nome, this.codUsu);
+                abrir.Show();
+                this.Hide();
+            }
+            if(ultimaTela == "Cadastro")
+            {
+                frmCadastroLivrosAlugar abrir = new frmCadastroLivrosAlugar(this.nome, this.codUsu, this.cargo);
+                abrir.Show();
+                this.Hide();
+            }
+            if(ultimaTela == "Venda")
+            {
+                frmVender abrir = new frmVender(this.nome, this.codUsu, this.cargo);
+                abrir.Show();
+                this.Hide();
+            }
+            if (ultimaTela == "Emprestimo")
+            {
+                frmEmprestimo abrir = new frmEmprestimo(this.nome, this.codUsu, this.cargo);
+                abrir.Show();
+                this.Hide();
+            }
         }
 
         private void rdbIdLivro_CheckedChanged(object sender, EventArgs e)

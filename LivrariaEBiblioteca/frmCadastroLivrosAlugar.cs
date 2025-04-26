@@ -13,16 +13,47 @@ namespace LivrariaEBiblioteca
 {
     public partial class frmCadastroLivrosAlugar : Form
     {
+        public string nome;
+        public int codUsu;
+        public string cargo;
+        public string livro;
         public frmCadastroLivrosAlugar()
         {
             InitializeComponent();
             desabilitarCampos();
         }
 
-        public frmCadastroLivrosAlugar(string livro)
+        public void limparComponentes()
+        {
+            txtAno.Clear();
+            txtAutor.Clear();
+            txtEditora.Clear();
+            txtIdLivro.Clear();
+            txtIsbn.Clear();
+            txtQuantidade.Clear();
+            txtTitulo.Clear();
+            txtValor.Clear();
+            rdbEmprestimo.Checked = false;
+            rdbVenda.Checked = false;
+            pctLivro.Image = null;
+        }
+
+        public frmCadastroLivrosAlugar(string livro, string nome, int codusu, string cargo)
         {
             InitializeComponent();
             habilitarCampos();
+            this.nome = nome;
+            this.codUsu = codusu;
+            this.cargo = cargo;
+            this.livro = livro;
+        }
+        public frmCadastroLivrosAlugar(string nome, int codusu, string cargo)
+        {
+            InitializeComponent();
+            habilitarCampos();
+            this.nome = nome;
+            this.codUsu = codusu;
+            this.cargo = cargo;
         }
 
         public void limparCampos()
@@ -58,7 +89,7 @@ namespace LivrariaEBiblioteca
 
         private void btnBuscar_Click_1(object sender, EventArgs e)
         {
-            frmBuscarLivro abrir = new frmBuscarLivro();
+            frmBuscarLivro abrir = new frmBuscarLivro(nome, codUsu, cargo, "Cadastro");
             abrir.Show();
             this.Hide();
         }
@@ -165,7 +196,7 @@ namespace LivrariaEBiblioteca
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            frmMenuPrincipal abrir = new frmMenuPrincipal();
+            frmMenuPrincipal abrir = new frmMenuPrincipal(cargo, nome, codUsu);
             abrir.Show();
             this.Hide();
         }

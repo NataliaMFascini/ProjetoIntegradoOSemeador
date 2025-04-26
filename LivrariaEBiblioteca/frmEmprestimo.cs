@@ -16,6 +16,9 @@ namespace LivrariaEBiblioteca
     {
         public int codLivro = 0;
         public int codLoc = 0;
+        public string nome;
+        public int codUsu;
+        public string cargo;
 
         Livros livros = new Livros();
 
@@ -23,6 +26,15 @@ namespace LivrariaEBiblioteca
         {
             InitializeComponent();
             DesavilitarCampos();
+        }
+        public frmEmprestimo(string nome, int codUsu, string cargo)
+        {
+            InitializeComponent();
+            DesavilitarCampos();
+
+            this.nome = nome;
+            this.codUsu = codUsu;
+            this.cargo = cargo;
         }
 
         public void DesavilitarCampos() 
@@ -43,13 +55,42 @@ namespace LivrariaEBiblioteca
             mskDataDevolucao.Clear();
             pctLivro.Image = null;
 
-            ltbListadeLivros.Items.Clear();
+            ltbCarrinho.Items.Clear();
               
+        }
+
+        public void checarComponentes()
+        {
+            if (txtTitulo.Equals(""))
+            {
+                MessageBox.Show("Favor, Preencha todos os componentes", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtTitulo.Focus();                
+            }
+            if (txtAutor.Equals(""))
+            {
+                MessageBox.Show("Favor, Preencha todos os componentes", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtAutor.Focus();
+            }
+            if (txtEditora.Equals(""))
+            {
+                MessageBox.Show("Favor, Preencha todos os componentes", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtEditora.Focus();
+            }
+            if (txtIsbn.Equals(""))
+            {
+                MessageBox.Show("Favor, Preencha todos os componentes", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtIsbn.Focus();
+            }
+            if (txtLocatario.Equals(""))
+            {
+                MessageBox.Show("Favor, Preencha todos os componentes", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtLocatario.Focus();
+            }
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            ltbListadeLivros.Items.Add(txtTitulo.Text);
+            ltbCarrinho.Items.Add(txtTitulo.Text);
             txtNEmprestimo.Focus();
         }
 
@@ -62,20 +103,21 @@ namespace LivrariaEBiblioteca
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            frmMenuPrincipal abrir = new frmMenuPrincipal();
+            frmMenuPrincipal abrir = new frmMenuPrincipal(this.cargo, this.nome, this.codUsu);
             abrir.Show();
             this.Hide();
         }
 
         private void btnVender_Click(object sender, EventArgs e)
         {
-            frmVender abrir = new frmVender();
+            frmVender abrir = new frmVender(this.nome, this.codUsu, this.cargo);
             abrir.Show();
             this.Hide();
         }
 
         public int registrarEmprestimo(int codigoUsuario)
         {
+
             MySqlCommand comm = new MySqlCommand();
             int resp = 0;
 
@@ -104,7 +146,9 @@ namespace LivrariaEBiblioteca
 
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
-            if (ltbListadeLivros.Items.Count == 0)
+            checarComponentes();
+
+            if (ltbCarrinho.Items.Count == 0)
             {
                 if (registrarEmprestimo(codLoc) == 1)
                 {
@@ -152,16 +196,7 @@ namespace LivrariaEBiblioteca
 
         }
 
-        private void txtIsbn_KeyDown(object sender, KeyEventArgs e)
-        {
-            if(e.KeyCode == Keys.Enter)
-            {
-                escanearLivro(txtIsbn.Text);
-                pctLivro.Load(@".\imagens\LivroProgramacao.jpg");
-            }
-        }
-
-        private void frmEmprestimo_KeyDown(object sender, KeyEventArgs e)
+        private void txtIsbn_KeyDown_1(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {

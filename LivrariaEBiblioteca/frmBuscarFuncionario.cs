@@ -14,12 +14,25 @@ namespace LivrariaEBiblioteca
 {
     public partial class frmBuscarFuncionario : Form
     {
+        public string nome;
+        public int codUsu;
+        public string cargo;
+        public string ultimaTela;
         public frmBuscarFuncionario()
         {
             InitializeComponent();
             desabilitarComponentes();
         }
+        public frmBuscarFuncionario(string nome, int codUsu, string cargo, string ultimaTela)
+        {
+            InitializeComponent();
+            desabilitarComponentes();
 
+            this.codUsu = codUsu;
+            this.nome = nome;
+            this.cargo = cargo;
+            this.ultimaTela = ultimaTela;
+        }
         public void limparComponetes()
         {
             txtDescricao.Clear();
@@ -43,7 +56,7 @@ namespace LivrariaEBiblioteca
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            frmCadastroUsuario abrir = new frmCadastroUsuario();
+            frmCadastroUsuario abrir = new frmCadastroUsuario(this.nome, this.codUsu, this.cargo);
             abrir.Show();
             this.Hide();
         }
@@ -130,6 +143,11 @@ namespace LivrariaEBiblioteca
             frmCadastroUsuario abrir = new frmCadastroUsuario();
             abrir.Show();
             this.Hide();
+        }
+
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
