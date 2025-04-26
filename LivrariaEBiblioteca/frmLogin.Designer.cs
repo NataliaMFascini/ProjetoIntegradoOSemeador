@@ -70,6 +70,7 @@
             this.pctLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.pctLogo.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.pctLogo.Image = ((System.Drawing.Image)(resources.GetObject("pctLogo.Image")));
             this.pctLogo.Location = new System.Drawing.Point(260, 51);
             this.pctLogo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);

@@ -64,6 +64,9 @@ create table tbEmprestimo(
 codEmp int not null auto_increment,
 dataEmp dateTime,
 dataDev date,
+nomeVendedor varchar(100),
+nomeLivro varchar(100),
+prontuario int,
 codLivro int not null,
 codLoc int not null,
 primary key(codEmp),
@@ -78,6 +81,7 @@ dataVenda dateTime,
 nomeLivro varchar(100),
 valorTotal decimal(9,2) default 0 check(valorTotal >=0),
 pagamento varchar(20),
+nomeVendedor varchar(100),
 codLivro int not null,
 codUsu int not null,
 primary key(codVenda),
@@ -106,6 +110,7 @@ insert into tbLivro (empVen, isbn, nome, autor, quant, valor, editora, anoPublic
 
 insert into tbLivro (empVen, isbn, nome, autor, quant, valor, editora, anoPublicacao, foto)	values ('Ven', '9788539604579', 'Logica de Programacao', 'Gley Fabiano Cardoso Xavier', 5, 70.00, 'Senac', 2024, 'foto aqui');
 
+insert into tbEstoque(entradaVen, empVen, codLivro, nomeLivro) values (100, 'Ven', 2, 'Logica de Programacao');
 --visualizar
 desc tbUsuario;
 desc tbLocatario;

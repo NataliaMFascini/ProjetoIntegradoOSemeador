@@ -13,6 +13,10 @@ namespace LivrariaEBiblioteca
 {
     public partial class frmCadastroLivrosAlugar : Form
     {
+        public string nome;
+        public int codUsu;
+        public string cargo;
+        public string livro;
         public frmCadastroLivrosAlugar()
         {
             InitializeComponent();
@@ -34,10 +38,22 @@ namespace LivrariaEBiblioteca
             pctLivro.Image = null;
         }
 
-        public frmCadastroLivrosAlugar(string livro)
+        public frmCadastroLivrosAlugar(string livro, string nome, int codusu, string cargo)
         {
             InitializeComponent();
             habilitarCampos();
+            this.nome = nome;
+            this.codUsu = codusu;
+            this.cargo = cargo;
+            this.livro = livro;
+        }
+        public frmCadastroLivrosAlugar(string nome, int codusu, string cargo)
+        {
+            InitializeComponent();
+            habilitarCampos();
+            this.nome = nome;
+            this.codUsu = codusu;
+            this.cargo = cargo;
         }
 
         public void limparCampos()
@@ -73,7 +89,7 @@ namespace LivrariaEBiblioteca
 
         private void btnBuscar_Click_1(object sender, EventArgs e)
         {
-            frmBuscarLivro abrir = new frmBuscarLivro();
+            frmBuscarLivro abrir = new frmBuscarLivro(nome, codUsu, cargo, "Cadastro");
             abrir.Show();
             this.Hide();
         }
@@ -175,12 +191,12 @@ namespace LivrariaEBiblioteca
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
-            limparComponentes();
+            limparCampos();
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            frmMenuPrincipal abrir = new frmMenuPrincipal();
+            frmMenuPrincipal abrir = new frmMenuPrincipal(cargo, nome, codUsu);
             abrir.Show();
             this.Hide();
         }
@@ -307,7 +323,7 @@ namespace LivrariaEBiblioteca
             {
                 if (cadastrarLivro() == 1 && adicionarEstoque() == 1)
                 {
-                    MessageBox.Show("Cadastro realizado com sucesso.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Alteração realizada com sucesso.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     limparCampos();
 
                     txtIsbn.Focus();

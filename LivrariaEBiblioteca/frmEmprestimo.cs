@@ -18,6 +18,8 @@ namespace LivrariaEBiblioteca
         public int codLoc = 0;
         public int codUsu = 0;
         public int codEmp = 0;
+        public string nome;
+        public string cargo;
 
         Livros livros = new Livros();
 
@@ -29,11 +31,18 @@ namespace LivrariaEBiblioteca
         //public frmEmprestimo(string codEmp, int codEmprestimo) problema de amanha
         //{
         //    InitializeComponent();
-
         //    txtNEmprestimo.Text = codEmp;
-
         //    codEmp = codEmprestimo;
         //}
+        public frmEmprestimo(string nome, int codUsu, string cargo)
+        {
+            InitializeComponent();
+            DesavilitarCampos();
+
+            this.nome = nome;
+            this.codUsu = codUsu;
+            this.cargo = cargo;
+        }
 
         public void DesavilitarCampos()
         {
@@ -41,15 +50,16 @@ namespace LivrariaEBiblioteca
             txtNEmprestimo.Enabled = false;
         }
 
-        public void limparComponentes()
+        public void limparCampos()
         {
-            txtAutor.Text = string.Empty;
-            txtEditora.Text = string.Empty;
-            txtIdLivro.Text = string.Empty;
-            txtIsbn.Text = string.Empty;
-            txtTitulo.Text = string.Empty;
-            txtLocatario.Text = string.Empty;
-            txtNEmprestimo.Text = string.Empty;
+            txtAutor.Clear();
+            txtEditora.Clear();
+            txtIdLivro.Clear();
+            txtIsbn.Clear();
+            txtTitulo.Clear();
+            txtLocatario.Clear();
+            txtNEmprestimo.Clear();
+            mskDataDevolucao.Clear();
             pctLivro.Image = null;
 
             ltbCarrinho.Items.Clear();
@@ -90,21 +100,21 @@ namespace LivrariaEBiblioteca
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
-            limparComponentes();
+            limparCampos();
             txtIsbn.Focus();
            
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            frmMenuPrincipal abrir = new frmMenuPrincipal();
+            frmMenuPrincipal abrir = new frmMenuPrincipal(this.cargo, this.nome, this.codUsu);
             abrir.Show();
             this.Hide();
         }
 
         private void btnVender_Click(object sender, EventArgs e)
         {
-            frmVender abrir = new frmVender();
+            frmVender abrir = new frmVender(this.nome, this.codUsu, this.cargo);
             abrir.Show();
             this.Hide();
         }
@@ -170,7 +180,7 @@ namespace LivrariaEBiblioteca
                 if (registrarEmprestimo(codUsu) == 1 && saidaEstoque() == 1)
                 {
                     MessageBox.Show("Empréstimo registrada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                    limparComponentes();
+                    limparCampos();
                 }
                 else
                 {

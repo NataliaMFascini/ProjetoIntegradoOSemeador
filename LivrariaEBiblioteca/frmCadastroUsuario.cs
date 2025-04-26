@@ -15,10 +15,33 @@ namespace LivrariaEBiblioteca
 {
     public partial class frmCadastroUsuario : Form
     {
+        public string nome;
+        public int codUsu;
+        public string cargo;
+        public int codPesquisa;
+
         public frmCadastroUsuario()
         {
             InitializeComponent();
             desabilitarCampos();
+        }
+        public frmCadastroUsuario(string nome, int codUsu, string cargo)
+        {
+            InitializeComponent();
+            desabilitarCampos();
+            this.nome = nome;
+            this.cargo = cargo;
+            this.codUsu = codUsu;
+        }
+        //retorno da pesquisa
+        public frmCadastroUsuario(string nome, int codUsu, string cargo, int codPesquisa)
+        {
+            InitializeComponent();
+            desabilitarCampos();
+            this.nome = nome;
+            this.cargo = cargo;
+            this.codUsu = codUsu;
+            this.codPesquisa = codPesquisa;
         }
         public void desabilitarCampos()
         {
@@ -100,20 +123,11 @@ namespace LivrariaEBiblioteca
         {
             MessageBox.Show(nomeCampo + " é um campo obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
         }
-
-
-
-
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            frmMenuPrincipal abrir = new frmMenuPrincipal();
+            frmMenuPrincipal abrir = new frmMenuPrincipal(this.cargo, this.nome, this.codUsu);
             abrir.Show();
             this.Hide();
-        }
-
-        private void cbbDiaDeTrabalho_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btnCadastra_Click(object sender, EventArgs e)
@@ -315,17 +329,12 @@ namespace LivrariaEBiblioteca
             }
         }
 
-        private void frmCadastroUsuario_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnRemover_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show("Deseja remover esse usuário?", "Mensagem do Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (resultado == DialogResult.Yes)
             {
-                excluirUsuario(Convert.ToInt32(txtIDUsuario.Text));
+                excluirUsuario(Convert.ToInt32(codPesquisa));
                 limparCampos();
             }
         }
@@ -346,11 +355,6 @@ namespace LivrariaEBiblioteca
             Conexao.fecharConexao();
 
             return resp;
-        }
-
-        private void btnAlterar_Click(object sender, EventArgs e)
-        {
-
         }
         public int alterarUsuario(int codUsu)
         {
@@ -395,7 +399,7 @@ namespace LivrariaEBiblioteca
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            frmBuscarFuncionario abrir = new frmBuscarFuncionario();
+            frmBuscarFuncionario abrir = new frmBuscarFuncionario(this.nome, this.codUsu, this.cargo, "Usuario");
             abrir.Show();
             this.Hide();
         }
