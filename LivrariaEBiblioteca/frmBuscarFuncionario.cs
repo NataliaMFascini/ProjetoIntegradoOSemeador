@@ -144,10 +144,5 @@ namespace LivrariaEBiblioteca
             abrir.Show();
             this.Hide();
         }
-
-        private void btnPesquisar_Click(object sender, EventArgs e)
-        {
-            
-        }
     }
 }

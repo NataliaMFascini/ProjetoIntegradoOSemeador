@@ -79,10 +79,10 @@
             // 
             this.btnVender.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnVender.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVender.Image = ((System.Drawing.Image)(resources.GetObject("btnVender.Image")));
             this.btnVender.Location = new System.Drawing.Point(3, 3);
             this.btnVender.Name = "btnVender";
             this.btnVender.Size = new System.Drawing.Size(208, 61);
-            this.btnVender.Image = ((System.Drawing.Image)(resources.GetObject("btnVender.Image")));
             this.btnVender.TabIndex = 0;
             this.btnVender.Text = "Vender";
             this.btnVender.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -112,19 +112,12 @@
             this.ltbCarrinho.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ltbListadeLivros.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ltbListadeLivros.FormattingEnabled = true;
-            this.ltbListadeLivros.ItemHeight = 25;
-            this.ltbListadeLivros.Location = new System.Drawing.Point(16, 338);
-            this.ltbListadeLivros.Name = "ltbListadeLivros";
-            this.ltbListadeLivros.Size = new System.Drawing.Size(752, 129);
-            this.ltbListadeLivros.TabIndex = 7;
             this.ltbCarrinho.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ltbCarrinho.FormattingEnabled = true;
             this.ltbCarrinho.ItemHeight = 25;
-            this.ltbCarrinho.Location = new System.Drawing.Point(16, 313);
+            this.ltbCarrinho.Location = new System.Drawing.Point(16, 338);
             this.ltbCarrinho.Name = "ltbCarrinho";
-            this.ltbCarrinho.Size = new System.Drawing.Size(752, 179);
+            this.ltbCarrinho.Size = new System.Drawing.Size(752, 129);
             this.ltbCarrinho.TabIndex = 7;
             // 
             // label2
@@ -235,10 +228,10 @@
             // 
             this.btnVoltar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnVoltar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVoltar.Image = ((System.Drawing.Image)(resources.GetObject("btnVoltar.Image")));
             this.btnVoltar.Location = new System.Drawing.Point(217, 3);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(208, 61);
-            this.btnVoltar.Image = ((System.Drawing.Image)(resources.GetObject("btnVoltar.Image")));
             this.btnVoltar.TabIndex = 12;
             this.btnVoltar.Text = "Voltar";
             this.btnVoltar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -250,10 +243,10 @@
             // 
             this.btnLimpar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpar.Image")));
             this.btnLimpar.Location = new System.Drawing.Point(198, 3);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(189, 74);
-            this.btnLimpar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpar.Image")));
             this.btnLimpar.TabIndex = 10;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -298,10 +291,10 @@
             // 
             this.btnAdicionar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAdicionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdicionar.Image = ((System.Drawing.Image)(resources.GetObject("btnAdicionar.Image")));
             this.btnAdicionar.Location = new System.Drawing.Point(3, 3);
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(189, 74);
-            this.btnAdicionar.Image = ((System.Drawing.Image)(resources.GetObject("btnAdicionar.Image")));
             this.btnAdicionar.TabIndex = 9;
             this.btnAdicionar.Text = "Adicionar";
             this.btnAdicionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -313,10 +306,10 @@
             // 
             this.btnFinalizar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnFinalizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFinalizar.Image = ((System.Drawing.Image)(resources.GetObject("btnFinalizar.Image")));
             this.btnFinalizar.Location = new System.Drawing.Point(588, 3);
             this.btnFinalizar.Name = "btnFinalizar";
             this.btnFinalizar.Size = new System.Drawing.Size(189, 74);
-            this.btnFinalizar.Image = ((System.Drawing.Image)(resources.GetObject("btnFinalizar.Image")));
             this.btnFinalizar.TabIndex = 11;
             this.btnFinalizar.Text = "Finalizar";
             this.btnFinalizar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

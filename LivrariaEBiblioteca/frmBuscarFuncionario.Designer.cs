@@ -132,7 +132,7 @@
             this.btnPesquisar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPesquisar.Location = new System.Drawing.Point(3, 3);
             this.btnPesquisar.Name = "btnPesquisar";
-            this.btnPesquisar.Size = new System.Drawing.Size(209, 74);
+            this.btnPesquisar.Size = new System.Drawing.Size(208, 74);
             this.btnPesquisar.TabIndex = 0;
             this.btnPesquisar.Text = "Pesquisar";
             this.btnPesquisar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -145,9 +145,9 @@
             this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpar.Image")));
             this.btnLimpar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnLimpar.Location = new System.Drawing.Point(218, 3);
+            this.btnLimpar.Location = new System.Drawing.Point(217, 3);
             this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(209, 74);
+            this.btnLimpar.Size = new System.Drawing.Size(208, 74);
             this.btnLimpar.TabIndex = 0;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
