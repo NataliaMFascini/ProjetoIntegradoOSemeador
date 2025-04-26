@@ -191,7 +191,7 @@ namespace LivrariaEBiblioteca
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
-            limparComponentes();
+            limparCampos();
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)

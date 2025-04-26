@@ -43,15 +43,16 @@ namespace LivrariaEBiblioteca
             txtNEmprestimo.Enabled = false;
         }
 
-        public void limparComponentes()
+        public void limparCampos()
         {
-            txtAutor.Text = string.Empty;
-            txtEditora.Text = string.Empty;
-            txtIdLivro.Text = string.Empty;
-            txtIsbn.Text = string.Empty;
-            txtTitulo.Text = string.Empty;
-            txtLocatario.Text = string.Empty;
-            txtNEmprestimo.Text = string.Empty;
+            txtAutor.Clear();
+            txtEditora.Clear();
+            txtIdLivro.Clear();
+            txtIsbn.Clear();
+            txtTitulo.Clear();
+            txtLocatario.Clear();
+            txtNEmprestimo.Clear();
+            mskDataDevolucao.Clear();
             pctLivro.Image = null;
 
             ltbCarrinho.Items.Clear();
@@ -95,7 +96,7 @@ namespace LivrariaEBiblioteca
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
-            limparComponentes();
+            limparCampos();
             txtIsbn.Focus();
            
         }
@@ -152,7 +153,7 @@ namespace LivrariaEBiblioteca
                 if (registrarEmprestimo(codLoc) == 1)
                 {
                     MessageBox.Show("Empréstimo registrada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                    limparComponentes();
+                    limparCampos();
                 }
                 else
                 {

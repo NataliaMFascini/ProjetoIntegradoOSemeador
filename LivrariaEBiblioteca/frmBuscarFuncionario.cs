@@ -56,12 +56,9 @@ namespace LivrariaEBiblioteca
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            if(ultimaTela == "Usuario")
-            {
-                frmCadastroUsuario abrir = new frmCadastroUsuario(this.nome, this.codUsu, this.cargo);
-                abrir.Show();
-                this.Hide();
-            }
+            frmCadastroUsuario abrir = new frmCadastroUsuario(this.nome, this.codUsu, this.cargo);
+            abrir.Show();
+            this.Hide();
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)
@@ -80,9 +77,72 @@ namespace LivrariaEBiblioteca
             habilitarComponentes();
         }
 
-        private void frmBuscarFuncionario_Load(object sender, EventArgs e)
+        public void pesquisarPorCodigo(int codigo)
         {
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = "select from tbUsuario where codUsu = @codUsu;";
+            comm.CommandType = CommandType.Text;
 
+            comm.Parameters.Clear();
+            comm.Parameters.Add("@codUsu", MySqlDbType.Int32).Value = codigo;
+            comm.Connection = Conexao.obterConexao();
+
+            MySqlDataReader DR;
+            DR = comm.ExecuteReader();
+            DR.Read();
+
+            ltbPesquisar.Items.Add(DR.GetString(0));
+
+            Conexao.fecharConexao();
+        }
+
+        public void pesquisarPorNome(string descricao)
+        {
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = "select from tbUsuario where nome like '%" + descricao + "%'";
+            comm.CommandType = CommandType.Text;
+
+            comm.Parameters.Clear();
+            comm.Parameters.Add("@nome", MySqlDbType.VarChar,100).Value = descricao;
+            comm.Connection = Conexao.obterConexao();
+
+            MySqlDataReader DR;
+            DR = comm.ExecuteReader();
+            
+            while (DR.Read())
+            {
+                ltbPesquisar.Items.Add(DR.GetString(0));
+            }
+
+            Conexao.fecharConexao();
+        }
+
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtDescricao.Text))
+            {
+                MessageBox.Show("Favor prencher a descrição!");
+                txtDescricao.Focus();
+            }
+            else
+            {
+                if (rdbID.Checked)
+                {
+                    pesquisarPorCodigo(Convert.ToInt32(txtDescricao.Text));
+                }
+                if (rdbID.Checked)
+                {
+                    pesquisarPorNome(txtDescricao.Text);
+                }
+            }
+        }
+
+        private void ltbPesquisar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string descricao = ltbPesquisar.SelectedItem.ToString();
+            frmCadastroUsuario abrir = new frmCadastroUsuario();
+            abrir.Show();
+            this.Hide();
         }
 
         private void btnPesquisar_Click(object sender, EventArgs e)
