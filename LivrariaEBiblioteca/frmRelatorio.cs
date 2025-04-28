@@ -141,7 +141,7 @@ namespace LivrariaEBiblioteca
         private void btnEstoque_Click(object sender, EventArgs e)
         {
             MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select empVen as 'Tipo', nomeLivro as 'Titulo', entradaVen as 'Entrada de vendas', saidaVen as 'Saida de vendas', entradaEmp as 'Entrada de emprestimos', saidaEmp as 'Saida de emprestimos',  from tbEstoque;";
+            comm.CommandText = "select empVen as 'Tipo', nomeLivro as 'Titulo', entradaVen as 'Entrada de vendas', saidaVen as 'Saida de vendas', entradaEmp as 'Entrada de emprestimos', saidaEmp as 'Saida de emprestimos' from tbEstoque;";
             comm.CommandType = CommandType.Text;
 
             comm.Connection = Conexao.obterConexao();
@@ -155,6 +155,26 @@ namespace LivrariaEBiblioteca
             dgvRelatorio.DataSource = dataTable;
 
             Conexao.fecharConexao();
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            PrintDialog printDialog = new PrintDialog();
+            printDialog.Document = pdcRelatorio;
+            printDialog.UseEXDialog = true;
+
+            if(DialogResult.OK == printDialog.ShowDialog())
+            {
+                pdcRelatorio.Print();
+            }
+
+        }
+
+        private void prdRelatorio_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            Bitmap bmp = new Bitmap(this.dgvRelatorio.Width, this.dgvRelatorio.Height);
+            dgvRelatorio.DrawToBitmap(bmp, new Rectangle(0, 0, this.dgvRelatorio.Width, this.dgvRelatorio.Height));
+            e.Graphics.DrawImage(bmp, 0, 0);
         }
     }
 }

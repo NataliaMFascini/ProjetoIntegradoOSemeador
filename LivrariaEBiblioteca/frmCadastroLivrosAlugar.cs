@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,6 +19,8 @@ namespace LivrariaEBiblioteca
         public int codUsu;
         public string cargo;
         public string livro;
+        public int tamanhoImagem = 12000000;
+        byte[] imagemDados = null;
         public frmCadastroLivrosAlugar()
         {
             InitializeComponent();
@@ -138,55 +142,88 @@ namespace LivrariaEBiblioteca
 
             }
             else
+            { 
+                if(checarLivro())
+                {
+                    if (cadastrarLivro() == 1 && adicionarEstoque() == 1)
+                    {
+                        MessageBox.Show("Cadastro realizado com sucesso.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        limparCampos();
+
+                        txtIsbn.Focus();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao cadastrar livro.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                
+            }
+        }
+
+        public bool checarLivro()
+        {
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = "select * from tbLivro where isbn = @isbn;";
+            comm.CommandType = CommandType.Text;
+
+            MySqlDataReader DR;
+            DR = comm.ExecuteReader();
+            DR.Read();
+
+            if (DR.HasRows)
             {
-                if (cadastrarLivro() == 1 && adicionarEstoque() == 1)
-                {
-                    MessageBox.Show("Cadastro realizado com sucesso.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    limparCampos();
-
-                    txtIsbn.Focus();
-
-                }
-                else
-                {
-                    MessageBox.Show("Erro ao cadastrar livro.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show("Livro já cadastrado.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtIsbn.Focus();
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
 
         public int cadastrarLivro()
         {
-            MySqlCommand comm = new MySqlCommand();
-
-            comm.CommandText = "insert into tbLivro (empVen, isbn, nome, autor, quant, valor, editora, anoPublicacao, foto, dataCadastro) values (@empVen, @isbn, @nome, @autor, @quant, @valor, @editora, @anoPublicacao, @foto, @dataCadastro);";
-            comm.CommandType = CommandType.Text;
-
-            comm.Parameters.Clear();
-
-            if (rdbEmprestimo.Checked)
+            try
             {
-                comm.Parameters.Add("@empVen", MySqlDbType.VarChar, 3).Value = "Emp";
+                MySqlCommand comm = new MySqlCommand();
+
+                comm.CommandText = "insert into tbLivro (empVen, isbn, nome, autor, quant, valor, editora, anoPublicacao, foto, dataCadastro) values (@empVen, @isbn, @nome, @autor, @quant, @valor, @editora, @anoPublicacao, @foto, @dataCadastro);";
+                comm.CommandType = CommandType.Text;
+
+                comm.Parameters.Clear();
+
+                if (rdbEmprestimo.Checked)
+                {
+                    comm.Parameters.Add("@empVen", MySqlDbType.VarChar, 3).Value = "Emp";
+                }
+                if (rdbVenda.Checked)
+                {
+                    comm.Parameters.Add("@empVen", MySqlDbType.VarChar, 3).Value = "Ven";
+                }
+                comm.Parameters.Add("@isbn", MySqlDbType.VarChar, 20).Value = txtIsbn.Text;
+                comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtTitulo.Text;
+                comm.Parameters.Add("@autor", MySqlDbType.VarChar, 100).Value = txtAutor.Text;
+                comm.Parameters.Add("@quant", MySqlDbType.Int32).Value = Convert.ToInt32(txtQuantidade.Text);
+                comm.Parameters.Add("@valor", MySqlDbType.Decimal).Value = Convert.ToDecimal(txtValor.Text);
+                comm.Parameters.Add("@editora", MySqlDbType.VarChar, 50).Value = txtEditora.Text;
+                comm.Parameters.Add("@anoPublicacao", MySqlDbType.Int32).Value = Convert.ToInt32(txtAno.Text);
+                comm.Parameters.Add("@foto", MySqlDbType.Blob).Value = imagemDados;
+                comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
+
+                comm.Connection = Conexao.obterConexao();
+                int resp = comm.ExecuteNonQuery();
+
+                Conexao.fecharConexao();
+
+                return resp;
             }
-            if (rdbVenda.Checked)
+            catch (MySqlException)
             {
-                comm.Parameters.Add("@empVen", MySqlDbType.VarChar, 3).Value = "Ven";
+                MessageBox.Show("Erro ao cadastrar livro.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0;
             }
-            comm.Parameters.Add("@isbn", MySqlDbType.VarChar, 20).Value = txtIsbn.Text;
-            comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtTitulo.Text;
-            comm.Parameters.Add("@autor", MySqlDbType.VarChar, 100).Value = txtAutor.Text;
-            comm.Parameters.Add("@quant", MySqlDbType.Int32).Value = Convert.ToInt32(txtQuantidade.Text);
-            comm.Parameters.Add("@valor", MySqlDbType.Decimal).Value = Convert.ToDecimal(txtValor.Text);
-            comm.Parameters.Add("@editora", MySqlDbType.VarChar, 50).Value = txtEditora.Text;
-            comm.Parameters.Add("@anoPublicacao", MySqlDbType.Int32).Value = Convert.ToInt32(txtAno.Text);
-            comm.Parameters.Add("@foto", MySqlDbType.Blob).Value = pctLivro.Image;
-            comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
-
-            comm.Connection = Conexao.obterConexao();
-            int resp = comm.ExecuteNonQuery();
-
-            Conexao.fecharConexao();
-
-            return resp;
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)
@@ -211,6 +248,7 @@ namespace LivrariaEBiblioteca
             {
                 pctLivro.ImageLocation = foto.FileName;
                 pctLivro.Load();
+                imagemDados = carregarArquivoImagem(foto.FileName, foto.InitialDirectory, tamanhoImagem);
             }
         }
 
@@ -266,7 +304,7 @@ namespace LivrariaEBiblioteca
             comm.Parameters.Add("@valor", MySqlDbType.Decimal).Value = Convert.ToDecimal(txtValor.Text);
             comm.Parameters.Add("@editora", MySqlDbType.VarChar, 50).Value = txtEditora.Text;
             comm.Parameters.Add("@anoPublicacao", MySqlDbType.Int32).Value = Convert.ToInt32(txtAno.Text);
-            comm.Parameters.Add("@foto", MySqlDbType.Blob).Value = pctLivro.Image;
+            comm.Parameters.Add("@foto", MySqlDbType.Blob).Value = imagemDados;
             comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
 
             comm.Connection = Conexao.obterConexao();
@@ -327,7 +365,6 @@ namespace LivrariaEBiblioteca
                     limparCampos();
 
                     txtIsbn.Focus();
-
                 }
                 else
                 {
@@ -383,6 +420,16 @@ namespace LivrariaEBiblioteca
             {
                 txtValor.Enabled = true;
             }
+        }
+
+        byte[] carregarArquivoImagem(string nomeFoto, string caminhoFoto, int tamanhoImagem)
+        {
+            byte[] imagemBytes = null;
+            string caminhoCompleto = caminhoFoto + "\\" + nomeFoto;
+            FileStream fs = new FileStream(caminhoCompleto, FileMode.Open, FileAccess.Read);
+            BinaryReader br = new BinaryReader(fs);
+            imagemBytes = br.ReadBytes(tamanhoImagem);
+            return imagemBytes;
         }
     }
 }
