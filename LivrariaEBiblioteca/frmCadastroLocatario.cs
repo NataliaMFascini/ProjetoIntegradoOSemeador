@@ -367,7 +367,7 @@ namespace LivrariaEBiblioteca
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            frmBuscarLocatario abrir = new frmBuscarLocatario();
+            frmBuscarLocatario abrir = new frmBuscarLocatario(nome, codUsu, cargo);
             abrir.Show();
             this.Hide();
         }
