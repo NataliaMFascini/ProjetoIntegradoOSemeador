@@ -22,8 +22,17 @@ namespace LivrariaEBiblioteca
             InitializeComponent();
             desabilitarCampos();
 
-            this.codUsu = codUsu;
+
+           
+        }
+        public frmBuscarLocatario(string nome, int codUsu, string cargo)
+        {
+            InitializeComponent();
+            desabilitarCampos();
+
+         
             this.nome = nome;
+            this.codUsu = codUsu;
             this.cargo = cargo;
 
         }
@@ -40,6 +49,9 @@ namespace LivrariaEBiblioteca
             txtDescricao.Enabled = false;
             btnLimpar.Enabled = false;
             btnPesquisar.Enabled = false;
+
+            rdbNome.Checked = false;
+            rdbPront.Checked = false;
         }
 
         public void habilitarCampos()
@@ -111,6 +123,31 @@ namespace LivrariaEBiblioteca
             ltbPesquisar.Items.Add(DR.GetString(0));
 
             Conexao.fecharConexao();
+        }
+
+        private void frmBuscarLocatario_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtDescricao.Text))
+            {
+                MessageBox.Show("Favor prencher a descrição!");
+                txtDescricao.Focus();
+            }
+            else
+            {
+                if (rdbPront.Checked)
+                {
+                    pesquisarPorProntuario(Convert.ToInt32(txtDescricao.Text));
+                }
+                if (rdbNome.Checked)
+                {
+                    pesquisarPorNome(txtDescricao.Text);
+                }
+            }
         }
     }
 }
