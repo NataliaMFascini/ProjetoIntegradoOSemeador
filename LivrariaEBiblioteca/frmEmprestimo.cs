@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,30 +22,27 @@ namespace LivrariaEBiblioteca
         public string nome;
         public string cargo;
 
+
         Livros livros = new Livros();
 
         public frmEmprestimo()
         {
             InitializeComponent();
-            DesavilitarCampos();
+            DesabilitarCampos();
         }
-        //public frmEmprestimo(string codEmp, int codEmprestimo) problema de amanha
-        //{
-        //    InitializeComponent();
-        //    txtNEmprestimo.Text = codEmp;
-        //    codEmp = codEmprestimo;
-        //}
         public frmEmprestimo(string nome, int codUsu, string cargo)
         {
             InitializeComponent();
-            DesavilitarCampos();
+            DesabilitarCampos();
 
             this.nome = nome;
             this.codUsu = codUsu;
             this.cargo = cargo;
-        }
 
-        public void DesavilitarCampos()
+            string codLoc = txtLocatario.Text; 
+
+        }
+        public void DesabilitarCampos()
         {
             txtIdLivro.Enabled = false;
             txtNEmprestimo.Enabled = false;
@@ -125,7 +123,7 @@ namespace LivrariaEBiblioteca
             MySqlCommand comm = new MySqlCommand();
             int resp = 0;
 
-            comm.CommandText = "insert into tbEmprestimo(codEmp, dataEmp, dataDev, codLivro, codLoc) values (@codEmp, @dataEmp, @dataDev, @codLivro, @codLoc );";
+            comm.CommandText = "insert into tbEmprestimo(codEmp, dataEmp, dataDev, nomeLivro, codLivro, codLoc) values (@codEmp, @dataEmp, @dataDev, @codLivro, @codLoc );";
             comm.CommandType = CommandType.Text;
 
 
@@ -135,7 +133,24 @@ namespace LivrariaEBiblioteca
 
                 comm.Parameters.Add("@codEmp", MySqlDbType.Int32).Value = codEmp;
                 comm.Parameters.Add("@dataEmp", MySqlDbType.DateTime).Value = DateTime.Now;
-                //comm.Parameters.Add("@dataDev", MySqlDbType.DateTime).Value = DateTime.; problema de amanha
+
+
+                if (!string.IsNullOrWhiteSpace(mskDataDevolucao.Text) && mskDataDevolucao.MaskFull)
+                {
+                    // Converte o texto para DateTime
+                    DateTime dataConvertida = DateTime.ParseExact(mskDataDevolucao.Text, "dd/MM/yyyy", null);
+
+                    // Cria e configura o comando
+                    comm.Parameters.Add("@dataDev", MySqlDbType.DateTime).Value = dataConvertida;
+                }
+                else
+                {
+                    MessageBox.Show("Favor, preencha o componente 'Data de Devolução'", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    mskDataDevolucao.Focus();
+                }
+
+                comm.Parameters.Add("@nomeVendedor", MySqlDbType.Int32).Value = this.nome;
+                comm.Parameters.Add("@nomeLivro", MySqlDbType.Int32).Value = livros.nomeRetorno(i);
                 comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
                 comm.Parameters.Add("@codLoc", MySqlDbType.Int32).Value = codLoc;
 
@@ -159,7 +174,7 @@ namespace LivrariaEBiblioteca
             for (int i = 0; i < Livros.ListaLivros.Count; i++)
             {
                 comm.Parameters.Clear();
-                comm.Parameters.Add("@saidaEmp", MySqlDbType.Int32).Value = livros.quantidadeRetorno(i);
+                //comm.Parameters.Add("@saidaEmp", MySqlDbType.Int32).Value = livros.quantidadeRetorno(i);
                 comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
 
                 comm.Connection = Conexao.obterConexao();
@@ -171,6 +186,11 @@ namespace LivrariaEBiblioteca
 
             return resp;
         }
+
+        //public int retornoEstoque()
+        //{
+
+        //}
 
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
@@ -241,7 +261,7 @@ namespace LivrariaEBiblioteca
             if (e.KeyCode == Keys.Enter)
             {
                 escanearLivro(txtIsbn.Text);
-                codLivro = Convert.ToInt32(txtIdLivro.Text);
+                //codLivro = Convert.ToInt32(txtIdLivro.Text);
             }
         }
     }
