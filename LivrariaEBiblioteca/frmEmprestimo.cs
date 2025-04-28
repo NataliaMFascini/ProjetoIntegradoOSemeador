@@ -65,6 +65,12 @@ namespace LivrariaEBiblioteca
             ltbCarrinho.Items.Clear();
               
         }
+        public void ReceberDadosLivro(string titulo, string isbn, string idLivro)
+        {
+            txtTitulo.Text = titulo;
+            txtIsbn.Text = isbn;
+            txtIdLivro.Text = idLivro;
+        }
 
         public void checarComponentes()
         {
@@ -159,7 +165,7 @@ namespace LivrariaEBiblioteca
             for (int i = 0; i < Livros.ListaLivros.Count; i++)
             {
                 comm.Parameters.Clear();
-                comm.Parameters.Add("@saidaEmp", MySqlDbType.Int32).Value = livros.quantidadeRetorno(i);
+             //  comm.Parameters.Add("@saidaEmp", MySqlDbType.Int32).Value = livros.quantidadeRetorno(i);
                 comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
 
                 comm.Connection = Conexao.obterConexao();
@@ -244,5 +250,7 @@ namespace LivrariaEBiblioteca
                 codLivro = Convert.ToInt32(txtIdLivro.Text);
             }
         }
+
+        
     }
 }

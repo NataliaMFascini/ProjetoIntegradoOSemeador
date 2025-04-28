@@ -38,6 +38,13 @@ namespace LivrariaEBiblioteca
             this.cargo = cargo;
         }
 
+        public void ReceberDadosLivro(string titulo,string isbn, string idLivro)
+        {
+            txtTitulo.Text = titulo;
+            txtIsbn.Text = isbn;
+            txtIdLivro.Text = idLivro;
+        }
+
         public void limparComponentes()
         {
             txtAutor.Clear();
@@ -308,6 +315,11 @@ namespace LivrariaEBiblioteca
                 txtValorTotal.Text = "R$ " + valorTotal.ToString();
                 ltbCarrinho.Items.RemoveAt(ltbCarrinho.SelectedIndex);
             }
+        }
+
+        private void frmVender_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
