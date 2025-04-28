@@ -456,6 +456,7 @@
             this.Name = "frmVender";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "O Semeador - Livraria";
+           
             ((System.ComponentModel.ISupportInitialize)(this.pctLivro)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.gpbDadoslivro.ResumeLayout(false);

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using MosaicoSolutions.ViaCep;
 using System.Windows.Forms.VisualStyles;
+using System.IO;
 
 namespace LivrariaEBiblioteca
 {
@@ -18,8 +19,10 @@ namespace LivrariaEBiblioteca
         public string nome;
         public int codUsu;
         public string cargo;
-        public int codPesquisa;
+        public string descricao;
 
+        public int tamanhoImagem = 12000000;
+        byte[] imagemDados = null;
         public frmCadastroUsuario()
         {
             InitializeComponent();
@@ -34,14 +37,15 @@ namespace LivrariaEBiblioteca
             this.codUsu = codUsu;
         }
         //retorno da pesquisa
-        public frmCadastroUsuario(string nome, int codUsu, string cargo, int codPesquisa)
+        public frmCadastroUsuario(string nome, int codUsu, string cargo, string descricao)
         {
             InitializeComponent();
             desabilitarCampos();
             this.nome = nome;
             this.cargo = cargo;
             this.codUsu = codUsu;
-            this.codPesquisa = codPesquisa;
+
+            pesquisarPorNome(descricao);
         }
         public void desabilitarCampos()
         {
@@ -248,7 +252,7 @@ namespace LivrariaEBiblioteca
             comm.Parameters.Add("@bairro", MySqlDbType.VarChar, 50).Value = txtBairro.Text;
             comm.Parameters.Add("@cidade", MySqlDbType.VarChar, 50).Value = txtCidade.Text;
             comm.Parameters.Add("@estado", MySqlDbType.VarChar, 2).Value = cbbEstado;
-            comm.Parameters.Add("@foto", MySqlDbType.Blob).Value = ptbUsuario.Image;
+            comm.Parameters.Add("@foto", MySqlDbType.Blob).Value = imagemDados;
             comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
 
             comm.Connection = Conexao.obterConexao();
@@ -298,33 +302,18 @@ namespace LivrariaEBiblioteca
 
         }
 
-        private void txtRepetirSenha_TextChanged(object sender, EventArgs e)
-        {
-
-            if (txtRepetirSenha.Text != txtSenha.Text)
-            {
-                pnlBordaRepetir.BackColor = Color.Red;
-            }
-            else
-            {
-                pnlBordaRepetir.BackColor = Color.WhiteSmoke;
-            }
-            //while(txtRepetirSenha.Text != txtSenha.Text)
-            //{
-            //    pnlBordaRepetir.BackColor = Color.Red;
-            //}
-        }
-
         private void btnAdicionarFoto_Click(object sender, EventArgs e)
         {
             OpenFileDialog foto = new OpenFileDialog();
             foto.Title = "Selecione uma imagem";
             foto.Filter = "Imagens|*.jpg;*.jpeg;*.png;*.bmp|Todos os arquivos|*.*";
-           
+
+
             if (foto.ShowDialog() == DialogResult.OK)
             {
                 ptbUsuario.ImageLocation = foto.FileName;
                 ptbUsuario.Load();
+                imagemDados = carregarArquivoImagem(foto.FileName, foto.FileName, tamanhoImagem);
 
             }
         }
@@ -334,7 +323,7 @@ namespace LivrariaEBiblioteca
             DialogResult resultado = MessageBox.Show("Deseja remover esse usuário?", "Mensagem do Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (resultado == DialogResult.Yes)
             {
-                excluirUsuario(Convert.ToInt32(codPesquisa));
+                excluirUsuario(Convert.ToInt32(descricao));
                 limparCampos();
             }
         }
@@ -378,7 +367,7 @@ namespace LivrariaEBiblioteca
             comm.Parameters.Add("@bairro", MySqlDbType.VarChar, 50).Value = txtBairro.Text;
             comm.Parameters.Add("@cidade", MySqlDbType.VarChar, 50).Value = txtCidade.Text;
             comm.Parameters.Add("@estado", MySqlDbType.VarChar, 2).Value = cbbEstado.Text;
-            comm.Parameters.Add("@foto", MySqlDbType.Blob, 255).Value = ptbUsuario.Image;
+            comm.Parameters.Add("@foto", MySqlDbType.Blob, 255).Value = imagemDados;
             comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
 
             comm.Connection = Conexao.obterConexao();
@@ -402,6 +391,63 @@ namespace LivrariaEBiblioteca
             frmBuscarFuncionario abrir = new frmBuscarFuncionario(this.nome, this.codUsu, this.cargo, "Usuario");
             abrir.Show();
             this.Hide();
+        }
+
+        private void txtRepetirSenha_TextChanged(object sender, EventArgs e)
+        {
+            if(txtSenha.Text != txtRepetirSenha.Text)
+            {
+                pnlBordaRepetir.BackColor = Color.Red;
+            }
+            else
+            {
+                pnlBordaRepetir.BackColor = Color.WhiteSmoke;
+            }
+        }
+
+        public static byte[] carregarArquivoImagem(string nomeFoto, string caminhoFoto, int tamanhoImagem)
+        {
+            byte[] imagemBytes = null;
+            string caminhoCompleto = caminhoFoto;
+            FileStream fs = new FileStream(caminhoCompleto, FileMode.Open, FileAccess.Read);
+            BinaryReader br = new BinaryReader(fs);
+            imagemBytes = br.ReadBytes(tamanhoImagem);
+            return imagemBytes;
+        }
+
+        public void pesquisarPorNome(string nome)
+        {
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = "select * from tbUsuario where nome = @nome;";
+            comm.CommandType = CommandType.Text;
+
+            comm.Parameters.Clear();
+            comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = nome;
+
+            comm.Connection = Conexao.obterConexao();
+
+            MySqlDataReader DR;
+            DR = comm.ExecuteReader();
+            DR.Read();
+
+            txtNomeCompleto.Text = DR.GetString(1);
+            cbbCargo.Text = DR.GetString(2);
+            mskCpf.Text = DR.GetString(3);
+            cbbDiaDeTrabalho.Text = DR.GetString(4);
+            mskTelefone.Text = DR.GetString(5);
+            txtLogin.Text = DR.GetString(6);
+            txtSenha.Text = DR.GetString(7);
+            txtEmail.Text = DR.GetString(8);
+            mskCep.Text = DR.GetString(9);
+            txtLogradouro.Text = DR.GetString(10);
+            txtNumero.Text = DR.GetString(11);
+            txtComplemento.Text = DR.GetString(12);
+            txtBairro.Text = DR.GetString(13);
+            txtCidade.Text = DR.GetString(14);
+            cbbEstado.Text = DR.GetString(15);
+            ptbUsuario.Image = new Bitmap(new MemoryStream((byte[])DR[16]));
+
+            Conexao.fecharConexao();
         }
     }
 }

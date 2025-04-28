@@ -187,6 +187,7 @@
             this.lblBuscarUsuario.AutoSize = true;
             this.lblBuscarUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBuscarUsuario.Location = new System.Drawing.Point(24, 19);
+            this.lblBuscarUsuario.Margin = new System.Windows.Forms.Padding(0);
             this.lblBuscarUsuario.Name = "lblBuscarUsuario";
             this.lblBuscarUsuario.Size = new System.Drawing.Size(246, 37);
             this.lblBuscarUsuario.TabIndex = 16;
@@ -212,6 +213,7 @@
             this.Name = "frmBuscarFuncionario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "O Semeador - Buscar funcionário";
+            this.Load += new System.EventHandler(this.frmBuscarFuncionario_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
