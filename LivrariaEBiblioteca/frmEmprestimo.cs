@@ -12,7 +12,7 @@ using MySql.Data.MySqlClient;
 
 namespace LivrariaEBiblioteca
 {
-    //teste
+   
     public partial class frmEmprestimo : Form
     {
         public int codLivro = 0;
