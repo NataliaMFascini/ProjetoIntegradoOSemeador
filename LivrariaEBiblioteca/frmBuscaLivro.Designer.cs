@@ -142,7 +142,6 @@
             this.ltbPesquisar.Name = "ltbPesquisar";
             this.ltbPesquisar.Size = new System.Drawing.Size(587, 154);
             this.ltbPesquisar.TabIndex = 8;
-            this.ltbPesquisar.SelectedIndexChanged += new System.EventHandler(this.ltbPesquisar_SelectedIndexChanged);
             // 
             // lblResultado
             // 
@@ -318,6 +317,7 @@
             this.rdbIsbn.TabIndex = 16;
             this.rdbIsbn.Text = "ISBN";
             this.rdbIsbn.UseVisualStyleBackColor = true;
+            this.rdbIsbn.CheckedChanged += new System.EventHandler(this.rdbIsbn_CheckedChanged);
             // 
             // frmBuscarLivro
             // 
