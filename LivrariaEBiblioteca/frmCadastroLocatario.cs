@@ -148,16 +148,23 @@ namespace LivrariaEBiblioteca
             DR = comm.ExecuteReader();
             DR.Read();
 
+            comm.Connection = Conexao.obterConexao();
+
             if (DR.HasRows)
             {
                 MessageBox.Show("Prontuário já cadastrado.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtProntuario.Focus();
+                Conexao.fecharConexao();
                 return false;
             }
             else
             {
+                Conexao.fecharConexao();
                 return true;
+                
             }
+
+            
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
