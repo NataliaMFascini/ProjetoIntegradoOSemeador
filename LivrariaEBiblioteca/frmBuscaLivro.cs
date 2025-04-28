@@ -59,6 +59,7 @@ namespace LivrariaEBiblioteca
             txtTitulo.Text = string.Empty;
             rdbIdLivro.Checked = false;
             rdbTitulo.Checked = false;
+            rdbIsbn.Checked = false;
             ltbPesquisar.Text = string.Empty;
             
         }
@@ -180,9 +181,10 @@ namespace LivrariaEBiblioteca
             }
         }
 
-        private void ltbPesquisar_SelectedIndexChanged(object sender, EventArgs e)
+        private void rdbIsbn_CheckedChanged(object sender, EventArgs e)
         {
-
+            habilitarCampos();
+            txtIsbn.Focus();
         }
     }
 }
