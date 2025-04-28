@@ -298,23 +298,6 @@ namespace LivrariaEBiblioteca
 
         }
 
-        private void txtRepetirSenha_TextChanged(object sender, EventArgs e)
-        {
-
-            if (txtRepetirSenha.Text != txtSenha.Text)
-            {
-                pnlBordaRepetir.BackColor = Color.Red;
-            }
-            else
-            {
-                pnlBordaRepetir.BackColor = Color.WhiteSmoke;
-            }
-            //while(txtRepetirSenha.Text != txtSenha.Text)
-            //{
-            //    pnlBordaRepetir.BackColor = Color.Red;
-            //}
-        }
-
         private void btnAdicionarFoto_Click(object sender, EventArgs e)
         {
             OpenFileDialog foto = new OpenFileDialog();
@@ -402,6 +385,18 @@ namespace LivrariaEBiblioteca
             frmBuscarFuncionario abrir = new frmBuscarFuncionario(this.nome, this.codUsu, this.cargo, "Usuario");
             abrir.Show();
             this.Hide();
+        }
+
+        private void txtRepetirSenha_TextChanged(object sender, EventArgs e)
+        {
+            if(txtSenha.Text != txtRepetirSenha.Text)
+            {
+                pnlBordaRepetir.BackColor = Color.Red;
+            }
+            else
+            {
+                pnlBordaRepetir.BackColor = Color.WhiteSmoke;
+            }
         }
     }
 }

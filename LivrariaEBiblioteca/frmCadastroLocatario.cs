@@ -45,7 +45,7 @@ namespace LivrariaEBiblioteca
             mskTelefone.Clear();
             txtProntuario.Clear();
             ltbListadelivros.Items.Clear();
-            
+
         }
 
         public void desabilitarCampos()
@@ -67,7 +67,27 @@ namespace LivrariaEBiblioteca
             MessageBox.Show(nomeCampo + " é um campo obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
         }
 
+        public bool checarPront()
+        {
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = "select * from tbLocatario where pront = @pront;";
+            comm.CommandType = CommandType.Text;
 
+            MySqlDataReader DR;
+            DR = comm.ExecuteReader();
+            DR.Read();
+
+            if (DR.HasRows)
+            {
+                MessageBox.Show("Prontuário já cadastrado.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtProntuario.Focus();
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
@@ -100,13 +120,13 @@ namespace LivrariaEBiblioteca
                     limparCampos();
                     txtLocatario.Focus();
                 }
-            
-                else
-            {
-                MessageBox.Show("Erro ao cadastrar locatário.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
 
-             }
+                else
+                {
+                    MessageBox.Show("Erro ao cadastrar locatário.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
         }
 
         private int cadastrarLocatario()
@@ -151,19 +171,17 @@ namespace LivrariaEBiblioteca
 
         }
 
-
-
         private void btnGerarPront_Click(object sender, EventArgs e)
         {
-            Random numAleatorio = new Random();
+            if (!checarPront())
+            {
+                Random numAleatorio = new Random();
 
-            long prontuario = numAleatorio.Next(100000000, 999999999);
+                long prontuario = numAleatorio.Next(100000000, 999999999);
 
-            txtProntuario.Text = prontuario.ToString();
-
+                txtProntuario.Text = prontuario.ToString();
+            }
         }
-
-      
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
@@ -180,12 +198,14 @@ namespace LivrariaEBiblioteca
             mskTelefone.Enabled = true;
             ltbListadelivros.Enabled = true;
             btnNovo.Enabled = false;
+            if (!checarPront())
+            {
+                Random numAleatorio = new Random();
 
-            Random numAleatorio = new Random();
+                long prontuario = numAleatorio.Next(100000000, 999999999);
 
-            long prontuario = numAleatorio.Next(100000000, 999999999);
-
-            txtProntuario.Text = prontuario.ToString();
+                txtProntuario.Text = prontuario.ToString();
+            }
 
             txtLocatario.Focus();
         }
@@ -196,7 +216,7 @@ namespace LivrariaEBiblioteca
 
             if (resultado == DialogResult.Yes)
             {
-               excluirLocatario(Convert.ToInt32(txtProntuario.Text));
+                excluirLocatario(Convert.ToInt32(txtProntuario.Text));
                 limparCampos();
             }
         }
