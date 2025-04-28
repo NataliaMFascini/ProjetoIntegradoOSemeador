@@ -38,7 +38,7 @@ namespace LivrariaEBiblioteca
             txtDescricao.Clear();
             ltbPesquisar.Items.Clear();
             rdbID.Checked = false;
-            rdbNome.Checked = false;    
+            rdbNome.Checked = false;
         }
         public void desabilitarComponentes()
         {
@@ -80,7 +80,7 @@ namespace LivrariaEBiblioteca
         public void pesquisarPorCodigo(int codigo)
         {
             MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select from tbUsuario where codUsu = @codUsu;";
+            comm.CommandText = "select * from tbUsuario where codUsu = @codUsu;";
             comm.CommandType = CommandType.Text;
 
             comm.Parameters.Clear();
@@ -91,7 +91,7 @@ namespace LivrariaEBiblioteca
             DR = comm.ExecuteReader();
             DR.Read();
 
-            ltbPesquisar.Items.Add(DR.GetString(0));
+            ltbPesquisar.Items.Add(DR.GetString(1));
 
             Conexao.fecharConexao();
         }
@@ -99,19 +99,19 @@ namespace LivrariaEBiblioteca
         public void pesquisarPorNome(string descricao)
         {
             MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select from tbUsuario where nome like '%" + descricao + "%'";
+            comm.CommandText = "select * from tbUsuario where nome like '%" + descricao + "%'";
             comm.CommandType = CommandType.Text;
 
             comm.Parameters.Clear();
-            comm.Parameters.Add("@nome", MySqlDbType.VarChar,100).Value = descricao;
+            comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = descricao;
             comm.Connection = Conexao.obterConexao();
 
             MySqlDataReader DR;
             DR = comm.ExecuteReader();
-            
+
             while (DR.Read())
             {
-                ltbPesquisar.Items.Add(DR.GetString(0));
+                ltbPesquisar.Items.Add(DR.GetString(1));
             }
 
             Conexao.fecharConexao();
@@ -130,7 +130,7 @@ namespace LivrariaEBiblioteca
                 {
                     pesquisarPorCodigo(Convert.ToInt32(txtDescricao.Text));
                 }
-                if (rdbID.Checked)
+                if (rdbNome.Checked)
                 {
                     pesquisarPorNome(txtDescricao.Text);
                 }
@@ -139,10 +139,20 @@ namespace LivrariaEBiblioteca
 
         private void ltbPesquisar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string descricao = ltbPesquisar.SelectedItem.ToString();
-            frmCadastroUsuario abrir = new frmCadastroUsuario();
-            abrir.Show();
-            this.Hide();
+            if (rdbID.Checked)
+            {
+                string descricao = ltbPesquisar.SelectedItem.ToString();
+                frmCadastroUsuario abrir = new frmCadastroUsuario(nome, codUsu, cargo, descricao);
+                abrir.Show();
+                this.Hide();
+            }
+            if(rdbNome.Checked)
+            {
+                string descricao = ltbPesquisar.SelectedItem.ToString();
+                frmCadastroUsuario abrir = new frmCadastroUsuario(nome, codUsu, cargo, descricao);
+                abrir.Show();
+                this.Hide();
+            }
         }
 
         private void frmBuscarFuncionario_Load(object sender, EventArgs e)

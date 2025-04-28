@@ -148,16 +148,23 @@ namespace LivrariaEBiblioteca
             DR = comm.ExecuteReader();
             DR.Read();
 
+            comm.Connection = Conexao.obterConexao();
+
             if (DR.HasRows)
             {
                 MessageBox.Show("Prontuário já cadastrado.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtProntuario.Focus();
+                Conexao.fecharConexao();
                 return false;
             }
             else
             {
+                Conexao.fecharConexao();
                 return true;
+                
             }
+
+            
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
@@ -360,7 +367,7 @@ namespace LivrariaEBiblioteca
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            frmBuscarLocatario abrir = new frmBuscarLocatario();
+            frmBuscarLocatario abrir = new frmBuscarLocatario(nome, codUsu, cargo);
             abrir.Show();
             this.Hide();
         }

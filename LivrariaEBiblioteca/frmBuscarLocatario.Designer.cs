@@ -47,7 +47,7 @@
             // 
             this.lblBuscarLocatario.AutoSize = true;
             this.lblBuscarLocatario.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBuscarLocatario.Location = new System.Drawing.Point(24, 13);
+            this.lblBuscarLocatario.Location = new System.Drawing.Point(24, 19);
             this.lblBuscarLocatario.Name = "lblBuscarLocatario";
             this.lblBuscarLocatario.Size = new System.Drawing.Size(264, 37);
             this.lblBuscarLocatario.TabIndex = 25;
@@ -105,7 +105,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rdbNome.AutoSize = true;
             this.rdbNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbNome.Location = new System.Drawing.Point(341, 108);
+            this.rdbNome.Location = new System.Drawing.Point(339, 114);
             this.rdbNome.Name = "rdbNome";
             this.rdbNome.Size = new System.Drawing.Size(86, 29);
             this.rdbNome.TabIndex = 0;
@@ -121,7 +121,7 @@
             this.btnVoltar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVoltar.Image = ((System.Drawing.Image)(resources.GetObject("btnVoltar.Image")));
             this.btnVoltar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnVoltar.Location = new System.Drawing.Point(618, 6);
+            this.btnVoltar.Location = new System.Drawing.Point(618, 12);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(150, 74);
             this.btnVoltar.TabIndex = 5;
@@ -136,7 +136,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rdbPront.AutoSize = true;
             this.rdbPront.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbPront.Location = new System.Drawing.Point(201, 108);
+            this.rdbPront.Location = new System.Drawing.Point(199, 114);
             this.rdbPront.Name = "rdbPront";
             this.rdbPront.Size = new System.Drawing.Size(129, 29);
             this.rdbPront.TabIndex = 0;
@@ -153,7 +153,7 @@
             this.ltbPesquisar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ltbPesquisar.FormattingEnabled = true;
             this.ltbPesquisar.ItemHeight = 25;
-            this.ltbPesquisar.Location = new System.Drawing.Point(29, 211);
+            this.ltbPesquisar.Location = new System.Drawing.Point(29, 217);
             this.ltbPesquisar.Name = "ltbPesquisar";
             this.ltbPesquisar.Size = new System.Drawing.Size(739, 254);
             this.ltbPesquisar.TabIndex = 2;
@@ -163,7 +163,7 @@
             this.txtDescricao.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDescricao.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescricao.Location = new System.Drawing.Point(29, 174);
+            this.txtDescricao.Location = new System.Drawing.Point(29, 180);
             this.txtDescricao.MaxLength = 100;
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(739, 31);
@@ -175,7 +175,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPesquisarPor.AutoSize = true;
             this.lblPesquisarPor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPesquisarPor.Location = new System.Drawing.Point(29, 110);
+            this.lblPesquisarPor.Location = new System.Drawing.Point(24, 116);
             this.lblPesquisarPor.Name = "lblPesquisarPor";
             this.lblPesquisarPor.Size = new System.Drawing.Size(151, 25);
             this.lblPesquisarPor.TabIndex = 19;
@@ -185,7 +185,7 @@
             // 
             this.lblDescricao.AutoSize = true;
             this.lblDescricao.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescricao.Location = new System.Drawing.Point(29, 146);
+            this.lblDescricao.Location = new System.Drawing.Point(29, 152);
             this.lblDescricao.Name = "lblDescricao";
             this.lblDescricao.Size = new System.Drawing.Size(108, 25);
             this.lblDescricao.TabIndex = 20;

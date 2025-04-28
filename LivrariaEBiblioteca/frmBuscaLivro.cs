@@ -59,6 +59,7 @@ namespace LivrariaEBiblioteca
             txtTitulo.Text = string.Empty;
             rdbIdLivro.Checked = false;
             rdbTitulo.Checked = false;
+            rdbIsbn.Checked = false;
             ltbPesquisar.Text = string.Empty;
             
         }
@@ -66,60 +67,149 @@ namespace LivrariaEBiblioteca
         public void pesquisarPorCodigo(int codigo)
         {
             MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select nome from tbLivro where codLivro = @codLivro;";
+            comm.CommandText = "SELECT codLivro, nome, isbn FROM tbLivro WHERE codLivro = @codLivro;";
             comm.CommandType = CommandType.Text;
-
             comm.Parameters.Clear();
             comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = codigo;
             comm.Connection = Conexao.obterConexao();
 
-            MySqlDataReader DR;
-            DR = comm.ExecuteReader();
-            DR.Read();
+            MySqlDataReader DR = comm.ExecuteReader();
+
+            // Limpa o ListBox antes
+            ltbPesquisar.Items.Clear();
+
             try
             {
-                ltbPesquisar.Items.Add(DR.GetString(0));
+                if (DR.Read())
+                {
+                    // Preenche os campos
+                    txtIdLivro.Text = DR["codLivro"].ToString();
+                    txtTitulo.Text = DR["nome"].ToString();
+                    txtIsbn.Text = DR["isbn"].ToString();
+
+                    // Adiciona no ListBox
+                    ltbPesquisar.Items.Add(DR["nome"].ToString());
+                }
+                else
+                {
+                    MessageBox.Show("Registro não encontrado!");
+                    txtIdLivro.Focus();
+                    txtIdLivro.Clear();
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Registro não encontrado");
-                txtIdLivro.Focus();
-                txtIdLivro.Clear();
+                MessageBox.Show("Erro ao buscar registro: " + ex.Message);
+            }
+            finally
+            {
+                Conexao.fecharConexao();
             }
         }
 
         public void pesquisarPorNome(string titulo)
         {
             MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select nome from tbLivro where nome like '%" + titulo + "%';";
+            comm.CommandText = "SELECT codLivro, nome, isbn FROM tbLivro WHERE nome LIKE @nome;";
             comm.CommandType = CommandType.Text;
-
             comm.Parameters.Clear();
-            comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = titulo;
-
+            comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = "%" + titulo + "%";
             comm.Connection = Conexao.obterConexao();
 
-            MySqlDataReader DR;
-            DR = comm.ExecuteReader();
+            MySqlDataReader DR = comm.ExecuteReader();
 
-            while (DR.Read())
+            // Limpa o ListBox antes
+            ltbPesquisar.Items.Clear();
+
+            if (DR.HasRows)
             {
-                ltbPesquisar.Items.Add((DR.GetString(0)));
+                while (DR.Read())
+                {
+                    // Preenche os campos
+                    txtIdLivro.Text = DR["codLivro"].ToString();
+                    txtTitulo.Text = DR["nome"].ToString();
+                    txtIsbn.Text = DR["isbn"].ToString();
+
+                    // Adiciona no ListBox
+                    ltbPesquisar.Items.Add(DR["nome"].ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Livro não encontrado.");
             }
 
             Conexao.fecharConexao();
+        
+    }
+
+        public void pesquisarPorIsbn(string isbn)
+        {
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = "SELECT codLivro, nome, isbn FROM tbLivro WHERE codLivro = @isbn;";
+            comm.CommandType = CommandType.Text;
+            comm.Parameters.Clear();
+            comm.Parameters.Add("@isbn", MySqlDbType.VarChar, 20).Value = isbn;
+            comm.Connection = Conexao.obterConexao();
+
+            MySqlDataReader DR = comm.ExecuteReader();
+
+            ltbPesquisar.Items.Clear();
+
+            try
+            {
+                if (DR.Read())
+                {
+                    // Preenche todos os campos do formulário
+                    txtIdLivro.Text = DR["codLivro"].ToString();
+                    txtIsbn.Text = DR["isbn"].ToString();
+                    txtTitulo.Text = DR["nome"].ToString();
+
+                    ltbPesquisar.Items.Add(DR["nome"].ToString());
+                }
+                else
+                {
+                    MessageBox.Show("Livro com ISBN informado não encontrado.");
+                    txtIsbn.Focus();
+                    txtIsbn.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao buscar livro por ISBN: " + ex.Message);
+            }
+            finally
+            {
+                Conexao.fecharConexao();
+            }
         }
 
         private void btnVender_Click(object sender, EventArgs e)
         {
             frmVender abrirVender = new frmVender(this.nome, this.codUsu, this.cargo);
-            abrirVender.ShowDialog();
+
+            // Envia os dados dos campos preenchidos
+            abrirVender.ReceberDadosLivro(
+                txtTitulo.Text,
+                txtIsbn.Text,
+                txtIdLivro.Text
+            );
+
+            abrirVender.Show();
         }
 
         private void btnEmprestar_Click(object sender, EventArgs e)
         {
-            frmEmprestimo abrirEmpre = new frmEmprestimo(this.nome, this.codUsu, this.cargo);
-            abrirEmpre.ShowDialog();
+            frmEmprestimo abrirEmprestimo = new frmEmprestimo (this.nome, this.codUsu, this.cargo);
+
+            // Envia os dados dos campos preenchidos
+            abrirEmprestimo.ReceberDadosLivro(
+                txtTitulo.Text,
+                txtIsbn.Text,
+                txtIdLivro.Text
+            );
+
+            abrirEmprestimo.Show();
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)
@@ -160,12 +250,16 @@ namespace LivrariaEBiblioteca
         {
             habilitarCampos();
             txtIdLivro.Focus();
+            txtTitulo.Enabled = false;
+            txtIsbn.Enabled = false;
         }
 
         private void rdbTitulo_CheckedChanged(object sender, EventArgs e)
         {
             habilitarCampos();
             txtTitulo.Focus();
+            txtIdLivro.Enabled = false;
+            txtIsbn.Enabled=false;
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -178,11 +272,24 @@ namespace LivrariaEBiblioteca
             {
                 pesquisarPorNome(txtTitulo.Text);
             }
+            if (rdbIsbn.Checked)
+            { 
+             pesquisarPorIsbn(txtTitulo.Text);
+             
+            }
         }
 
-        private void ltbPesquisar_SelectedIndexChanged(object sender, EventArgs e)
+        private void rdbIsbn_CheckedChanged(object sender, EventArgs e)
         {
+            habilitarCampos();
+            txtIsbn.Focus();
+        }
 
+        private void rdbIsbn_CheckedChanged(object sender, EventArgs e)
+        {
+            habilitarCampos();
+            txtTitulo.Enabled = false;
+            txtIdLivro.Enabled = false;
         }
     }
 }
