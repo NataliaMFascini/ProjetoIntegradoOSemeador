@@ -21,6 +21,12 @@ namespace LivrariaEBiblioteca
         {
             InitializeComponent();
             desabilitarCampos();
+            
+        }
+        public frmBuscarLocatario(string nome, int codUsu, string cargo)
+        {
+            InitializeComponent();
+            desabilitarCampos();
 
             this.codUsu = codUsu;
             this.nome = nome;
@@ -55,8 +61,6 @@ namespace LivrariaEBiblioteca
             abrir.Show();
             this.Hide();
         }
-
-        
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
