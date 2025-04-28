@@ -17,6 +17,8 @@ namespace LivrariaEBiblioteca
         public string nome;
         public int codUsu;
         public string cargo;
+        public string locatario;
+        public int prontuario;
         public frmCadastroLocatario()
         {
             InitializeComponent();
@@ -25,9 +27,78 @@ namespace LivrariaEBiblioteca
         public frmCadastroLocatario(string nome, int codUsu, string cargo)
         {
             InitializeComponent();
+            desabilitarCampos();
             this.cargo = cargo;
             this.nome = nome;
             this.codUsu = codUsu;
+        }
+        public frmCadastroLocatario(string nome, int codUsu, string cargo, string locatario)
+        {
+            InitializeComponent();
+            desabilitarCampos();
+            this.cargo = cargo;
+            this.nome = nome;
+            this.codUsu = codUsu;
+            this.locatario = locatario;
+            pesquisarPorNome(locatario);
+        }
+        public frmCadastroLocatario(string nome, int codUsu, string cargo, int prontuario)
+        {
+            InitializeComponent();
+            desabilitarCampos();
+            this.cargo = cargo;
+            this.nome = nome;
+            this.codUsu= codUsu;
+            this.prontuario = prontuario;
+            pesquisarPorProntuario(prontuario); 
+        }
+
+        public void pesquisarPorNome(string locatario)
+        {
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = "select * from tbLocatario where  nome = @nome;";
+            comm.CommandType = CommandType.Text;
+
+            comm.Parameters.Clear();
+            comm.Parameters.Add("@nome", MySqlDbType.VarChar,100).Value = nome;
+            comm.Connection = Conexao.obterConexao();
+
+            MySqlDataReader DR;
+            DR = comm.ExecuteReader();
+            DR.Read();
+
+            txtProntuario.Text = DR.GetString(0).ToString();
+            txtLocatario.Text = DR.GetString(1);
+            mskCpf.Text = DR.GetString(2);
+            txtEmail.Text = DR.GetString(3);
+            mskTelefone.Text = DR.GetString(4);
+
+            Conexao.fecharConexao();
+
+        }
+
+        public void pesquisarPorProntuario(int prontuario)
+        {
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = "select * from tbLocatario where pront = @pront;";
+            comm.CommandType = CommandType.Text;
+
+            comm.Parameters.Clear();
+            comm.Parameters.Add("@pront", MySqlDbType.Int32).Value = prontuario;
+            comm.Connection = Conexao.obterConexao();
+
+            MySqlDataReader DR;
+            DR = comm.ExecuteReader();
+            DR.Read();
+
+            txtProntuario.Text= DR.GetString(0).ToString();
+            txtLocatario.Text= DR.GetString(1);
+            mskCpf.Text= DR.GetString(2);
+            txtEmail.Text= DR.GetString(3);
+            mskTelefone.Text= DR.GetString(4);
+
+            Conexao.fecharConexao();
+            
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
@@ -224,7 +295,7 @@ namespace LivrariaEBiblioteca
         public int alterarLocatario(int codLoc)
         {
             MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "update tbLocatario set nome = @nome, cpf = @cpf, telCel = @telCel, email = @email, dataCadastro = @dataCadastro ";
+            comm.CommandText = "update tbLocatario set nome = @nome, cpf = @cpf, telCel = @telCel, email = @email;";
             comm.CommandType = CommandType.Text;
 
             comm.Parameters.Clear();
@@ -233,7 +304,7 @@ namespace LivrariaEBiblioteca
             comm.Parameters.Add("@cpf", MySqlDbType.VarChar, 14).Value = mskCpf.Text;
             comm.Parameters.Add("@telCel", MySqlDbType.VarChar, 14).Value = mskTelefone.Text;
             comm.Parameters.Add("@email", MySqlDbType.VarChar, 50).Value = txtEmail.Text;
-            comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
+            
 
             comm.Connection = Conexao.obterConexao();
 
@@ -243,6 +314,55 @@ namespace LivrariaEBiblioteca
 
             return resp;
 
+        }
+
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
+            if (txtLocatario.Text.Equals(""))
+            {
+                erroCadastro("Locatario");
+                txtLocatario.Focus();
+            }
+            else if (mskCpf.Text.Equals("    .   .   -"))
+            {
+                erroCadastro("CPF");
+                mskCpf.Focus();
+            }
+            else if (txtEmail.Text.Equals(""))
+            {
+                erroCadastro("Email");
+                txtEmail.Focus();
+            }
+            else if (mskTelefone.Text.Equals("(  )     -"))
+            {
+                erroCadastro("Telefone");
+                mskTelefone.Focus();
+            }
+            else
+            {
+
+                if (alterarLocatario(Convert.ToInt32(txtLocatario.Text)) == 1)
+                {
+                    MessageBox.Show("Alteração realizado com sucesso.");
+                    limparCampos();
+                    desabilitarCampos();
+                    btnNovo.Enabled = true;
+                    btnNovo.Focus();
+                }
+
+                else
+                {
+                    MessageBox.Show("Erro ao alterar locatário.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            frmBuscarLocatario abrir = new frmBuscarLocatario;
+            abrir.Show();
+            This.Hide();
         }
     }
 }
