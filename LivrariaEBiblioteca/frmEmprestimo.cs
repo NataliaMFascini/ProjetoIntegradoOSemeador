@@ -11,7 +11,7 @@ using MySql.Data.MySqlClient;
 
 namespace LivrariaEBiblioteca
 {
-    //teste
+   
     public partial class frmEmprestimo : Form
     {
         public int codLivro = 0;
@@ -159,7 +159,7 @@ namespace LivrariaEBiblioteca
             for (int i = 0; i < Livros.ListaLivros.Count; i++)
             {
                 comm.Parameters.Clear();
-                comm.Parameters.Add("@saidaEmp", MySqlDbType.Int32).Value = livros.quantidadeRetorno(i);
+                comm.Parameters.Add("@saidaEmp", MySqlDbType.Int32).Value = (i);
                 comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
 
                 comm.Connection = Conexao.obterConexao();

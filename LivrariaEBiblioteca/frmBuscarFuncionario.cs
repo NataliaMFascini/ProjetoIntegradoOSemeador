@@ -144,5 +144,10 @@ namespace LivrariaEBiblioteca
             abrir.Show();
             this.Hide();
         }
+
+        private void frmBuscarFuncionario_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

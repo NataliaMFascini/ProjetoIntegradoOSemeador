@@ -224,5 +224,10 @@ namespace LivrariaEBiblioteca
             return resp;
 
         }
+
+        private void frmCadastroLocatario_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

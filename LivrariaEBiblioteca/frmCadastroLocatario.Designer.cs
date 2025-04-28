@@ -372,6 +372,7 @@
             this.Name = "frmCadastroLocatario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "O Semeador - Cadastro de locatário";
+            this.Load += new System.EventHandler(this.frmCadastroLocatario_Load);
             this.gpbDadosLocatario.ResumeLayout(false);
             this.gpbDadosLocatario.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
