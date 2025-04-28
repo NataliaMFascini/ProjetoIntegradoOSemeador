@@ -9,9 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
+
 namespace LivrariaEBiblioteca
 {
-    //teste
+   
     public partial class frmEmprestimo : Form
     {
         public int codLivro = 0;
@@ -165,7 +166,7 @@ namespace LivrariaEBiblioteca
             for (int i = 0; i < Livros.ListaLivros.Count; i++)
             {
                 comm.Parameters.Clear();
-             //  comm.Parameters.Add("@saidaEmp", MySqlDbType.Int32).Value = livros.quantidadeRetorno(i);
+                comm.Parameters.Add("@saidaEmp", MySqlDbType.Int32).Value = quantidadeRetorno(i);
                 comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
 
                 comm.Connection = Conexao.obterConexao();
@@ -250,7 +251,18 @@ namespace LivrariaEBiblioteca
                 codLivro = Convert.ToInt32(txtIdLivro.Text);
             }
         }
+        public int quantidadeRetorno(int index)
+        {
+            int quantTotal = 0;
 
-        
+            for (int i = 0; i < Livros.ListaLivros.Count - 1; i++)
+            {
+                if (Livros.ListaLivros[index].idLivro == Livros.ListaLivros[i + 1].idLivro)
+                {
+                    quantTotal++;
+                }
+            }
+            return quantTotal;
+        }
     }
 }

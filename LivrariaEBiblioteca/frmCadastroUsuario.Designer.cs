@@ -308,6 +308,7 @@
             this.mskCep.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.mskCep.Size = new System.Drawing.Size(117, 31);
             this.mskCep.TabIndex = 39;
+            this.mskCep.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mskCep_KeyDown);
             // 
             // lblBairro
             // 
@@ -458,6 +459,7 @@
             this.txtRepetirSenha.PasswordChar = 'l';
             this.txtRepetirSenha.Size = new System.Drawing.Size(146, 31);
             this.txtRepetirSenha.TabIndex = 11;
+            this.txtRepetirSenha.TextChanged += new System.EventHandler(this.txtRepetirSenha_TextChanged);
             // 
             // lblRepetirSenha
             // 

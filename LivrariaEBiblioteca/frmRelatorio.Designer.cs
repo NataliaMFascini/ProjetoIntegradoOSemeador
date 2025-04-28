@@ -41,7 +41,8 @@
             this.btnImprimir = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnLimpar = new System.Windows.Forms.Button();
-            this.btnExportar = new System.Windows.Forms.Button();
+            this.pdcRelatorio = new System.Drawing.Printing.PrintDocument();
+            this.pdiaRelatorio = new System.Windows.Forms.PrintDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorio)).BeginInit();
             this.tlpRelatorios.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -54,7 +55,9 @@
             this.dgvRelatorio.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvRelatorio.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvRelatorio.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvRelatorio.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvRelatorio.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvRelatorio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRelatorio.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvRelatorio.Location = new System.Drawing.Point(12, 12);
@@ -207,6 +210,7 @@
             this.btnImprimir.Text = "&Imprimir";
             this.btnImprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnImprimir.UseVisualStyleBackColor = true;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -216,7 +220,6 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 197F));
             this.tableLayoutPanel1.Controls.Add(this.btnLimpar, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnImprimir, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnExportar, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableLayoutPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 481);
@@ -241,19 +244,13 @@
             this.btnLimpar.UseVisualStyleBackColor = true;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
-            // btnExportar
+            // pdcRelatorio
             // 
-            this.btnExportar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnExportar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExportar.Image = ((System.Drawing.Image)(resources.GetObject("btnExportar.Image")));
-            this.btnExportar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExportar.Location = new System.Drawing.Point(206, 3);
-            this.btnExportar.Name = "btnExportar";
-            this.btnExportar.Size = new System.Drawing.Size(197, 74);
-            this.btnExportar.TabIndex = 9;
-            this.btnExportar.Text = "&Exportar";
-            this.btnExportar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnExportar.UseVisualStyleBackColor = true;
+            this.pdcRelatorio.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.prdRelatorio_PrintPage);
+            // 
+            // pdiaRelatorio
+            // 
+            this.pdiaRelatorio.UseEXDialog = true;
             // 
             // frmRelatorio
             // 
@@ -288,8 +285,9 @@
         private System.Windows.Forms.Button btnImprimir;
         private System.Windows.Forms.Button btnVoltar;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button btnExportar;
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.Button btnEstoque;
+        private System.Drawing.Printing.PrintDocument pdcRelatorio;
+        private System.Windows.Forms.PrintDialog pdiaRelatorio;
     }
 }
