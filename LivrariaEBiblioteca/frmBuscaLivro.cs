@@ -282,11 +282,10 @@ namespace LivrariaEBiblioteca
         {
             habilitarCampos();
             txtIsbn.Focus();
-
             txtTitulo.Enabled = false;
             txtIdLivro.Enabled = false;
         }
-
+        
         private void btnGerenciador_Click(object sender, EventArgs e)
         {
             string descricao = txtTitulo.Text;

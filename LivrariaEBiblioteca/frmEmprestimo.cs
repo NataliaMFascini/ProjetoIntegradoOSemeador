@@ -152,7 +152,7 @@ namespace LivrariaEBiblioteca
                 }
                 else
                 {
-                    MessageBox.Show("Favor, preencha o componente 'Data de Devolução'", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Favor, preencha a 'Data de Devolução'", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     mskDataDevolucao.Focus();
                 }
 

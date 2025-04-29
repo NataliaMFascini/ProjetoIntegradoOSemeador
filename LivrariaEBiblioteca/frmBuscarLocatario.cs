@@ -31,7 +31,6 @@ namespace LivrariaEBiblioteca
             this.nome = nome;
             this.codUsu = codUsu;
             this.cargo = cargo;
-
         }
         
         public void limparComponentes()
