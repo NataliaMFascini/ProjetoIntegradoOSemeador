@@ -40,6 +40,7 @@ namespace LivrariaEBiblioteca
         {
             InitializeComponent();
             desabilitarCampos();
+            habilitarCamposBusca();
             this.nome = nome;
             this.cargo = cargo;
             this.codUsu = codUsu;
@@ -96,6 +97,34 @@ namespace LivrariaEBiblioteca
             btnRemover.Enabled = false;
             btnAdicionarFoto.Enabled = true;
         }
+
+        public void habilitarCamposBusca()
+        {
+            txtNomeCompleto.Enabled = true;
+            txtEmail.Enabled = true;
+            txtLogin.Enabled = true;
+            txtSenha.Enabled = true;
+            txtRepetirSenha.Enabled = true;
+            txtLogradouro.Enabled = true;
+            txtNumero.Enabled = true;
+            txtComplemento.Enabled = true;
+            txtCidade.Enabled = true;
+            txtBairro.Enabled = true;
+            mskCpf.Enabled = true;
+            mskTelefone.Enabled = true;
+            mskCep.Enabled = true;
+            cbbCargo.Enabled = true;
+            cbbDiaDeTrabalho.Enabled = true;
+            cbbEstado.Enabled = true;
+
+            btnLimpar.Enabled = true;
+            btnCadastra.Enabled = false;
+            btnNovo.Enabled = false;
+            btnAlterar.Enabled = true;
+            btnRemover.Enabled = true;
+            btnAdicionarFoto.Enabled = true;
+        }
+
         public void limparCampos()
         {
             txtNomeCompleto.Clear();
