@@ -28,20 +28,11 @@ namespace LivrariaEBiblioteca
             InitializeComponent();
             desabilitarCampos();
 
-
-           
-        }
-        public frmBuscarLocatario(string nome, int codUsu, string cargo)
-        {
-            InitializeComponent();
-            desabilitarCampos();
-
-         
             this.nome = nome;
             this.codUsu = codUsu;
             this.cargo = cargo;
-
         }
+        
         public void limparComponentes()
         {
             txtDescricao.Clear();

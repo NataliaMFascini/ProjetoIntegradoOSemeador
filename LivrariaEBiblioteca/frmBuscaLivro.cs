@@ -283,13 +283,9 @@ namespace LivrariaEBiblioteca
         {
             habilitarCampos();
             txtIsbn.Focus();
-        }
-
-        private void rdbIsbn_CheckedChanged(object sender, EventArgs e)
-        {
-            habilitarCampos();
             txtTitulo.Enabled = false;
             txtIdLivro.Enabled = false;
         }
+
     }
 }
