@@ -109,7 +109,6 @@
             this.rdbNome.Name = "rdbNome";
             this.rdbNome.Size = new System.Drawing.Size(86, 29);
             this.rdbNome.TabIndex = 0;
-            this.rdbNome.TabStop = true;
             this.rdbNome.Text = "Nome";
             this.rdbNome.UseVisualStyleBackColor = true;
             this.rdbNome.CheckedChanged += new System.EventHandler(this.rdbNome_CheckedChanged);
@@ -140,7 +139,6 @@
             this.rdbPront.Name = "rdbPront";
             this.rdbPront.Size = new System.Drawing.Size(129, 29);
             this.rdbPront.TabIndex = 0;
-            this.rdbPront.TabStop = true;
             this.rdbPront.Text = "Prontuário";
             this.rdbPront.UseVisualStyleBackColor = true;
             this.rdbPront.CheckedChanged += new System.EventHandler(this.rdbPront_CheckedChanged);
@@ -162,6 +160,7 @@
             // 
             this.txtDescricao.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDescricao.Enabled = false;
             this.txtDescricao.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescricao.Location = new System.Drawing.Point(29, 180);
             this.txtDescricao.MaxLength = 100;
