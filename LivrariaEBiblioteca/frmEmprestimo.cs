@@ -98,7 +98,7 @@ namespace LivrariaEBiblioteca
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
             checarComponentes();
-            ltbCarrinho.Items.Add(txtTitulo.Text);
+            ltbCarrinho.Items.Add(txtTitulo.Text + mskDataDevolucao.Text);
             separarLivros();
             txtNEmprestimo.Focus();
         }
@@ -140,7 +140,6 @@ namespace LivrariaEBiblioteca
 
                 comm.Parameters.Add("@codEmp", MySqlDbType.Int32).Value = codEmp;
                 comm.Parameters.Add("@dataEmp", MySqlDbType.DateTime).Value = DateTime.Now;
-
 
                 if (!string.IsNullOrWhiteSpace(mskDataDevolucao.Text) && mskDataDevolucao.MaskFull)
                 {
@@ -269,6 +268,7 @@ namespace LivrariaEBiblioteca
             {
                 escanearLivro(txtIsbn.Text);
                 //codLivro = Convert.ToInt32(txtIdLivro.Text);
+                mskDataDevolucao.Focus();
             }
         }
         public int quantidadeRetorno(int index)

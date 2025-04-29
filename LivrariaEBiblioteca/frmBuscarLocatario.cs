@@ -25,8 +25,10 @@ namespace LivrariaEBiblioteca
         }
         public frmBuscarLocatario(string nome, int codUsu, string cargo)
         {
-            InitializeComponent();
-            desabilitarCampos();
+            
+                InitializeComponent();
+                desabilitarCampos();
+
 
             this.nome = nome;
             this.codUsu = codUsu;
