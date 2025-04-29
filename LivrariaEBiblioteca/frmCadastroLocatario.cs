@@ -36,6 +36,7 @@ namespace LivrariaEBiblioteca
         {
             InitializeComponent();
             desabilitarCampos();
+            habilitarCamposBusca();
             this.cargo = cargo;
             this.nome = nome;
             this.codUsu = codUsu;
@@ -46,6 +47,7 @@ namespace LivrariaEBiblioteca
         {
             InitializeComponent();
             desabilitarCampos();
+            habilitarCamposBusca();
             this.cargo = cargo;
             this.nome = nome;
             this.codUsu= codUsu;
@@ -118,6 +120,12 @@ namespace LivrariaEBiblioteca
             ltbListadelivros.Items.Clear();
 
         }
+        public void habilitarCamposBusca()
+        {
+            btnAlterar.Enabled = true;
+            btnRemover.Enabled = true;
+            btnNovo.Enabled = false;
+        }
 
         public void desabilitarCampos()
         {
@@ -130,7 +138,6 @@ namespace LivrariaEBiblioteca
             mskCpf.Enabled = false;
             mskTelefone.Enabled = false;
             ltbListadelivros.Enabled = false;
-
         }
 
         private void erroCadastro(string nomeCampo)
@@ -167,8 +174,6 @@ namespace LivrariaEBiblioteca
             Conexao.fecharConexao();
             return true;
            
-            
-            
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
