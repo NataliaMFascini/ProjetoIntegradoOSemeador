@@ -298,6 +298,7 @@ namespace LivrariaEBiblioteca
         private void btnNovo_Click(object sender, EventArgs e)
         {
             habilitarCampos();
+            btnNovo.Enabled = false;
             txtNomeCompleto.Focus();
 
         }
