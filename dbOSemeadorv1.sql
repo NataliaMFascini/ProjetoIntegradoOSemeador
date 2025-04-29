@@ -23,7 +23,7 @@ complemento varchar(100),
 bairro varchar(50),
 cidade varchar(50),
 estado char(2),
-foto varbinary(255),
+foto varchar(200),
 dataCadastro dateTime,
 primary key (codUsu)
 );
@@ -54,7 +54,7 @@ quant int not null default 0 check(quant >= 0),
 valor decimal(9,2) not null default 0 check(valor >= 0),
 editora varchar(50),
 anoPublicacao int,
-foto varbinary(255),
+foto varchar(200),
 dataCadastro dateTime,
 primary key (codLivro)
 );
@@ -94,7 +94,7 @@ foreign key (codUsu) references tbUsuario(codUsu)
 
 --tabela estoque(talvez mudar)
 create table tbEstoque(
-codEsto int not null,
+codEsto int not null auto_increment,
 entradaVen int default 0 check(entradaVen >= 0),
 saidaVen int default 0 check(saidaVen >= 0),
 entradaEmp int default 0 check(entradaEmp >= 0),
