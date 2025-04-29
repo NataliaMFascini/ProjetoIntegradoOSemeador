@@ -319,7 +319,7 @@
             this.rdbIsbn.TabIndex = 16;
             this.rdbIsbn.Text = "ISBN";
             this.rdbIsbn.UseVisualStyleBackColor = true;
-            this.rdbIsbn.CheckedChanged += new System.EventHandler(this.rdbIsbn_CheckedChanged);
+            this.rdbIsbn.CheckedChanged += new System.EventHandler(this.rdbIsbn_CheckedChanged_1);
             // 
             // btnGerenciador
             // 
