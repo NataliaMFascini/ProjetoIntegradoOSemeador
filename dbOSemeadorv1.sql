@@ -69,6 +69,7 @@ nomeLivro varchar(100),
 prontuario int,
 codLivro int not null,
 codLoc int not null,
+disponibilidade char(1) default null,
 primary key(codEmp),
 foreign key(codLivro) references tbLivro(codLivro),
 foreign key(codLoc) references tbLocatario(codLoc)

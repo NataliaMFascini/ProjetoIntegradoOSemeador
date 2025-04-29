@@ -279,15 +279,11 @@ namespace LivrariaEBiblioteca
             }
         }
 
-        private void rdbIsbn_CheckedChanged(object sender, EventArgs e)
+        private void rdbIsbn_CheckedChanged_1(object sender, EventArgs e)
         {
             habilitarCampos();
             txtIsbn.Focus();
-        }
 
-        private void rdbIsbn_CheckedChanged(object sender, EventArgs e)
-        {
-            habilitarCampos();
             txtTitulo.Enabled = false;
             txtIdLivro.Enabled = false;
         }
