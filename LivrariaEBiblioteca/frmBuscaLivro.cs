@@ -274,8 +274,7 @@ namespace LivrariaEBiblioteca
             }
             if (rdbIsbn.Checked)
             { 
-             pesquisarPorIsbn(txtTitulo.Text);
-             
+                pesquisarPorIsbn(txtTitulo.Text);
             }
         }
 
@@ -283,13 +282,17 @@ namespace LivrariaEBiblioteca
         {
             habilitarCampos();
             txtIsbn.Focus();
-        }
 
-        private void rdbIsbn_CheckedChanged(object sender, EventArgs e)
-        {
-            habilitarCampos();
             txtTitulo.Enabled = false;
             txtIdLivro.Enabled = false;
+        }
+
+        private void btnGerenciador_Click(object sender, EventArgs e)
+        {
+            string descricao = txtTitulo.Text;
+            frmCadastroLivrosAlugar abrir = new frmCadastroLivrosAlugar(descricao, this.nome, this.codUsu, this.cargo);
+            abrir.Show();
+            this.Hide();
         }
     }
 }
