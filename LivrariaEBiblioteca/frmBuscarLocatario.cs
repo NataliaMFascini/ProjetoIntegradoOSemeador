@@ -153,6 +153,14 @@ namespace LivrariaEBiblioteca
             }
         }
 
+        private void txtDescricao_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) 
+            {
+                btnPesquisar_Click(sender, e);
+            }
+        }
+        
         private void ltbPesquisar_SelectedIndexChanged(object sender, EventArgs e)
         {
             string locatario = ltbPesquisar.SelectedItem.ToString();

@@ -79,6 +79,7 @@
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(739, 31);
             this.txtDescricao.TabIndex = 2;
+            this.txtDescricao.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDescricao_KeyDown);
             // 
             // ltbPesquisar
             // 
@@ -133,7 +134,7 @@
             this.btnPesquisar.Location = new System.Drawing.Point(3, 3);
             this.btnPesquisar.Name = "btnPesquisar";
             this.btnPesquisar.Size = new System.Drawing.Size(208, 74);
-            this.btnPesquisar.TabIndex = 0;
+            this.btnPesquisar.TabIndex = 6;
             this.btnPesquisar.Text = "Pesquisar";
             this.btnPesquisar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPesquisar.UseVisualStyleBackColor = true;
@@ -148,7 +149,7 @@
             this.btnLimpar.Location = new System.Drawing.Point(217, 3);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(208, 74);
-            this.btnLimpar.TabIndex = 0;
+            this.btnLimpar.TabIndex = 7;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLimpar.UseVisualStyleBackColor = true;
@@ -213,7 +214,6 @@
             this.Name = "frmBuscarFuncionario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "O Semeador - Buscar funcionário";
-            this.Load += new System.EventHandler(this.frmBuscarFuncionario_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

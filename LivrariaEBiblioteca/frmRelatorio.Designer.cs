@@ -90,7 +90,7 @@
             this.tlpRelatorios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tlpRelatorios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tlpRelatorios.Size = new System.Drawing.Size(180, 561);
-            this.tlpRelatorios.TabIndex = 1;
+            this.tlpRelatorios.TabIndex = 4;
             // 
             // btnEstoque
             // 
@@ -101,7 +101,7 @@
             this.btnEstoque.Location = new System.Drawing.Point(3, 403);
             this.btnEstoque.Name = "btnEstoque";
             this.btnEstoque.Size = new System.Drawing.Size(174, 74);
-            this.btnEstoque.TabIndex = 11;
+            this.btnEstoque.TabIndex = 10;
             this.btnEstoque.Text = "&Dados do estoque";
             this.btnEstoque.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEstoque.UseVisualStyleBackColor = true;
@@ -116,7 +116,7 @@
             this.btnEmprestimos.Location = new System.Drawing.Point(3, 323);
             this.btnEmprestimos.Name = "btnEmprestimos";
             this.btnEmprestimos.Size = new System.Drawing.Size(174, 74);
-            this.btnEmprestimos.TabIndex = 6;
+            this.btnEmprestimos.TabIndex = 9;
             this.btnEmprestimos.Text = "Relatorio de &empréstimos";
             this.btnEmprestimos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEmprestimos.UseVisualStyleBackColor = true;
@@ -131,7 +131,7 @@
             this.btnVendas.Location = new System.Drawing.Point(3, 243);
             this.btnVendas.Name = "btnVendas";
             this.btnVendas.Size = new System.Drawing.Size(174, 74);
-            this.btnVendas.TabIndex = 5;
+            this.btnVendas.TabIndex = 8;
             this.btnVendas.Text = "&Relatório de vendas";
             this.btnVendas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVendas.UseVisualStyleBackColor = true;
@@ -146,7 +146,7 @@
             this.btnLocatarios.Location = new System.Drawing.Point(3, 163);
             this.btnLocatarios.Name = "btnLocatarios";
             this.btnLocatarios.Size = new System.Drawing.Size(174, 74);
-            this.btnLocatarios.TabIndex = 4;
+            this.btnLocatarios.TabIndex = 7;
             this.btnLocatarios.Text = "Lista de &locatários";
             this.btnLocatarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLocatarios.UseVisualStyleBackColor = true;
@@ -161,7 +161,7 @@
             this.btnUsuarios.Location = new System.Drawing.Point(3, 83);
             this.btnUsuarios.Name = "btnUsuarios";
             this.btnUsuarios.Size = new System.Drawing.Size(174, 74);
-            this.btnUsuarios.TabIndex = 3;
+            this.btnUsuarios.TabIndex = 6;
             this.btnUsuarios.Text = "Lista de &usuários";
             this.btnUsuarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnUsuarios.UseVisualStyleBackColor = true;
@@ -176,7 +176,7 @@
             this.btnListaLivros.Location = new System.Drawing.Point(3, 3);
             this.btnListaLivros.Name = "btnListaLivros";
             this.btnListaLivros.Size = new System.Drawing.Size(174, 74);
-            this.btnListaLivros.TabIndex = 2;
+            this.btnListaLivros.TabIndex = 5;
             this.btnListaLivros.Text = "&Lista de livros";
             this.btnListaLivros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnListaLivros.UseVisualStyleBackColor = true;
@@ -191,7 +191,7 @@
             this.btnVoltar.Location = new System.Drawing.Point(3, 483);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(174, 75);
-            this.btnVoltar.TabIndex = 10;
+            this.btnVoltar.TabIndex = 11;
             this.btnVoltar.Text = "Voltar";
             this.btnVoltar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVoltar.UseVisualStyleBackColor = true;
@@ -206,7 +206,7 @@
             this.btnImprimir.Location = new System.Drawing.Point(3, 3);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(197, 74);
-            this.btnImprimir.TabIndex = 8;
+            this.btnImprimir.TabIndex = 2;
             this.btnImprimir.Text = "&Imprimir";
             this.btnImprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnImprimir.UseVisualStyleBackColor = true;
@@ -227,7 +227,7 @@
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(604, 80);
-            this.tableLayoutPanel1.TabIndex = 7;
+            this.tableLayoutPanel1.TabIndex = 1;
             // 
             // btnLimpar
             // 
@@ -238,7 +238,7 @@
             this.btnLimpar.Location = new System.Drawing.Point(409, 3);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(192, 74);
-            this.btnLimpar.TabIndex = 10;
+            this.btnLimpar.TabIndex = 3;
             this.btnLimpar.Text = "Li&mpar";
             this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLimpar.UseVisualStyleBackColor = true;

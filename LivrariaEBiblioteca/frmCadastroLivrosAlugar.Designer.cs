@@ -74,7 +74,7 @@
             this.txtValor.MaxLength = 12;
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(130, 31);
-            this.txtValor.TabIndex = 6;
+            this.txtValor.TabIndex = 9;
             // 
             // txtQuantidade
             // 
@@ -85,7 +85,7 @@
             this.txtQuantidade.MaxLength = 4;
             this.txtQuantidade.Name = "txtQuantidade";
             this.txtQuantidade.Size = new System.Drawing.Size(155, 31);
-            this.txtQuantidade.TabIndex = 5;
+            this.txtQuantidade.TabIndex = 8;
             // 
             // lblValor
             // 
@@ -131,7 +131,7 @@
             this.btnAdicionar.Location = new System.Drawing.Point(3, 3);
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(190, 74);
-            this.btnAdicionar.TabIndex = 12;
+            this.btnAdicionar.TabIndex = 13;
             this.btnAdicionar.Text = "Adicionar";
             this.btnAdicionar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAdicionar.UseVisualStyleBackColor = true;
@@ -146,7 +146,7 @@
             this.btnBuscar.Location = new System.Drawing.Point(3, 3);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(207, 74);
-            this.btnBuscar.TabIndex = 0;
+            this.btnBuscar.TabIndex = 18;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBuscar.UseVisualStyleBackColor = false;
@@ -191,7 +191,7 @@
             this.btnRemover.Location = new System.Drawing.Point(199, 3);
             this.btnRemover.Name = "btnRemover";
             this.btnRemover.Size = new System.Drawing.Size(190, 74);
-            this.btnRemover.TabIndex = 13;
+            this.btnRemover.TabIndex = 14;
             this.btnRemover.Text = "Remover";
             this.btnRemover.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRemover.UseVisualStyleBackColor = true;
@@ -206,7 +206,7 @@
             this.btnVoltar.Location = new System.Drawing.Point(216, 3);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(209, 74);
-            this.btnVoltar.TabIndex = 17;
+            this.btnVoltar.TabIndex = 19;
             this.btnVoltar.Text = "Voltar";
             this.btnVoltar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVoltar.UseVisualStyleBackColor = true;
@@ -218,7 +218,7 @@
             this.btnAdicionarFoto.Location = new System.Drawing.Point(31, 367);
             this.btnAdicionarFoto.Name = "btnAdicionarFoto";
             this.btnAdicionarFoto.Size = new System.Drawing.Size(181, 83);
-            this.btnAdicionarFoto.TabIndex = 8;
+            this.btnAdicionarFoto.TabIndex = 7;
             this.btnAdicionarFoto.Text = "Adicionar foto";
             this.btnAdicionarFoto.UseVisualStyleBackColor = true;
             this.btnAdicionarFoto.Click += new System.EventHandler(this.btnAdicionarFoto_Click);
@@ -232,7 +232,7 @@
             this.rdbEmprestimo.Location = new System.Drawing.Point(532, 433);
             this.rdbEmprestimo.Name = "rdbEmprestimo";
             this.rdbEmprestimo.Size = new System.Drawing.Size(143, 29);
-            this.rdbEmprestimo.TabIndex = 7;
+            this.rdbEmprestimo.TabIndex = 11;
             this.rdbEmprestimo.TabStop = true;
             this.rdbEmprestimo.Text = "Empréstimo";
             this.rdbEmprestimo.UseVisualStyleBackColor = true;
@@ -247,7 +247,7 @@
             this.rdbVenda.Location = new System.Drawing.Point(532, 398);
             this.rdbVenda.Name = "rdbVenda";
             this.rdbVenda.Size = new System.Drawing.Size(92, 29);
-            this.rdbVenda.TabIndex = 7;
+            this.rdbVenda.TabIndex = 10;
             this.rdbVenda.TabStop = true;
             this.rdbVenda.Text = "Venda";
             this.rdbVenda.UseVisualStyleBackColor = true;
@@ -269,7 +269,7 @@
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 80);
-            this.tableLayoutPanel1.TabIndex = 44;
+            this.tableLayoutPanel1.TabIndex = 12;
             // 
             // tableLayoutPanel2
             // 
@@ -277,6 +277,21 @@
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.29592F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.42347F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.btnVoltar, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnBuscar, 0, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(353, 0);
@@ -284,7 +299,7 @@
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(428, 80);
-            this.tableLayoutPanel2.TabIndex = 45;
+            this.tableLayoutPanel2.TabIndex = 17;
             // 
             // lblBuscarLivro
             // 
@@ -316,7 +331,7 @@
             this.gpbLivros.Location = new System.Drawing.Point(218, 86);
             this.gpbLivros.Name = "gpbLivros";
             this.gpbLivros.Size = new System.Drawing.Size(536, 303);
-            this.gpbLivros.TabIndex = 46;
+            this.gpbLivros.TabIndex = 0;
             this.gpbLivros.TabStop = false;
             this.gpbLivros.Text = "Dados do livro";
             // 
@@ -329,7 +344,7 @@
             this.txtAutor.MaxLength = 100;
             this.txtAutor.Name = "txtAutor";
             this.txtAutor.Size = new System.Drawing.Size(524, 31);
-            this.txtAutor.TabIndex = 47;
+            this.txtAutor.TabIndex = 4;
             // 
             // txtTitulo
             // 
@@ -340,7 +355,7 @@
             this.txtTitulo.MaxLength = 100;
             this.txtTitulo.Name = "txtTitulo";
             this.txtTitulo.Size = new System.Drawing.Size(524, 31);
-            this.txtTitulo.TabIndex = 46;
+            this.txtTitulo.TabIndex = 3;
             // 
             // txtEditora
             // 
@@ -351,7 +366,7 @@
             this.txtEditora.MaxLength = 50;
             this.txtEditora.Name = "txtEditora";
             this.txtEditora.Size = new System.Drawing.Size(182, 31);
-            this.txtEditora.TabIndex = 48;
+            this.txtEditora.TabIndex = 5;
             // 
             // txtAno
             // 
@@ -361,7 +376,7 @@
             this.txtAno.MaxLength = 4;
             this.txtAno.Name = "txtAno";
             this.txtAno.Size = new System.Drawing.Size(221, 31);
-            this.txtAno.TabIndex = 49;
+            this.txtAno.TabIndex = 6;
             // 
             // txtIdLivro
             // 
@@ -371,7 +386,7 @@
             this.txtIdLivro.MaxLength = 100;
             this.txtIdLivro.Name = "txtIdLivro";
             this.txtIdLivro.Size = new System.Drawing.Size(181, 31);
-            this.txtIdLivro.TabIndex = 44;
+            this.txtIdLivro.TabIndex = 1;
             // 
             // txtIsbn
             // 
@@ -381,7 +396,7 @@
             this.txtIsbn.MaxLength = 20;
             this.txtIsbn.Name = "txtIsbn";
             this.txtIsbn.Size = new System.Drawing.Size(221, 31);
-            this.txtIsbn.TabIndex = 45;
+            this.txtIsbn.TabIndex = 2;
             // 
             // lblIsbn
             // 

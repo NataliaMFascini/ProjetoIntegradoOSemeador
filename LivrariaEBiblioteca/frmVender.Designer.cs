@@ -81,7 +81,7 @@
             this.btnBuscar.Location = new System.Drawing.Point(591, 3);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(190, 74);
-            this.btnBuscar.TabIndex = 10;
+            this.btnBuscar.TabIndex = 15;
             this.btnBuscar.Text = "&Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -99,7 +99,7 @@
             this.ltbCarrinho.Location = new System.Drawing.Point(30, 344);
             this.ltbCarrinho.Name = "ltbCarrinho";
             this.ltbCarrinho.Size = new System.Drawing.Size(718, 129);
-            this.ltbCarrinho.TabIndex = 6;
+            this.ltbCarrinho.TabIndex = 10;
             this.ltbCarrinho.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ltbCarrinho_KeyDown);
             this.ltbCarrinho.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ltbCarrinho_MouseDoubleClick);
             // 
@@ -121,7 +121,7 @@
             this.txtValor.Location = new System.Drawing.Point(243, 216);
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(122, 31);
-            this.txtValor.TabIndex = 4;
+            this.txtValor.TabIndex = 6;
             // 
             // lblFormaPagamento
             // 
@@ -154,7 +154,7 @@
             this.txtValorTotal.Name = "txtValorTotal";
             this.txtValorTotal.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtValorTotal.Size = new System.Drawing.Size(185, 31);
-            this.txtValorTotal.TabIndex = 3;
+            this.txtValorTotal.TabIndex = 9;
             // 
             // btnFinalizar
             // 
@@ -164,7 +164,7 @@
             this.btnFinalizar.Location = new System.Drawing.Point(395, 3);
             this.btnFinalizar.Name = "btnFinalizar";
             this.btnFinalizar.Size = new System.Drawing.Size(190, 74);
-            this.btnFinalizar.TabIndex = 9;
+            this.btnFinalizar.TabIndex = 14;
             this.btnFinalizar.Text = "&Finalizar";
             this.btnFinalizar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnFinalizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -180,7 +180,7 @@
             this.btnLimpar.Location = new System.Drawing.Point(199, 3);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(190, 74);
-            this.btnLimpar.TabIndex = 8;
+            this.btnLimpar.TabIndex = 13;
             this.btnLimpar.Text = "&Limpar";
             this.btnLimpar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -195,7 +195,7 @@
             this.btnAdicionar.Location = new System.Drawing.Point(3, 3);
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(190, 74);
-            this.btnAdicionar.TabIndex = 7;
+            this.btnAdicionar.TabIndex = 12;
             this.btnAdicionar.Text = "&Adicionar";
             this.btnAdicionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdicionar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -214,7 +214,7 @@
             this.cbbFormaPagamento.Location = new System.Drawing.Point(563, 209);
             this.cbbFormaPagamento.Name = "cbbFormaPagamento";
             this.cbbFormaPagamento.Size = new System.Drawing.Size(188, 33);
-            this.cbbFormaPagamento.TabIndex = 5;
+            this.cbbFormaPagamento.TabIndex = 8;
             // 
             // btnEmprestar
             // 
@@ -224,7 +224,7 @@
             this.btnEmprestar.Location = new System.Drawing.Point(3, 3);
             this.btnEmprestar.Name = "btnEmprestar";
             this.btnEmprestar.Size = new System.Drawing.Size(208, 74);
-            this.btnEmprestar.TabIndex = 11;
+            this.btnEmprestar.TabIndex = 17;
             this.btnEmprestar.Text = "&Empréstimo";
             this.btnEmprestar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEmprestar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -239,7 +239,7 @@
             this.btnVoltar.Location = new System.Drawing.Point(217, 3);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(208, 74);
-            this.btnVoltar.TabIndex = 12;
+            this.btnVoltar.TabIndex = 18;
             this.btnVoltar.Text = "&Voltar";
             this.btnVoltar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnVoltar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -265,7 +265,7 @@
             this.txtVendedor.Location = new System.Drawing.Point(563, 145);
             this.txtVendedor.Name = "txtVendedor";
             this.txtVendedor.Size = new System.Drawing.Size(188, 31);
-            this.txtVendedor.TabIndex = 3;
+            this.txtVendedor.TabIndex = 7;
             // 
             // tableLayoutPanel1
             // 
@@ -284,7 +284,7 @@
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 80);
-            this.tableLayoutPanel1.TabIndex = 13;
+            this.tableLayoutPanel1.TabIndex = 11;
             // 
             // gpbDadoslivro
             // 
@@ -306,7 +306,7 @@
             this.gpbDadoslivro.Location = new System.Drawing.Point(170, 87);
             this.gpbDadoslivro.Name = "gpbDadoslivro";
             this.gpbDadoslivro.Size = new System.Drawing.Size(382, 253);
-            this.gpbDadoslivro.TabIndex = 14;
+            this.gpbDadoslivro.TabIndex = 0;
             this.gpbDadoslivro.TabStop = false;
             this.gpbDadoslivro.Text = "Dados do livro";
             // 
@@ -318,7 +318,7 @@
             this.txtAutor.Location = new System.Drawing.Point(6, 180);
             this.txtAutor.Name = "txtAutor";
             this.txtAutor.Size = new System.Drawing.Size(214, 31);
-            this.txtAutor.TabIndex = 11;
+            this.txtAutor.TabIndex = 4;
             // 
             // txtTitulo
             // 
@@ -328,7 +328,7 @@
             this.txtTitulo.Location = new System.Drawing.Point(6, 118);
             this.txtTitulo.Name = "txtTitulo";
             this.txtTitulo.Size = new System.Drawing.Size(359, 31);
-            this.txtTitulo.TabIndex = 5;
+            this.txtTitulo.TabIndex = 3;
             // 
             // txtIsbn
             // 
@@ -337,7 +337,7 @@
             this.txtIsbn.Location = new System.Drawing.Point(197, 58);
             this.txtIsbn.Name = "txtIsbn";
             this.txtIsbn.Size = new System.Drawing.Size(168, 31);
-            this.txtIsbn.TabIndex = 4;
+            this.txtIsbn.TabIndex = 2;
             // 
             // lblAutor
             // 
@@ -356,7 +356,7 @@
             this.txtEditora.Location = new System.Drawing.Point(226, 180);
             this.txtEditora.Name = "txtEditora";
             this.txtEditora.Size = new System.Drawing.Size(139, 31);
-            this.txtEditora.TabIndex = 12;
+            this.txtEditora.TabIndex = 5;
             // 
             // txtIdLivro
             // 
@@ -365,7 +365,7 @@
             this.txtIdLivro.Location = new System.Drawing.Point(6, 56);
             this.txtIdLivro.Name = "txtIdLivro";
             this.txtIdLivro.Size = new System.Drawing.Size(152, 31);
-            this.txtIdLivro.TabIndex = 13;
+            this.txtIdLivro.TabIndex = 1;
             // 
             // lblTitulo
             // 
@@ -422,7 +422,7 @@
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(428, 80);
-            this.tableLayoutPanel2.TabIndex = 15;
+            this.tableLayoutPanel2.TabIndex = 16;
             // 
             // lblBuscarLivro
             // 
@@ -456,7 +456,6 @@
             this.Name = "frmVender";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "O Semeador - Livraria";
-           
             ((System.ComponentModel.ISupportInitialize)(this.pctLivro)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.gpbDadoslivro.ResumeLayout(false);
