@@ -418,10 +418,10 @@
             // lblBuscarLivro
             // 
             this.lblBuscarLivro.AutoSize = true;
-            this.lblBuscarLivro.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBuscarLivro.Location = new System.Drawing.Point(16, 9);
+            this.lblBuscarLivro.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBuscarLivro.Location = new System.Drawing.Point(24, 19);
             this.lblBuscarLivro.Name = "lblBuscarLivro";
-            this.lblBuscarLivro.Size = new System.Drawing.Size(153, 29);
+            this.lblBuscarLivro.Size = new System.Drawing.Size(198, 37);
             this.lblBuscarLivro.TabIndex = 54;
             this.lblBuscarLivro.Text = "Empréstimo";
             // 
@@ -451,7 +451,6 @@
             this.Name = "frmEmprestimo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "O Semeador - Empréstimo";
-        
             ((System.ComponentModel.ISupportInitialize)(this.pctLivro)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
