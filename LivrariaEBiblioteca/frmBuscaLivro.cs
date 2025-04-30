@@ -18,6 +18,8 @@ namespace LivrariaEBiblioteca
         public int codUsu;
         public string cargo;
         public string ultimaTela;
+
+        public string fotoPath;
         public frmBuscarLivro()
         {
             InitializeComponent();
@@ -41,6 +43,9 @@ namespace LivrariaEBiblioteca
             txtTitulo.Enabled = true;
             btnBuscar.Enabled = true;
             btnLimpar.Enabled = true;
+            btnGerenciador.Enabled = true;
+            btnVender.Enabled = true;
+            btnEmprestar.Enabled = true;
         }
 
         public void desabilitarCampos()
@@ -50,6 +55,9 @@ namespace LivrariaEBiblioteca
             txtTitulo.Enabled = false;
             btnBuscar.Enabled = false;
             btnLimpar.Enabled = false;
+            btnVender.Enabled = false;
+            btnEmprestar.Enabled = false;
+            btnGerenciador.Enabled = false;
         }
 
         public void limparComponentes()
@@ -67,7 +75,7 @@ namespace LivrariaEBiblioteca
         public void pesquisarPorCodigo(int codigo)
         {
             MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "SELECT codLivro, nome, isbn FROM tbLivro WHERE codLivro = @codLivro;";
+            comm.CommandText = "SELECT codLivro, nome, isbn, foto FROM tbLivro WHERE codLivro = @codLivro;";
             comm.CommandType = CommandType.Text;
             comm.Parameters.Clear();
             comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = codigo;
@@ -86,6 +94,11 @@ namespace LivrariaEBiblioteca
                     txtIdLivro.Text = DR["codLivro"].ToString();
                     txtTitulo.Text = DR["nome"].ToString();
                     txtIsbn.Text = DR["isbn"].ToString();
+                    fotoPath = DR["foto"].ToString();
+
+                    // Preenche a imagem
+                    pctLivro.ImageLocation = fotoPath;
+                    pctLivro.Load();
 
                     // Adiciona no ListBox
                     ltbPesquisar.Items.Add(DR["nome"].ToString());
@@ -97,9 +110,9 @@ namespace LivrariaEBiblioteca
                     txtIdLivro.Clear();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Erro ao buscar registro: " + ex.Message);
+                MessageBox.Show("Erro ao buscar registro.");
             }
             finally
             {
@@ -110,7 +123,7 @@ namespace LivrariaEBiblioteca
         public void pesquisarPorNome(string titulo)
         {
             MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "SELECT codLivro, nome, isbn FROM tbLivro WHERE nome LIKE @nome;";
+            comm.CommandText = "SELECT codLivro, nome, isbn, foto FROM tbLivro WHERE nome LIKE @nome;";
             comm.CommandType = CommandType.Text;
             comm.Parameters.Clear();
             comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = "%" + titulo + "%";
@@ -128,7 +141,12 @@ namespace LivrariaEBiblioteca
                     // Preenche os campos
                     txtIdLivro.Text = DR["codLivro"].ToString();
                     txtTitulo.Text = DR["nome"].ToString();
-                    txtIsbn.Text = DR["isbn"].ToString();
+                    txtIsbn.Text = DR["isbn"].ToString(); 
+                    fotoPath = DR["foto"].ToString();
+
+                    // Preenche a imagem
+                    pctLivro.ImageLocation = fotoPath;
+                    pctLivro.Load();
 
                     // Adiciona no ListBox
                     ltbPesquisar.Items.Add(DR["nome"].ToString());
@@ -146,7 +164,7 @@ namespace LivrariaEBiblioteca
         public void pesquisarPorIsbn(string isbn)
         {
             MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "SELECT codLivro, nome, isbn FROM tbLivro WHERE codLivro = @isbn;";
+            comm.CommandText = "SELECT codLivro, nome, isbn, foto FROM tbLivro WHERE codLivro = @isbn;";
             comm.CommandType = CommandType.Text;
             comm.Parameters.Clear();
             comm.Parameters.Add("@isbn", MySqlDbType.VarChar, 20).Value = isbn;
@@ -164,6 +182,11 @@ namespace LivrariaEBiblioteca
                     txtIdLivro.Text = DR["codLivro"].ToString();
                     txtIsbn.Text = DR["isbn"].ToString();
                     txtTitulo.Text = DR["nome"].ToString();
+                    fotoPath = DR["foto"].ToString();
+
+                    // Preenche a imagem
+                    pctLivro.ImageLocation = fotoPath;
+                    pctLivro.Load();
 
                     ltbPesquisar.Items.Add(DR["nome"].ToString());
                 }
@@ -174,9 +197,9 @@ namespace LivrariaEBiblioteca
                     txtIsbn.Clear();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Erro ao buscar livro por ISBN: " + ex.Message);
+                MessageBox.Show("Erro ao buscar livro por ISBN.");
             }
             finally
             {
@@ -274,8 +297,7 @@ namespace LivrariaEBiblioteca
             }
             if (rdbIsbn.Checked)
             { 
-             pesquisarPorIsbn(txtTitulo.Text);
-             
+                pesquisarPorIsbn(txtTitulo.Text);
             }
         }
 
@@ -283,9 +305,16 @@ namespace LivrariaEBiblioteca
         {
             habilitarCampos();
             txtIsbn.Focus();
-
             txtTitulo.Enabled = false;
             txtIdLivro.Enabled = false;
+        }
+        
+        private void btnGerenciador_Click(object sender, EventArgs e)
+        {
+            string descricao = txtTitulo.Text;
+            frmCadastroLivrosAlugar abrir = new frmCadastroLivrosAlugar(descricao, this.nome, this.codUsu, this.cargo);
+            abrir.Show();
+            this.Hide();
         }
     }
 }

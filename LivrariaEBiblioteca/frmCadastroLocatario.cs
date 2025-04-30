@@ -36,6 +36,7 @@ namespace LivrariaEBiblioteca
         {
             InitializeComponent();
             desabilitarCampos();
+            habilitarCamposBusca();
             this.cargo = cargo;
             this.nome = nome;
             this.codUsu = codUsu;
@@ -46,6 +47,7 @@ namespace LivrariaEBiblioteca
         {
             InitializeComponent();
             desabilitarCampos();
+            habilitarCamposBusca();
             this.cargo = cargo;
             this.nome = nome;
             this.codUsu= codUsu;
@@ -118,6 +120,12 @@ namespace LivrariaEBiblioteca
             ltbListadelivros.Items.Clear();
 
         }
+        public void habilitarCamposBusca()
+        {
+            btnAlterar.Enabled = true;
+            btnRemover.Enabled = true;
+            btnNovo.Enabled = false;
+        }
 
         public void desabilitarCampos()
         {
@@ -130,7 +138,6 @@ namespace LivrariaEBiblioteca
             mskCpf.Enabled = false;
             mskTelefone.Enabled = false;
             ltbListadelivros.Enabled = false;
-
         }
 
         private void erroCadastro(string nomeCampo)
@@ -144,11 +151,17 @@ namespace LivrariaEBiblioteca
             comm.CommandText = "select * from tbLocatario where pront = @pront;";
             comm.CommandType = CommandType.Text;
 
+            comm.Connection = Conexao.obterConexao();
+
+            comm.Parameters.Clear();
+            comm.Parameters.Add("@pront", MySqlDbType.LongBlob).Value = txtProntuario.Text;
+           
+
             MySqlDataReader DR;
             DR = comm.ExecuteReader();
             DR.Read();
 
-            comm.Connection = Conexao.obterConexao();
+            
 
             if (DR.HasRows)
             {
@@ -157,14 +170,10 @@ namespace LivrariaEBiblioteca
                 Conexao.fecharConexao();
                 return false;
             }
-            else
-            {
-                Conexao.fecharConexao();
-                return true;
-                
-            }
 
-            
+            Conexao.fecharConexao();
+            return true;
+           
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
@@ -251,11 +260,17 @@ namespace LivrariaEBiblioteca
 
         private void btnGerarPront_Click(object sender, EventArgs e)
         {
+            Random numAleatorio = new Random();
+
+            long prontuario = numAleatorio.Next(100000000, 999999999);
+
+            txtProntuario.Text = prontuario.ToString();
+
             if (!checarPront())
             {
-                Random numAleatorio = new Random();
+                numAleatorio = new Random();
 
-                long prontuario = numAleatorio.Next(100000000, 999999999);
+                prontuario = numAleatorio.Next(100000000, 999999999);
 
                 txtProntuario.Text = prontuario.ToString();
             }
@@ -276,11 +291,17 @@ namespace LivrariaEBiblioteca
             mskTelefone.Enabled = true;
             ltbListadelivros.Enabled = true;
             btnNovo.Enabled = false;
+
+            Random numAleatorio = new Random();
+
+            long prontuario = numAleatorio.Next(100000000, 999999999);
+
+            txtProntuario.Text = prontuario.ToString();
             if (!checarPront())
             {
-                Random numAleatorio = new Random();
+                numAleatorio = new Random();
 
-                long prontuario = numAleatorio.Next(100000000, 999999999);
+                prontuario = numAleatorio.Next(100000000, 999999999);
 
                 txtProntuario.Text = prontuario.ToString();
             }

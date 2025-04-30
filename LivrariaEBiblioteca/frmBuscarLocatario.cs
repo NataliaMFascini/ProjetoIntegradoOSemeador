@@ -25,18 +25,16 @@ namespace LivrariaEBiblioteca
         }
         public frmBuscarLocatario(string nome, int codUsu, string cargo)
         {
-            {
+            
                 InitializeComponent();
                 desabilitarCampos();
 
 
-                this.nome = nome;
-                this.codUsu = codUsu;
-                this.cargo = cargo;
-
-            }
+            this.nome = nome;
+            this.codUsu = codUsu;
+            this.cargo = cargo;
         }
-
+        
         public void limparComponentes()
         {
             txtDescricao.Clear();
@@ -60,6 +58,7 @@ namespace LivrariaEBiblioteca
             txtDescricao.Enabled = true;
             btnLimpar.Enabled = true;
             btnPesquisar.Enabled = true;
+            txtDescricao.Focus();
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
@@ -107,19 +106,24 @@ namespace LivrariaEBiblioteca
         public void pesquisarPorNome(string descricao)
         {
             MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select from tbLocatario where nome like '%" + descricao + "%'";
+            comm.CommandText = "select * from tbLocatario where nome like '%" + descricao + "%'";
             comm.CommandType = CommandType.Text;
 
             comm.Parameters.Clear();
-            comm.Parameters.Add("@codLoc", MySqlDbType.Int32).Value = nome;
+            comm.Parameters.Add("@nome", MySqlDbType.Int32).Value = descricao;
 
             comm.Connection = Conexao.obterConexao();
 
             MySqlDataReader DR;
             DR = comm.ExecuteReader();
-            DR.Read();
 
-            ltbPesquisar.Items.Add(DR.GetString(0));
+
+            while (DR.Read())
+            {
+                sltbPesquisar.Items.Add(DR.GetString(1));
+            }
+
+            
 
             Conexao.fecharConexao();
         }

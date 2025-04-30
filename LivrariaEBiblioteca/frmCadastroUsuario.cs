@@ -20,9 +20,8 @@ namespace LivrariaEBiblioteca
         public int codUsu;
         public string cargo;
         public string descricao;
+        public string fotoPath;
 
-        public int tamanhoImagem = 12000000;
-        byte[] imagemDados = null;
         public frmCadastroUsuario()
         {
             InitializeComponent();
@@ -41,6 +40,7 @@ namespace LivrariaEBiblioteca
         {
             InitializeComponent();
             desabilitarCampos();
+            habilitarCamposBusca();
             this.nome = nome;
             this.cargo = cargo;
             this.codUsu = codUsu;
@@ -97,6 +97,34 @@ namespace LivrariaEBiblioteca
             btnRemover.Enabled = false;
             btnAdicionarFoto.Enabled = true;
         }
+
+        public void habilitarCamposBusca()
+        {
+            txtNomeCompleto.Enabled = true;
+            txtEmail.Enabled = true;
+            txtLogin.Enabled = true;
+            txtSenha.Enabled = true;
+            txtRepetirSenha.Enabled = true;
+            txtLogradouro.Enabled = true;
+            txtNumero.Enabled = true;
+            txtComplemento.Enabled = true;
+            txtCidade.Enabled = true;
+            txtBairro.Enabled = true;
+            mskCpf.Enabled = true;
+            mskTelefone.Enabled = true;
+            mskCep.Enabled = true;
+            cbbCargo.Enabled = true;
+            cbbDiaDeTrabalho.Enabled = true;
+            cbbEstado.Enabled = true;
+
+            btnLimpar.Enabled = true;
+            btnCadastra.Enabled = false;
+            btnNovo.Enabled = false;
+            btnAlterar.Enabled = true;
+            btnRemover.Enabled = true;
+            btnAdicionarFoto.Enabled = true;
+        }
+
         public void limparCampos()
         {
             txtNomeCompleto.Clear();
@@ -252,7 +280,7 @@ namespace LivrariaEBiblioteca
             comm.Parameters.Add("@bairro", MySqlDbType.VarChar, 50).Value = txtBairro.Text;
             comm.Parameters.Add("@cidade", MySqlDbType.VarChar, 50).Value = txtCidade.Text;
             comm.Parameters.Add("@estado", MySqlDbType.VarChar, 2).Value = cbbEstado;
-            comm.Parameters.Add("@foto", MySqlDbType.Blob).Value = imagemDados;
+            comm.Parameters.Add("@foto", MySqlDbType.VarChar, 200).Value = fotoPath;
             comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
 
             comm.Connection = Conexao.obterConexao();
@@ -313,8 +341,7 @@ namespace LivrariaEBiblioteca
             {
                 ptbUsuario.ImageLocation = foto.FileName;
                 ptbUsuario.Load();
-                imagemDados = carregarArquivoImagem(foto.FileName, foto.FileName, tamanhoImagem);
-
+                fotoPath = foto.FileName;
             }
         }
 
@@ -367,7 +394,7 @@ namespace LivrariaEBiblioteca
             comm.Parameters.Add("@bairro", MySqlDbType.VarChar, 50).Value = txtBairro.Text;
             comm.Parameters.Add("@cidade", MySqlDbType.VarChar, 50).Value = txtCidade.Text;
             comm.Parameters.Add("@estado", MySqlDbType.VarChar, 2).Value = cbbEstado.Text;
-            comm.Parameters.Add("@foto", MySqlDbType.Blob, 255).Value = imagemDados;
+            comm.Parameters.Add("@foto", MySqlDbType.VarBinary, 255).Value = fotoPath;
             comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
 
             comm.Connection = Conexao.obterConexao();
@@ -405,16 +432,6 @@ namespace LivrariaEBiblioteca
             }
         }
 
-        public static byte[] carregarArquivoImagem(string nomeFoto, string caminhoFoto, int tamanhoImagem)
-        {
-            byte[] imagemBytes = null;
-            string caminhoCompleto = caminhoFoto;
-            FileStream fs = new FileStream(caminhoCompleto, FileMode.Open, FileAccess.Read);
-            BinaryReader br = new BinaryReader(fs);
-            imagemBytes = br.ReadBytes(tamanhoImagem);
-            return imagemBytes;
-        }
-
         public void pesquisarPorNome(string nome)
         {
             MySqlCommand comm = new MySqlCommand();
@@ -445,9 +462,11 @@ namespace LivrariaEBiblioteca
             txtBairro.Text = DR.GetString(13);
             txtCidade.Text = DR.GetString(14);
             cbbEstado.Text = DR.GetString(15);
-            ptbUsuario.Image = new Bitmap(new MemoryStream((byte[])DR[16]));
+            fotoPath = DR.GetString(16);
+            ptbUsuario.ImageLocation = fotoPath;
 
             Conexao.fecharConexao();
         }
+
     }
 }
