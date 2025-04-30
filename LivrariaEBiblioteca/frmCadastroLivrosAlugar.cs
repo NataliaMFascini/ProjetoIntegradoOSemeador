@@ -44,6 +44,7 @@ namespace LivrariaEBiblioteca
         public frmCadastroLivrosAlugar(string livro, string nome, int codusu, string cargo)
         {
             InitializeComponent();
+            desabilitarCamposBusca();
             habilitarCampos();
             this.nome = nome;
             this.codUsu = codusu;
@@ -80,8 +81,21 @@ namespace LivrariaEBiblioteca
             btnRemover.Enabled = false;
             btnAlterar.Enabled = false;
         }
+        public void desabilitarCamposBusca()
+        {
+            btnRemover.Enabled = false;
+            btnAlterar.Enabled = false;
+            btnAdicionar.Enabled = false;
+
+        }
 
         public void habilitarCampos()
+        {
+            btnRemover.Enabled = true;
+            btnAlterar.Enabled = true;
+        }
+
+        public void habilitarCamposBusca()
         {
             btnRemover.Enabled = true;
             btnAlterar.Enabled = true;
@@ -130,8 +144,8 @@ namespace LivrariaEBiblioteca
             txtEditora.Text = DR.GetString(7).ToString();
             txtAno.Text = DR.GetInt32(8).ToString();
             fotoPath = DR.GetString(9).ToString();
-            pctLivro.ImageLocation = fotoPath;
-            pctLivro.Load();
+            //pctLivro.ImageLocation = fotoPath;
+           // pctLivro.Load();
 
             Conexao.fecharConexao();
 
