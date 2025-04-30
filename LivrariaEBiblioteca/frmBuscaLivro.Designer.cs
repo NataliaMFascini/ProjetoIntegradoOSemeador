@@ -48,9 +48,9 @@
             this.btnEmprestar = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnGerenciador = new System.Windows.Forms.Button();
             this.lblBuscarLivro = new System.Windows.Forms.Label();
             this.rdbIsbn = new System.Windows.Forms.RadioButton();
-            this.btnGerenciador = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pctLivro)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -143,6 +143,7 @@
             this.ltbPesquisar.Name = "ltbPesquisar";
             this.ltbPesquisar.Size = new System.Drawing.Size(587, 154);
             this.ltbPesquisar.TabIndex = 8;
+            this.ltbPesquisar.SelectedIndexChanged += new System.EventHandler(this.ltbPesquisar_SelectedIndexChanged);
             // 
             // lblResultado
             // 
@@ -298,6 +299,21 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(624, 80);
             this.tableLayoutPanel2.TabIndex = 14;
             // 
+            // btnGerenciador
+            // 
+            this.btnGerenciador.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnGerenciador.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGerenciador.Image = ((System.Drawing.Image)(resources.GetObject("btnGerenciador.Image")));
+            this.btnGerenciador.Location = new System.Drawing.Point(434, 3);
+            this.btnGerenciador.Name = "btnGerenciador";
+            this.btnGerenciador.Size = new System.Drawing.Size(187, 74);
+            this.btnGerenciador.TabIndex = 12;
+            this.btnGerenciador.Text = "Gerenciador";
+            this.btnGerenciador.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnGerenciador.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnGerenciador.UseVisualStyleBackColor = true;
+            this.btnGerenciador.Click += new System.EventHandler(this.btnGerenciador_Click);
+            // 
             // lblBuscarLivro
             // 
             this.lblBuscarLivro.AutoSize = true;
@@ -320,21 +336,6 @@
             this.rdbIsbn.Text = "ISBN";
             this.rdbIsbn.UseVisualStyleBackColor = true;
             this.rdbIsbn.CheckedChanged += new System.EventHandler(this.rdbIsbn_CheckedChanged_1);
-            // 
-            // btnGerenciador
-            // 
-            this.btnGerenciador.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnGerenciador.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGerenciador.Image = ((System.Drawing.Image)(resources.GetObject("btnGerenciador.Image")));
-            this.btnGerenciador.Location = new System.Drawing.Point(434, 3);
-            this.btnGerenciador.Name = "btnGerenciador";
-            this.btnGerenciador.Size = new System.Drawing.Size(187, 74);
-            this.btnGerenciador.TabIndex = 12;
-            this.btnGerenciador.Text = "Gerenciador";
-            this.btnGerenciador.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnGerenciador.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnGerenciador.UseVisualStyleBackColor = true;
-            this.btnGerenciador.Click += new System.EventHandler(this.btnGerenciador_Click);
             // 
             // frmBuscarLivro
             // 

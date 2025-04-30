@@ -12,7 +12,7 @@ nome varchar(100) not null,
 cargo varchar(50) default 'Voluntario' check(cargo in('Voluntario', 'Dirigente', 'Diretor')),
 cpf char(14) not null unique,
 diaTrabalho varchar(15) check(diaTrabalho in ('Segunda-feira', 'Terca-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sabado', 'Domingo')),
-telCel char(14)not null,
+telCel char(15)not null,
 login varchar(50) not null unique,
 senha varchar(20) not null,
 email varchar(100),
@@ -29,7 +29,7 @@ primary key (codUsu)
 );
 
 insert into tbUsuario(nome, cargo, cpf, diaTrabalho, telCel, login, senha, email, cep, logradouro, numero, complemento, bairro, cidade, estado, foto, dataCadastro) 
-	values ('Eduardo Fascini', 'Diretor', '004.564.158-74', 'Segunda-feira', '(11)98624-2300', 'admin', '123', 'eduardo@conversoft.com.br', '04805-340', 'Rua Gomes Pedrosa', '56', 'Nenhum', 'Cidade Dutra', 'Sao Paulo', 'SP', 'foto aqui', CURRENT_TIMESTAMP);
+	values ('Eduardo Fascini', 'Diretor', '004.564.158-74', 'Segunda-feira', '(11)98624-2300', 'admin', '123', 'eduardo@conversoft.com.br', '04805-340', 'Rua Gomes Pedrosa', '56', 'Nenhum', 'Cidade Dutra', 'Sao Paulo', 'SP', null, CURRENT_TIMESTAMP);
 
 --tabela locatarios
 create table tbLocatario(
@@ -37,7 +37,7 @@ codLoc int not null auto_increment,
 pront int not null,
 nome varchar(100) not null,
 cpf char(14) not null unique,
-telCel char(10),
+telCel char(15),
 email varchar(50),
 dataCadastro dateTime,
 primary key(codLoc)
@@ -106,10 +106,10 @@ primary key(codEsto),
 foreign key (codLivro) references tbLivro(codLivro)
 );
 
-insert into tbLivro (empVen, isbn, nome, autor, quant, valor, editora, anoPublicacao, foto)
-	values ('Ven', '9788592793388', 'Livros dos Mediuns (o) - Letras Grandes', 'Guillon Ribeiro', 1, 30.00, 'Nova Visao 1a Edicao', 2020, 'foto aqui');
+insert into tbLivro (empVen, isbn, nome, autor, quant, valor, editora, anoPublicacao, foto, dataCadastro)
+	values ('Ven', '9788592793388', 'Livros dos Mediuns (o) - Letras Grandes', 'Guillon Ribeiro', 1, 30.00, 'Nova Visao 1a Edicao', 2020, null, CURRENT_TIMESTAMP);
 
-insert into tbLivro (empVen, isbn, nome, autor, quant, valor, editora, anoPublicacao, foto)	values ('Ven', '9788539604579', 'Logica de Programacao', 'Gley Fabiano Cardoso Xavier', 5, 70.00, 'Senac', 2024, 'foto aqui');
+insert into tbLivro (empVen, isbn, nome, autor, quant, valor, editora, anoPublicacao, foto, dataCadastro)	values ('Ven', '9788539604579', 'Logica de Programacao', 'Gley Fabiano Cardoso Xavier', 5, 70.00, 'Senac', 2024, null, CURRENT_TIMESTAMP);
 
 insert into tbEstoque(entradaVen, empVen, codLivro, nomeLivro) values (100, 'Ven', 2, 'Logica de Programacao');
 --visualizar
