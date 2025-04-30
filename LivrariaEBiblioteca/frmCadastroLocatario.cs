@@ -62,18 +62,19 @@ namespace LivrariaEBiblioteca
             comm.CommandType = CommandType.Text;
 
             comm.Parameters.Clear();
-            comm.Parameters.Add("@nome", MySqlDbType.VarChar,100).Value = nome;
+            comm.Parameters.Add("@nome", MySqlDbType.VarChar,100).Value = locatario;
             comm.Connection = Conexao.obterConexao();
 
             MySqlDataReader DR;
             DR = comm.ExecuteReader();
             DR.Read();
 
-            txtProntuario.Text = DR.GetString(0).ToString();
-            txtLocatario.Text = DR.GetString(1);
-            mskCpf.Text = DR.GetString(2);
-            txtEmail.Text = DR.GetString(3);
+            txtProntuario.Text = DR.GetInt32(1).ToString();
+            txtLocatario.Text = DR.GetString(2);
+            mskCpf.Text = DR.GetString(3);
             mskTelefone.Text = DR.GetString(4);
+            txtEmail.Text = DR.GetString(5);
+            
 
             Conexao.fecharConexao();
 
@@ -125,6 +126,12 @@ namespace LivrariaEBiblioteca
             btnAlterar.Enabled = true;
             btnRemover.Enabled = true;
             btnNovo.Enabled = false;
+            txtLocatario.Enabled = true;
+            mskCpf.Enabled = true;
+            txtEmail.Enabled = true;
+            mskTelefone.Enabled = true;
+            btnLimpar.Enabled = true;
+            btnGerarPront.Enabled = false;
         }
 
         public void desabilitarCampos()
@@ -239,16 +246,16 @@ namespace LivrariaEBiblioteca
             return resp;
         }
 
-        public int excluirLocatario(int codLoc)
+        public int excluirLocatario(int pront)
         {
             MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "delete from tbLocatario where codLoc = @codLoc;";
+            comm.CommandText = "delete from tbLocatario where pront = @pront;";
             comm.CommandType = CommandType.Text;
 
             comm.Connection = Conexao.obterConexao();
 
             comm.Parameters.Clear();
-            comm.Parameters.Add("@codLoc", MySqlDbType.Int32).Value = codLoc;
+            comm.Parameters.Add("@pront", MySqlDbType.Int32).Value = pront;
 
             int resp = comm.ExecuteNonQuery();
 
@@ -279,6 +286,9 @@ namespace LivrariaEBiblioteca
         private void btnLimpar_Click(object sender, EventArgs e)
         {
             limparCampos();
+            desabilitarCampos();
+            btnNovo.Enabled = true;
+
         }
 
         private void btnNovo_Click(object sender, EventArgs e)
@@ -323,11 +333,11 @@ namespace LivrariaEBiblioteca
         public int alterarLocatario(int codLoc)
         {
             MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "update tbLocatario set nome = @nome, cpf = @cpf, telCel = @telCel, email = @email;";
+            comm.CommandText = "update tbLocatario set nome = @nome, cpf = @cpf, telCel = @telCel, email = @email where pront = @pront;";
             comm.CommandType = CommandType.Text;
 
             comm.Parameters.Clear();
-            comm.Parameters.Add("@pront", MySqlDbType.Int64).Value = Convert.ToInt64(txtProntuario.Text);
+            comm.Parameters.Add("@pront", MySqlDbType.Int32).Value = Convert.ToInt32(txtProntuario.Text);
             comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtLocatario.Text;
             comm.Parameters.Add("@cpf", MySqlDbType.VarChar, 14).Value = mskCpf.Text;
             comm.Parameters.Add("@telCel", MySqlDbType.VarChar, 14).Value = mskTelefone.Text;
@@ -369,7 +379,7 @@ namespace LivrariaEBiblioteca
             else
             {
 
-                if (alterarLocatario(Convert.ToInt32(txtLocatario.Text)) == 1)
+                if (alterarLocatario(Convert.ToInt32(txtProntuario.Text)) == 1)
                 {
                     MessageBox.Show("Alteração realizado com sucesso.");
                     limparCampos();

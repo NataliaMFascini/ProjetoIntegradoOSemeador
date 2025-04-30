@@ -271,7 +271,7 @@
             // 
             this.mskCpf.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mskCpf.Location = new System.Drawing.Point(499, 115);
-            this.mskCpf.Mask = " 999,999,999-99";
+            this.mskCpf.Mask = "999,999,999-99";
             this.mskCpf.Name = "mskCpf";
             this.mskCpf.Size = new System.Drawing.Size(187, 31);
             this.mskCpf.TabIndex = 5;
@@ -280,7 +280,7 @@
             // 
             this.mskTelefone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mskTelefone.Location = new System.Drawing.Point(499, 174);
-            this.mskTelefone.Mask = "(99) 9999-9999";
+            this.mskTelefone.Mask = "(99) 99999-9999";
             this.mskTelefone.Name = "mskTelefone";
             this.mskTelefone.Size = new System.Drawing.Size(187, 31);
             this.mskTelefone.TabIndex = 7;
