@@ -51,13 +51,6 @@ namespace LivrariaEBiblioteca
             pesquisarPorNome(livro);
         }
 
-        public void ReceberDadosLivro(string titulo,string isbn, string idLivro)
-        {
-            txtTitulo.Text = titulo;
-            txtIsbn.Text = isbn;
-            txtIdLivro.Text = idLivro;
-        }
-
         public void limparComponentes()
         {
             txtAutor.Clear();
@@ -157,7 +150,7 @@ namespace LivrariaEBiblioteca
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            frmBuscarLivro abrir = new frmBuscarLivro();
+            frmBuscarLivro abrir = new frmBuscarLivro(this.nome, this.codUsu, this.cargo, "Venda");
             abrir.Show();
             this.Hide();
         }
@@ -220,7 +213,7 @@ namespace LivrariaEBiblioteca
             {
                 escanearLivro(txtIsbn.Text);
                 codLivro = Convert.ToInt32(txtIdLivro.Text);
-                if(livros.checarEstoque(codLivro, "Ven") <= 5)
+                if (livros.checarEstoque(codLivro, "Ven") <= 5)
                 {
                     MessageBox.Show("Resta " + livros.checarEstoque(codLivro, "Ven") + " em estoque.", "Aviso do estoque", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 }
@@ -232,7 +225,7 @@ namespace LivrariaEBiblioteca
         {
             if (ltbCarrinho.Items.Count != 0)
             {
-                if (registrarVenda(codUsu) == 1 && saidaEstoque() == 1)
+                if (registrarVenda() == 1 && saidaEstoque() == 1)
                 {
                     MessageBox.Show("Venda registrada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                     limparComponentes();
@@ -248,7 +241,7 @@ namespace LivrariaEBiblioteca
             }
         }
 
-        public int registrarVenda(int codigoUsuario)
+        public int registrarVenda()
         {
             MySqlCommand comm = new MySqlCommand();
             int resp = 0;
@@ -267,7 +260,7 @@ namespace LivrariaEBiblioteca
                 comm.Parameters.Add("@pagamento", MySqlDbType.VarChar, 50).Value = cbbFormaPagamento.Text;
                 comm.Parameters.Add("@nomeVendedor", MySqlDbType.VarChar, 100).Value = this.nome;
                 comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
-                comm.Parameters.Add("@codUsu", MySqlDbType.Int32).Value = codigoUsuario;
+                comm.Parameters.Add("@codUsu", MySqlDbType.Int32).Value = codUsu;
 
                 comm.Connection = Conexao.obterConexao();
 
@@ -283,21 +276,27 @@ namespace LivrariaEBiblioteca
         {
             MySqlCommand comm = new MySqlCommand();
             int resp = 0;
-
-            comm.CommandText = "update tbEstoque set saidaVen = @saidaVen, empVen = @empVen where codLivro = @codLivro";
-            comm.CommandType = CommandType.Text;
-            for (int i = 0; i < Livros.ListaLivros.Count; i++)
+            try
             {
-                comm.Parameters.Clear();
-                comm.Parameters.Add("@saidaVen", MySqlDbType.Int32).Value = quantidadeRetorno(i);
-                comm.Parameters.Add("@empVen", MySqlDbType.Int32).Value = "Ven";
-                comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
+                comm.CommandText = "update tbEstoque set saidaVen = @saidaVen, empVen = @empVen where codLivro = @codLivro";
+                comm.CommandType = CommandType.Text;
+                for (int i = 0; i < Livros.ListaLivros.Count; i++)
+                {
+                    comm.Parameters.Clear();
+                    comm.Parameters.Add("@saidaVen", MySqlDbType.Int32).Value = quantidadeRetorno(i);
+                    comm.Parameters.Add("@empVen", MySqlDbType.VarChar, 3).Value = "Ven";
+                    comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
 
-                comm.Connection = Conexao.obterConexao();
+                    comm.Connection = Conexao.obterConexao();
 
-                resp = comm.ExecuteNonQuery();
+                    resp = comm.ExecuteNonQuery();
 
-                Conexao.fecharConexao();
+                    Conexao.fecharConexao();
+                }
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Livro não registrado no estoque.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return resp;
         }
