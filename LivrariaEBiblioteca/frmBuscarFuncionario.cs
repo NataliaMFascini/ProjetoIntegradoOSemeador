@@ -52,6 +52,8 @@ namespace LivrariaEBiblioteca
             txtDescricao.Enabled = true;
             btnPesquisar.Enabled = true;
             btnLimpar.Enabled = true;
+
+            txtDescricao.Focus();
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
@@ -155,9 +157,12 @@ namespace LivrariaEBiblioteca
             }
         }
 
-        private void frmBuscarFuncionario_Load(object sender, EventArgs e)
+        private void txtDescricao_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Enter) 
+            {
+                btnPesquisar_Click(sender, e);
+            }
         }
     }
 }

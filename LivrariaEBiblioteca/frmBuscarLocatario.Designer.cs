@@ -67,7 +67,7 @@
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(780, 80);
-            this.tableLayoutPanel1.TabIndex = 24;
+            this.tableLayoutPanel1.TabIndex = 4;
             // 
             // btnPesquisar
             // 
@@ -78,7 +78,7 @@
             this.btnPesquisar.Location = new System.Drawing.Point(3, 3);
             this.btnPesquisar.Name = "btnPesquisar";
             this.btnPesquisar.Size = new System.Drawing.Size(208, 74);
-            this.btnPesquisar.TabIndex = 4;
+            this.btnPesquisar.TabIndex = 5;
             this.btnPesquisar.Text = "Pesquisar";
             this.btnPesquisar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPesquisar.UseVisualStyleBackColor = true;
@@ -93,7 +93,7 @@
             this.btnLimpar.Location = new System.Drawing.Point(217, 3);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(208, 74);
-            this.btnLimpar.TabIndex = 3;
+            this.btnLimpar.TabIndex = 6;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLimpar.UseVisualStyleBackColor = true;
@@ -108,7 +108,7 @@
             this.rdbNome.Location = new System.Drawing.Point(339, 114);
             this.rdbNome.Name = "rdbNome";
             this.rdbNome.Size = new System.Drawing.Size(86, 29);
-            this.rdbNome.TabIndex = 0;
+            this.rdbNome.TabIndex = 1;
             this.rdbNome.Text = "Nome";
             this.rdbNome.UseVisualStyleBackColor = true;
             this.rdbNome.CheckedChanged += new System.EventHandler(this.rdbNome_CheckedChanged);
@@ -123,7 +123,7 @@
             this.btnVoltar.Location = new System.Drawing.Point(618, 12);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(150, 74);
-            this.btnVoltar.TabIndex = 5;
+            this.btnVoltar.TabIndex = 0;
             this.btnVoltar.Text = "Voltar";
             this.btnVoltar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVoltar.UseVisualStyleBackColor = true;
@@ -138,7 +138,7 @@
             this.rdbPront.Location = new System.Drawing.Point(199, 114);
             this.rdbPront.Name = "rdbPront";
             this.rdbPront.Size = new System.Drawing.Size(129, 29);
-            this.rdbPront.TabIndex = 0;
+            this.rdbPront.TabIndex = 1;
             this.rdbPront.Text = "Prontuário";
             this.rdbPront.UseVisualStyleBackColor = true;
             this.rdbPront.CheckedChanged += new System.EventHandler(this.rdbPront_CheckedChanged);
@@ -154,7 +154,7 @@
             this.ltbPesquisar.Location = new System.Drawing.Point(29, 217);
             this.ltbPesquisar.Name = "ltbPesquisar";
             this.ltbPesquisar.Size = new System.Drawing.Size(739, 254);
-            this.ltbPesquisar.TabIndex = 2;
+            this.ltbPesquisar.TabIndex = 3;
             // 
             // txtDescricao
             // 
@@ -166,7 +166,8 @@
             this.txtDescricao.MaxLength = 100;
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(739, 31);
-            this.txtDescricao.TabIndex = 1;
+            this.txtDescricao.TabIndex = 2;
+            this.txtDescricao.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDescricao_KeyDown);
             // 
             // lblPesquisarPor
             // 

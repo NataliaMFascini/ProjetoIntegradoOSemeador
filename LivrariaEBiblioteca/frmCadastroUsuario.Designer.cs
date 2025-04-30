@@ -92,7 +92,7 @@
             this.btnNovo.Location = new System.Drawing.Point(3, 3);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(151, 74);
-            this.btnNovo.TabIndex = 1;
+            this.btnNovo.TabIndex = 20;
             this.btnNovo.Text = " &Novo";
             this.btnNovo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnNovo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -107,7 +107,7 @@
             this.btnCadastra.Location = new System.Drawing.Point(160, 3);
             this.btnCadastra.Name = "btnCadastra";
             this.btnCadastra.Size = new System.Drawing.Size(153, 74);
-            this.btnCadastra.TabIndex = 19;
+            this.btnCadastra.TabIndex = 21;
             this.btnCadastra.Text = " &Cadastrar";
             this.btnCadastra.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCadastra.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -122,7 +122,7 @@
             this.btnAlterar.Location = new System.Drawing.Point(472, 3);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(151, 74);
-            this.btnAlterar.TabIndex = 21;
+            this.btnAlterar.TabIndex = 23;
             this.btnAlterar.Text = " &Alterar";
             this.btnAlterar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAlterar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -136,7 +136,7 @@
             this.btnRemover.Location = new System.Drawing.Point(629, 3);
             this.btnRemover.Name = "btnRemover";
             this.btnRemover.Size = new System.Drawing.Size(152, 74);
-            this.btnRemover.TabIndex = 22;
+            this.btnRemover.TabIndex = 24;
             this.btnRemover.Text = " &Remover";
             this.btnRemover.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRemover.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -151,7 +151,7 @@
             this.btnBuscar.Location = new System.Drawing.Point(3, 3);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(208, 74);
-            this.btnBuscar.TabIndex = 23;
+            this.btnBuscar.TabIndex = 26;
             this.btnBuscar.Text = " &Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -188,7 +188,7 @@
             this.btnVoltar.Location = new System.Drawing.Point(217, 3);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(208, 74);
-            this.btnVoltar.TabIndex = 24;
+            this.btnVoltar.TabIndex = 27;
             this.btnVoltar.Text = " &Voltar";
             this.btnVoltar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnVoltar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -202,7 +202,7 @@
             this.btnLimpar.Location = new System.Drawing.Point(319, 3);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(147, 74);
-            this.btnLimpar.TabIndex = 20;
+            this.btnLimpar.TabIndex = 22;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -229,7 +229,7 @@
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 80);
-            this.tableLayoutPanel1.TabIndex = 49;
+            this.tableLayoutPanel1.TabIndex = 19;
             // 
             // gpbEndereco
             // 
@@ -253,7 +253,7 @@
             this.gpbEndereco.Location = new System.Drawing.Point(12, 307);
             this.gpbEndereco.Name = "gpbEndereco";
             this.gpbEndereco.Size = new System.Drawing.Size(630, 153);
-            this.gpbEndereco.TabIndex = 50;
+            this.gpbEndereco.TabIndex = 10;
             this.gpbEndereco.TabStop = false;
             this.gpbEndereco.Text = "Endereço";
             // 
@@ -287,7 +287,7 @@
             this.cbbEstado.Location = new System.Drawing.Point(534, 112);
             this.cbbEstado.Name = "cbbEstado";
             this.cbbEstado.Size = new System.Drawing.Size(90, 33);
-            this.cbbEstado.TabIndex = 45;
+            this.cbbEstado.TabIndex = 17;
             // 
             // txtCidade
             // 
@@ -297,7 +297,7 @@
             this.txtCidade.MaxLength = 50;
             this.txtCidade.Name = "txtCidade";
             this.txtCidade.Size = new System.Drawing.Size(138, 31);
-            this.txtCidade.TabIndex = 44;
+            this.txtCidade.TabIndex = 16;
             // 
             // mskCep
             // 
@@ -307,7 +307,7 @@
             this.mskCep.Name = "mskCep";
             this.mskCep.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.mskCep.Size = new System.Drawing.Size(117, 31);
-            this.mskCep.TabIndex = 39;
+            this.mskCep.TabIndex = 11;
             this.mskCep.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mskCep_KeyDown);
             // 
             // lblBairro
@@ -375,7 +375,7 @@
             this.txtLogradouro.MaxLength = 100;
             this.txtLogradouro.Name = "txtLogradouro";
             this.txtLogradouro.Size = new System.Drawing.Size(280, 31);
-            this.txtLogradouro.TabIndex = 40;
+            this.txtLogradouro.TabIndex = 12;
             // 
             // txtBairro
             // 
@@ -385,7 +385,7 @@
             this.txtBairro.MaxLength = 50;
             this.txtBairro.Name = "txtBairro";
             this.txtBairro.Size = new System.Drawing.Size(135, 31);
-            this.txtBairro.TabIndex = 43;
+            this.txtBairro.TabIndex = 14;
             // 
             // txtNumero
             // 
@@ -395,7 +395,7 @@
             this.txtNumero.MaxLength = 10;
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(67, 31);
-            this.txtNumero.TabIndex = 41;
+            this.txtNumero.TabIndex = 13;
             // 
             // txtComplemento
             // 
@@ -406,7 +406,7 @@
             this.txtComplemento.MaxLength = 100;
             this.txtComplemento.Name = "txtComplemento";
             this.txtComplemento.Size = new System.Drawing.Size(378, 31);
-            this.txtComplemento.TabIndex = 42;
+            this.txtComplemento.TabIndex = 15;
             // 
             // gpbDadosusuario
             // 
@@ -434,7 +434,7 @@
             this.gpbDadosusuario.Location = new System.Drawing.Point(12, 78);
             this.gpbDadosusuario.Name = "gpbDadosusuario";
             this.gpbDadosusuario.Size = new System.Drawing.Size(760, 223);
-            this.gpbDadosusuario.TabIndex = 51;
+            this.gpbDadosusuario.TabIndex = 0;
             this.gpbDadosusuario.TabStop = false;
             this.gpbDadosusuario.Text = "Dados do usuário";
             // 
@@ -446,7 +446,7 @@
             this.pnlBordaRepetir.Location = new System.Drawing.Point(416, 175);
             this.pnlBordaRepetir.Name = "pnlBordaRepetir";
             this.pnlBordaRepetir.Size = new System.Drawing.Size(152, 37);
-            this.pnlBordaRepetir.TabIndex = 73;
+            this.pnlBordaRepetir.TabIndex = 8;
             // 
             // txtRepetirSenha
             // 
@@ -458,7 +458,7 @@
             this.txtRepetirSenha.Name = "txtRepetirSenha";
             this.txtRepetirSenha.PasswordChar = 'l';
             this.txtRepetirSenha.Size = new System.Drawing.Size(146, 31);
-            this.txtRepetirSenha.TabIndex = 11;
+            this.txtRepetirSenha.TabIndex = 8;
             this.txtRepetirSenha.TextChanged += new System.EventHandler(this.txtRepetirSenha_TextChanged);
             // 
             // lblRepetirSenha
@@ -483,7 +483,7 @@
             this.cbbCargo.Location = new System.Drawing.Point(576, 118);
             this.cbbCargo.Name = "cbbCargo";
             this.cbbCargo.Size = new System.Drawing.Size(178, 33);
-            this.cbbCargo.TabIndex = 68;
+            this.cbbCargo.TabIndex = 5;
             // 
             // lblSenha
             // 
@@ -517,7 +517,7 @@
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.PasswordChar = 'l';
             this.txtSenha.Size = new System.Drawing.Size(143, 31);
-            this.txtSenha.TabIndex = 72;
+            this.txtSenha.TabIndex = 7;
             // 
             // txtLogin
             // 
@@ -526,7 +526,7 @@
             this.txtLogin.MaxLength = 50;
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(255, 31);
-            this.txtLogin.TabIndex = 71;
+            this.txtLogin.TabIndex = 6;
             // 
             // cbbDiaDeTrabalho
             // 
@@ -544,7 +544,7 @@
             this.cbbDiaDeTrabalho.Location = new System.Drawing.Point(576, 177);
             this.cbbDiaDeTrabalho.Name = "cbbDiaDeTrabalho";
             this.cbbDiaDeTrabalho.Size = new System.Drawing.Size(178, 33);
-            this.cbbDiaDeTrabalho.TabIndex = 70;
+            this.cbbDiaDeTrabalho.TabIndex = 9;
             // 
             // mskTelefone
             // 
@@ -553,7 +553,7 @@
             this.mskTelefone.Mask = "(99) 99999-9999";
             this.mskTelefone.Name = "mskTelefone";
             this.mskTelefone.Size = new System.Drawing.Size(160, 31);
-            this.mskTelefone.TabIndex = 67;
+            this.mskTelefone.TabIndex = 3;
             // 
             // mskCpf
             // 
@@ -563,7 +563,7 @@
             this.mskCpf.Mask = " 999,999,999-99";
             this.mskCpf.Name = "mskCpf";
             this.mskCpf.Size = new System.Drawing.Size(178, 31);
-            this.mskCpf.TabIndex = 66;
+            this.mskCpf.TabIndex = 2;
             // 
             // lblEmail
             // 
@@ -636,7 +636,7 @@
             this.txtEmail.MaxLength = 100;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(398, 31);
-            this.txtEmail.TabIndex = 69;
+            this.txtEmail.TabIndex = 4;
             // 
             // txtNomeCompleto
             // 
@@ -647,7 +647,7 @@
             this.txtNomeCompleto.MaxLength = 100;
             this.txtNomeCompleto.Name = "txtNomeCompleto";
             this.txtNomeCompleto.Size = new System.Drawing.Size(564, 31);
-            this.txtNomeCompleto.TabIndex = 65;
+            this.txtNomeCompleto.TabIndex = 1;
             // 
             // tableLayoutPanel2
             // 
@@ -662,7 +662,7 @@
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(428, 80);
-            this.tableLayoutPanel2.TabIndex = 52;
+            this.tableLayoutPanel2.TabIndex = 25;
             // 
             // lblBuscarLivro
             // 

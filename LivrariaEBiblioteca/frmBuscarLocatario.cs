@@ -144,5 +144,13 @@ namespace LivrariaEBiblioteca
                 }
             }
         }
+
+        private void txtDescricao_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) 
+            {
+                btnPesquisar_Click(sender, e);
+            }
+        }
     }
 }
