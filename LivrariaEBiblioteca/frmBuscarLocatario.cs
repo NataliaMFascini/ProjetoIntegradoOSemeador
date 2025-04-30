@@ -120,7 +120,7 @@ namespace LivrariaEBiblioteca
 
             while (DR.Read())
             {
-                sltbPesquisar.Items.Add(DR.GetString(1));
+                ltbPesquisar.Items.Add(DR.GetString(1));
             }
 
             
