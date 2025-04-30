@@ -22,6 +22,7 @@ namespace LivrariaEBiblioteca
         public int codEmp = 0;
         public string nome;
         public string cargo;
+        public string fotoPath;
 
 
         Livros livros = new Livros();
@@ -160,17 +161,16 @@ namespace LivrariaEBiblioteca
             MySqlCommand comm = new MySqlCommand();
             int resp = 0;
 
-            comm.CommandText = "insert into tbEmprestimo(codEmp, dataEmp, dataDev, nomeLivro, codLivro, codLoc) values (@codEmp, @dataEmp, @dataDev, @codLivro, @codLoc );";
+            comm.CommandText = "insert into tbEmprestimo( dataEmp, dataDev, nomeVendedor, nomeLivro, prontuario, codLivro, ) values (@dataEmp, @dataDev, @nomeVendedor, @nomeLivro, @prontuario, @codLivro );";
             comm.CommandType = CommandType.Text;
 
             for (int i = 0; i < Livros.ListaLivros.Count; i++)
             {
                 comm.Parameters.Clear();
 
-                comm.Parameters.Add("@codEmp", MySqlDbType.Int32).Value = codEmp;
                 comm.Parameters.Add("@dataEmp", MySqlDbType.DateTime).Value = DateTime.Now;
 
-                if (mskDataDevolucao.Equals("  /  /    ") && mskDataDevolucao.MaskFull)
+                if (!mskDataDevolucao.Equals("  /  /    ") && mskDataDevolucao.MaskFull)
                 {
                     // Converte o texto para DateTime
                     DateTime dataConvertida = DateTime.ParseExact(mskDataDevolucao.Text, "dd/MM/yyyy", null);
@@ -184,11 +184,11 @@ namespace LivrariaEBiblioteca
                     mskDataDevolucao.Focus();
                 }
 
-                comm.Parameters.Add("@nomeVendedor", MySqlDbType.Int32).Value = this.nome;
-                comm.Parameters.Add("@nomeLivro", MySqlDbType.Int32).Value = livros.nomeRetorno(i);
+                comm.Parameters.Add("@nomeVendedor", MySqlDbType.VarChar, 100).Value = this.nome;
+                comm.Parameters.Add("@nomeLivro", MySqlDbType.VarChar, 100).Value = livros.nomeRetorno(i);
                 comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
-                comm.Parameters.Add("@codLoc", MySqlDbType.Int32).Value = codLoc;
-
+                //comm.Parameters.Add("@codLoc", MySqlDbType.Int32).Value = codLoc;
+                comm.Parameters.Add("@prontuario", MySqlDbType.Int32).Value = Convert.ToInt32(txtLocatario.Text);
                 comm.Connection = Conexao.obterConexao();
 
                 resp = comm.ExecuteNonQuery();
@@ -287,7 +287,12 @@ namespace LivrariaEBiblioteca
                 txtTitulo.Text = DR.GetString(1);
                 txtAutor.Text = DR.GetString(2);
                 txtEditora.Text = DR.GetString(3);
-                //pctLivro.ImageLocation = DR.GetString(5);
+                if (fotoPath != null)
+                {
+                    fotoPath = DR.GetString(6);
+                    pctLivro.ImageLocation = fotoPath;
+                    pctLivro.Load();
+                }
             }
             else
             {
