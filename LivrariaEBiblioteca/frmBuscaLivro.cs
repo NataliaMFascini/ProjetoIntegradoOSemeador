@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using MySql.Data.MySqlClient;
+using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 namespace LivrariaEBiblioteca
 {
@@ -234,7 +235,29 @@ namespace LivrariaEBiblioteca
             abrir.Show();
             this.Hide();
         }
+        private void txtIdLivro_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnBuscar_Click( sender, e);
+            }
+        }
 
+        private void txtIsbn_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) 
+            {
+                btnBuscar_Click(sender, e);
+            }
+        }
+
+        private void txtTitulo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnBuscar_Click(sender, e);
+            }
+        }
         private void ltbPesquisar_SelectedIndexChanged(object sender, EventArgs e)
         {
             nomeLivro = ltbPesquisar.SelectedItem.ToString();
