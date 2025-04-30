@@ -43,6 +43,19 @@ namespace LivrariaEBiblioteca
             string codLoc = txtLocatario.Text; 
 
         }
+
+        public frmEmprestimo(string nome, int codUsu, string cargo, string livro)
+        {
+            InitializeComponent();
+            DesabilitarCampos();
+
+            this.nome = nome;
+            this.codUsu = codUsu;
+            this.cargo = cargo;
+
+            string codLoc = txtLocatario.Text;
+
+        }
         public void DesabilitarCampos()
         {
             txtIdLivro.Enabled = false;

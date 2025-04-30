@@ -65,28 +65,6 @@
             this.gpbLivros.SuspendLayout();
             this.SuspendLayout();
             // 
-            // txtAutor
-            // 
-            this.txtAutor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAutor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAutor.Location = new System.Drawing.Point(256, 267);
-            this.txtAutor.MaxLength = 100;
-            this.txtAutor.Name = "txtAutor";
-            this.txtAutor.Size = new System.Drawing.Size(439, 31);
-            this.txtAutor.TabIndex = 2;
-            // 
-            // txtTitulo
-            // 
-            this.txtTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTitulo.Location = new System.Drawing.Point(256, 202);
-            this.txtTitulo.MaxLength = 100;
-            this.txtTitulo.Name = "txtTitulo";
-            this.txtTitulo.Size = new System.Drawing.Size(439, 31);
-            this.txtTitulo.TabIndex = 1;
-            // 
             // txtValor
             // 
             this.txtValor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -108,58 +86,6 @@
             this.txtQuantidade.Name = "txtQuantidade";
             this.txtQuantidade.Size = new System.Drawing.Size(155, 31);
             this.txtQuantidade.TabIndex = 5;
-            // 
-            // txtEditora
-            // 
-            this.txtEditora.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtEditora.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEditora.Location = new System.Drawing.Point(256, 327);
-            this.txtEditora.MaxLength = 50;
-            this.txtEditora.Name = "txtEditora";
-            this.txtEditora.Size = new System.Drawing.Size(182, 31);
-            this.txtEditora.TabIndex = 3;
-            // 
-            // txtAno
-            // 
-            this.txtAno.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAno.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAno.Location = new System.Drawing.Point(565, 327);
-            this.txtAno.MaxLength = 4;
-            this.txtAno.Name = "txtAno";
-            this.txtAno.Size = new System.Drawing.Size(130, 31);
-            this.txtAno.TabIndex = 4;
-            // 
-            // txtIdLivro
-            // 
-            this.txtIdLivro.Enabled = false;
-            this.txtIdLivro.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIdLivro.Location = new System.Drawing.Point(256, 145);
-            this.txtIdLivro.MaxLength = 10;
-            this.txtIdLivro.Name = "txtIdLivro";
-            this.txtIdLivro.Size = new System.Drawing.Size(181, 31);
-            this.txtIdLivro.TabIndex = 1;
-            // 
-            // txtIsbn
-            // 
-            this.txtIsbn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtIsbn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIsbn.Location = new System.Drawing.Point(516, 145);
-            this.txtIsbn.MaxLength = 20;
-            this.txtIsbn.Name = "txtIsbn";
-            this.txtIsbn.Size = new System.Drawing.Size(179, 31);
-            this.txtIsbn.TabIndex = 0;
-            // 
-            // lblIsbn
-            // 
-            this.lblIsbn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblIsbn.AutoSize = true;
-            this.lblIsbn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIsbn.Location = new System.Drawing.Point(516, 122);
-            this.lblIsbn.Name = "lblIsbn";
-            this.lblIsbn.Size = new System.Drawing.Size(60, 25);
-            this.lblIsbn.TabIndex = 43;
-            this.lblIsbn.Text = "ISBN";
             // 
             // lblValor
             // 
@@ -303,7 +229,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rdbEmprestimo.AutoSize = true;
             this.rdbEmprestimo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbEmprestimo.Location = new System.Drawing.Point(532, 421);
+            this.rdbEmprestimo.Location = new System.Drawing.Point(532, 433);
             this.rdbEmprestimo.Name = "rdbEmprestimo";
             this.rdbEmprestimo.Size = new System.Drawing.Size(143, 29);
             this.rdbEmprestimo.TabIndex = 7;
@@ -318,7 +244,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rdbVenda.AutoSize = true;
             this.rdbVenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbVenda.Location = new System.Drawing.Point(532, 386);
+            this.rdbVenda.Location = new System.Drawing.Point(532, 398);
             this.rdbVenda.Name = "rdbVenda";
             this.rdbVenda.Size = new System.Drawing.Size(92, 29);
             this.rdbVenda.TabIndex = 7;
