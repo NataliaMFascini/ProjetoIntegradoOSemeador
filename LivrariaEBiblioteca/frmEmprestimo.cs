@@ -91,27 +91,28 @@ namespace LivrariaEBiblioteca
                 MessageBox.Show("Favor, Preencha todos os componentes", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtTitulo.Focus();                
             }
-            if (txtAutor.Equals(""))
+            else if (txtAutor.Equals(""))
             {
                 MessageBox.Show("Favor, Preencha todos os componentes", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtAutor.Focus();
             }
-            if (txtEditora.Equals(""))
+            else if (txtEditora.Equals(""))
             {
                 MessageBox.Show("Favor, Preencha todos os componentes", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtEditora.Focus();
             }
-            if (txtIsbn.Equals(""))
+            else if (txtIsbn.Equals(""))
             {
                 MessageBox.Show("Favor, Preencha todos os componentes", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtIsbn.Focus();
             }
+            
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
             checarComponentes();
-            ltbCarrinho.Items.Add(txtTitulo.Text + mskDataDevolucao.Text);
+            ltbCarrinho.Items.Add(txtTitulo.Text + " Devolução:" + mskDataDevolucao.Text);
             separarLivros();
             txtNEmprestimo.Focus();
         }
@@ -145,7 +146,6 @@ namespace LivrariaEBiblioteca
 
             comm.CommandText = "insert into tbEmprestimo(codEmp, dataEmp, dataDev, nomeLivro, codLivro, codLoc) values (@codEmp, @dataEmp, @dataDev, @codLivro, @codLoc );";
             comm.CommandType = CommandType.Text;
-
 
             for (int i = 0; i < Livros.ListaLivros.Count; i++)
             {
@@ -232,13 +232,22 @@ namespace LivrariaEBiblioteca
             }
         }
         public void separarLivros()
+
+
         {
-            Livros livros = new Livros();
+            try
+            { 
+                Livros livros = new Livros();
 
-            livros.idLivro = Convert.ToInt32(txtIdLivro.Text);
-            livros.nomeLivro = txtTitulo.Text;
+                livros.idLivro = Convert.ToInt32(txtIdLivro.Text);
+                livros.nomeLivro = txtTitulo.Text;
 
-            Livros.ListaLivros.Add(livros);
+                Livros.ListaLivros.Add(livros);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Livro não encontrado", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
             public void escanearLivro(string isbn)
