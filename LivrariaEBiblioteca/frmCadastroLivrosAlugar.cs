@@ -44,6 +44,7 @@ namespace LivrariaEBiblioteca
         public frmCadastroLivrosAlugar(string livro, string nome, int codusu, string cargo)
         {
             InitializeComponent();
+            desabilitarCamposBusca();
             habilitarCampos();
             this.nome = nome;
             this.codUsu = codusu;
@@ -80,8 +81,21 @@ namespace LivrariaEBiblioteca
             btnRemover.Enabled = false;
             btnAlterar.Enabled = false;
         }
+        public void desabilitarCamposBusca()
+        {
+            btnRemover.Enabled = false;
+            btnAlterar.Enabled = false;
+            btnAdicionar.Enabled = false;
+
+        }
 
         public void habilitarCampos()
+        {
+            btnRemover.Enabled = true;
+            btnAlterar.Enabled = true;
+        }
+
+        public void habilitarCamposBusca()
         {
             btnRemover.Enabled = true;
             btnAlterar.Enabled = true;
@@ -130,8 +144,11 @@ namespace LivrariaEBiblioteca
             txtEditora.Text = DR.GetString(7).ToString();
             txtAno.Text = DR.GetInt32(8).ToString();
             fotoPath = DR.GetString(9).ToString();
-            pctLivro.ImageLocation = fotoPath;
-            pctLivro.Load();
+            if(fotoPath != null)
+            {
+                //pctLivro.ImageLocation = fotoPath;
+                //pctLivro.Load();
+            }
 
             Conexao.fecharConexao();
 
@@ -273,6 +290,10 @@ namespace LivrariaEBiblioteca
                     comm.Parameters.Add("@valor", MySqlDbType.Decimal).Value = Convert.ToDecimal(txtValor.Text);
                     comm.Parameters.Add("@editora", MySqlDbType.VarChar, 50).Value = txtEditora.Text;
                     comm.Parameters.Add("@anoPublicacao", MySqlDbType.Int32).Value = Convert.ToInt32(txtAno.Text);
+                    if(pctLivro.Image.Equals(null))
+                    {
+                        fotoPath = null;
+                    }
                     comm.Parameters.Add("@foto", MySqlDbType.VarChar, 200).Value = fotoPath;
                     comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
                 }
@@ -372,6 +393,10 @@ namespace LivrariaEBiblioteca
             comm.Parameters.Add("@valor", MySqlDbType.Decimal).Value = Convert.ToDecimal(txtValor.Text);
             comm.Parameters.Add("@editora", MySqlDbType.VarChar, 50).Value = txtEditora.Text;
             comm.Parameters.Add("@anoPublicacao", MySqlDbType.Int32).Value = Convert.ToInt32(txtAno.Text);
+            if(pctLivro.Image.Equals(null))
+            {
+                fotoPath = null;
+            }
             comm.Parameters.Add("@foto", MySqlDbType.VarChar, 200).Value = fotoPath;
             comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
 

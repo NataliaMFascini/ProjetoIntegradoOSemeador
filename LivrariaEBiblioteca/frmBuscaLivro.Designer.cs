@@ -47,10 +47,13 @@
             this.btnGerenciador = new System.Windows.Forms.Button();
             this.lblBuscarLivro = new System.Windows.Forms.Label();
             this.rdbIsbn = new System.Windows.Forms.RadioButton();
+<<<<<<< HEAD
             this.btnVoltar = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+=======
+>>>>>>> 786b5a284e93641335b0a2919a4cfd574b7deaa7
             ((System.ComponentModel.ISupportInitialize)(this.pctLivro)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -127,8 +130,14 @@
             this.ltbPesquisar.ItemHeight = 25;
             this.ltbPesquisar.Location = new System.Drawing.Point(31, 315);
             this.ltbPesquisar.Name = "ltbPesquisar";
+<<<<<<< HEAD
             this.ltbPesquisar.Size = new System.Drawing.Size(579, 154);
             this.ltbPesquisar.TabIndex = 4;
+=======
+            this.ltbPesquisar.Size = new System.Drawing.Size(587, 154);
+            this.ltbPesquisar.TabIndex = 8;
+            this.ltbPesquisar.SelectedIndexChanged += new System.EventHandler(this.ltbPesquisar_SelectedIndexChanged);
+>>>>>>> 786b5a284e93641335b0a2919a4cfd574b7deaa7
             // 
             // lblResultado
             // 
@@ -258,6 +267,21 @@
             this.btnGerenciador.UseVisualStyleBackColor = true;
             this.btnGerenciador.Click += new System.EventHandler(this.btnGerenciador_Click);
             // 
+            // btnGerenciador
+            // 
+            this.btnGerenciador.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnGerenciador.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGerenciador.Image = ((System.Drawing.Image)(resources.GetObject("btnGerenciador.Image")));
+            this.btnGerenciador.Location = new System.Drawing.Point(434, 3);
+            this.btnGerenciador.Name = "btnGerenciador";
+            this.btnGerenciador.Size = new System.Drawing.Size(187, 74);
+            this.btnGerenciador.TabIndex = 12;
+            this.btnGerenciador.Text = "Gerenciador";
+            this.btnGerenciador.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnGerenciador.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnGerenciador.UseVisualStyleBackColor = true;
+            this.btnGerenciador.Click += new System.EventHandler(this.btnGerenciador_Click);
+            // 
             // lblBuscarLivro
             // 
             this.lblBuscarLivro.AutoSize = true;
@@ -281,6 +305,7 @@
             this.rdbIsbn.UseVisualStyleBackColor = true;
             this.rdbIsbn.CheckedChanged += new System.EventHandler(this.rdbIsbn_CheckedChanged_1);
             // 
+<<<<<<< HEAD
             // btnVoltar
             // 
             this.btnVoltar.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -346,6 +371,8 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(167, 557);
             this.tableLayoutPanel1.TabIndex = 9;
             // 
+=======
+>>>>>>> 786b5a284e93641335b0a2919a4cfd574b7deaa7
             // frmBuscarLivro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
