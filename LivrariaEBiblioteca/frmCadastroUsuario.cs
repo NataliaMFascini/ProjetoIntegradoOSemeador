@@ -40,6 +40,7 @@ namespace LivrariaEBiblioteca
         {
             InitializeComponent();
             desabilitarCampos();
+            habilitarCamposBusca();
             this.nome = nome;
             this.cargo = cargo;
             this.codUsu = codUsu;
@@ -96,6 +97,34 @@ namespace LivrariaEBiblioteca
             btnRemover.Enabled = false;
             btnAdicionarFoto.Enabled = true;
         }
+
+        public void habilitarCamposBusca()
+        {
+            txtNomeCompleto.Enabled = true;
+            txtEmail.Enabled = true;
+            txtLogin.Enabled = true;
+            txtSenha.Enabled = true;
+            txtRepetirSenha.Enabled = true;
+            txtLogradouro.Enabled = true;
+            txtNumero.Enabled = true;
+            txtComplemento.Enabled = true;
+            txtCidade.Enabled = true;
+            txtBairro.Enabled = true;
+            mskCpf.Enabled = true;
+            mskTelefone.Enabled = true;
+            mskCep.Enabled = true;
+            cbbCargo.Enabled = true;
+            cbbDiaDeTrabalho.Enabled = true;
+            cbbEstado.Enabled = true;
+
+            btnLimpar.Enabled = true;
+            btnCadastra.Enabled = false;
+            btnNovo.Enabled = false;
+            btnAlterar.Enabled = true;
+            btnRemover.Enabled = true;
+            btnAdicionarFoto.Enabled = true;
+        }
+
         public void limparCampos()
         {
             txtNomeCompleto.Clear();
@@ -251,6 +280,10 @@ namespace LivrariaEBiblioteca
             comm.Parameters.Add("@bairro", MySqlDbType.VarChar, 50).Value = txtBairro.Text;
             comm.Parameters.Add("@cidade", MySqlDbType.VarChar, 50).Value = txtCidade.Text;
             comm.Parameters.Add("@estado", MySqlDbType.VarChar, 2).Value = cbbEstado;
+            if (ptbUsuario.Image.Equals(null))
+            {
+                fotoPath = null;
+            }
             comm.Parameters.Add("@foto", MySqlDbType.VarChar, 200).Value = fotoPath;
             comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
 
@@ -365,6 +398,10 @@ namespace LivrariaEBiblioteca
             comm.Parameters.Add("@bairro", MySqlDbType.VarChar, 50).Value = txtBairro.Text;
             comm.Parameters.Add("@cidade", MySqlDbType.VarChar, 50).Value = txtCidade.Text;
             comm.Parameters.Add("@estado", MySqlDbType.VarChar, 2).Value = cbbEstado.Text;
+            if (ptbUsuario.Image.Equals(null))
+            {
+                fotoPath = null;
+            }
             comm.Parameters.Add("@foto", MySqlDbType.VarBinary, 255).Value = fotoPath;
             comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
 
@@ -393,7 +430,7 @@ namespace LivrariaEBiblioteca
 
         private void txtRepetirSenha_TextChanged(object sender, EventArgs e)
         {
-            if(txtSenha.Text != txtRepetirSenha.Text)
+            if (txtSenha.Text != txtRepetirSenha.Text)
             {
                 pnlBordaRepetir.BackColor = Color.Red;
             }
@@ -433,8 +470,12 @@ namespace LivrariaEBiblioteca
             txtBairro.Text = DR.GetString(13);
             txtCidade.Text = DR.GetString(14);
             cbbEstado.Text = DR.GetString(15);
-            fotoPath = DR.GetString(16);
-            ptbUsuario.ImageLocation = fotoPath;
+            if (fotoPath != null)
+            {
+                fotoPath = DR.GetString(16);
+                ptbUsuario.ImageLocation = fotoPath;
+                ptbUsuario.Load();
+            }
 
             Conexao.fecharConexao();
         }

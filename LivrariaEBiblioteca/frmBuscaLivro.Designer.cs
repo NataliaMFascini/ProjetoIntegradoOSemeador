@@ -129,6 +129,7 @@
             this.ltbPesquisar.Name = "ltbPesquisar";
             this.ltbPesquisar.Size = new System.Drawing.Size(579, 154);
             this.ltbPesquisar.TabIndex = 4;
+            this.ltbPesquisar.SelectedIndexChanged += new System.EventHandler(this.ltbPesquisar_SelectedIndexChanged);
             // 
             // lblResultado
             // 
@@ -252,6 +253,21 @@
             this.btnGerenciador.Name = "btnGerenciador";
             this.btnGerenciador.Size = new System.Drawing.Size(184, 74);
             this.btnGerenciador.TabIndex = 8;
+            this.btnGerenciador.Text = "Gerenciador";
+            this.btnGerenciador.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnGerenciador.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnGerenciador.UseVisualStyleBackColor = true;
+            this.btnGerenciador.Click += new System.EventHandler(this.btnGerenciador_Click);
+            // 
+            // btnGerenciador
+            // 
+            this.btnGerenciador.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnGerenciador.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGerenciador.Image = ((System.Drawing.Image)(resources.GetObject("btnGerenciador.Image")));
+            this.btnGerenciador.Location = new System.Drawing.Point(434, 3);
+            this.btnGerenciador.Name = "btnGerenciador";
+            this.btnGerenciador.Size = new System.Drawing.Size(187, 74);
+            this.btnGerenciador.TabIndex = 12;
             this.btnGerenciador.Text = "Gerenciador";
             this.btnGerenciador.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGerenciador.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
