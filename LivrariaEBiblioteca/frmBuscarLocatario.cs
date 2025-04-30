@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -86,31 +85,34 @@ namespace LivrariaEBiblioteca
         public void pesquisarPorProntuario(int prontuario)
         {
             MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select from tbLocatario where codLoc = @codLoc;";
+            comm.CommandText = "select nome from tbLocatario where pront = @pront;";
             comm.CommandType = CommandType.Text;
 
             comm.Parameters.Clear();
-            comm.Parameters.Add("@codLoc", MySqlDbType.Int32).Value = prontuario;
+            comm.Parameters.Add("@pront", MySqlDbType.Int32).Value = prontuario;
 
             comm.Connection = Conexao.obterConexao();
 
             MySqlDataReader DR;
             DR = comm.ExecuteReader();
-            DR.Read();
+         
 
-            ltbPesquisar.Items.Add(DR.GetString(0));
-
+            while (DR.Read())
+            {
+                ltbPesquisar.Items.Add(DR.GetString(0));
+            }
+            
             Conexao.fecharConexao();
         }
 
         public void pesquisarPorNome(string descricao)
         {
             MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select * from tbLocatario where nome like '%" + descricao + "%'";
+            comm.CommandText = "select nome from tbLocatario where nome like '%" + descricao + "%'";
             comm.CommandType = CommandType.Text;
 
             comm.Parameters.Clear();
-            comm.Parameters.Add("@nome", MySqlDbType.Int32).Value = descricao;
+            comm.Parameters.Add("@nome", MySqlDbType.VarChar,100).Value = descricao;
 
             comm.Connection = Conexao.obterConexao();
 
@@ -120,17 +122,12 @@ namespace LivrariaEBiblioteca
 
             while (DR.Read())
             {
-                sltbPesquisar.Items.Add(DR.GetString(1));
+                ltbPesquisar.Items.Add(DR.GetString(0));
             }
 
             
 
             Conexao.fecharConexao();
-        }
-
-        private void frmBuscarLocatario_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void btnPesquisar_Click(object sender, EventArgs e)
@@ -142,15 +139,29 @@ namespace LivrariaEBiblioteca
             }
             else
             {
-                if (rdbPront.Checked)
+                try
                 {
-                    pesquisarPorProntuario(Convert.ToInt32(txtDescricao.Text));
-                }
-                if (rdbNome.Checked)
+                    if (rdbPront.Checked)
+                    {
+                        pesquisarPorProntuario(Convert.ToInt32(txtDescricao.Text));
+                    }
+                    if (rdbNome.Checked)
+                    {
+                        pesquisarPorNome(txtDescricao.Text);
+                    }
+                }catch (Exception)
                 {
-                    pesquisarPorNome(txtDescricao.Text);
+                    MessageBox.Show("Caractere invalido!!", "Erro", MessageBoxButtons.OK,MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void ltbPesquisar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string locatario = ltbPesquisar.SelectedItem.ToString();
+            frmCadastroLocatario abrir = new frmCadastroLocatario(this.nome, this.codUsu, this.cargo, locatario);
+            abrir.Show();
+            this.Hide();
         }
     }
 }

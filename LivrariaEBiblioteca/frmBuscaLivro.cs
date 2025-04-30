@@ -97,8 +97,8 @@ namespace LivrariaEBiblioteca
                     fotoPath = DR["foto"].ToString();
 
                     // Preenche a imagem
-                    pctLivro.ImageLocation = fotoPath;
-                    pctLivro.Load();
+                   // pctLivro.ImageLocation = fotoPath;
+                   // pctLivro.Load();
 
                     // Adiciona no ListBox
                     ltbPesquisar.Items.Add(DR["nome"].ToString());
@@ -145,8 +145,8 @@ namespace LivrariaEBiblioteca
                     fotoPath = DR["foto"].ToString();
 
                     // Preenche a imagem
-                    pctLivro.ImageLocation = fotoPath;
-                    pctLivro.Load();
+                   // pctLivro.ImageLocation = fotoPath;
+                   // pctLivro.Load();
 
                     // Adiciona no ListBox
                     ltbPesquisar.Items.Add(DR["nome"].ToString());
@@ -185,8 +185,8 @@ namespace LivrariaEBiblioteca
                     fotoPath = DR["foto"].ToString();
 
                     // Preenche a imagem
-                    pctLivro.ImageLocation = fotoPath;
-                    pctLivro.Load();
+                   // pctLivro.ImageLocation = fotoPath;
+                   // pctLivro.Load();
 
                     ltbPesquisar.Items.Add(DR["nome"].ToString());
                 }

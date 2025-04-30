@@ -155,6 +155,7 @@
             this.ltbPesquisar.Name = "ltbPesquisar";
             this.ltbPesquisar.Size = new System.Drawing.Size(739, 254);
             this.ltbPesquisar.TabIndex = 2;
+            this.ltbPesquisar.SelectedIndexChanged += new System.EventHandler(this.ltbPesquisar_SelectedIndexChanged);
             // 
             // txtDescricao
             // 
@@ -211,7 +212,6 @@
             this.Name = "frmBuscarLocatario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "O Semeador - Buscar Locátario";
-            this.Load += new System.EventHandler(this.frmBuscarLocatario_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
