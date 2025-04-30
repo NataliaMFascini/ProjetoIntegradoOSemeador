@@ -20,20 +20,20 @@ namespace LivrariaEBiblioteca
         {
             InitializeComponent();
             desabilitarCampos();
-            
+
         }
         public frmBuscarLocatario(string nome, int codUsu, string cargo)
         {
-            
-                InitializeComponent();
-                desabilitarCampos();
+
+            InitializeComponent();
+            desabilitarCampos();
 
 
             this.nome = nome;
             this.codUsu = codUsu;
             this.cargo = cargo;
         }
-        
+
         public void limparComponentes()
         {
             txtDescricao.Clear();
@@ -42,7 +42,7 @@ namespace LivrariaEBiblioteca
             rdbNome.Checked = false;
         }
 
-        public void desabilitarCampos() 
+        public void desabilitarCampos()
         {
             txtDescricao.Enabled = false;
             btnLimpar.Enabled = false;
@@ -70,7 +70,7 @@ namespace LivrariaEBiblioteca
         private void btnLimpar_Click(object sender, EventArgs e)
         {
             limparComponentes();
-            desabilitarCampos ();   
+            desabilitarCampos();
         }
 
         private void rdbPront_CheckedChanged(object sender, EventArgs e)
@@ -119,13 +119,10 @@ namespace LivrariaEBiblioteca
             MySqlDataReader DR;
             DR = comm.ExecuteReader();
 
-
             while (DR.Read())
             {
                 ltbPesquisar.Items.Add(DR.GetString(0));
             }
-
-            
 
             Conexao.fecharConexao();
         }

@@ -20,6 +20,7 @@ namespace LivrariaEBiblioteca
         public string nome;
         public string cargo;
         public int quantTotal = 0;
+        public string fotoPath;
 
         Livros livros = new Livros();
 
@@ -36,6 +37,18 @@ namespace LivrariaEBiblioteca
             nome = nomeUsu;
             codUsu = codUsuario;
             this.cargo = cargo;
+        }
+
+        public frmVender(string nomeUsu, int codUsuario, string cargo, string livro)
+        {
+            InitializeComponent();
+
+            txtVendedor.Text = nomeUsu;
+            nome = nomeUsu;
+            codUsu = codUsuario;
+            this.cargo = cargo;
+
+            pesquisarPorNome(livro);
         }
 
         public void ReceberDadosLivro(string titulo,string isbn, string idLivro)
@@ -183,7 +196,12 @@ namespace LivrariaEBiblioteca
                     txtAutor.Text = DR.GetString(3);
                     txtEditora.Text = DR.GetString(4);
                     txtValor.Text = Convert.ToString(DR.GetDecimal(5));
-                    //pctLivro.ImageLocation = DR.GetString(6);
+                    if (fotoPath != null)
+                    {
+                        fotoPath = DR.GetString(6);
+                        pctLivro.ImageLocation = fotoPath;
+                        pctLivro.Load();
+                    }
                 }
             }
             else
@@ -317,9 +335,34 @@ namespace LivrariaEBiblioteca
             }
         }
 
-        private void frmVender_Load(object sender, EventArgs e)
+        public void pesquisarPorNome(string nome)
         {
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = "select codLivro, isbn, nome, autor, editora, valor, foto from tbLivro where nome = @nome;";
+            comm.CommandType = CommandType.Text;
 
+            comm.Parameters.Clear();
+            comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = nome;
+            comm.Connection = Conexao.obterConexao();
+
+            MySqlDataReader DR;
+            DR = comm.ExecuteReader();
+            DR.Read();
+
+            txtIdLivro.Text = Convert.ToString(DR.GetInt32(0));
+            txtIsbn.Text = DR.GetString(1);
+            txtTitulo.Text = DR.GetString(2);
+            txtAutor.Text = DR.GetString(3);
+            txtEditora.Text = DR.GetString(4);
+            txtValor.Text = Convert.ToString(DR.GetDecimal(5));
+            if (fotoPath != null)
+            {
+                fotoPath = DR.GetString(6);
+                pctLivro.ImageLocation = fotoPath;
+                pctLivro.Load();
+            }
+
+            Conexao.fecharConexao();
         }
     }
 }

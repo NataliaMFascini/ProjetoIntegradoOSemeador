@@ -43,6 +43,19 @@ namespace LivrariaEBiblioteca
             string codLoc = txtLocatario.Text; 
 
         }
+
+        public frmEmprestimo(string nome, int codUsu, string cargo, string livro)
+        {
+            InitializeComponent();
+            DesabilitarCampos();
+
+            this.nome = nome;
+            this.codUsu = codUsu;
+            this.cargo = cargo;
+
+            string codLoc = txtLocatario.Text;
+
+        }
         public void DesabilitarCampos()
         {
             txtIdLivro.Enabled = false;
@@ -69,38 +82,55 @@ namespace LivrariaEBiblioteca
             txtTitulo.Text = titulo;
             txtIsbn.Text = isbn;
             txtIdLivro.Text = idLivro;
+
         }
 
-        public void checarComponentes()
+        public Boolean checarComponentes()
         {
-            if (txtTitulo.Equals(""))
+            Boolean result = true;
+            if (txtTitulo.Text.Equals(""))
             {
                 MessageBox.Show("Favor, Preencha todos os componentes", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtTitulo.Focus();                
+                txtTitulo.Focus();
+                result = false;
             }
-            if (txtAutor.Equals(""))
+            if (txtAutor.Text.Equals(""))
             {
                 MessageBox.Show("Favor, Preencha todos os componentes", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtAutor.Focus();
+                result = false;
             }
-            if (txtEditora.Equals(""))
+            if (txtEditora.Text.Equals(""))
             {
                 MessageBox.Show("Favor, Preencha todos os componentes", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtEditora.Focus();
+                result = false;
             }
-            if (txtIsbn.Equals(""))
+            if (txtIsbn.Text.Equals(""))
             {
                 MessageBox.Show("Favor, Preencha todos os componentes", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtIsbn.Focus();
+                result = false;
             }
+            if (!mskDataDevolucao.MaskCompleted)
+            {
+                MessageBox.Show("Favor, Preencha todos os componentes", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mskDataDevolucao.Focus();
+                result = false;
+            }
+
+            return result;
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            checarComponentes();
-            ltbCarrinho.Items.Add(txtTitulo.Text + mskDataDevolucao.Text);
-            separarLivros();
-            txtNEmprestimo.Focus();
+            if (checarComponentes())
+            {
+                ltbCarrinho.Items.Add(txtTitulo.Text +" Devolução:" + mskDataDevolucao.Text);
+                separarLivros();
+                txtNEmprestimo.Focus();
+            }
+
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)
@@ -133,7 +163,6 @@ namespace LivrariaEBiblioteca
             comm.CommandText = "insert into tbEmprestimo(codEmp, dataEmp, dataDev, nomeLivro, codLivro, codLoc) values (@codEmp, @dataEmp, @dataDev, @codLivro, @codLoc );";
             comm.CommandType = CommandType.Text;
 
-
             for (int i = 0; i < Livros.ListaLivros.Count; i++)
             {
                 comm.Parameters.Clear();
@@ -141,7 +170,7 @@ namespace LivrariaEBiblioteca
                 comm.Parameters.Add("@codEmp", MySqlDbType.Int32).Value = codEmp;
                 comm.Parameters.Add("@dataEmp", MySqlDbType.DateTime).Value = DateTime.Now;
 
-                if (!string.IsNullOrWhiteSpace(mskDataDevolucao.Text) && mskDataDevolucao.MaskFull)
+                if (mskDataDevolucao.Equals("  /  /    ") && mskDataDevolucao.MaskFull)
                 {
                     // Converte o texto para DateTime
                     DateTime dataConvertida = DateTime.ParseExact(mskDataDevolucao.Text, "dd/MM/yyyy", null);
@@ -219,13 +248,22 @@ namespace LivrariaEBiblioteca
             }
         }
         public void separarLivros()
+
+
         {
-            Livros livros = new Livros();
+            try
+            { 
+                Livros livros = new Livros();
 
-            livros.idLivro = Convert.ToInt32(txtIdLivro.Text);
-            livros.nomeLivro = txtTitulo.Text;
+                livros.idLivro = Convert.ToInt32(txtIdLivro.Text);
+                livros.nomeLivro = txtTitulo.Text;
 
-            Livros.ListaLivros.Add(livros);
+                Livros.ListaLivros.Add(livros);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Livro não encontrado", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
             public void escanearLivro(string isbn)
