@@ -144,10 +144,10 @@ namespace LivrariaEBiblioteca
             txtEditora.Text = DR.GetString(7).ToString();
             txtAno.Text = DR.GetInt32(8).ToString();
             fotoPath = DR.GetString(9).ToString();
-            if(fotoPath != null)
+            if(fotoPath != "")
             {
-                //pctLivro.ImageLocation = fotoPath;
-                //pctLivro.Load();
+                pctLivro.ImageLocation = fotoPath;
+                pctLivro.Load();
             }
 
             Conexao.fecharConexao();
@@ -262,6 +262,35 @@ namespace LivrariaEBiblioteca
             Conexao.fecharConexao();
             return idLivro;
         }
+        public int pegarQuantLivro()
+        {
+            MySqlCommand comm = new MySqlCommand();
+            if (rdbEmprestimo.Checked)
+            {
+                comm.CommandText = "select entradaVen from tbLivro where codLivro = @codLivro;";
+                comm.CommandType = CommandType.Text;
+            }
+
+            if (rdbVenda.Checked)
+            {
+                comm.CommandText = "select entradaVen from tbLivro where codLivro = @codLivro;";
+                comm.CommandType = CommandType.Text;
+            }
+            
+            comm.Parameters.Clear();
+            comm.Parameters.Add("@codLivro", MySqlDbType.Int32, 20).Value = Convert.ToInt32(txtIdLivro.Text);
+
+            comm.Connection = Conexao.obterConexao();
+
+            MySqlDataReader DR;
+            DR = comm.ExecuteReader();
+            DR.Read();
+
+            int quant = DR.GetInt32(0);
+
+            Conexao.fecharConexao();
+            return quant;
+        }
 
         public int cadastrarLivro()
         {
@@ -290,9 +319,9 @@ namespace LivrariaEBiblioteca
                     comm.Parameters.Add("@valor", MySqlDbType.Decimal).Value = Convert.ToDecimal(txtValor.Text);
                     comm.Parameters.Add("@editora", MySqlDbType.VarChar, 50).Value = txtEditora.Text;
                     comm.Parameters.Add("@anoPublicacao", MySqlDbType.Int32).Value = Convert.ToInt32(txtAno.Text);
-                    if(pctLivro.Image.Equals(null))
+                    if(pctLivro.Image == null)
                     {
-                        fotoPath = null;
+                        fotoPath = "";
                     }
                     comm.Parameters.Add("@foto", MySqlDbType.VarChar, 200).Value = fotoPath;
                     comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
@@ -393,12 +422,13 @@ namespace LivrariaEBiblioteca
             comm.Parameters.Add("@valor", MySqlDbType.Decimal).Value = Convert.ToDecimal(txtValor.Text);
             comm.Parameters.Add("@editora", MySqlDbType.VarChar, 50).Value = txtEditora.Text;
             comm.Parameters.Add("@anoPublicacao", MySqlDbType.Int32).Value = Convert.ToInt32(txtAno.Text);
-            if(pctLivro.Image.Equals(null))
+            if(pctLivro.Image == null)
             {
-                fotoPath = null;
+                fotoPath = "";
             }
             comm.Parameters.Add("@foto", MySqlDbType.VarChar, 200).Value = fotoPath;
             comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
+            comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = codLivro;
 
             comm.Connection = Conexao.obterConexao();
             int resp = comm.ExecuteNonQuery();
@@ -452,7 +482,7 @@ namespace LivrariaEBiblioteca
             }
             else
             {
-                if (cadastrarLivro() == 1 && adicionarEstoque() == 1)
+                if (alterarLivro(Convert.ToInt32(txtIdLivro.Text)) == 1 && atualizarEstoque(Convert.ToInt32(txtIdLivro.Text)) == 1)
                 {
                     MessageBox.Show("Alteração realizada com sucesso.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     limparCampos();
@@ -473,13 +503,14 @@ namespace LivrariaEBiblioteca
                 MySqlCommand comm = new MySqlCommand();
                 if (rdbVenda.Checked)
                 {
-                    comm.CommandText = "insert into tbEstoque(entradaVen, empVen, nomeLivro) values (@entradaVen, @empVen,@nomeLivro);";
+                    comm.CommandText = "insert into tbEstoque(entradaVen, empVen, nomeLivro, codLivro) values (@entradaVen, @empVen, @nomeLivro, @codLivro);";
                     comm.CommandType = CommandType.Text;
 
                     comm.Parameters.Clear();
                     comm.Parameters.Add("@entradaVen", MySqlDbType.Int32).Value = Convert.ToInt32(txtQuantidade.Text);
                     comm.Parameters.Add("@empVen", MySqlDbType.VarChar, 3).Value = "Ven";
-                    comm.Parameters.Add("@nomeLivro", MySqlDbType.VarChar, 100).Value = (txtTitulo.Text);
+                    comm.Parameters.Add("@nomeLivro", MySqlDbType.VarChar, 100).Value = txtTitulo.Text;
+                    comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = pegarIDLivro();
                 }
                 if (rdbEmprestimo.Checked)
                 {
@@ -489,7 +520,49 @@ namespace LivrariaEBiblioteca
                     comm.Parameters.Clear();
                     comm.Parameters.Add("@entradaEmp", MySqlDbType.Int32).Value = Convert.ToInt32(txtQuantidade.Text);
                     comm.Parameters.Add("@empVen", MySqlDbType.VarChar, 3).Value = "Emp";
-                    comm.Parameters.Add("@nomeLivro", MySqlDbType.VarChar, 100).Value = (txtTitulo.Text);
+                    comm.Parameters.Add("@nomeLivro", MySqlDbType.VarChar, 100).Value = txtTitulo.Text;
+                    comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = pegarIDLivro();
+                }
+
+                comm.Connection = Conexao.obterConexao();
+
+                int resp = comm.ExecuteNonQuery();
+
+                Conexao.fecharConexao();
+
+                return resp;
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao adicionar livro ao estoque.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0;
+            }
+        }
+
+        public int atualizarEstoque(int codLivro)
+        {
+            try
+            {
+                MySqlCommand comm = new MySqlCommand();
+                if (rdbVenda.Checked)
+                {
+                    comm.CommandText = "update tbEstoque set entradaVen = @entradaVen, empVen = @empVen where codLivro = @codLivro;";
+                    comm.CommandType = CommandType.Text;
+
+                    comm.Parameters.Clear();
+                    comm.Parameters.Add("@entradaVen", MySqlDbType.Int32).Value = pegarQuantLivro() + Convert.ToInt32(txtQuantidade.Text);
+                    comm.Parameters.Add("@empVen", MySqlDbType.VarChar, 3).Value = "Ven";
+                    comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = codLivro;
+                }
+                if (rdbEmprestimo.Checked)
+                {
+                    comm.CommandText = "update tbEstoque set entradaEmp = @entradaEmp, empVen = @empVen where codLivro = @codLivro;";
+                    comm.CommandType = CommandType.Text;
+
+                    comm.Parameters.Clear();
+                    comm.Parameters.Add("@entradaEmp", MySqlDbType.Int32).Value = pegarQuantLivro() + Convert.ToInt32(txtQuantidade.Text);
+                    comm.Parameters.Add("@empVen", MySqlDbType.VarChar, 3).Value = "Emp";
+                    comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = codLivro;
                 }
 
                 comm.Connection = Conexao.obterConexao();

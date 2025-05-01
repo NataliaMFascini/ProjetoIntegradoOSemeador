@@ -283,7 +283,7 @@ namespace LivrariaEBiblioteca
                 for (int i = 0; i < Livros.ListaLivros.Count; i++)
                 {
                     comm.Parameters.Clear();
-                    comm.Parameters.Add("@saidaVen", MySqlDbType.Int32).Value = quantidadeRetorno(i);
+                    comm.Parameters.Add("@saidaVen", MySqlDbType.Int32).Value = pegarQuantLivro() + quantidadeRetorno(i);
                     comm.Parameters.Add("@empVen", MySqlDbType.VarChar, 3).Value = "Ven";
                     comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
 
@@ -300,6 +300,7 @@ namespace LivrariaEBiblioteca
             }
             return resp;
         }
+
         public int quantidadeRetorno(int index)
         {
             int quantTotal = 0;
@@ -312,6 +313,27 @@ namespace LivrariaEBiblioteca
                 }
             }
             return quantTotal;
+        }
+
+        public int pegarQuantLivro()
+        {
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = "select saidaVen from tbEstoque where codLivro = @codLivro;";
+            comm.CommandType = CommandType.Text;
+
+            comm.Parameters.Clear();
+            comm.Parameters.Add("@codLivro", MySqlDbType.Int32, 20).Value = Convert.ToInt32(txtIdLivro.Text);
+
+            comm.Connection = Conexao.obterConexao();
+
+            MySqlDataReader DR;
+            DR = comm.ExecuteReader();
+            DR.Read();
+
+            int quant = DR.GetInt32(0);
+
+            Conexao.fecharConexao();
+            return quant;
         }
 
         private void ltbCarrinho_MouseDoubleClick(object sender, MouseEventArgs e)

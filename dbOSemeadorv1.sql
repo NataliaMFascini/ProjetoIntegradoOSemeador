@@ -106,12 +106,11 @@ primary key(codEsto),
 foreign key (codLivro) references tbLivro(codLivro)
 );
 
-insert into tbLivro (empVen, isbn, nome, autor, quant, valor, editora, anoPublicacao, foto, dataCadastro)
-	values ('Ven', '9788592793388', 'Livros dos Mediuns (o) - Letras Grandes', 'Guillon Ribeiro', 1, 30.00, 'Nova Visao 1a Edicao', 2020, null, CURRENT_TIMESTAMP);
+--insert into tbLivro (empVen, isbn, nome, autor, quant, valor, editora, anoPublicacao, foto, dataCadastro)	values ('Ven', '9788592793388', 'Livros dos Mediuns (o) - Letras Grandes', 'Guillon Ribeiro', 1, 30.00, 'Nova Visao 1a Edicao', 2020, null, CURRENT_TIMESTAMP);
 
-insert into tbLivro (empVen, isbn, nome, autor, quant, valor, editora, anoPublicacao, foto, dataCadastro)	values ('Ven', '9788539604579', 'Logica de Programacao', 'Gley Fabiano Cardoso Xavier', 5, 70.00, 'Senac', 2024, null, CURRENT_TIMESTAMP);
+--insert into tbLivro (empVen, isbn, nome, autor, quant, valor, editora, anoPublicacao, foto, dataCadastro)	values ('Ven', '9788539604579', 'Logica de Programacao', 'Gley Fabiano Cardoso Xavier', 5, 70.00, 'Senac', 2024, null, CURRENT_TIMESTAMP);
 
-insert into tbEstoque(entradaVen, empVen, codLivro, nomeLivro) values (100, 'Ven', 2, 'Logica de Programacao');
+--insert into tbEstoque(entradaVen, empVen, codLivro, nomeLivro) values (100, 'Ven', 2, 'Logica de Programacao');
 --visualizar
 desc tbUsuario;
 desc tbLocatario;
