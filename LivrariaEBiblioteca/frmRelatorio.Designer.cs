@@ -43,6 +43,7 @@
             this.btnLimpar = new System.Windows.Forms.Button();
             this.pdcRelatorio = new System.Drawing.Printing.PrintDocument();
             this.pdiaRelatorio = new System.Windows.Forms.PrintDialog();
+            this.btnExportar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorio)).BeginInit();
             this.tlpRelatorios.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -147,7 +148,7 @@
             this.btnLocatarios.Name = "btnLocatarios";
             this.btnLocatarios.Size = new System.Drawing.Size(174, 74);
             this.btnLocatarios.TabIndex = 7;
-            this.btnLocatarios.Text = "Lista de &locatários";
+            this.btnLocatarios.Text = "Lista de l&ocatários";
             this.btnLocatarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLocatarios.UseVisualStyleBackColor = true;
             this.btnLocatarios.Click += new System.EventHandler(this.btnLocatarios_Click);
@@ -192,7 +193,7 @@
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(174, 75);
             this.btnVoltar.TabIndex = 11;
-            this.btnVoltar.Text = "Voltar";
+            this.btnVoltar.Text = "&Voltar";
             this.btnVoltar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVoltar.UseVisualStyleBackColor = true;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
@@ -218,6 +219,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 197F));
+            this.tableLayoutPanel1.Controls.Add(this.btnExportar, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnLimpar, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnImprimir, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -251,6 +253,21 @@
             // pdiaRelatorio
             // 
             this.pdiaRelatorio.UseEXDialog = true;
+            // 
+            // btnExportar
+            // 
+            this.btnExportar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnExportar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportar.Image = ((System.Drawing.Image)(resources.GetObject("btnExportar.Image")));
+            this.btnExportar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExportar.Location = new System.Drawing.Point(206, 3);
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.Size = new System.Drawing.Size(197, 74);
+            this.btnExportar.TabIndex = 4;
+            this.btnExportar.Text = "E&xportar";
+            this.btnExportar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
             // frmRelatorio
             // 
@@ -289,5 +306,6 @@
         private System.Windows.Forms.Button btnEstoque;
         private System.Drawing.Printing.PrintDocument pdcRelatorio;
         private System.Windows.Forms.PrintDialog pdiaRelatorio;
+        private System.Windows.Forms.Button btnExportar;
     }
 }

@@ -56,7 +56,7 @@ namespace LivrariaEBiblioteca
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
-            for(int i =0; i < dgvRelatorio.RowCount; i++)
+            for (int i = 0; i < dgvRelatorio.RowCount; i++)
             {
                 dgvRelatorio.Rows[i].DataGridView.Columns.Clear();
             }
@@ -163,7 +163,7 @@ namespace LivrariaEBiblioteca
             printDialog.Document = pdcRelatorio;
             printDialog.UseEXDialog = true;
 
-            if(DialogResult.OK == printDialog.ShowDialog())
+            if (DialogResult.OK == printDialog.ShowDialog())
             {
                 pdcRelatorio.Print();
             }
@@ -175,6 +175,41 @@ namespace LivrariaEBiblioteca
             Bitmap bmp = new Bitmap(this.dgvRelatorio.Width, this.dgvRelatorio.Height);
             dgvRelatorio.DrawToBitmap(bmp, new Rectangle(0, 0, this.dgvRelatorio.Width, this.dgvRelatorio.Height));
             e.Graphics.DrawImage(bmp, 0, 0);
+        }
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+            Microsoft.Office.Interop.Excel.Application xcelApp = new Microsoft.Office.Interop.Excel.Application();
+
+            if (dgvRelatorio.Rows.Count > 0)
+            {
+                try
+                {
+                    xcelApp.Application.Workbooks.Add(Type.Missing);
+
+                    for (int i = 1; i < dgvRelatorio.Columns.Count + 1; i++)
+                    {
+                        xcelApp.Cells[1, i] = dgvRelatorio.Columns[i - 1].HeaderText;
+                    }
+
+                    for (int i = 0; i < dgvRelatorio.Rows.Count - 1; i++)
+                    {
+                        for (int j = 0; j < dgvRelatorio.Columns.Count; j++)
+                        {
+                            xcelApp.Cells[i + 2, j + 1] = dgvRelatorio.Rows[i].Cells[j].Value.ToString();
+                        }
+                    }
+
+                    xcelApp.Columns.AutoFit();
+
+                    xcelApp.Visible = true;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Erro ao exportar arquivo para Excel.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    xcelApp.Quit();
+                }
+            }
         }
     }
 }
