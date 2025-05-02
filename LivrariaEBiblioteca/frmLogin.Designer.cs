@@ -44,11 +44,11 @@
             this.txtUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsuario.Location = new System.Drawing.Point(260, 337);
+            this.txtUsuario.Location = new System.Drawing.Point(260, 380);
             this.txtUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtUsuario.MaxLength = 50;
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(260, 31);
+            this.txtUsuario.Size = new System.Drawing.Size(280, 31);
             this.txtUsuario.TabIndex = 1;
             this.txtUsuario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUsuario_KeyDown);
             // 
@@ -58,7 +58,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblUsuario.AutoSize = true;
             this.lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuario.Location = new System.Drawing.Point(260, 312);
+            this.lblUsuario.Location = new System.Drawing.Point(260, 355);
             this.lblUsuario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(86, 25);
@@ -70,12 +70,12 @@
             this.pctLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pctLogo.BackColor = System.Drawing.SystemColors.Control;
+            this.pctLogo.BackColor = System.Drawing.Color.PowderBlue;
             this.pctLogo.Image = ((System.Drawing.Image)(resources.GetObject("pctLogo.Image")));
             this.pctLogo.Location = new System.Drawing.Point(260, 51);
             this.pctLogo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pctLogo.Name = "pctLogo";
-            this.pctLogo.Size = new System.Drawing.Size(255, 229);
+            this.pctLogo.Size = new System.Drawing.Size(275, 272);
             this.pctLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pctLogo.TabIndex = 2;
             this.pctLogo.TabStop = false;
@@ -83,27 +83,31 @@
             // btnEntrar
             // 
             this.btnEntrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnEntrar.BackColor = System.Drawing.Color.CadetBlue;
+            this.btnEntrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEntrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEntrar.Location = new System.Drawing.Point(260, 460);
+            this.btnEntrar.Location = new System.Drawing.Point(260, 503);
             this.btnEntrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEntrar.Name = "btnEntrar";
             this.btnEntrar.Size = new System.Drawing.Size(129, 35);
             this.btnEntrar.TabIndex = 3;
             this.btnEntrar.Text = "Entrar";
-            this.btnEntrar.UseVisualStyleBackColor = true;
+            this.btnEntrar.UseVisualStyleBackColor = false;
             this.btnEntrar.Click += new System.EventHandler(this.btnEntrar_Click);
             // 
             // btnSair
             // 
             this.btnSair.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnSair.BackColor = System.Drawing.Color.CadetBlue;
+            this.btnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSair.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSair.Location = new System.Drawing.Point(391, 460);
+            this.btnSair.Location = new System.Drawing.Point(411, 503);
             this.btnSair.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(129, 35);
             this.btnSair.TabIndex = 4;
             this.btnSair.Text = "Sair";
-            this.btnSair.UseVisualStyleBackColor = true;
+            this.btnSair.UseVisualStyleBackColor = false;
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
             // txtSenha
@@ -111,12 +115,12 @@
             this.txtSenha.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSenha.Font = new System.Drawing.Font("Wingdings", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.txtSenha.Location = new System.Drawing.Point(260, 403);
+            this.txtSenha.Location = new System.Drawing.Point(260, 446);
             this.txtSenha.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtSenha.MaxLength = 20;
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.PasswordChar = 'l';
-            this.txtSenha.Size = new System.Drawing.Size(260, 31);
+            this.txtSenha.Size = new System.Drawing.Size(280, 31);
             this.txtSenha.TabIndex = 2;
             this.txtSenha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSenha_KeyDown);
             // 
@@ -126,7 +130,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSenha.AutoSize = true;
             this.lblSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSenha.Location = new System.Drawing.Point(260, 378);
+            this.lblSenha.Location = new System.Drawing.Point(260, 421);
             this.lblSenha.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSenha.Name = "lblSenha";
             this.lblSenha.Size = new System.Drawing.Size(74, 25);
@@ -137,7 +141,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(780, 557);
+            this.BackColor = System.Drawing.Color.PowderBlue;
+            this.ClientSize = new System.Drawing.Size(800, 600);
             this.Controls.Add(this.btnSair);
             this.Controls.Add(this.btnEntrar);
             this.Controls.Add(this.pctLogo);
@@ -146,13 +151,14 @@
             this.Controls.Add(this.txtSenha);
             this.Controls.Add(this.txtUsuario);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "O Semeador - Login";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.pctLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
