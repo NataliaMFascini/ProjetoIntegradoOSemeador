@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,9 @@ namespace LivrariaEBiblioteca
         public string nome;
         public int codUsu;
         public string cargo;
+        public string nomeRelatorio;
+
+        DataGridViewPrinter dgvPrinter;
         public frmRelatorio()
         {
             InitializeComponent();
@@ -37,8 +41,9 @@ namespace LivrariaEBiblioteca
 
         private void btnListaLivros_Click(object sender, EventArgs e)
         {
+            nomeRelatorio = "Lista de Livros";
             MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select empVen as 'Tipo', isbn as 'ISBN', nome as 'Titulo', autor as 'Autor', quant as 'Quantidade', valor as 'Valor', editora as 'Editora', anoPublicacao as 'Ano de publicacao', dataCadastro as 'Data de registro' from tbLivro;";
+            comm.CommandText = "select codLivro as 'ID do livro', empVen as 'Tipo', isbn as 'ISBN', nome as 'Titulo', autor as 'Autor', quant as 'Quantidade', valor as 'Valor', editora as 'Editora', anoPublicacao as 'Ano de publicacao', dataCadastro as 'Data de registro' from tbLivro;";
             comm.CommandType = CommandType.Text;
 
             comm.Connection = Conexao.obterConexao();
@@ -64,8 +69,9 @@ namespace LivrariaEBiblioteca
 
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
+            nomeRelatorio = "Lista de Usuários";
             MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select nome as 'Nome', cargo as 'Cargo', cpf as 'CPF', diaTrabalho as 'Dia de trabalho', telCel as 'Telefone', login as 'Login', email as 'E-mail', cep as 'CEP', logradouro as 'Endereco', numero as 'Numero', complemento as 'Complemento', bairro as 'Bairro', cidade as 'Cidade', estado as 'Estado', dataCadastro as 'Data de registro' from tbUsuario;";
+            comm.CommandText = "select codUsu as 'ID do usuario', nome as 'Nome', cargo as 'Cargo', cpf as 'CPF', diaTrabalho as 'Dia de trabalho', telCel as 'Telefone', login as 'Login', email as 'E-mail', cep as 'CEP', logradouro as 'Endereco', numero as 'Numero', complemento as 'Complemento', bairro as 'Bairro', cidade as 'Cidade', estado as 'Estado', dataCadastro as 'Data de registro' from tbUsuario;";
             comm.CommandType = CommandType.Text;
 
             comm.Connection = Conexao.obterConexao();
@@ -83,8 +89,9 @@ namespace LivrariaEBiblioteca
 
         private void btnLocatarios_Click(object sender, EventArgs e)
         {
+            nomeRelatorio = "Lista de Locatários";
             MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select pront as 'Prontuario', nome as 'Nome', cpf as 'CPF', telCel as 'Telefone', email as 'E-mail', dataCadastro as 'Data de registro' from tbLocatario;";
+            comm.CommandText = "select codLoc as 'ID do Locatario', pront as 'Prontuario', nome as 'Nome', cpf as 'CPF', telCel as 'Telefone', email as 'E-mail', dataCadastro as 'Data de registro' from tbLocatario;";
             comm.CommandType = CommandType.Text;
 
             comm.Connection = Conexao.obterConexao();
@@ -102,6 +109,7 @@ namespace LivrariaEBiblioteca
 
         private void btnVendas_Click(object sender, EventArgs e)
         {
+            nomeRelatorio = "Relatório de Vendas";
             MySqlCommand comm = new MySqlCommand();
             comm.CommandText = "select codVenda as 'Numero de venda', dataVenda as 'Data da venda', nomeLivro as 'Titulo', valorTotal as 'Valor da venda', pagamento as 'Forma de pagamento', nomeVendedor as 'Nome do vendedor' from tbVendas;";
             comm.CommandType = CommandType.Text;
@@ -121,8 +129,9 @@ namespace LivrariaEBiblioteca
 
         private void btnEmprestimos_Click(object sender, EventArgs e)
         {
+            nomeRelatorio = "Relatório de Empréstimos";
             MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select dataEmp as 'Data de emprestimo', dataDev as 'Data de devolucao', nomeVendedor as 'Nome do caixa', nomeLivro as 'Titulo', prontuario as 'Prontuario' from tbEmprestimo;";
+            comm.CommandText = "select codEmp as 'Numero de emprestimo', dataEmp as 'Data de emprestimo', dataDev as 'Data de devolucao', nomeVendedor as 'Nome do caixa', nomeLivro as 'Titulo', prontuario as 'Prontuario' from tbEmprestimo;";
             comm.CommandType = CommandType.Text;
 
             comm.Connection = Conexao.obterConexao();
@@ -140,6 +149,7 @@ namespace LivrariaEBiblioteca
 
         private void btnEstoque_Click(object sender, EventArgs e)
         {
+            nomeRelatorio = "Dados do Estoque";
             MySqlCommand comm = new MySqlCommand();
             comm.CommandText = "select empVen as 'Tipo', nomeLivro as 'Titulo', entradaVen as 'Entrada de vendas', saidaVen as 'Saida de vendas', entradaEmp as 'Entrada de emprestimos', saidaEmp as 'Saida de emprestimos' from tbEstoque;";
             comm.CommandType = CommandType.Text;
@@ -159,22 +169,19 @@ namespace LivrariaEBiblioteca
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            PrintDialog printDialog = new PrintDialog();
-            printDialog.Document = pdcRelatorio;
-            printDialog.UseEXDialog = true;
-
-            if (DialogResult.OK == printDialog.ShowDialog())
+            if (SetupThePrinting())
             {
                 pdcRelatorio.Print();
             }
-
         }
 
         private void prdRelatorio_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            Bitmap bmp = new Bitmap(this.dgvRelatorio.Width, this.dgvRelatorio.Height);
-            dgvRelatorio.DrawToBitmap(bmp, new Rectangle(0, 0, this.dgvRelatorio.Width, this.dgvRelatorio.Height));
-            e.Graphics.DrawImage(bmp, 0, 0);
+            bool more = dgvPrinter.DrawDataGridView(e.Graphics);
+            if (more == true)
+            {
+                e.HasMorePages = true;
+            }
         }
 
         private void btnExportar_Click(object sender, EventArgs e)
@@ -210,6 +217,34 @@ namespace LivrariaEBiblioteca
                     xcelApp.Quit();
                 }
             }
+        }
+        private bool SetupThePrinting()
+        {
+            PrintDialog MyPrintDialog = new PrintDialog();
+            MyPrintDialog.AllowCurrentPage = false;
+            MyPrintDialog.AllowPrintToFile = false;
+            MyPrintDialog.AllowSelection = false;
+            MyPrintDialog.AllowSomePages = false;
+            MyPrintDialog.PrintToFile = false;
+            MyPrintDialog.ShowHelp = false;
+            MyPrintDialog.ShowNetwork = false;
+
+            if (MyPrintDialog.ShowDialog() != DialogResult.OK)
+            {
+                return false;
+            }
+
+            pdcRelatorio.DocumentName = nomeRelatorio;
+            pdcRelatorio.PrinterSettings = MyPrintDialog.PrinterSettings;
+            pdcRelatorio.DefaultPageSettings = MyPrintDialog.PrinterSettings.DefaultPageSettings;
+            pdcRelatorio.DefaultPageSettings.Margins = new Margins(40, 40, 40, 40);
+
+            if (MessageBox.Show("Deseja que o relatório esteja centralizado?", "Pergunta - Centralizar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                dgvPrinter = new DataGridViewPrinter(dgvRelatorio, pdcRelatorio, true, true, nomeRelatorio, new Font("Tahoma", 18, FontStyle.Bold, GraphicsUnit.Point), Color.Black, true);
+            else
+                dgvPrinter = new DataGridViewPrinter(dgvRelatorio, pdcRelatorio, false, true, nomeRelatorio, new Font("Tahoma", 18, FontStyle.Bold, GraphicsUnit.Point), Color.Black, true);
+
+            return true;
         }
     }
 }

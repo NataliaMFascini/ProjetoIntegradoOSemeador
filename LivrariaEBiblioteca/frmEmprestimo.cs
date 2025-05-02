@@ -260,7 +260,7 @@ namespace LivrariaEBiblioteca
 
                 Livros.ListaLivros.Add(livros);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Livro não encontrado", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
