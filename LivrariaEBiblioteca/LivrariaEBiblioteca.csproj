@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conexao.cs" />
+    <Compile Include="DataGridViewPrinter.cs" />
     <Compile Include="frmBuscarFuncionario.cs">
       <SubType>Form</SubType>
     </Compile>
