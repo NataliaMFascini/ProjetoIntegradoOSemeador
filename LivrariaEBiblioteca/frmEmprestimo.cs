@@ -91,31 +91,31 @@ namespace LivrariaEBiblioteca
             Boolean result = true;
             if (txtTitulo.Text.Equals(""))
             {
-                MessageBox.Show("Favor, Preencha todos os componentes", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Favor, informe o título do livro", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtTitulo.Focus();
                 result = false;
             }
-            if (txtAutor.Text.Equals(""))
+            else if (txtAutor.Text.Equals(""))
             {
-                MessageBox.Show("Favor, Preencha todos os componentes", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Favor, informe o autor do livro", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtAutor.Focus();
                 result = false;
             }
-            if (txtEditora.Text.Equals(""))
+            else if (txtEditora.Text.Equals(""))
             {
-                MessageBox.Show("Favor, Preencha todos os componentes", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Favor, informe a editora", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtEditora.Focus();
                 result = false;
             }
-            if (txtIsbn.Text.Equals(""))
+            else if (txtIsbn.Text.Equals(""))
             {
-                MessageBox.Show("Favor, Preencha todos os componentes", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Favor, informe o ISBN do livro", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtIsbn.Focus();
                 result = false;
             }
             if (!mskDataDevolucao.MaskCompleted)
             {
-                MessageBox.Show("Favor, Preencha todos os componentes", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Favor, informe a data de devolução", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 mskDataDevolucao.Focus();
                 result = false;
             }
@@ -161,7 +161,7 @@ namespace LivrariaEBiblioteca
             MySqlCommand comm = new MySqlCommand();
             int resp = 0;
 
-            comm.CommandText = "insert into tbEmprestimo( dataEmp, dataDev, nomeVendedor, nomeLivro, prontuario, codLivro, ) values (@dataEmp, @dataDev, @nomeVendedor, @nomeLivro, @prontuario, @codLivro );";
+            comm.CommandText = "insert into tbEmprestimo( dataEmp, dataDev, nomeVendedor, nomeLivro, prontuario, codLivro) values (@dataEmp, @dataDev, @nomeVendedor, @nomeLivro, @prontuario, @codLivro );";
             comm.CommandType = CommandType.Text;
 
             for (int i = 0; i < Livros.ListaLivros.Count; i++)
@@ -191,7 +191,15 @@ namespace LivrariaEBiblioteca
                 comm.Parameters.Add("@prontuario", MySqlDbType.Int32).Value = Convert.ToInt32(txtLocatario.Text);
                 comm.Connection = Conexao.obterConexao();
 
-                resp = comm.ExecuteNonQuery();
+                try
+                {
+                    resp = comm.ExecuteNonQuery();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Erro no banco: " + ex.Message);
+                }
+
 
                 Conexao.fecharConexao();
             }
@@ -213,8 +221,14 @@ namespace LivrariaEBiblioteca
                 comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
 
                 comm.Connection = Conexao.obterConexao();
-
-                resp = comm.ExecuteNonQuery();
+                try
+                {
+                    resp = comm.ExecuteNonQuery();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Erro no banco: " + ex.Message);
+                }
 
                 Conexao.fecharConexao();
             }
@@ -222,13 +236,39 @@ namespace LivrariaEBiblioteca
             return resp;
         }
 
-        //public int retornoEstoque()
-        //{
+        public int retornoEstoque()
+        {
+            MySqlCommand comm = new MySqlCommand();
+            int resp = 0;
 
-        //}
+            comm.CommandText = "UPDATE tbEstoque SET quantidadeAtual = quantidadeAtual + @quantidade WHERE codLivro = @codLivro";
+            comm.CommandType = CommandType.Text;
+
+            for (int i = 0; i < Livros.ListaLivros.Count; i++)
+            {
+                comm.Parameters.Clear();
+                comm.Parameters.Add("@quantidade", MySqlDbType.Int32).Value = quantidadeRetorno(i);
+                comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = Livros.ListaLivros[i].idLivro;
+
+                comm.Connection = Conexao.obterConexao();
+                try
+                {
+                    resp = comm.ExecuteNonQuery();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Erro ao retornar livro ao estoque: " + ex.Message);
+                }
+                Conexao.fecharConexao();
+            }
+
+            return resp;
+        }
+
 
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
+
             if (ltbCarrinho.Items.Count != 0)
 
             {
@@ -265,7 +305,7 @@ namespace LivrariaEBiblioteca
                 MessageBox.Show("Livro não encontrado", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
-
+             
             public void escanearLivro(string isbn)
         {
             MySqlCommand comm = new MySqlCommand();
@@ -289,9 +329,13 @@ namespace LivrariaEBiblioteca
                 txtEditora.Text = DR.GetString(3);
                 if (fotoPath != null)
                 {
-                    fotoPath = DR.GetString(6);
+                    fotoPath = DR.GetString(4);
                     pctLivro.ImageLocation = fotoPath;
                     pctLivro.Load();
+                }
+                else
+                {
+                    pctLivro.Image = null;
                 }
             }
             else
@@ -316,16 +360,32 @@ namespace LivrariaEBiblioteca
         }
         public int quantidadeRetorno(int index)
         {
-            int quantTotal = 0;
+            int quantTotal = 1;
 
-            for (int i = 0; i < Livros.ListaLivros.Count - 1; i++)
+            for (int i = 0; i < Livros.ListaLivros.Count; i++)
             {
-                if (Livros.ListaLivros[index].idLivro == Livros.ListaLivros[i + 1].idLivro)
+                if (i != index && Livros.ListaLivros[i].idLivro == Livros.ListaLivros[index].idLivro)
                 {
                     quantTotal++;
                 }
             }
             return quantTotal;
         }
+
+        private void btnDevolver_Click(object sender, EventArgs e)
+        {
+            if (retornoEstoque() > 0)
+            {
+                MessageBox.Show("Livro devolvido e estoque atualizado!", "Sucesso");
+                limparCampos();
+                Livros.ListaLivros.Clear(); // limpar a lista
+            }
+            else
+            {
+                MessageBox.Show("Erro ao devolver livro.", "Erro");
+            }
+        }
+
     }
+}
 }
