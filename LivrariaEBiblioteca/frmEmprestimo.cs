@@ -160,32 +160,29 @@ namespace LivrariaEBiblioteca
             this.Hide();
         }
 
-        public int registrarEmprestimo(int codigoUsuario)
+        public int registrarEmprestimo()
         {
 
             MySqlCommand comm = new MySqlCommand();
             int resp = 0;
 
-            comm.CommandText = "insert into tbEmprestimo( codEmp, dataEmp, dataDev, nomeVendedor, nomeLivro, prontuario, codLivro) values (@codEmp, @dataEmp, @dataDev, @nomeVendedor, @nomeLivro, @prontuario, @codLivro );";
+            comm.CommandText = "insert into tbEmprestimo( dataEmp, nomeVendedor, nomeLivro, prontuario, codLivro) values (@dataEmp, @nomeVendedor, @nomeLivro, @prontuario, @codLivro);";
             comm.CommandType = CommandType.Text;
 
             for (int i = 0; i < Livros.ListaLivros.Count; i++)
             {
                 comm.Parameters.Clear();
 
-                comm.Parameters.Add("@codEmp", MySqlDbType.Int32).Value = Convert.ToInt32(txtNEmprestimo.Text);
                 comm.Parameters.Add("@dataEmp", MySqlDbType.DateTime).Value = DateTime.Now;
 
-                if (!mskDataDevolucao.Equals("  /  /    ") && mskDataDevolucao.MaskFull)
-                {
-                    // Converte o texto para DateTime
-                    DateTime dataConvertida = DateTime.ParseExact(mskDataDevolucao.Text, "dd/MM/yyyy", null);
+                //if (!mskDataDevolucao.Equals("  /  /    ") && mskDataDevolucao.MaskFull)
+                //{
+                //    // Converte o texto para DateTime
+                //    DateTime dataConvertida = DateTime.ParseExact(mskDataDevolucao.Text, "dd/MM/yyyy", null);
 
-                    // Cria e configura o comando
-                    comm.Parameters.Add("@dataDev", MySqlDbType.DateTime).Value = dataConvertida;
-                }
-
-
+                //    // Cria e configura o comando
+                //    comm.Parameters.Add("@dataDev", MySqlDbType.DateTime).Value = dataConvertida;
+                //}
                 
                 comm.Parameters.Add("@nomeVendedor", MySqlDbType.VarChar, 100).Value = this.nome;
                 comm.Parameters.Add("@nomeLivro", MySqlDbType.VarChar, 100).Value = livros.nomeRetorno(i);
@@ -275,7 +272,7 @@ namespace LivrariaEBiblioteca
             if (ltbCarrinho.Items.Count != 0)
 
             {
-                if (registrarEmprestimo(codUsu) == 1 && saidaEstoque() == 1)
+                if (registrarEmprestimo() == 1 && saidaEstoque() == 1)
                 {
                     MessageBox.Show("Empréstimo registrada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                     limparCampos();
