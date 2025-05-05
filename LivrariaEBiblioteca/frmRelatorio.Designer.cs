@@ -44,7 +44,11 @@
             this.btnLimpar = new System.Windows.Forms.Button();
             this.pdcRelatorio = new System.Drawing.Printing.PrintDocument();
             this.pdiaRelatorio = new System.Windows.Forms.PrintDialog();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblRelatorio = new System.Windows.Forms.Label();
+            this.lblEntre = new System.Windows.Forms.Label();
+            this.lblAte = new System.Windows.Forms.Label();
+            this.mskDataEntre = new System.Windows.Forms.MaskedTextBox();
+            this.mskDataAte = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorio)).BeginInit();
             this.tlpRelatorios.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -62,9 +66,9 @@
             this.dgvRelatorio.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvRelatorio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRelatorio.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvRelatorio.Location = new System.Drawing.Point(12, 71);
+            this.dgvRelatorio.Location = new System.Drawing.Point(12, 105);
             this.dgvRelatorio.Name = "dgvRelatorio";
-            this.dgvRelatorio.Size = new System.Drawing.Size(602, 443);
+            this.dgvRelatorio.Size = new System.Drawing.Size(602, 409);
             this.dgvRelatorio.TabIndex = 0;
             // 
             // tlpRelatorios
@@ -89,8 +93,8 @@
             this.tlpRelatorios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tlpRelatorios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tlpRelatorios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tlpRelatorios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.83333F));
-            this.tlpRelatorios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.33333F));
+            this.tlpRelatorios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tlpRelatorios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tlpRelatorios.Size = new System.Drawing.Size(180, 600);
             this.tlpRelatorios.TabIndex = 4;
             // 
@@ -104,7 +108,7 @@
             this.btnEstoque.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEstoque.Location = new System.Drawing.Point(3, 428);
             this.btnEstoque.Name = "btnEstoque";
-            this.btnEstoque.Size = new System.Drawing.Size(174, 88);
+            this.btnEstoque.Size = new System.Drawing.Size(174, 79);
             this.btnEstoque.TabIndex = 10;
             this.btnEstoque.Text = "&Dados do estoque";
             this.btnEstoque.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -203,9 +207,9 @@
             this.btnVoltar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVoltar.Image = ((System.Drawing.Image)(resources.GetObject("btnVoltar.Image")));
             this.btnVoltar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnVoltar.Location = new System.Drawing.Point(3, 522);
+            this.btnVoltar.Location = new System.Drawing.Point(3, 513);
             this.btnVoltar.Name = "btnVoltar";
-            this.btnVoltar.Size = new System.Drawing.Size(174, 75);
+            this.btnVoltar.Size = new System.Drawing.Size(174, 84);
             this.btnVoltar.TabIndex = 11;
             this.btnVoltar.Text = "&Voltar";
             this.btnVoltar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -222,7 +226,7 @@
             this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnImprimir.Location = new System.Drawing.Point(3, 3);
             this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(205, 74);
+            this.btnImprimir.Size = new System.Drawing.Size(200, 74);
             this.btnImprimir.TabIndex = 2;
             this.btnImprimir.Text = "&Imprimir";
             this.btnImprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -232,9 +236,9 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 197F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.Controls.Add(this.btnExportar, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnLimpar, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnImprimir, 0, 0);
@@ -243,7 +247,7 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 520);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(620, 80);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
@@ -255,9 +259,9 @@
             this.btnExportar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportar.Image = ((System.Drawing.Image)(resources.GetObject("btnExportar.Image")));
             this.btnExportar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExportar.Location = new System.Drawing.Point(214, 3);
+            this.btnExportar.Location = new System.Drawing.Point(209, 3);
             this.btnExportar.Name = "btnExportar";
-            this.btnExportar.Size = new System.Drawing.Size(205, 74);
+            this.btnExportar.Size = new System.Drawing.Size(200, 74);
             this.btnExportar.TabIndex = 4;
             this.btnExportar.Text = "E&xportar";
             this.btnExportar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -272,9 +276,9 @@
             this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpar.Image")));
             this.btnLimpar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnLimpar.Location = new System.Drawing.Point(425, 3);
+            this.btnLimpar.Location = new System.Drawing.Point(415, 3);
             this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(192, 74);
+            this.btnLimpar.Size = new System.Drawing.Size(202, 74);
             this.btnLimpar.TabIndex = 3;
             this.btnLimpar.Text = "Li&mpar";
             this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -289,15 +293,55 @@
             // 
             this.pdiaRelatorio.UseEXDialog = true;
             // 
-            // label1
+            // lblRelatorio
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(24, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(153, 37);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Relatório";
+            this.lblRelatorio.AutoSize = true;
+            this.lblRelatorio.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRelatorio.Location = new System.Drawing.Point(24, 19);
+            this.lblRelatorio.Name = "lblRelatorio";
+            this.lblRelatorio.Size = new System.Drawing.Size(153, 37);
+            this.lblRelatorio.TabIndex = 5;
+            this.lblRelatorio.Text = "Relatório";
+            // 
+            // lblEntre
+            // 
+            this.lblEntre.AutoSize = true;
+            this.lblEntre.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEntre.Location = new System.Drawing.Point(12, 71);
+            this.lblEntre.Name = "lblEntre";
+            this.lblEntre.Size = new System.Drawing.Size(75, 25);
+            this.lblEntre.TabIndex = 6;
+            this.lblEntre.Text = "Entre: ";
+            // 
+            // lblAte
+            // 
+            this.lblAte.AutoSize = true;
+            this.lblAte.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAte.Location = new System.Drawing.Point(221, 71);
+            this.lblAte.Name = "lblAte";
+            this.lblAte.Size = new System.Drawing.Size(32, 25);
+            this.lblAte.TabIndex = 7;
+            this.lblAte.Text = "E:";
+            // 
+            // mskDataEntre
+            // 
+            this.mskDataEntre.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mskDataEntre.Location = new System.Drawing.Point(94, 68);
+            this.mskDataEntre.Mask = "00/00/0000";
+            this.mskDataEntre.Name = "mskDataEntre";
+            this.mskDataEntre.Size = new System.Drawing.Size(120, 31);
+            this.mskDataEntre.TabIndex = 8;
+            this.mskDataEntre.ValidatingType = typeof(System.DateTime);
+            // 
+            // mskDataAte
+            // 
+            this.mskDataAte.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mskDataAte.Location = new System.Drawing.Point(260, 68);
+            this.mskDataAte.Mask = "00/00/0000";
+            this.mskDataAte.Name = "mskDataAte";
+            this.mskDataAte.Size = new System.Drawing.Size(120, 31);
+            this.mskDataAte.TabIndex = 9;
+            this.mskDataAte.ValidatingType = typeof(System.DateTime);
             // 
             // frmRelatorio
             // 
@@ -305,7 +349,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CadetBlue;
             this.ClientSize = new System.Drawing.Size(800, 600);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.mskDataAte);
+            this.Controls.Add(this.mskDataEntre);
+            this.Controls.Add(this.lblAte);
+            this.Controls.Add(this.lblEntre);
+            this.Controls.Add(this.lblRelatorio);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.tlpRelatorios);
             this.Controls.Add(this.dgvRelatorio);
@@ -341,6 +389,10 @@
         private System.Drawing.Printing.PrintDocument pdcRelatorio;
         private System.Windows.Forms.PrintDialog pdiaRelatorio;
         private System.Windows.Forms.Button btnExportar;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblRelatorio;
+        private System.Windows.Forms.Label lblEntre;
+        private System.Windows.Forms.Label lblAte;
+        private System.Windows.Forms.MaskedTextBox mskDataEntre;
+        private System.Windows.Forms.MaskedTextBox mskDataAte;
     }
 }

@@ -18,6 +18,8 @@ namespace LivrariaEBiblioteca
         public int codUsu;
         public string cargo;
         public string nomeRelatorio;
+        public string data1;
+        public string data2;
 
         DataGridViewPrinter dgvPrinter;
         public frmRelatorio()
@@ -30,6 +32,11 @@ namespace LivrariaEBiblioteca
             this.nome = nome;
             this.codUsu = codUsu;
             this.cargo = cargo;
+            data1 = DateTime.MinValue.ToString("dd/MM/yyyy");
+            data2 = DateTime.Now.ToString("dd/MM/yyyy");
+
+            mskDataEntre.Text = data1;
+            mskDataAte.Text = data2;
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
@@ -43,8 +50,16 @@ namespace LivrariaEBiblioteca
         {
             nomeRelatorio = "Lista de Livros";
             MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select codLivro as 'ID do livro', empVen as 'Tipo', isbn as 'ISBN', nome as 'Titulo', autor as 'Autor', quant as 'Quantidade', valor as 'Valor', editora as 'Editora', anoPublicacao as 'Ano de publicacao', dataCadastro as 'Data de registro' from tbLivro;";
+
+            data1 = mskDataEntre.Text;
+            data2 = mskDataAte.Text;
+
+            comm.CommandText = "select codLivro as 'ID do livro', empVen as 'Tipo', isbn as 'ISBN', nome as 'Titulo', autor as 'Autor', quant as 'Quantidade', valor as 'Valor', editora as 'Editora', anoPublicacao as 'Ano de publicacao', dataCadastro as 'Data de registro' from tbLivro where dataCadastro between @dataCadastro1 and @dataCadastro2;";
             comm.CommandType = CommandType.Text;
+
+            comm.Parameters.Clear();
+            comm.Parameters.AddWithValue("@dataCadastro1", DateTime.Parse(data1));
+            comm.Parameters.AddWithValue("@dataCadastro2", DateTime.Parse(data2));
 
             comm.Connection = Conexao.obterConexao();
 
@@ -64,6 +79,8 @@ namespace LivrariaEBiblioteca
             for (int i = 0; i < dgvRelatorio.RowCount; i++)
             {
                 dgvRelatorio.Rows[i].DataGridView.Columns.Clear();
+                mskDataEntre.Clear();
+                mskDataAte.Clear();
             }
         }
 
@@ -71,8 +88,16 @@ namespace LivrariaEBiblioteca
         {
             nomeRelatorio = "Lista de Usuários";
             MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select codUsu as 'ID do usuario', nome as 'Nome', cargo as 'Cargo', cpf as 'CPF', diaTrabalho as 'Dia de trabalho', telCel as 'Telefone', login as 'Login', email as 'E-mail', cep as 'CEP', logradouro as 'Endereco', numero as 'Numero', complemento as 'Complemento', bairro as 'Bairro', cidade as 'Cidade', estado as 'Estado', dataCadastro as 'Data de registro' from tbUsuario;";
+
+            data1 = mskDataEntre.Text;
+            data2 = mskDataAte.Text;
+
+            comm.CommandText = "select codUsu as 'ID do usuario', nome as 'Nome', cargo as 'Cargo', cpf as 'CPF', diaTrabalho as 'Dia de trabalho', telCel as 'Telefone', login as 'Login', email as 'E-mail', cep as 'CEP', logradouro as 'Endereco', numero as 'Numero', complemento as 'Complemento', bairro as 'Bairro', cidade as 'Cidade', estado as 'Estado', dataCadastro as 'Data de registro' from tbUsuario where dataCadastro between @dataCadastro1 and @dataCadastro2;";
             comm.CommandType = CommandType.Text;
+
+            comm.Parameters.Clear();
+            comm.Parameters.AddWithValue("@dataCadastro1", DateTime.Parse(data1));
+            comm.Parameters.AddWithValue("@dataCadastro2", DateTime.Parse(data2));
 
             comm.Connection = Conexao.obterConexao();
 
@@ -91,8 +116,15 @@ namespace LivrariaEBiblioteca
         {
             nomeRelatorio = "Lista de Locatários";
             MySqlCommand comm = new MySqlCommand();
+            data1 = mskDataEntre.Text;
+            data2 = mskDataAte.Text;
+
             comm.CommandText = "select codLoc as 'ID do Locatario', pront as 'Prontuario', nome as 'Nome', cpf as 'CPF', telCel as 'Telefone', email as 'E-mail', dataCadastro as 'Data de registro' from tbLocatario;";
             comm.CommandType = CommandType.Text;
+
+            comm.Parameters.Clear();
+            comm.Parameters.AddWithValue("@dataCadastro1", DateTime.Parse(data1));
+            comm.Parameters.AddWithValue("@dataCadastro2", DateTime.Parse(data2));
 
             comm.Connection = Conexao.obterConexao();
 
@@ -111,9 +143,16 @@ namespace LivrariaEBiblioteca
         {
             nomeRelatorio = "Relatório de Vendas";
             MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select codVenda as 'Numero de venda', dataVenda as 'Data da venda', nomeLivro as 'Titulo', valorTotal as 'Valor da venda', pagamento as 'Forma de pagamento', nomeVendedor as 'Nome do vendedor' from tbVendas;";
+            data1 = mskDataEntre.Text;
+            data2 = mskDataAte.Text;
+
+            comm.CommandText = "select codVenda as 'Numero de venda', dataVenda as 'Data da venda', nomeLivro as 'Titulo', valorTotal as 'Valor da venda', pagamento as 'Forma de pagamento', nomeVendedor as 'Nome do vendedor' from tbVendas where dataCadastro between @dataCadastro1 and @dataCadastro2;";
             comm.CommandType = CommandType.Text;
 
+            comm.Parameters.Clear();
+            comm.Parameters.AddWithValue("@dataCadastro1", DateTime.Parse(data1));
+            comm.Parameters.AddWithValue("@dataCadastro2", DateTime.Parse(data2));
+            
             comm.Connection = Conexao.obterConexao();
 
             MySqlDataAdapter adapter = new MySqlDataAdapter(comm);
@@ -131,8 +170,16 @@ namespace LivrariaEBiblioteca
         {
             nomeRelatorio = "Relatório de Empréstimos";
             MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select codEmp as 'Numero de emprestimo', dataEmp as 'Data de emprestimo', dataDev as 'Data de devolucao', nomeVendedor as 'Nome do caixa', nomeLivro as 'Titulo', prontuario as 'Prontuario' from tbEmprestimo;";
+            data1 = mskDataEntre.Text;
+            data2 = mskDataAte.Text;
+            
+            comm.CommandText = "select codEmp as 'Numero de emprestimo', dataEmp as 'Data de emprestimo', dataDev as 'Data de devolucao', nomeVendedor as 'Nome do caixa', nomeLivro as 'Titulo', prontuario as 'Prontuario' from tbEmprestimo where dataCadastro between @dataCadastro1 and @dataCadastro2;";
             comm.CommandType = CommandType.Text;
+            
+
+            comm.Parameters.Clear();
+            comm.Parameters.AddWithValue("@dataCadastro1", DateTime.Parse(data1));
+            comm.Parameters.AddWithValue("@dataCadastro2", DateTime.Parse(data2));
 
             comm.Connection = Conexao.obterConexao();
 

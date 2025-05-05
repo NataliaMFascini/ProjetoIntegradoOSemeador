@@ -67,6 +67,7 @@ dataDev date,
 nomeVendedor varchar(100),
 nomeLivro varchar(100),
 prontuario int,
+dataCadastro dateTime,
 codLivro int not null,
 codLoc int,
 primary key(codEmp),
@@ -81,6 +82,7 @@ nomeLivro varchar(100),
 valorTotal decimal(9,2) default 0 check(valorTotal >=0),
 pagamento varchar(20),
 nomeVendedor varchar(100),
+dataCadastro dateTime,
 codLivro int not null,
 codUsu int not null,
 primary key(codVenda),
@@ -159,7 +161,6 @@ INSERT INTO `tblivro` (`codLivro`, `empVen`, `isbn`, `nome`, `autor`, `quant`, `
 (44, 'Ven', '9788524918438', 'Um por todos por um: a vida em grupo dos mamíferos ', 'Cristina Santos', 5, 42.12, 'Cortez', 2013, '', '2025-05-01 14:33:56'),
 (45, 'Ven', '9788573412291', 'Mãos Unidas', 'Francisco Cândido Xavier', 2, 38.00, 'IDE', 1972, '', '2025-05-01 14:34:17'),
 (46, 'Ven', '9788573288186', 'Libertação', 'Francisco Cândido Xavier', 6, 48.80, 'FEB', 2019, '', '2025-05-01 14:34:31');
-
 
 --visualizar
 desc tbUsuario;
