@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -122,7 +123,7 @@ namespace LivrariaEBiblioteca
 
             else
             {
-                ltbCarrinho.Items.Add(txtTitulo.Text + " - R$ " + txtValor.Text);
+                ltbCarrinho.Items.Add(txtTitulo.Text + " - " + txtAutor.Text + " - R$ " + txtValor.Text);
 
                 //Tem que separar por livro
                 separarLivros();
@@ -246,7 +247,7 @@ namespace LivrariaEBiblioteca
             MySqlCommand comm = new MySqlCommand();
             int resp = 0;
 
-            comm.CommandText = "insert into tbVendas(dataVenda, nomeLivro, valorTotal, pagamento, nomeVendedor, codUsu, codLivro) values (@dataVenda, @nomeLivro, @valorTotal, @pagamento, @nomeVendedor, @codUsu, @codLivro);";
+            comm.CommandText = "insert into tbVendas(dataVenda, nomeLivro, valorTotal, pagamento, nomeVendedor, dataCadastro, codUsu, codLivro) values (@dataVenda, @nomeLivro, @valorTotal, @pagamento, @nomeVendedor, @dataCadastro, @codUsu, @codLivro);";
             comm.CommandType = CommandType.Text;
 
 
@@ -259,6 +260,7 @@ namespace LivrariaEBiblioteca
                 comm.Parameters.Add("@valorTotal", MySqlDbType.Decimal).Value = livros.valorRetorno(i);
                 comm.Parameters.Add("@pagamento", MySqlDbType.VarChar, 50).Value = cbbFormaPagamento.Text;
                 comm.Parameters.Add("@nomeVendedor", MySqlDbType.VarChar, 100).Value = this.nome;
+                comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
                 comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
                 comm.Parameters.Add("@codUsu", MySqlDbType.Int32).Value = codUsu;
 
@@ -283,7 +285,7 @@ namespace LivrariaEBiblioteca
                 for (int i = 0; i < Livros.ListaLivros.Count; i++)
                 {
                     comm.Parameters.Clear();
-                    comm.Parameters.Add("@saidaVen", MySqlDbType.Int32).Value = pegarQuantLivro() + quantidadeRetorno(i);
+                    comm.Parameters.Add("@saidaVen", MySqlDbType.Int32).Value = pegarQuantLivro(i) + quantidadeRetorno(i);
                     comm.Parameters.Add("@empVen", MySqlDbType.VarChar, 3).Value = "Ven";
                     comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
 
@@ -315,14 +317,18 @@ namespace LivrariaEBiblioteca
             return quantTotal;
         }
 
-        public int pegarQuantLivro()
+        public int pegarQuantLivro(int index)
         {
             MySqlCommand comm = new MySqlCommand();
             comm.CommandText = "select saidaVen from tbEstoque where codLivro = @codLivro;";
             comm.CommandType = CommandType.Text;
 
-            comm.Parameters.Clear();
-            comm.Parameters.Add("@codLivro", MySqlDbType.Int32, 20).Value = Convert.ToInt32(txtIdLivro.Text);
+
+            if (Livros.ListaLivros[index].idLivro == Livros.ListaLivros[index + 1].idLivro)
+            {
+                comm.Parameters.Clear();
+                comm.Parameters.Add("@codLivro", MySqlDbType.Int32, 20).Value = livros.codRetorno(index);
+            }
 
             comm.Connection = Conexao.obterConexao();
 

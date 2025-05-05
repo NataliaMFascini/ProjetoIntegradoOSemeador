@@ -34,6 +34,7 @@ CREATE TABLE `tbemprestimo` (
   `nomeVendedor` varchar(100) DEFAULT NULL,
   `nomeLivro` varchar(100) DEFAULT NULL,
   `prontuario` int(11) DEFAULT NULL,
+  `dataCadastro` datetime DEFAULT NULL,
   `codLivro` int(11) NOT NULL,
   `codLoc` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -135,11 +136,11 @@ CREATE TABLE `tblivro` (
 INSERT INTO `tblivro` (`codLivro`, `empVen`, `isbn`, `nome`, `autor`, `quant`, `valor`, `editora`, `anoPublicacao`, `foto`, `dataCadastro`) VALUES
 (1, 'Ven', '9788583530855', 'Outro lar- uma viagem muitos ensinamentos-Turma da Monica', 'Mauricio De Souza ', 5, 44.20, 'Boa Nova ', 2017, '', '2025-05-01 13:48:35'),
 (2, 'Ven', '9788583530572', 'Magali em Outras Vidas -Turma da Monica ', 'Mauricio De Souza ', 5, 43.33, 'Boa Nova ', 2015, '', '2025-05-01 13:49:21'),
-(3, 'Ven', '‎9788583531357', 'Chico bento Além Da Vida -Turma De Monica ', 'Mauricio De Souza ', 4, 45.30, 'Boa Nova', 2019, '', '2025-05-01 13:50:43'),
+(3, 'Ven', '9788583531357', 'Chico bento Além Da Vida -Turma De Monica ', 'Mauricio De Souza ', 4, 45.30, 'Boa Nova', 2019, '', '2025-05-01 13:50:43'),
 (4, 'Ven', '9788572533492', 'Turma Da Monica Jovem Conhece Violetas na Janela ', 'Mauricio De Souza ', 5, 42.90, 'Boa Nova', 2019, '', '2025-05-01 13:52:09'),
 (5, 'Ven', '9788573286533', 'Os Dois Franciscos', 'Etna Lacerda', 2, 35.00, 'FEB', 2017, '', '2025-05-01 13:53:59'),
 (6, 'Ven', '9788573285758', 'Meu Avo Desencarnou', 'Daniella Priolli Fonseca e Carvalho', 2, 32.14, 'FEB', 2017, '', '2025-05-01 13:54:41'),
-(7, 'Ven', '‎9788524918438', 'Um por todos por um: a vida em grupo dos mamíferos ', 'Cristina Santos', 5, 42.12, 'Cortez', 2013, '', '2025-05-01 14:49:08'),
+(7, 'Ven', '9788524918438', 'Um por todos por um: a vida em grupo dos mamíferos ', 'Cristina Santos', 5, 42.12, 'Cortez', 2013, '', '2025-05-01 14:49:08'),
 (8, 'Ven', '9788516107666', 'Sopa de Letrinhas', 'Teresa Noronha', 5, 54.99, 'Moderna Literatura', 2002, '', '2025-05-01 14:01:24'),
 (9, 'Ven', '9788583531227', 'O Semeador do bem', 'Cleber Galhardi', 5, 15.09, 'Boa Nova', 2019, '', '2025-05-01 14:02:08'),
 (10, 'Ven', '9786586374414', 'O bom é brincar de viver', 'Karina Almeida', 5, 15.30, 'Boa Nova', 2024, '', '2025-05-01 14:08:01'),
@@ -158,7 +159,7 @@ INSERT INTO `tblivro` (`codLivro`, `empVen`, `isbn`, `nome`, `autor`, `quant`, `
 (23, 'Ven', '9788583531128', 'Mônica:Jesus no meu lar', 'Luis Hu Rivas e Ala Mitchell', 5, 39.56, 'Boa Nova', 2018, '', '2025-05-01 14:19:32'),
 (24, 'Ven', '9788578000752', 'Estudo sobre obsessão infantil', 'Clara Lila Gonzalez de Araújo', 4, 36.02, 'Allan Kardec', 2024, '', '2025-05-01 14:20:09'),
 (25, 'Ven', '9786588278055', 'Autismo e Espiritismo', 'Gustavo Henrique de Lucena', 3, 9.99, 'Clarim', 2021, '', '2025-05-01 14:20:44'),
-(26, 'Ven', '‎9788573412291', 'Mãos Unidas', 'Francisco Cândido Xavier', 2, 38.00, 'IDE', 1972, '', '2025-05-01 14:22:08'),
+(26, 'Ven', '9788573412291', 'Mãos Unidas', 'Francisco Cândido Xavier', 2, 38.00, 'IDE', 1972, '', '2025-05-01 14:22:08'),
 (27, 'Ven', '9786555704990', 'Coragem', 'Francisco Cândido Xavier', 15, 34.02, 'FEB', 2023, '', '2025-05-01 14:22:40'),
 (28, 'Ven', '9788573571882', 'Segue-me', 'Francisco Cândido Xavier', 15, 44.90, 'Boa Nova', 2020, '', '2025-05-01 14:23:30'),
 (29, 'Ven', '9788569452454', 'Fonte Viva', 'Francisco Cândido Xavier', 30, 24.10, 'FEB', 2019, '', '2025-05-01 14:24:07'),
@@ -171,12 +172,12 @@ INSERT INTO `tblivro` (`codLivro`, `empVen`, `isbn`, `nome`, `autor`, `quant`, `
 (36, 'Ven', '9788573286977', 'Há doisil anos', 'Francisco Cândido Xavier', 5, 50.38, 'FEB', 2019, '', '2025-05-01 14:28:37'),
 (37, 'Ven', '9788573286960', 'Paulo e Estevão', 'Francisco Cândido Xavier', 5, 55.00, 'FEB', 2019, '', '2025-05-01 14:29:20'),
 (38, 'Ven', '9788573601459', 'Dos hippies aos problemas mundo', 'Francisco Cândido Xavier', 40, 25.00, 'Boa Nova', 2020, '', '2025-05-01 14:29:54'),
-(39, 'Ven', '‎9788573288186', 'Libertação', 'Francisco Cândido Xavier', 6, 48.80, 'FEB', 2019, '', '2025-05-01 14:30:41'),
+(39, 'Ven', '9788573288186', 'Libertação', 'Francisco Cândido Xavier', 6, 48.80, 'FEB', 2019, '', '2025-05-01 14:30:41'),
 (40, 'Ven', '9788573287943', 'Os mensageiros', 'Francisco Cândido Xavier', 6, 48.30, 'FEB', 2019, '', '2025-05-01 14:31:13'),
 (41, 'Ven', '9788573288018', 'Missionários da luz', 'Francisco Cândido Xavier', 12, 49.90, 'FEB', 2019, '', '2025-05-01 14:31:44'),
 (42, 'Ven', '9786555705188', 'Sinal verde', 'Francisco Cândido Xavier', 10, 39.10, 'FEB', 2023, '', '2025-05-01 14:32:14'),
-(43, 'Ven', '‎9788583531357', 'Chico bento Além Da Vida -Turma De Monica ', 'Mauricio De Souza ', 4, 45.30, 'Boa Nova', 2019, '', '2025-05-01 14:33:38'),
-(44, 'Ven', '‎9788524918438', 'Um por todos por um: a vida em grupo dos mamíferos ', 'Cristina Santos', 5, 42.12, 'Cortez', 2013, '', '2025-05-01 14:33:56'),
+(43, 'Ven', '9788583531357', 'Chico bento Além Da Vida -Turma De Monica ', 'Mauricio De Souza ', 4, 45.30, 'Boa Nova', 2019, '', '2025-05-01 14:33:38'),
+(44, 'Ven', '9788524918438', 'Um por todos por um: a vida em grupo dos mamíferos ', 'Cristina Santos', 5, 42.12, 'Cortez', 2013, '', '2025-05-01 14:33:56'),
 (45, 'Ven', '9788573412291', 'Mãos Unidas', 'Francisco Cândido Xavier', 2, 38.00, 'IDE', 1972, '', '2025-05-01 14:34:17'),
 (46, 'Ven', '9788573288186', 'Libertação', 'Francisco Cândido Xavier', 6, 48.80, 'FEB', 2019, '', '2025-05-01 14:34:31');
 
@@ -243,6 +244,7 @@ CREATE TABLE `tbvendas` (
   `valorTotal` decimal(9,2) DEFAULT 0.00 CHECK (`valorTotal` >= 0),
   `pagamento` varchar(20) DEFAULT NULL,
   `nomeVendedor` varchar(100) DEFAULT NULL,
+  `dataCadastro` datetime DEFAULT NULL,
   `codLivro` int(11) NOT NULL,
   `codUsu` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
