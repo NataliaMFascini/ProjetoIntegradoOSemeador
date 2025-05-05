@@ -41,8 +41,7 @@
             // 
             // txtUsuario
             // 
-            this.txtUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtUsuario.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.txtUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsuario.Location = new System.Drawing.Point(260, 380);
             this.txtUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -54,8 +53,7 @@
             // 
             // lblUsuario
             // 
-            this.lblUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblUsuario.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lblUsuario.AutoSize = true;
             this.lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsuario.Location = new System.Drawing.Point(260, 355);
@@ -72,10 +70,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pctLogo.BackColor = System.Drawing.Color.PowderBlue;
             this.pctLogo.Image = ((System.Drawing.Image)(resources.GetObject("pctLogo.Image")));
-            this.pctLogo.Location = new System.Drawing.Point(260, 51);
+            this.pctLogo.Location = new System.Drawing.Point(296, 71);
             this.pctLogo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pctLogo.Name = "pctLogo";
-            this.pctLogo.Size = new System.Drawing.Size(275, 272);
+            this.pctLogo.Size = new System.Drawing.Size(209, 196);
             this.pctLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pctLogo.TabIndex = 2;
             this.pctLogo.TabStop = false;
@@ -112,8 +110,7 @@
             // 
             // txtSenha
             // 
-            this.txtSenha.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSenha.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.txtSenha.Font = new System.Drawing.Font("Wingdings", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.txtSenha.Location = new System.Drawing.Point(260, 446);
             this.txtSenha.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -126,8 +123,7 @@
             // 
             // lblSenha
             // 
-            this.lblSenha.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSenha.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lblSenha.AutoSize = true;
             this.lblSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSenha.Location = new System.Drawing.Point(260, 421);
