@@ -27,6 +27,7 @@ namespace LivrariaEBiblioteca
 
         Livros livros = new Livros();
 
+
         public frmEmprestimo()
         {
             InitializeComponent();
@@ -37,11 +38,12 @@ namespace LivrariaEBiblioteca
             InitializeComponent();
             DesabilitarCampos();
 
+
             this.nome = nome;
             this.codUsu = codUsu;
             this.cargo = cargo;
 
-            string codLoc = txtLocatario.Text; 
+            string codLoc = txtLocatario.Text;
 
         }
 
@@ -113,12 +115,7 @@ namespace LivrariaEBiblioteca
                 txtIsbn.Focus();
                 result = false;
             }
-            if (!mskDataDevolucao.MaskCompleted)
-            {
-                MessageBox.Show("Favor, informe a data de devolução", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                mskDataDevolucao.Focus();
-                result = false;
-            }
+
 
             return result;
         }
@@ -127,9 +124,17 @@ namespace LivrariaEBiblioteca
         {
             if (checarComponentes())
             {
-                ltbCarrinho.Items.Add(txtTitulo.Text +" Devolução:" + mskDataDevolucao.Text);
-                separarLivros();
-                txtNEmprestimo.Focus();
+
+                if (!mskDataDevolucao.Equals("  /  /    ") && mskDataDevolucao.MaskFull)
+                {
+                    ltbCarrinho.Items.Add(txtTitulo.Text + " Devolução:" + mskDataDevolucao.Text);
+                    separarLivros();
+                }
+                else
+                {
+                    ltbCarrinho.Items.Add(txtTitulo.Text);
+                    separarLivros();
+                }
             }
 
         }
@@ -161,13 +166,14 @@ namespace LivrariaEBiblioteca
             MySqlCommand comm = new MySqlCommand();
             int resp = 0;
 
-            comm.CommandText = "insert into tbEmprestimo( dataEmp, dataDev, nomeVendedor, nomeLivro, prontuario, codLivro) values (@dataEmp, @dataDev, @nomeVendedor, @nomeLivro, @prontuario, @codLivro );";
+            comm.CommandText = "insert into tbEmprestimo( codEmp, dataEmp, dataDev, nomeVendedor, nomeLivro, prontuario, codLivro) values (@codEmp, @dataEmp, @dataDev, @nomeVendedor, @nomeLivro, @prontuario, @codLivro );";
             comm.CommandType = CommandType.Text;
 
             for (int i = 0; i < Livros.ListaLivros.Count; i++)
             {
                 comm.Parameters.Clear();
 
+                comm.Parameters.Add("@codEmp", MySqlDbType.Int32).Value = Convert.ToInt32(txtNEmprestimo.Text);
                 comm.Parameters.Add("@dataEmp", MySqlDbType.DateTime).Value = DateTime.Now;
 
                 if (!mskDataDevolucao.Equals("  /  /    ") && mskDataDevolucao.MaskFull)
@@ -178,12 +184,9 @@ namespace LivrariaEBiblioteca
                     // Cria e configura o comando
                     comm.Parameters.Add("@dataDev", MySqlDbType.DateTime).Value = dataConvertida;
                 }
-                else
-                {
-                    MessageBox.Show("Favor, preencha a 'Data de Devolução'", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    mskDataDevolucao.Focus();
-                }
 
+
+                
                 comm.Parameters.Add("@nomeVendedor", MySqlDbType.VarChar, 100).Value = this.nome;
                 comm.Parameters.Add("@nomeLivro", MySqlDbType.VarChar, 100).Value = livros.nomeRetorno(i);
                 comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
@@ -388,4 +391,4 @@ namespace LivrariaEBiblioteca
 
     }
 }
-}
+
