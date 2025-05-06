@@ -127,14 +127,15 @@ namespace LivrariaEBiblioteca
 
                 if (!mskDataDevolucao.Equals("  /  /    ") && mskDataDevolucao.MaskFull)
                 {
-                    ltbCarrinho.Items.Add(txtTitulo.Text + " Devolução:" + mskDataDevolucao.Text);
+                    ltbCarrinho.Items.Add(txtTitulo.Text = " Devolução:" + mskDataDevolucao.Text);
                     separarLivros();
                 }
                 else
                 {
                     ltbCarrinho.Items.Add(txtTitulo.Text);
                     separarLivros();
-                }
+                },
+
             }
 
         }
@@ -386,6 +387,13 @@ namespace LivrariaEBiblioteca
             }
         }
 
+        private void mskDataDevolucao_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            DateTime dataEmprestimo = mskDataDevolucao.Value;
+            DateTime dataDevolucao = dataEmprestimo.AddDays(20);
+
+            mskDataDevolucao.Value = dataDevolucao;
+        }
     }
 }
 

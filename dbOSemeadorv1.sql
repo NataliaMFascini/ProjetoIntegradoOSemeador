@@ -160,7 +160,7 @@ INSERT INTO `tblivro` (`codLivro`, `empVen`, `isbn`, `nome`, `autor`, `quant`, `
 (43, 'Ven', '9788583531357', 'Chico bento Além Da Vida -Turma De Monica ', 'Mauricio De Souza ', 4, 45.30, 'Boa Nova', 2019, '', '2025-05-01 14:33:38'),
 (44, 'Ven', '9788524918438', 'Um por todos por um: a vida em grupo dos mamíferos ', 'Cristina Santos', 5, 42.12, 'Cortez', 2013, '', '2025-05-01 14:33:56'),
 (45, 'Ven', '9788573412291', 'Mãos Unidas', 'Francisco Cândido Xavier', 2, 38.00, 'IDE', 1972, '', '2025-05-01 14:34:17'),
-(46, 'Ven', '9788573288186', 'Libertação', 'Francisco Cândido Xavier', 6, 48.80, 'FEB', 2019, '', '2025-05-01 14:34:31');
+(46, 'Emp', '9788573288186', 'Libertação', 'Francisco Cândido Xavier', 6, 48.80, 'FEB', 2019, '', '2025-05-01 14:34:31');
 
 INSERT INTO `tbestoque` (`codEsto`, `entradaVen`, `saidaVen`, `entradaEmp`, `saidaEmp`, `empVen`, `nomeLivro`, `codLivro`, `disponibilidade`) VALUES
 (1, 5, 0, 0, 0, 'Ven', 'Outro lar- uma viagem muitos ensinamentos-Turma da Monica', 1, NULL),
@@ -208,7 +208,8 @@ INSERT INTO `tbestoque` (`codEsto`, `entradaVen`, `saidaVen`, `entradaEmp`, `sai
 (43, 4, 0, 0, 0, 'Ven', 'Chico bento Além Da Vida -Turma De Monica ', 3, NULL),
 (44, 5, 0, 0, 0, 'Ven', 'Um por todos por um: a vida em grupo dos mamíferos ', 44, NULL),
 (45, 2, 0, 0, 0, 'Ven', 'Mãos Unidas', 45, NULL),
-(46, 6, 0, 0, 0, 'Ven', 'Libertação', 46, NULL);
+(46, 6, 0, 0, 0, 'Emp', 'Libertação', 46, NULL);
+
 --visualizar
 desc tbUsuario;
 desc tbLocatario;
