@@ -69,10 +69,9 @@ nomeLivro varchar(100),
 prontuario int,
 dataCadastro dateTime,
 codLivro int not null,
-codLoc int not null,
+codLoc int,
 primary key(codEmp),
-foreign key(codLivro) references tbLivro(codLivro),
-foreign key(codLoc) references tbLocatario(codLoc)
+foreign key(codLivro) references tbLivro(codLivro)
 );
 
 --tabela vendas
@@ -103,6 +102,7 @@ saidaEmp int default 0 check(saidaEmp >= 0),
 empVen char(3) not null check (empVen in ('Emp', 'Ven')),
 nomeLivro varchar(100),
 codLivro int not null,
+quantidade int not null,
 disponibilidade char(1) default null,
 primary key(codEsto),
 foreign key (codLivro) references tbLivro(codLivro)
@@ -209,7 +209,6 @@ INSERT INTO `tbestoque` (`codEsto`, `entradaVen`, `saidaVen`, `entradaEmp`, `sai
 (44, 5, 0, 0, 0, 'Ven', 'Um por todos por um: a vida em grupo dos mamíferos ', 44, NULL),
 (45, 2, 0, 0, 0, 'Ven', 'Mãos Unidas', 45, NULL),
 (46, 6, 0, 0, 0, 'Ven', 'Libertação', 46, NULL);
-
 --visualizar
 desc tbUsuario;
 desc tbLocatario;
