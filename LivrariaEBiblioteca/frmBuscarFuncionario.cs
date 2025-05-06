@@ -81,21 +81,29 @@ namespace LivrariaEBiblioteca
 
         public void pesquisarPorCodigo(int codigo)
         {
-            MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select * from tbUsuario where codUsu = @codUsu;";
-            comm.CommandType = CommandType.Text;
+            try
+            {
 
-            comm.Parameters.Clear();
-            comm.Parameters.Add("@codUsu", MySqlDbType.Int32).Value = codigo;
-            comm.Connection = Conexao.obterConexao();
+                MySqlCommand comm = new MySqlCommand();
+                comm.CommandText = "select * from tbUsuario where codUsu = @codUsu;";
+                comm.CommandType = CommandType.Text;
 
-            MySqlDataReader DR;
-            DR = comm.ExecuteReader();
-            DR.Read();
+                comm.Parameters.Clear();
+                comm.Parameters.Add("@codUsu", MySqlDbType.Int32).Value = codigo;
+                comm.Connection = Conexao.obterConexao();
 
-            ltbPesquisar.Items.Add(DR.GetString(1));
+                MySqlDataReader DR;
+                DR = comm.ExecuteReader();
+                DR.Read();
 
-            Conexao.fecharConexao();
+                ltbPesquisar.Items.Add(DR.GetString(1));
+
+                Conexao.fecharConexao();
+            }
+            catch(MySqlException)
+            {
+                MessageBox.Show("Código não encontrado/não existe!", "MENSAGEM DO SISTEMA", MessageBoxButtons.OK);
+            }
         }
 
         public void pesquisarPorNome(string descricao)
@@ -121,6 +129,7 @@ namespace LivrariaEBiblioteca
 
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
+            int tryParse;
             if (string.IsNullOrEmpty(txtDescricao.Text))
             {
                 MessageBox.Show("Favor prencher a descrição!");
@@ -130,10 +139,24 @@ namespace LivrariaEBiblioteca
             {
                 if (rdbID.Checked)
                 {
+                    if (!int.TryParse(txtDescricao.Text, out tryParse))
+                    {
+                        MessageBox.Show("Favor preencher o campo com números inteiros!");
+                        txtDescricao.Clear();
+                        txtDescricao.Focus();
+                        return;
+                    }
                     pesquisarPorCodigo(Convert.ToInt32(txtDescricao.Text));
                 }
                 if (rdbNome.Checked)
                 {
+                    if(int.TryParse(txtDescricao.Text, out tryParse))
+                    {
+                        MessageBox.Show("Favor preencher o campo com letras!");
+                        txtDescricao.Clear();
+                        txtDescricao.Focus();
+                        return;
+                    }
                     pesquisarPorNome(txtDescricao.Text);
                 }
             }

@@ -88,39 +88,68 @@ namespace LivrariaEBiblioteca
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
+            int tryParse;
+            decimal tryParseDecimal;
             if (txtIsbn.Text.Equals(""))
             {
+                if(!int.TryParse(txtIsbn.Text, out tryParse))
+                {
+                    erroCampo("ISBN", "numérico");
+                    return;
+                }
                 erroCadastro("ISBN");
                 txtIsbn.Focus();
-
             }
             else if (txtTitulo.Text.Equals(""))
             {
+                if(int.TryParse(txtTitulo.Text, out tryParse))
+                {
+                    erroCampo("Título", "alfabético");
+                    return;
+                }
                 erroCadastro("Titulo");
                 txtTitulo.Focus();
             }
             else if (txtAutor.Text.Equals(""))
             {
+                if (int.TryParse(txtAutor.Text, out tryParse))
+                {
+                    erroCampo("Autor", "alfabético");
+                    return;
+                }
                 erroCadastro("Autor");
                 txtAutor.Focus();
             }
             else if (txtEditora.Text.Equals(""))
             {
+                if(int.TryParse(txtEditora.Text, out tryParse))
+                {
+                    erroCampo("Editora", "alfabético");
+                    return;
+                }
                 erroCadastro("Editora");
                 txtEditora.Focus();
             }
             else if (txtValor.Text.Equals(""))
             {
+                if(!decimal.TryParse(txtValor.Text, out tryParseDecimal))
+                {
+                    erroCampo("Valor", "numérico");
+                    return;
+                }
                 erroCadastro("Valor");
                 txtValor.Focus();
             }
             else if (cbbFormaPagamento.Items.Equals(""))
             {
+                if(int.TryParse(cbbFormaPagamento.Text, out tryParse))
+                {
+                    erroCampo("Forma de Pagamento", "alfabético");
+                    return;
+                }
                 erroCadastro("Forma de Pagamento");
                 cbbFormaPagamento.Focus();
             }
-
-
             else
             {
                 ltbCarrinho.Items.Add(txtTitulo.Text + " - " + txtAutor.Text + " - R$ " + txtValor.Text);
@@ -148,6 +177,10 @@ namespace LivrariaEBiblioteca
         {
             MessageBox.Show(nomeCampo + " é um campo obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
         }
+        private void erroCampo(string nomeCampo, string tipoCampo)
+        {
+            MessageBox.Show(nomeCampo + " é um campo somente " + tipoCampo + ".", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+        }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -157,54 +190,61 @@ namespace LivrariaEBiblioteca
         }
         public void escanearLivro(string isbn)
         {
-            string tipo;
-
-            MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select codLivro, empVen, nome, autor, editora, valor, foto from tbLivro where isbn = @isbn;";
-            comm.CommandType = CommandType.Text;
-
-            comm.Parameters.Clear();
-            comm.Parameters.Add("@isbn", MySqlDbType.VarChar, 13).Value = isbn;
-
-            comm.Connection = Conexao.obterConexao();
-            MySqlDataReader DR;
-            DR = comm.ExecuteReader();
-            DR.Read();
-
-            bool resp = DR.HasRows;
-
-            if (resp)
+            try
             {
-                tipo = DR.GetString(1);
+                string tipo;
 
-                if (tipo.Equals("Emp"))
+                MySqlCommand comm = new MySqlCommand();
+                comm.CommandText = "select codLivro, empVen, nome, autor, editora, valor, foto from tbLivro where isbn = @isbn;";
+                comm.CommandType = CommandType.Text;
+
+                comm.Parameters.Clear();
+                comm.Parameters.Add("@isbn", MySqlDbType.VarChar, 13).Value = isbn;
+
+                comm.Connection = Conexao.obterConexao();
+                MySqlDataReader DR;
+                DR = comm.ExecuteReader();
+                DR.Read();
+
+                bool resp = DR.HasRows;
+
+                if (resp)
                 {
-                    MessageBox.Show("Esse livro não está disponível para venda.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
-                    txtIsbn.Clear();
-                    txtIsbn.Focus();
+                    tipo = DR.GetString(1);
+
+                    if (tipo.Equals("Emp"))
+                    {
+                        MessageBox.Show("Esse livro não está disponível para venda.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                        txtIsbn.Clear();
+                        txtIsbn.Focus();
+                    }
+                    else
+                    {
+                        txtIdLivro.Text = Convert.ToString(DR.GetInt32(0));
+                        txtTitulo.Text = DR.GetString(2);
+                        txtAutor.Text = DR.GetString(3);
+                        txtEditora.Text = DR.GetString(4);
+                        txtValor.Text = Convert.ToString(DR.GetDecimal(5));
+                        if (fotoPath != null)
+                        {
+                            fotoPath = DR.GetString(6);
+                            pctLivro.ImageLocation = fotoPath;
+                            pctLivro.Load();
+                        }
+                    }
                 }
                 else
                 {
-                    txtIdLivro.Text = Convert.ToString(DR.GetInt32(0));
-                    txtTitulo.Text = DR.GetString(2);
-                    txtAutor.Text = DR.GetString(3);
-                    txtEditora.Text = DR.GetString(4);
-                    txtValor.Text = Convert.ToString(DR.GetDecimal(5));
-                    if (fotoPath != null)
-                    {
-                        fotoPath = DR.GetString(6);
-                        pctLivro.ImageLocation = fotoPath;
-                        pctLivro.Load();
-                    }
+                    MessageBox.Show("ISBN inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                    txtIsbn.Focus();
                 }
-            }
-            else
-            {
-                MessageBox.Show("ISBN inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
-                txtIsbn.Focus();
-            }
 
-            Conexao.fecharConexao();
+                Conexao.fecharConexao();
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao escanear livro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+            }
 
         }
 
@@ -219,7 +259,6 @@ namespace LivrariaEBiblioteca
                     MessageBox.Show("Resta " + livros.checarEstoque(codLivro, "Ven") + " em estoque.", "Aviso do estoque", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 }
             }
-
         }
 
         private void btnFinalizar_Click(object sender, EventArgs e)
@@ -244,34 +283,42 @@ namespace LivrariaEBiblioteca
 
         public int registrarVenda()
         {
-            MySqlCommand comm = new MySqlCommand();
-            int resp = 0;
-
-            comm.CommandText = "insert into tbVendas(dataVenda, nomeLivro, valorTotal, pagamento, nomeVendedor, dataCadastro, codUsu, codLivro) values (@dataVenda, @nomeLivro, @valorTotal, @pagamento, @nomeVendedor, @dataCadastro, @codUsu, @codLivro);";
-            comm.CommandType = CommandType.Text;
-
-
-            for (int i = 0; i < Livros.ListaLivros.Count; i++)
+            try
             {
-                comm.Parameters.Clear();
+                MySqlCommand comm = new MySqlCommand();
+                int resp = 0;
 
-                comm.Parameters.Add("@dataVenda", MySqlDbType.DateTime).Value = DateTime.Now;
-                comm.Parameters.Add("@nomeLivro", MySqlDbType.VarChar, 100).Value = livros.nomeRetorno(i);
-                comm.Parameters.Add("@valorTotal", MySqlDbType.Decimal).Value = livros.valorRetorno(i);
-                comm.Parameters.Add("@pagamento", MySqlDbType.VarChar, 50).Value = cbbFormaPagamento.Text;
-                comm.Parameters.Add("@nomeVendedor", MySqlDbType.VarChar, 100).Value = this.nome;
-                comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
-                comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
-                comm.Parameters.Add("@codUsu", MySqlDbType.Int32).Value = codUsu;
+                comm.CommandText = "insert into tbVendas(dataVenda, nomeLivro, valorTotal, pagamento, nomeVendedor, dataCadastro, codUsu, codLivro) values (@dataVenda, @nomeLivro, @valorTotal, @pagamento, @nomeVendedor, @dataCadastro, @codUsu, @codLivro);";
+                comm.CommandType = CommandType.Text;
 
-                comm.Connection = Conexao.obterConexao();
 
-                resp = comm.ExecuteNonQuery();
+                for (int i = 0; i < Livros.ListaLivros.Count; i++)
+                {
+                    comm.Parameters.Clear();
 
-                Conexao.fecharConexao();
+                    comm.Parameters.Add("@dataVenda", MySqlDbType.DateTime).Value = DateTime.Now;
+                    comm.Parameters.Add("@nomeLivro", MySqlDbType.VarChar, 100).Value = livros.nomeRetorno(i);
+                    comm.Parameters.Add("@valorTotal", MySqlDbType.Decimal).Value = livros.valorRetorno(i);
+                    comm.Parameters.Add("@pagamento", MySqlDbType.VarChar, 50).Value = cbbFormaPagamento.Text;
+                    comm.Parameters.Add("@nomeVendedor", MySqlDbType.VarChar, 100).Value = this.nome;
+                    comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
+                    comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
+                    comm.Parameters.Add("@codUsu", MySqlDbType.Int32).Value = codUsu;
+
+                    comm.Connection = Conexao.obterConexao();
+
+                    resp = comm.ExecuteNonQuery();
+
+                    Conexao.fecharConexao();
+                }
+
+                return resp;
             }
-
-            return resp;
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao registrar a venda.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                return 0;
+            }
         }
 
         public int saidaEstoque()
@@ -319,27 +366,35 @@ namespace LivrariaEBiblioteca
 
         public int pegarQuantLivro(int index)
         {
-            MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select saidaVen from tbEstoque where codLivro = @codLivro;";
-            comm.CommandType = CommandType.Text;
-
-
-            if (Livros.ListaLivros[index].idLivro == Livros.ListaLivros[index + 1].idLivro)
+            try
             {
-                comm.Parameters.Clear();
-                comm.Parameters.Add("@codLivro", MySqlDbType.Int32, 20).Value = livros.codRetorno(index);
+                MySqlCommand comm = new MySqlCommand();
+                comm.CommandText = "select saidaVen from tbEstoque where codLivro = @codLivro;";
+                comm.CommandType = CommandType.Text;
+
+
+                if (Livros.ListaLivros[index].idLivro == Livros.ListaLivros[index + 1].idLivro)
+                {
+                    comm.Parameters.Clear();
+                    comm.Parameters.Add("@codLivro", MySqlDbType.Int32, 20).Value = livros.codRetorno(index);
+                }
+
+                comm.Connection = Conexao.obterConexao();
+
+                MySqlDataReader DR;
+                DR = comm.ExecuteReader();
+                DR.Read();
+
+                int quant = DR.GetInt32(0);
+
+                Conexao.fecharConexao();
+                return quant;
             }
-
-            comm.Connection = Conexao.obterConexao();
-
-            MySqlDataReader DR;
-            DR = comm.ExecuteReader();
-            DR.Read();
-
-            int quant = DR.GetInt32(0);
-
-            Conexao.fecharConexao();
-            return quant;
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao pegar a quantidade do livro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                return 0;
+            }
         }
 
         private void ltbCarrinho_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -364,32 +419,39 @@ namespace LivrariaEBiblioteca
 
         public void pesquisarPorNome(string nome)
         {
-            MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select codLivro, isbn, nome, autor, editora, valor, foto from tbLivro where nome = @nome;";
-            comm.CommandType = CommandType.Text;
-
-            comm.Parameters.Clear();
-            comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = nome;
-            comm.Connection = Conexao.obterConexao();
-
-            MySqlDataReader DR;
-            DR = comm.ExecuteReader();
-            DR.Read();
-
-            txtIdLivro.Text = Convert.ToString(DR.GetInt32(0));
-            txtIsbn.Text = DR.GetString(1);
-            txtTitulo.Text = DR.GetString(2);
-            txtAutor.Text = DR.GetString(3);
-            txtEditora.Text = DR.GetString(4);
-            txtValor.Text = Convert.ToString(DR.GetDecimal(5));
-            if (fotoPath != null)
+            try
             {
-                fotoPath = DR.GetString(6);
-                pctLivro.ImageLocation = fotoPath;
-                pctLivro.Load();
-            }
+                MySqlCommand comm = new MySqlCommand();
+                comm.CommandText = "select codLivro, isbn, nome, autor, editora, valor, foto from tbLivro where nome = @nome;";
+                comm.CommandType = CommandType.Text;
 
-            Conexao.fecharConexao();
+                comm.Parameters.Clear();
+                comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = nome;
+                comm.Connection = Conexao.obterConexao();
+
+                MySqlDataReader DR;
+                DR = comm.ExecuteReader();
+                DR.Read();
+
+                txtIdLivro.Text = Convert.ToString(DR.GetInt32(0));
+                txtIsbn.Text = DR.GetString(1);
+                txtTitulo.Text = DR.GetString(2);
+                txtAutor.Text = DR.GetString(3);
+                txtEditora.Text = DR.GetString(4);
+                txtValor.Text = Convert.ToString(DR.GetDecimal(5));
+                if (fotoPath != null)
+                {
+                    fotoPath = DR.GetString(6);
+                    pctLivro.ImageLocation = fotoPath;
+                    pctLivro.Load();
+                }
+
+                Conexao.fecharConexao();
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao buscar informações do livro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+            }
         }
     }
 }

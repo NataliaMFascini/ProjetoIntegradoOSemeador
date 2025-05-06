@@ -20,14 +20,11 @@ namespace LivrariaEBiblioteca
         {
             InitializeComponent();
             desabilitarCampos();
-
         }
         public frmBuscarLocatario(string nome, int codUsu, string cargo)
         {
-
             InitializeComponent();
             desabilitarCampos();
-
 
             this.nome = nome;
             this.codUsu = codUsu;
@@ -84,47 +81,61 @@ namespace LivrariaEBiblioteca
         }
         public void pesquisarPorProntuario(int prontuario)
         {
-            MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select nome from tbLocatario where pront = @pront;";
-            comm.CommandType = CommandType.Text;
-
-            comm.Parameters.Clear();
-            comm.Parameters.Add("@pront", MySqlDbType.Int32).Value = prontuario;
-
-            comm.Connection = Conexao.obterConexao();
-
-            MySqlDataReader DR;
-            DR = comm.ExecuteReader();
-         
-
-            while (DR.Read())
+            try
             {
-                ltbPesquisar.Items.Add(DR.GetString(0));
+                MySqlCommand comm = new MySqlCommand();
+                comm.CommandText = "select nome from tbLocatario where pront = @pront;";
+                comm.CommandType = CommandType.Text;
+
+                comm.Parameters.Clear();
+                comm.Parameters.Add("@pront", MySqlDbType.Int32).Value = prontuario;
+
+                comm.Connection = Conexao.obterConexao();
+
+                MySqlDataReader DR;
+                DR = comm.ExecuteReader();
+
+
+                while (DR.Read())
+                {
+                    ltbPesquisar.Items.Add(DR.GetString(0));
+                }
+
+                Conexao.fecharConexao();
             }
-            
-            Conexao.fecharConexao();
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao pesquisar por prontuario!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void pesquisarPorNome(string descricao)
         {
-            MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select nome from tbLocatario where nome like '%" + descricao + "%'";
-            comm.CommandType = CommandType.Text;
-
-            comm.Parameters.Clear();
-            comm.Parameters.Add("@nome", MySqlDbType.VarChar,100).Value = descricao;
-
-            comm.Connection = Conexao.obterConexao();
-
-            MySqlDataReader DR;
-            DR = comm.ExecuteReader();
-
-            while (DR.Read())
+            try
             {
-                ltbPesquisar.Items.Add(DR.GetString(0));
-            }
+                MySqlCommand comm = new MySqlCommand();
+                comm.CommandText = "select nome from tbLocatario where nome like '%" + descricao + "%'";
+                comm.CommandType = CommandType.Text;
 
-            Conexao.fecharConexao();
+                comm.Parameters.Clear();
+                comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = descricao;
+
+                comm.Connection = Conexao.obterConexao();
+
+                MySqlDataReader DR;
+                DR = comm.ExecuteReader();
+
+                while (DR.Read())
+                {
+                    ltbPesquisar.Items.Add(DR.GetString(0));
+                }
+
+                Conexao.fecharConexao();
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao pesquisar por nome!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnPesquisar_Click(object sender, EventArgs e)
