@@ -336,7 +336,6 @@
             this.mskDataDevolucao.Size = new System.Drawing.Size(155, 31);
             this.mskDataDevolucao.TabIndex = 6;
             this.mskDataDevolucao.ValidatingType = typeof(System.DateTime);
-            this.mskDataDevolucao.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.mskDataDevolucao_MaskInputRejected);
             // 
             // lblDisponibilidade
             // 
