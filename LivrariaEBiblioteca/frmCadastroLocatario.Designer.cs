@@ -152,6 +152,7 @@
             this.txtLocatario.Name = "txtLocatario";
             this.txtLocatario.Size = new System.Drawing.Size(486, 31);
             this.txtLocatario.TabIndex = 4;
+            this.txtLocatario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLocatario_KeyDown);
             // 
             // txtProntuario
             // 
@@ -171,6 +172,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(485, 31);
             this.txtEmail.TabIndex = 6;
+            this.txtEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmail_KeyDown);
             // 
             // btnVoltar
             // 
@@ -289,6 +291,7 @@
             this.mskCpf.Name = "mskCpf";
             this.mskCpf.Size = new System.Drawing.Size(187, 31);
             this.mskCpf.TabIndex = 5;
+            this.mskCpf.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mskCpf_KeyDown);
             // 
             // mskTelefone
             // 
@@ -298,6 +301,7 @@
             this.mskTelefone.Name = "mskTelefone";
             this.mskTelefone.Size = new System.Drawing.Size(187, 31);
             this.mskTelefone.TabIndex = 7;
+            this.mskTelefone.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mskTelefone_KeyDown);
             // 
             // ltbListadelivros
             // 

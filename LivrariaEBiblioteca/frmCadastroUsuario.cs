@@ -309,6 +309,7 @@ namespace LivrariaEBiblioteca
                 txtBairro.Text = endereco.Bairro;
                 txtCidade.Text = endereco.Localidade;
                 cbbEstado.Text = endereco.UF;
+                txtNumero.Focus();
             }
             catch (Exception)
             {
@@ -323,7 +324,7 @@ namespace LivrariaEBiblioteca
             if (e.KeyCode == Keys.Enter)
             {
                 buscaCEP(mskCep.Text);
-                txtNumero.Focus();
+                
             }
         }
 
@@ -479,6 +480,94 @@ namespace LivrariaEBiblioteca
             }
 
             Conexao.fecharConexao();
+        }
+
+        private void txtNomeCompleto_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                mskCpf.Focus();
+            }
+        }
+
+        private void mskCpf_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                mskTelefone.Focus();
+            }
+        }
+
+        private void mskTelefone_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtEmail.Focus();
+            }
+        }
+
+        private void txtEmail_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cbbCargo.Focus();
+            }
+        }
+
+        private void cbbCargo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtLogin.Focus();
+            }
+        }
+
+        private void txtLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtSenha.Focus();
+            }
+        }
+
+        private void txtSenha_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtRepetirSenha.Focus();
+            }
+        }
+
+        private void txtRepetirSenha_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cbbDiaDeTrabalho.Focus();
+            }
+        }
+
+        private void cbbDiaDeTrabalho_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                mskCep.Focus();
+            }
+        }
+
+        private void txtNumero_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                txtComplemento.Focus();
+            }
+        }
+
+        private void txtComplemento_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnAdicionarFoto.Focus();
+            }
         }
     }
 }

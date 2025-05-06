@@ -592,5 +592,20 @@ namespace LivrariaEBiblioteca
             }
         }
 
+        private void txtIsbn_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtTitulo.Focus();
+            }
+        }
+
+        private void txtTitulo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtAutor.Focus();
+            }
+        }
     }
 }

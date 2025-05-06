@@ -145,6 +145,7 @@ namespace LivrariaEBiblioteca
             mskCpf.Enabled = false;
             mskTelefone.Enabled = false;
             ltbListadelivros.Enabled = false;
+            btnGerarPront.Enabled = false;
         }
 
         private void erroCadastro(string nomeCampo)
@@ -205,6 +206,11 @@ namespace LivrariaEBiblioteca
                 erroCadastro("Telefone");
                 mskTelefone.Focus();
             }
+            else if (txtProntuario.Text.Equals(""))
+            {
+                erroCadastro("Prontuario");
+                btnGerarPront.Focus();
+            }
             else
             {
 
@@ -212,7 +218,10 @@ namespace LivrariaEBiblioteca
                 {
                     MessageBox.Show("Cadastro realizado com sucesso.");
                     limparCampos();
+                    desabilitarCampos();
                     txtLocatario.Focus();
+                    btnNovo.Enabled = true;
+                    
                 }
 
                 else
@@ -288,6 +297,7 @@ namespace LivrariaEBiblioteca
             limparCampos();
             desabilitarCampos();
             btnNovo.Enabled = true;
+            
 
         }
 
@@ -402,5 +412,39 @@ namespace LivrariaEBiblioteca
             abrir.Show();
             this.Hide();
         }
+
+        private void txtLocatario_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                mskCpf.Focus();
+            }
+        }
+
+        private void mskCpf_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                txtEmail.Focus();
+            }
+        }
+
+        private void txtEmail_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                mskTelefone.Focus();
+            }
+        }
+
+        private void mskTelefone_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnCadastrar.Focus();
+            }
+        }
+
+        
     }
 }

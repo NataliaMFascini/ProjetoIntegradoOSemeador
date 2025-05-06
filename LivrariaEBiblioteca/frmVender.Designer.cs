@@ -124,6 +124,7 @@
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(122, 31);
             this.txtValor.TabIndex = 6;
+            this.txtValor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtValor_KeyDown);
             // 
             // lblFormaPagamento
             // 
@@ -329,6 +330,7 @@
             this.txtAutor.Name = "txtAutor";
             this.txtAutor.Size = new System.Drawing.Size(230, 31);
             this.txtAutor.TabIndex = 4;
+            this.txtAutor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAutor_KeyDown);
             // 
             // txtTitulo
             // 
@@ -339,6 +341,7 @@
             this.txtTitulo.Name = "txtTitulo";
             this.txtTitulo.Size = new System.Drawing.Size(375, 31);
             this.txtTitulo.TabIndex = 3;
+            this.txtTitulo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTitulo_KeyDown);
             // 
             // txtIsbn
             // 
@@ -347,6 +350,7 @@
             this.txtIsbn.Name = "txtIsbn";
             this.txtIsbn.Size = new System.Drawing.Size(168, 31);
             this.txtIsbn.TabIndex = 2;
+            this.txtIsbn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtIsbn_KeyDown_1);
             // 
             // lblAutor
             // 
@@ -365,6 +369,7 @@
             this.txtEditora.Name = "txtEditora";
             this.txtEditora.Size = new System.Drawing.Size(139, 31);
             this.txtEditora.TabIndex = 5;
+            this.txtEditora.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEditora_KeyDown);
             // 
             // txtIdLivro
             // 
