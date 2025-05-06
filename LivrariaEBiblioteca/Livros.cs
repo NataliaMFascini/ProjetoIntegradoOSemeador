@@ -68,7 +68,20 @@ namespace LivrariaEBiblioteca
             }
             if(empVen == "Emp")
             {
+                comm.CommandText = "select entradaEmp, saidaEmp, codLivro  from tbEstoque where codLivro like '%" + idLivro + "%';";
+                comm.CommandType = CommandType.Text;
 
+                comm.Parameters.Clear();
+
+                comm.Connection = Conexao.obterConexao();
+
+                MySqlDataReader DR;
+                DR = comm.ExecuteReader();
+                DR.Read();
+
+                estoque = DR.GetInt32(0) - DR.GetInt32(1);
+
+                Conexao.fecharConexao();
             }
 
             return estoque;
