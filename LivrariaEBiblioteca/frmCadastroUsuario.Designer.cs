@@ -413,6 +413,7 @@
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(67, 31);
             this.txtNumero.TabIndex = 13;
+            this.txtNumero.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNumero_KeyDown);
             // 
             // txtComplemento
             // 
@@ -424,6 +425,7 @@
             this.txtComplemento.Name = "txtComplemento";
             this.txtComplemento.Size = new System.Drawing.Size(378, 31);
             this.txtComplemento.TabIndex = 15;
+            this.txtComplemento.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtComplemento_KeyDown);
             // 
             // gpbDadosusuario
             // 
@@ -477,6 +479,7 @@
             this.txtRepetirSenha.Size = new System.Drawing.Size(146, 31);
             this.txtRepetirSenha.TabIndex = 8;
             this.txtRepetirSenha.TextChanged += new System.EventHandler(this.txtRepetirSenha_TextChanged);
+            this.txtRepetirSenha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRepetirSenha_KeyDown);
             // 
             // lblRepetirSenha
             // 
@@ -501,6 +504,7 @@
             this.cbbCargo.Name = "cbbCargo";
             this.cbbCargo.Size = new System.Drawing.Size(178, 33);
             this.cbbCargo.TabIndex = 5;
+            this.cbbCargo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbbCargo_KeyDown);
             // 
             // lblSenha
             // 
@@ -535,6 +539,7 @@
             this.txtSenha.PasswordChar = 'l';
             this.txtSenha.Size = new System.Drawing.Size(143, 31);
             this.txtSenha.TabIndex = 7;
+            this.txtSenha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSenha_KeyDown);
             // 
             // txtLogin
             // 
@@ -544,6 +549,7 @@
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(255, 31);
             this.txtLogin.TabIndex = 6;
+            this.txtLogin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLogin_KeyDown);
             // 
             // cbbDiaDeTrabalho
             // 
@@ -562,6 +568,7 @@
             this.cbbDiaDeTrabalho.Name = "cbbDiaDeTrabalho";
             this.cbbDiaDeTrabalho.Size = new System.Drawing.Size(178, 33);
             this.cbbDiaDeTrabalho.TabIndex = 9;
+            this.cbbDiaDeTrabalho.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbbDiaDeTrabalho_KeyDown);
             // 
             // mskTelefone
             // 
@@ -571,6 +578,7 @@
             this.mskTelefone.Name = "mskTelefone";
             this.mskTelefone.Size = new System.Drawing.Size(160, 31);
             this.mskTelefone.TabIndex = 3;
+            this.mskTelefone.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mskTelefone_KeyDown);
             // 
             // mskCpf
             // 
@@ -581,6 +589,7 @@
             this.mskCpf.Name = "mskCpf";
             this.mskCpf.Size = new System.Drawing.Size(178, 31);
             this.mskCpf.TabIndex = 2;
+            this.mskCpf.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mskCpf_KeyDown);
             // 
             // lblEmail
             // 
@@ -654,6 +663,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(414, 31);
             this.txtEmail.TabIndex = 4;
+            this.txtEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmail_KeyDown);
             // 
             // txtNomeCompleto
             // 
@@ -665,6 +675,7 @@
             this.txtNomeCompleto.Name = "txtNomeCompleto";
             this.txtNomeCompleto.Size = new System.Drawing.Size(580, 31);
             this.txtNomeCompleto.TabIndex = 1;
+            this.txtNomeCompleto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNomeCompleto_KeyDown);
             // 
             // tableLayoutPanel2
             // 

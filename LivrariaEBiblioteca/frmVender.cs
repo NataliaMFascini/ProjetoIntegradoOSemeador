@@ -453,6 +453,47 @@ namespace LivrariaEBiblioteca
                 MessageBox.Show("Erro ao buscar informações do livro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
             }
         }
+
+        private void txtIsbn_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtTitulo.Focus();
+            }
+        }
+
+        private void txtTitulo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtAutor.Focus();
+            }
+            
+        }
+
+        private void txtAutor_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtEditora.Focus();
+            }
+        }
+
+        private void txtEditora_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtValor.Focus();
+            }
+        }
+
+        private void txtValor_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cbbFormaPagamento.Focus();
+            }
+        }
     }
 }
 
