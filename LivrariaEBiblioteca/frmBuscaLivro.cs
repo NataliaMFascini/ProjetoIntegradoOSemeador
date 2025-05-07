@@ -66,9 +66,9 @@ namespace LivrariaEBiblioteca
         public void limparComponentes()
         {
             ltbPesquisar.Items.Clear();
-            txtIdLivro.Text = string.Empty;
-            txtIsbn.Text = string.Empty;
-            txtTitulo.Text = string.Empty;
+            txtIdLivro.Clear();
+            txtIsbn.Clear();
+            txtTitulo.Clear();
             rdbIdLivro.Checked = false;
             rdbTitulo.Checked = false;
             rdbIsbn.Checked = false;
@@ -159,6 +159,7 @@ namespace LivrariaEBiblioteca
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             int tryParse;
+            string descricao = txtTitulo.Text;
             try
             {
                 MySqlCommand comm = new MySqlCommand();
@@ -183,10 +184,10 @@ namespace LivrariaEBiblioteca
                         MessageBox.Show("Use apenas letras.", "MENSAGEM DO SISTEMA", MessageBoxButtons.OK);
                         return;
                     }
-                    comm.CommandText = "SELECT codLivro, nome, isbn, foto, empVen FROM tbLivro WHERE nome LIKE @nome;";
+                    comm.CommandText = "SELECT  codLivro, nome, isbn, foto, empVen FROM tbLivro WHERE nome LIKE '%" + descricao + "%';";
                     comm.CommandType = CommandType.Text;
                     comm.Parameters.Clear();
-                    comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtTitulo.Text;
+                    comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = descricao;
                 }
                 if (rdbIsbn.Checked)
                 {
@@ -212,22 +213,28 @@ namespace LivrariaEBiblioteca
                 {
                     while (DR.Read())
                     {
-                        // Preenche os campos
-                        txtIdLivro.Text = DR.GetInt32(0).ToString();
-                        txtTitulo.Text = DR.GetString(1);
-                        txtIsbn.Text = DR.GetString(2);
-                        tipo = DR.GetString(4);
+                       
+                        
+                            // Preenche os campos
+                            txtIdLivro.Text = DR.GetInt32(0).ToString();
+                            txtTitulo.Text = DR.GetString(1);
+                            txtIsbn.Text = DR.GetString(2);
+                            tipo = DR.GetString(4);
 
-                        // Preenche a imagem
-                        if (fotoPath != null)
-                        {
-                            fotoPath = DR.GetString(3);
-                            pctLivro.ImageLocation = fotoPath;
-                            pctLivro.Load();
-                        }
+                            // Preenche a imagem
+                            if (fotoPath != null)
+                            {
+                                fotoPath = DR.GetString(3);
+                                pctLivro.ImageLocation = fotoPath;
+                                pctLivro.Load();
+                            }
 
-                        // Adiciona no ListBox
-                        ltbPesquisar.Items.Add(DR.GetString(1));
+                            // Adiciona no ListBox
+                            ltbPesquisar.Items.Add(DR.GetString(1));
+                        
+
+                      
+                        
                     }
                 }
                 else
@@ -249,6 +256,7 @@ namespace LivrariaEBiblioteca
             txtIsbn.Focus();
             txtTitulo.Enabled = false;
             txtIdLivro.Enabled = false;
+
         }
 
         private void btnGerenciador_Click(object sender, EventArgs e)
