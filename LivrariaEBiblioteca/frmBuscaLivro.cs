@@ -195,7 +195,7 @@ namespace LivrariaEBiblioteca
                         MessageBox.Show("Use apenas números.", "MENSAGEM DO SISTEMA", MessageBoxButtons.OK);
                         return;
                     }
-                    comm.CommandText = "SELECT codLivro, nome, isbn, foto, empVen FROM tbLivro WHERE codLivro = @isbn;";
+                    comm.CommandText = "SELECT codLivro, nome, isbn, foto, empVen FROM tbLivro WHERE isbn = @isbn;";
                     comm.CommandType = CommandType.Text;
                     comm.Parameters.Clear();
                     comm.Parameters.Add("@isbn", MySqlDbType.VarChar, 20).Value = txtIsbn.Text;
@@ -241,7 +241,6 @@ namespace LivrariaEBiblioteca
             {
                 MessageBox.Show("Erro ao buscar livro.", "MENSAGEM DO SISTEMA", MessageBoxButtons.OK);
             }
-
         }
 
         private void rdbIsbn_CheckedChanged_1(object sender, EventArgs e)
