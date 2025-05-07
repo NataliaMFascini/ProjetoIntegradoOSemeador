@@ -220,7 +220,7 @@ namespace LivrariaEBiblioteca
                 erroCadastro("Locatario");
                 txtLocatario.Focus();
             }
-            else if (mskCpf.Text.Equals("    .   .   -"))
+            else if (mskCpf.Text.Equals("    .   .   -") || !mskCpf.MaskFull)
             {
                 if (!int.TryParse(mskCpf.Text, out tryParse))
                 {
@@ -240,7 +240,7 @@ namespace LivrariaEBiblioteca
                 erroCadastro("Email");
                 txtEmail.Focus();
             }
-            else if (mskTelefone.Text.Equals("(  )     -"))
+            else if (mskTelefone.Text.Equals("(  )     -") || !mskTelefone.MaskFull)
             {
                 if (!int.TryParse(mskTelefone.Text, out tryParse))
                 {
@@ -440,7 +440,7 @@ namespace LivrariaEBiblioteca
                 erroCadastro("Locatario");
                 txtLocatario.Focus();
             }
-            else if (mskCpf.Text.Equals("    .   .   -"))
+            else if (mskCpf.Text.Equals("    .   .   -") || !mskCpf.MaskFull)
             {
                 if (!int.TryParse(mskCpf.Text, out tryParse))
                 {
@@ -460,7 +460,7 @@ namespace LivrariaEBiblioteca
                 erroCadastro("Email");
                 txtEmail.Focus();
             }
-            else if (mskTelefone.Text.Equals("(  )     -"))
+            else if (mskTelefone.Text.Equals("(  )     -") || !mskTelefone.MaskFull)
             {
                 if (!int.TryParse(mskTelefone.Text, out tryParse))
                 {
@@ -489,7 +489,7 @@ namespace LivrariaEBiblioteca
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            frmBuscarLocatario abrir = new frmBuscarLocatario(nome, codUsu, cargo);
+            frmBuscarLocatario abrir = new frmBuscarLocatario(this.nome, this.codUsu, this.cargo);
             abrir.Show();
             this.Hide();
         }

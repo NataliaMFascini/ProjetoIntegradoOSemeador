@@ -262,6 +262,11 @@ namespace LivrariaEBiblioteca
 
         private void btnGerenciador_Click(object sender, EventArgs e)
         {
+            if(this.cargo == "Voluntario")
+            {
+                MessageBox.Show("Você não tem permissão para acessar essa funcionalidade.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
             if(ltbPesquisar.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Selecione um livro para gerenciar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

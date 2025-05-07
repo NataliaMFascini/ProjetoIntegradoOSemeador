@@ -59,7 +59,7 @@ namespace LivrariaEBiblioteca
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            frmCadastroLocatario abrir = new frmCadastroLocatario();
+            frmCadastroLocatario abrir = new frmCadastroLocatario(this.nome, this.codUsu, this.cargo);
             abrir.Show();
             this.Hide();
         }
