@@ -321,6 +321,7 @@ namespace LivrariaEBiblioteca
                 if (cadastrarUsuario() == 1)
                 {
                     MessageBox.Show("Cadastro realizado com sucesso.");
+                    limparCampos();
                 }
                 else
                 {
@@ -353,9 +354,9 @@ namespace LivrariaEBiblioteca
                 comm.Parameters.Add("@bairro", MySqlDbType.VarChar, 50).Value = txtBairro.Text;
                 comm.Parameters.Add("@cidade", MySqlDbType.VarChar, 50).Value = txtCidade.Text;
                 comm.Parameters.Add("@estado", MySqlDbType.VarChar, 2).Value = cbbEstado;
-                if (ptbUsuario.Image.Equals(null))
+                if (ptbUsuario.Image == null)
                 {
-                    fotoPath = null;
+                    fotoPath = "";
                 }
                 comm.Parameters.Add("@foto", MySqlDbType.VarChar, 200).Value = fotoPath;
                 comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
@@ -488,11 +489,11 @@ namespace LivrariaEBiblioteca
                 comm.Parameters.Add("@bairro", MySqlDbType.VarChar, 50).Value = txtBairro.Text;
                 comm.Parameters.Add("@cidade", MySqlDbType.VarChar, 50).Value = txtCidade.Text;
                 comm.Parameters.Add("@estado", MySqlDbType.VarChar, 2).Value = cbbEstado.Text;
-                if (ptbUsuario.Image.Equals(null))
+                if (ptbUsuario.Image == null)
                 {
-                    fotoPath = null;
+                    fotoPath = "";
                 }
-                comm.Parameters.Add("@foto", MySqlDbType.VarBinary, 255).Value = fotoPath;
+                comm.Parameters.Add("@foto", MySqlDbType.VarChar, 200).Value = fotoPath;
                 comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
 
                 comm.Connection = Conexao.obterConexao();

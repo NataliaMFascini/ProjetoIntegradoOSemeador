@@ -223,8 +223,7 @@ namespace LivrariaEBiblioteca
                 {
                     while (DR.Read())
                     {
-                       
-                        
+                 
                             // Preenche os campos
                             txtIdLivro.Text = DR.GetInt32(0).ToString();
                             txtTitulo.Text = DR.GetString(1);
@@ -241,9 +240,7 @@ namespace LivrariaEBiblioteca
 
                             // Adiciona no ListBox
                             ltbPesquisar.Items.Add(DR.GetString(1));
-                        
-
-                      
+                     
                         
                     }
                 }
