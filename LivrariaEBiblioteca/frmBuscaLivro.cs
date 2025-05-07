@@ -77,7 +77,12 @@ namespace LivrariaEBiblioteca
 
         private void btnVender_Click(object sender, EventArgs e)
         {
-            if(tipo == "Emp")
+            if(ltbPesquisar.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Selecione um livro para vender.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            if (tipo == "Emp")
             {
                 MessageBox.Show("Esse livro está reservado para empréstimo, não pode ser vendido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -92,6 +97,11 @@ namespace LivrariaEBiblioteca
 
         private void btnEmprestar_Click(object sender, EventArgs e)
         {
+            if(ltbPesquisar.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Selecione um livro para emprestar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
             if (tipo == "Ven")
             {
                 MessageBox.Show("Esse livro está reservado para venda, não pode ser emprestado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -252,6 +262,11 @@ namespace LivrariaEBiblioteca
 
         private void btnGerenciador_Click(object sender, EventArgs e)
         {
+            if(ltbPesquisar.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Selecione um livro para gerenciar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
             string descricao = txtTitulo.Text;
             frmCadastroLivrosAlugar abrir = new frmCadastroLivrosAlugar(descricao, this.nome, this.codUsu, this.cargo);
             abrir.Show();

@@ -32,8 +32,8 @@ namespace LivrariaEBiblioteca
             this.nome = nome;
             this.codUsu = codUsu;
             this.cargo = cargo;
-            data1 = DateTime.MinValue.ToString("dd/MM/yyyy");
-            data2 = DateTime.Today.ToString("dd/MM/yyyy");
+            data1 = DateTime.MinValue.ToString("dd/MM/yyyy" + "00:00:00");
+            data2 = DateTime.Now.ToString("dd/MM/yyyy" + "23:59:59");
 
             mskDataEntre.Text = data1;
             mskDataAte.Text = data2;
@@ -88,6 +88,12 @@ namespace LivrariaEBiblioteca
                 dgvRelatorio.Rows[i].DataGridView.Columns.Clear();
                 mskDataEntre.Clear();
                 mskDataAte.Clear();
+
+                data1 = DateTime.MinValue.ToString("dd/MM/yyyy" + "00:00:00");
+                data2 = DateTime.Now.ToString("dd/MM/yyyy" + "23:59:59");
+
+                mskDataEntre.Text = data1;
+                mskDataAte.Text = data2;
             }
         }
 
