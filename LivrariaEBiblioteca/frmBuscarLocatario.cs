@@ -140,6 +140,7 @@ namespace LivrariaEBiblioteca
 
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
+            int tryParse;
             if (string.IsNullOrEmpty(txtDescricao.Text))
             {
                 MessageBox.Show("Favor prencher a descrição!");
@@ -151,10 +152,20 @@ namespace LivrariaEBiblioteca
                 {
                     if (rdbPront.Checked)
                     {
+                        if(!int.TryParse(txtDescricao.Text, out tryParse))
+                        {
+                            MessageBox.Show("Usar apenas números.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
                         pesquisarPorProntuario(Convert.ToInt32(txtDescricao.Text));
                     }
                     if (rdbNome.Checked)
                     {
+                        if(int.TryParse(txtDescricao.Text, out tryParse))
+                        {
+                            MessageBox.Show("Utilizar apenas letras.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
                         pesquisarPorNome(txtDescricao.Text);
                     }
                 }catch (Exception)

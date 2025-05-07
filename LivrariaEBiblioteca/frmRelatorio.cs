@@ -33,7 +33,7 @@ namespace LivrariaEBiblioteca
             this.codUsu = codUsu;
             this.cargo = cargo;
             data1 = DateTime.MinValue.ToString("dd/MM/yyyy");
-            data2 = DateTime.Now.ToString("dd/MM/yyyy");
+            data2 = DateTime.Today.ToString("dd/MM/yyyy");
 
             mskDataEntre.Text = data1;
             mskDataAte.Text = data2;

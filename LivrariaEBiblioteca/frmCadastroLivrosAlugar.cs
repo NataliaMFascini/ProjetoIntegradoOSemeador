@@ -332,13 +332,13 @@ namespace LivrariaEBiblioteca
                 MySqlCommand comm = new MySqlCommand();
                 if (rdbEmprestimo.Checked)
                 {
-                    comm.CommandText = "select entradaVen from tbLivro where codLivro = @codLivro;";
+                    comm.CommandText = "select entradaEmp from tbEstoque where codLivro = @codLivro;";
                     comm.CommandType = CommandType.Text;
                 }
 
                 if (rdbVenda.Checked)
                 {
-                    comm.CommandText = "select entradaVen from tbLivro where codLivro = @codLivro;";
+                    comm.CommandText = "select entradaVen from tbEstoque where codLivro = @codLivro;";
                     comm.CommandType = CommandType.Text;
                 }
 
@@ -483,7 +483,7 @@ namespace LivrariaEBiblioteca
             try
             {
                 MySqlCommand comm = new MySqlCommand();
-                comm.CommandText = "update tbLivro set empVen = @empVen, isbn = @isbn, nome = @nome, autor = @autor, quant = @quant, valor = @valor, editora = @editora, anoPublicacao = @anoPublicacao, foto = @foto, dataCadastro = @dataCadastro where codLivro = @codLivro;";
+                comm.CommandText = "update tbLivro set codLivro = @codLivro, empVen = @empVen, isbn = @isbn, nome = @nome, autor = @autor, quant = @quant, valor = @valor, editora = @editora, anoPublicacao = @anoPublicacao, foto = @foto, dataCadastro = @dataCadastro where codLivro = @codLivro;";
                 comm.CommandType = CommandType.Text;
 
                 comm.Parameters.Clear();

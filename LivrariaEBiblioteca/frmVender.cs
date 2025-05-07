@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Office.Interop.Excel;
 using MySql.Data.MySqlClient;
 
 namespace LivrariaEBiblioteca
@@ -184,9 +185,17 @@ namespace LivrariaEBiblioteca
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            frmBuscarLivro abrir = new frmBuscarLivro(this.nome, this.codUsu, this.cargo, "Venda");
-            abrir.Show();
-            this.Hide();
+            if(ltbCarrinho.Items.Count == 0)
+            {
+                DialogResult resultado = MessageBox.Show("Essa ação irá limpar o carrinho. Deseja continuar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                if(resultado == DialogResult.Yes)
+                {
+                    frmBuscarLivro abrir = new frmBuscarLivro(this.nome, this.codUsu, this.cargo, "Venda");
+                    abrir.Show();
+                    this.Hide();
+                }
+            }
+            
         }
         public void escanearLivro(string isbn)
         {
@@ -372,11 +381,13 @@ namespace LivrariaEBiblioteca
                 comm.CommandText = "select saidaVen from tbEstoque where codLivro = @codLivro;";
                 comm.CommandType = CommandType.Text;
 
-
-                if (Livros.ListaLivros[index].idLivro == Livros.ListaLivros[index + 1].idLivro)
+                for (int i = 0; i < Livros.ListaLivros.Count - 1; i++)
                 {
-                    comm.Parameters.Clear();
-                    comm.Parameters.Add("@codLivro", MySqlDbType.Int32, 20).Value = livros.codRetorno(index);
+                    if (Livros.ListaLivros[index].idLivro == Livros.ListaLivros[index + 1].idLivro)
+                    {
+                        comm.Parameters.Clear();
+                        comm.Parameters.Add("@codLivro", MySqlDbType.Int32, 20).Value = livros.codRetorno(i);
+                    }
                 }
 
                 comm.Connection = Conexao.obterConexao();
