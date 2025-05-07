@@ -102,7 +102,6 @@ saidaEmp int default 0 check(saidaEmp >= 0),
 empVen char(3) not null check (empVen in ('Emp', 'Ven')),
 nomeLivro varchar(100),
 codLivro int not null,
-quantidade int not null,
 disponibilidade char(1) default null,
 primary key(codEsto),
 foreign key (codLivro) references tbLivro(codLivro)
@@ -153,14 +152,14 @@ INSERT INTO `tblivro` (`codLivro`, `empVen`, `isbn`, `nome`, `autor`, `quant`, `
 (36, 'Ven', '9788573286977', 'Há doisil anos', 'Francisco Cândido Xavier', 5, 50.38, 'FEB', 2019, '', '2025-05-01 14:28:37'),
 (37, 'Ven', '9788573286960', 'Paulo e Estevão', 'Francisco Cândido Xavier', 5, 55.00, 'FEB', 2019, '', '2025-05-01 14:29:20'),
 (38, 'Ven', '9788573601459', 'Dos hippies aos problemas mundo', 'Francisco Cândido Xavier', 40, 25.00, 'Boa Nova', 2020, '', '2025-05-01 14:29:54'),
-(39, 'Ven', '9788573288186', 'Libertação', 'Francisco Cândido Xavier', 6, 48.80, 'FEB', 2019, '', '2025-05-01 14:30:41'),
+(39, 'Emp', '9788573288186', 'Libertação', 'Francisco Cândido Xavier', 6, 48.80, 'FEB', 2019, '', '2025-05-01 14:30:41'),
 (40, 'Ven', '9788573287943', 'Os mensageiros', 'Francisco Cândido Xavier', 6, 48.30, 'FEB', 2019, '', '2025-05-01 14:31:13'),
 (41, 'Ven', '9788573288018', 'Missionários da luz', 'Francisco Cândido Xavier', 12, 49.90, 'FEB', 2019, '', '2025-05-01 14:31:44'),
 (42, 'Ven', '9786555705188', 'Sinal verde', 'Francisco Cândido Xavier', 10, 39.10, 'FEB', 2023, '', '2025-05-01 14:32:14'),
 (43, 'Ven', '9788583531357', 'Chico bento Além Da Vida -Turma De Monica ', 'Mauricio De Souza ', 4, 45.30, 'Boa Nova', 2019, '', '2025-05-01 14:33:38'),
 (44, 'Ven', '9788524918438', 'Um por todos por um: a vida em grupo dos mamíferos ', 'Cristina Santos', 5, 42.12, 'Cortez', 2013, '', '2025-05-01 14:33:56'),
-(45, 'Ven', '9788573412291', 'Mãos Unidas', 'Francisco Cândido Xavier', 2, 38.00, 'IDE', 1972, '', '2025-05-01 14:34:17'),
-(46, 'Ven', '9788573288186', 'Libertação', 'Francisco Cândido Xavier', 6, 48.80, 'FEB', 2019, '', '2025-05-01 14:34:31');
+(45, 'Ven', '9788573412291', 'Mãos Unidas', 'Francisco Cândido Xavier', 2, 38.00, 'IDE', 1972, '', '2025-05-01 14:34:17');
+
 
 INSERT INTO `tbestoque` (`codEsto`, `entradaVen`, `saidaVen`, `entradaEmp`, `saidaEmp`, `empVen`, `nomeLivro`, `codLivro`, `disponibilidade`) VALUES
 (1, 5, 0, 0, 0, 'Ven', 'Outro lar- uma viagem muitos ensinamentos-Turma da Monica', 1, NULL),
@@ -201,14 +200,15 @@ INSERT INTO `tbestoque` (`codEsto`, `entradaVen`, `saidaVen`, `entradaEmp`, `sai
 (36, 5, 0, 0, 0, 'Ven', 'Há doisil anos', 36, NULL),
 (37, 5, 0, 0, 0, 'Ven', 'Paulo e Estevão', 37, NULL),
 (38, 40, 0, 0, 0, 'Ven', 'Dos hippies aos problemas mundo', 38, NULL),
-(39, 6, 0, 0, 0, 'Ven', 'Libertação', 39, NULL),
+(39, 6, 0, 0, 0, 'Emp', 'Libertação', 39, NULL),
 (40, 6, 0, 0, 0, 'Ven', 'Os mensageiros', 40, NULL),
 (41, 12, 0, 0, 0, 'Ven', 'Missionários da luz', 41, NULL),
 (42, 10, 0, 0, 0, 'Ven', 'Sinal verde', 42, NULL),
 (43, 4, 0, 0, 0, 'Ven', 'Chico bento Além Da Vida -Turma De Monica ', 3, NULL),
 (44, 5, 0, 0, 0, 'Ven', 'Um por todos por um: a vida em grupo dos mamíferos ', 44, NULL),
-(45, 2, 0, 0, 0, 'Ven', 'Mãos Unidas', 45, NULL),
-(46, 6, 0, 0, 0, 'Ven', 'Libertação', 46, NULL);
+(45, 2, 0, 0, 0, 'Ven', 'Mãos Unidas', 45, NULL);
+
+
 --visualizar
 desc tbUsuario;
 desc tbLocatario;

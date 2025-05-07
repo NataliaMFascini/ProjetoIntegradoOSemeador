@@ -50,58 +50,70 @@ namespace LivrariaEBiblioteca
             habilitarCamposBusca();
             this.cargo = cargo;
             this.nome = nome;
-            this.codUsu= codUsu;
+            this.codUsu = codUsu;
             this.prontuario = prontuario;
-            pesquisarPorProntuario(prontuario); 
+            pesquisarPorProntuario(prontuario);
         }
 
         public void pesquisarPorNome(string locatario)
         {
-            MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select * from tbLocatario where  nome = @nome;";
-            comm.CommandType = CommandType.Text;
+            try
+            {
+                MySqlCommand comm = new MySqlCommand();
+                comm.CommandText = "select * from tbLocatario where  nome = @nome;";
+                comm.CommandType = CommandType.Text;
 
-            comm.Parameters.Clear();
-            comm.Parameters.Add("@nome", MySqlDbType.VarChar,100).Value = locatario;
-            comm.Connection = Conexao.obterConexao();
+                comm.Parameters.Clear();
+                comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = locatario;
+                comm.Connection = Conexao.obterConexao();
 
-            MySqlDataReader DR;
-            DR = comm.ExecuteReader();
-            DR.Read();
+                MySqlDataReader DR;
+                DR = comm.ExecuteReader();
+                DR.Read();
 
-            txtProntuario.Text = DR.GetInt32(1).ToString();
-            txtLocatario.Text = DR.GetString(2);
-            mskCpf.Text = DR.GetString(3);
-            mskTelefone.Text = DR.GetString(4);
-            txtEmail.Text = DR.GetString(5);
-            
+                txtProntuario.Text = DR.GetInt32(1).ToString();
+                txtLocatario.Text = DR.GetString(2);
+                mskCpf.Text = DR.GetString(3);
+                mskTelefone.Text = DR.GetString(4);
+                txtEmail.Text = DR.GetString(5);
 
-            Conexao.fecharConexao();
 
+                Conexao.fecharConexao();
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Locatário não encontrado.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void pesquisarPorProntuario(int prontuario)
         {
-            MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select * from tbLocatario where pront = @pront;";
-            comm.CommandType = CommandType.Text;
+            try
+            {
+                MySqlCommand comm = new MySqlCommand();
+                comm.CommandText = "select * from tbLocatario where pront = @pront;";
+                comm.CommandType = CommandType.Text;
 
-            comm.Parameters.Clear();
-            comm.Parameters.Add("@pront", MySqlDbType.Int32).Value = prontuario;
-            comm.Connection = Conexao.obterConexao();
+                comm.Parameters.Clear();
+                comm.Parameters.Add("@pront", MySqlDbType.Int32).Value = prontuario;
+                comm.Connection = Conexao.obterConexao();
 
-            MySqlDataReader DR;
-            DR = comm.ExecuteReader();
-            DR.Read();
+                MySqlDataReader DR;
+                DR = comm.ExecuteReader();
+                DR.Read();
 
-            txtProntuario.Text= DR.GetString(0).ToString();
-            txtLocatario.Text= DR.GetString(1);
-            mskCpf.Text= DR.GetString(2);
-            txtEmail.Text= DR.GetString(3);
-            mskTelefone.Text= DR.GetString(4);
+                txtProntuario.Text = DR.GetString(0).ToString();
+                txtLocatario.Text = DR.GetString(1);
+                mskCpf.Text = DR.GetString(2);
+                txtEmail.Text = DR.GetString(3);
+                mskTelefone.Text = DR.GetString(4);
 
-            Conexao.fecharConexao();
-            
+                Conexao.fecharConexao();
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Locatário não encontrado.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
@@ -153,56 +165,88 @@ namespace LivrariaEBiblioteca
             MessageBox.Show(nomeCampo + " é um campo obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
         }
 
+        private void erroCampo(string nomeCampo, string tipoCampo)
+        {
+            MessageBox.Show(nomeCampo + " é um campo somente de " + tipoCampo + ".", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+        }
+
         public bool checarPront()
         {
-            MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select * from tbLocatario where pront = @pront;";
-            comm.CommandType = CommandType.Text;
-
-            comm.Connection = Conexao.obterConexao();
-
-            comm.Parameters.Clear();
-            comm.Parameters.Add("@pront", MySqlDbType.LongBlob).Value = txtProntuario.Text;
-           
-
-            MySqlDataReader DR;
-            DR = comm.ExecuteReader();
-            DR.Read();
-
-            
-
-            if (DR.HasRows)
+            try
             {
-                MessageBox.Show("Prontuário já cadastrado.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtProntuario.Focus();
+                MySqlCommand comm = new MySqlCommand();
+                comm.CommandText = "select * from tbLocatario where pront = @pront;";
+                comm.CommandType = CommandType.Text;
+
+                comm.Connection = Conexao.obterConexao();
+
+                comm.Parameters.Clear();
+                comm.Parameters.Add("@pront", MySqlDbType.LongBlob).Value = txtProntuario.Text;
+
+
+                MySqlDataReader DR;
+                DR = comm.ExecuteReader();
+                DR.Read();
+
+
+                if (DR.HasRows)
+                {
+                    MessageBox.Show("Prontuário já cadastrado.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtProntuario.Focus();
+                    Conexao.fecharConexao();
+                    return false;
+                }
+
                 Conexao.fecharConexao();
+                return true;
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao verificar prontuário.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
-            Conexao.fecharConexao();
-            return true;
-           
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
+            int tryParse;
             if (txtLocatario.Text.Equals(""))
             {
+                if (int.TryParse(txtLocatario.Text, out tryParse))
+                {
+                    erroCampo("Locatário", "Texto");
+                    return;
+                }
                 erroCadastro("Locatario");
                 txtLocatario.Focus();
             }
             else if (mskCpf.Text.Equals("    .   .   -"))
             {
+                if (!int.TryParse(mskCpf.Text, out tryParse))
+                {
+                    erroCampo("CPF", "Número");
+                    return;
+                }
                 erroCadastro("CPF");
                 mskCpf.Focus();
             }
             else if (txtEmail.Text.Equals(""))
             {
+                if (int.TryParse(txtEmail.Text, out tryParse))
+                {
+                    erroCampo("Email", "Texto");
+                    return;
+                }
                 erroCadastro("Email");
                 txtEmail.Focus();
             }
             else if (mskTelefone.Text.Equals("(  )     -"))
             {
+                if (!int.TryParse(mskTelefone.Text, out tryParse))
+                {
+                    erroCampo("Telefone", "Número");
+                    return;
+                }
                 erroCadastro("Telefone");
                 mskTelefone.Focus();
             }
@@ -213,7 +257,6 @@ namespace LivrariaEBiblioteca
             }
             else
             {
-
                 if (cadastrarLocatario() == 1)
                 {
                     MessageBox.Show("Cadastro realizado com sucesso.");
@@ -223,55 +266,68 @@ namespace LivrariaEBiblioteca
                     btnNovo.Enabled = true;
                     
                 }
-
                 else
                 {
                     MessageBox.Show("Erro ao cadastrar locatário.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
             }
         }
 
         private int cadastrarLocatario()
         {
-            MySqlCommand comm = new MySqlCommand();
+            try
+            {
+                MySqlCommand comm = new MySqlCommand();
 
-            comm.CommandText = "insert into tbLocatario(pront, nome, cpf, telCel, email, dataCadastro) values (@pront, @nome, @cpf, @telCel, @email, @dataCadastro);";
-            comm.CommandType = CommandType.Text;
+                comm.CommandText = "insert into tbLocatario(pront, nome, cpf, telCel, email, dataCadastro) values (@pront, @nome, @cpf, @telCel, @email, @dataCadastro);";
+                comm.CommandType = CommandType.Text;
 
-            comm.Parameters.Clear();
-            comm.Parameters.Add("@pront", MySqlDbType.Int64).Value = Convert.ToInt64(txtProntuario.Text);
-            comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtLocatario.Text;
-            comm.Parameters.Add("@cpf", MySqlDbType.VarChar, 14).Value = mskCpf.Text;
-            comm.Parameters.Add("@telCel", MySqlDbType.VarChar, 14).Value = mskTelefone.Text;
-            comm.Parameters.Add("@email", MySqlDbType.VarChar, 50).Value = txtEmail.Text;
-            comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
+                comm.Parameters.Clear();
+                comm.Parameters.Add("@pront", MySqlDbType.Int64).Value = Convert.ToInt64(txtProntuario.Text);
+                comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtLocatario.Text;
+                comm.Parameters.Add("@cpf", MySqlDbType.VarChar, 14).Value = mskCpf.Text;
+                comm.Parameters.Add("@telCel", MySqlDbType.VarChar, 14).Value = mskTelefone.Text;
+                comm.Parameters.Add("@email", MySqlDbType.VarChar, 50).Value = txtEmail.Text;
+                comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
 
-            comm.Connection = Conexao.obterConexao();
-            int resp = comm.ExecuteNonQuery();
+                comm.Connection = Conexao.obterConexao();
+                int resp = comm.ExecuteNonQuery();
 
-            Conexao.fecharConexao();
+                Conexao.fecharConexao();
 
-            return resp;
+                return resp;
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao cadastrar no banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                return 0;
+            }
         }
 
         public int excluirLocatario(int pront)
         {
-            MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "delete from tbLocatario where pront = @pront;";
-            comm.CommandType = CommandType.Text;
+            try
+            {
+                MySqlCommand comm = new MySqlCommand();
+                comm.CommandText = "delete from tbLocatario where pront = @pront;";
+                comm.CommandType = CommandType.Text;
 
-            comm.Connection = Conexao.obterConexao();
+                comm.Connection = Conexao.obterConexao();
 
-            comm.Parameters.Clear();
-            comm.Parameters.Add("@pront", MySqlDbType.Int32).Value = pront;
+                comm.Parameters.Clear();
+                comm.Parameters.Add("@pront", MySqlDbType.Int32).Value = pront;
 
-            int resp = comm.ExecuteNonQuery();
+                int resp = comm.ExecuteNonQuery();
 
-            Conexao.fecharConexao();
+                Conexao.fecharConexao();
 
-            return resp;
-
+                return resp;
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao excluir locatário.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                return 0;
+            }
         }
 
         private void btnGerarPront_Click(object sender, EventArgs e)
@@ -297,7 +353,6 @@ namespace LivrariaEBiblioteca
             limparCampos();
             desabilitarCampos();
             btnNovo.Enabled = true;
-            
 
         }
 
@@ -342,53 +397,81 @@ namespace LivrariaEBiblioteca
 
         public int alterarLocatario(int codLoc)
         {
-            MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "update tbLocatario set nome = @nome, cpf = @cpf, telCel = @telCel, email = @email where pront = @pront;";
-            comm.CommandType = CommandType.Text;
+            try
+            {
+                MySqlCommand comm = new MySqlCommand();
+                comm.CommandText = "update tbLocatario set nome = @nome, cpf = @cpf, telCel = @telCel, email = @email where pront = @pront;";
+                comm.CommandType = CommandType.Text;
 
-            comm.Parameters.Clear();
-            comm.Parameters.Add("@pront", MySqlDbType.Int32).Value = Convert.ToInt32(txtProntuario.Text);
-            comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtLocatario.Text;
-            comm.Parameters.Add("@cpf", MySqlDbType.VarChar, 14).Value = mskCpf.Text;
-            comm.Parameters.Add("@telCel", MySqlDbType.VarChar, 14).Value = mskTelefone.Text;
-            comm.Parameters.Add("@email", MySqlDbType.VarChar, 50).Value = txtEmail.Text;
-            
+                comm.Parameters.Clear();
+                comm.Parameters.Add("@pront", MySqlDbType.Int32).Value = Convert.ToInt32(txtProntuario.Text);
+                comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtLocatario.Text;
+                comm.Parameters.Add("@cpf", MySqlDbType.VarChar, 14).Value = mskCpf.Text;
+                comm.Parameters.Add("@telCel", MySqlDbType.VarChar, 14).Value = mskTelefone.Text;
+                comm.Parameters.Add("@email", MySqlDbType.VarChar, 50).Value = txtEmail.Text;
 
-            comm.Connection = Conexao.obterConexao();
 
-            int resp = comm.ExecuteNonQuery();
+                comm.Connection = Conexao.obterConexao();
 
-            Conexao.fecharConexao();
+                int resp = comm.ExecuteNonQuery();
 
-            return resp;
+                Conexao.fecharConexao();
+
+                return resp;
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao alterar locatário.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                return 0;
+            }
 
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
+            int tryParse;
             if (txtLocatario.Text.Equals(""))
             {
+                if (int.TryParse(txtLocatario.Text, out tryParse))
+                {
+                    erroCampo("Locatário", "Texto");
+                    return;
+                }
                 erroCadastro("Locatario");
                 txtLocatario.Focus();
             }
             else if (mskCpf.Text.Equals("    .   .   -"))
             {
+                if (!int.TryParse(mskCpf.Text, out tryParse))
+                {
+                    erroCampo("CPF", "Número");
+                    return;
+                }
                 erroCadastro("CPF");
                 mskCpf.Focus();
             }
             else if (txtEmail.Text.Equals(""))
             {
+                if (int.TryParse(txtEmail.Text, out tryParse))
+                {
+                    erroCampo("Email", "Texto");
+                    return;
+                }
                 erroCadastro("Email");
                 txtEmail.Focus();
             }
             else if (mskTelefone.Text.Equals("(  )     -"))
             {
+                if (!int.TryParse(mskTelefone.Text, out tryParse))
+                {
+                    erroCampo("Telefone", "Número");
+                    return;
+                }
                 erroCadastro("Telefone");
                 mskTelefone.Focus();
             }
             else
             {
-
                 if (alterarLocatario(Convert.ToInt32(txtProntuario.Text)) == 1)
                 {
                     MessageBox.Show("Alteração realizado com sucesso.");
@@ -397,12 +480,10 @@ namespace LivrariaEBiblioteca
                     btnNovo.Enabled = true;
                     btnNovo.Focus();
                 }
-
                 else
                 {
                     MessageBox.Show("Erro ao alterar locatário.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
             }
         }
 

@@ -133,6 +133,7 @@
             this.btnAlterar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAlterar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAlterar.UseVisualStyleBackColor = false;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
             // btnRemover
             // 
@@ -459,7 +460,7 @@
             // pnlBordaRepetir
             // 
             this.pnlBordaRepetir.AutoSize = true;
-            this.pnlBordaRepetir.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pnlBordaRepetir.BackColor = System.Drawing.Color.CadetBlue;
             this.pnlBordaRepetir.Controls.Add(this.txtRepetirSenha);
             this.pnlBordaRepetir.Location = new System.Drawing.Point(416, 175);
             this.pnlBordaRepetir.Name = "pnlBordaRepetir";

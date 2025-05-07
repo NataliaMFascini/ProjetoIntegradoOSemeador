@@ -157,66 +157,89 @@ namespace LivrariaEBiblioteca
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            MySqlCommand comm = new MySqlCommand();
-
-            if (rdbIdLivro.Checked)
+            int tryParse;
+            try
             {
-                comm.CommandText = "SELECT codLivro, nome, isbn, foto, empVen FROM tbLivro WHERE codLivro = @codLivro;";
-                comm.CommandType = CommandType.Text;
+                MySqlCommand comm = new MySqlCommand();
 
-                comm.Parameters.Clear();
-                comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = Convert.ToInt32(txtIdLivro.Text);
-            }
-            if (rdbTitulo.Checked)
-            {
-                comm.CommandText = "SELECT codLivro, nome, isbn, foto, empVen FROM tbLivro WHERE nome LIKE @nome;";
-                comm.CommandType = CommandType.Text;
-                comm.Parameters.Clear();
-                comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtTitulo.Text;
-            }
-            if (rdbIsbn.Checked)
-            {
-                comm.CommandText = "SELECT codLivro, nome, isbn, foto, empVen FROM tbLivro WHERE codLivro = @isbn;";
-                comm.CommandType = CommandType.Text;
-                comm.Parameters.Clear();
-                comm.Parameters.Add("@isbn", MySqlDbType.VarChar, 20).Value = txtIsbn.Text;
-            }
-
-            comm.Connection = Conexao.obterConexao();
-
-            MySqlDataReader DR = comm.ExecuteReader();
-
-            // Limpa o ListBox antes
-            ltbPesquisar.Items.Clear();
-
-            if (DR.HasRows)
-            {
-                while (DR.Read())
+                if (rdbIdLivro.Checked)
                 {
-                    // Preenche os campos
-                    txtIdLivro.Text = DR.GetInt32(0).ToString();
-                    txtTitulo.Text = DR.GetString(1);
-                    txtIsbn.Text = DR.GetString(2);
-                    tipo = DR.GetString(4);
-
-                    // Preenche a imagem
-                    if (fotoPath != null)
+                    if(!int.TryParse(txtIdLivro.Text, out tryParse))
                     {
-                        fotoPath = DR.GetString(3);
-                        pctLivro.ImageLocation = fotoPath;
-                        pctLivro.Load();
+                        MessageBox.Show("Use apenas números.", "MENSAGEM DO SISTEMA", MessageBoxButtons.OK);
+                        return;
                     }
+                    comm.CommandText = "SELECT codLivro, nome, isbn, foto, empVen FROM tbLivro WHERE codLivro = @codLivro;";
+                    comm.CommandType = CommandType.Text;
 
-                    // Adiciona no ListBox
-                    ltbPesquisar.Items.Add(DR.GetString(1));
+                    comm.Parameters.Clear();
+                    comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = Convert.ToInt32(txtIdLivro.Text);
                 }
-            }
-            else
-            {
-                MessageBox.Show("Livro não encontrado.");
-            }
+                if (rdbTitulo.Checked)
+                {
+                    if(int.TryParse(txtTitulo.Text, out tryParse))
+                    {
+                        MessageBox.Show("Use apenas letras.", "MENSAGEM DO SISTEMA", MessageBoxButtons.OK);
+                        return;
+                    }
+                    comm.CommandText = "SELECT codLivro, nome, isbn, foto, empVen FROM tbLivro WHERE nome LIKE @nome;";
+                    comm.CommandType = CommandType.Text;
+                    comm.Parameters.Clear();
+                    comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtTitulo.Text;
+                }
+                if (rdbIsbn.Checked)
+                {
+                    if (!int.TryParse(txtIsbn.Text, out tryParse))
+                    {
+                        MessageBox.Show("Use apenas números.", "MENSAGEM DO SISTEMA", MessageBoxButtons.OK);
+                        return;
+                    }
+                    comm.CommandText = "SELECT codLivro, nome, isbn, foto, empVen FROM tbLivro WHERE codLivro = @isbn;";
+                    comm.CommandType = CommandType.Text;
+                    comm.Parameters.Clear();
+                    comm.Parameters.Add("@isbn", MySqlDbType.VarChar, 20).Value = txtIsbn.Text;
+                }
 
-            Conexao.fecharConexao();
+                comm.Connection = Conexao.obterConexao();
+
+                MySqlDataReader DR = comm.ExecuteReader();
+
+                // Limpa o ListBox antes
+                ltbPesquisar.Items.Clear();
+
+                if (DR.HasRows)
+                {
+                    while (DR.Read())
+                    {
+                        // Preenche os campos
+                        txtIdLivro.Text = DR.GetInt32(0).ToString();
+                        txtTitulo.Text = DR.GetString(1);
+                        txtIsbn.Text = DR.GetString(2);
+                        tipo = DR.GetString(4);
+
+                        // Preenche a imagem
+                        if (fotoPath != null)
+                        {
+                            fotoPath = DR.GetString(3);
+                            pctLivro.ImageLocation = fotoPath;
+                            pctLivro.Load();
+                        }
+
+                        // Adiciona no ListBox
+                        ltbPesquisar.Items.Add(DR.GetString(1));
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Livro não encontrado.");
+                }
+
+                Conexao.fecharConexao();
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao buscar livro.", "MENSAGEM DO SISTEMA", MessageBoxButtons.OK);
+            }
 
         }
 

@@ -13,7 +13,7 @@ using MySql.Data.MySqlClient;
 
 namespace LivrariaEBiblioteca
 {
-   
+
     public partial class frmEmprestimo : Form
     {
         public int codLivro = 0;
@@ -78,7 +78,7 @@ namespace LivrariaEBiblioteca
             pctLivro.Image = null;
 
             ltbCarrinho.Items.Clear();
-              
+
         }
         public void ReceberDadosLivro(string titulo, string isbn, string idLivro)
         {
@@ -127,7 +127,7 @@ namespace LivrariaEBiblioteca
 
                 if (!mskDataDevolucao.Equals("  /  /    ") && mskDataDevolucao.MaskFull)
                 {
-                    ltbCarrinho.Items.Add(txtTitulo.Text + " Devolução:" + mskDataDevolucao.Text);
+                    ltbCarrinho.Items.Add(txtTitulo.Text = " Devolução:" + mskDataDevolucao.Text);
                     separarLivros();
                 }
                 else
@@ -135,6 +135,7 @@ namespace LivrariaEBiblioteca
                     ltbCarrinho.Items.Add(txtTitulo.Text);
                     separarLivros();
                 }
+
             }
 
         }
@@ -143,7 +144,7 @@ namespace LivrariaEBiblioteca
         {
             limparCampos();
             txtIsbn.Focus();
-           
+
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
@@ -183,7 +184,7 @@ namespace LivrariaEBiblioteca
                 //    // Cria e configura o comando
                 //    comm.Parameters.Add("@dataDev", MySqlDbType.DateTime).Value = dataConvertida;
                 //}
-                
+
                 comm.Parameters.Add("@nomeVendedor", MySqlDbType.VarChar, 100).Value = this.nome;
                 comm.Parameters.Add("@nomeLivro", MySqlDbType.VarChar, 100).Value = livros.nomeRetorno(i);
                 comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
@@ -217,7 +218,7 @@ namespace LivrariaEBiblioteca
             for (int i = 0; i < Livros.ListaLivros.Count; i++)
             {
                 comm.Parameters.Clear();
-                comm.Parameters.Add("@saidaEmp", MySqlDbType.Int32).Value = quantidadeRetorno(i);
+                comm.Parameters.Add("@saidaEmp", MySqlDbType.Int32).Value = pegarQuantLivro(i, "Saida") + quantidadeRetorno(i);
                 comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
 
                 comm.Connection = Conexao.obterConexao();
@@ -241,13 +242,13 @@ namespace LivrariaEBiblioteca
             MySqlCommand comm = new MySqlCommand();
             int resp = 0;
 
-            comm.CommandText = "UPDATE tbEstoque SET quantidadeAtual = quantidadeAtual + @quantidade WHERE codLivro = @codLivro";
+            comm.CommandText = "UPDATE tbEstoque SET entradaEmp = @entradaEmp WHERE codLivro = @codLivro";
             comm.CommandType = CommandType.Text;
 
             for (int i = 0; i < Livros.ListaLivros.Count; i++)
             {
                 comm.Parameters.Clear();
-                comm.Parameters.Add("@quantidade", MySqlDbType.Int32).Value = quantidadeRetorno(i);
+                comm.Parameters.Add("@saidaEmp", MySqlDbType.Int32).Value = pegarQuantLivro(i,"Entrada") + quantidadeRetorno(i);
                 comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = Livros.ListaLivros[i].idLivro;
 
                 comm.Connection = Conexao.obterConexao();
@@ -265,6 +266,46 @@ namespace LivrariaEBiblioteca
             return resp;
         }
 
+        public int pegarQuantLivro(int index, string entSai)
+        {
+            try
+            {
+                MySqlCommand comm = new MySqlCommand();
+
+                if (entSai == "Entrada")
+                {
+                    comm.CommandText = "select entradaEmp from tbEstoque where codLivro = @codLivro;";
+                    comm.CommandType = CommandType.Text;
+                }
+                else
+                {
+                    comm.CommandText = "select saidaEmp from tbEstoque where codLivro = @codLivro;";
+                    comm.CommandType = CommandType.Text;
+                }
+
+                if (Livros.ListaLivros[index].idLivro == Livros.ListaLivros[index + 1].idLivro)
+                {
+                    comm.Parameters.Clear();
+                    comm.Parameters.Add("@codLivro", MySqlDbType.Int32, 20).Value = livros.codRetorno(index);
+                }
+
+                comm.Connection = Conexao.obterConexao();
+
+                MySqlDataReader DR;
+                DR = comm.ExecuteReader();
+                DR.Read();
+
+                int quant = DR.GetInt32(0);
+
+                Conexao.fecharConexao();
+                return quant;
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao pegar a quantidade do livro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                return 0;
+            }
+        }
 
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
@@ -292,7 +333,7 @@ namespace LivrariaEBiblioteca
 
         {
             try
-            { 
+            {
                 Livros livros = new Livros();
 
                 livros.idLivro = Convert.ToInt32(txtIdLivro.Text);
@@ -305,44 +346,56 @@ namespace LivrariaEBiblioteca
                 MessageBox.Show("Livro não encontrado", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
-             
-            public void escanearLivro(string isbn)
+
+        public void escanearLivro(string isbn)
         {
+            string empVen = "";
+
             MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select codLivro, nome, autor, editora, foto from tbLivro where isbn = @isbn;";
+            comm.CommandText = "select codLivro, nome, autor, editora, foto, empVen from tbLivro where isbn = @isbn;";
             comm.CommandType = CommandType.Text;
 
             comm.Parameters.Clear();
             comm.Parameters.Add("@isbn", MySqlDbType.VarChar, 13).Value = isbn;
-
             comm.Connection = Conexao.obterConexao();
             MySqlDataReader DR;
             DR = comm.ExecuteReader();
             DR.Read();
 
             bool resp = DR.HasRows;
-            if (resp)
+
+            empVen = DR.GetString(5);
+
+            if (empVen == "Emp")
             {
-                txtIdLivro.Text = Convert.ToString(DR.GetInt32(0));
-                txtTitulo.Text = DR.GetString(1);
-                txtAutor.Text = DR.GetString(2);
-                txtEditora.Text = DR.GetString(3);
-                if (fotoPath != null)
+
+                if (resp)
                 {
-                    fotoPath = DR.GetString(4);
-                    pctLivro.ImageLocation = fotoPath;
-                    pctLivro.Load();
+                    txtIdLivro.Text = Convert.ToString(DR.GetInt32(0));
+                    txtTitulo.Text = DR.GetString(1);
+                    txtAutor.Text = DR.GetString(2);
+                    txtEditora.Text = DR.GetString(3);
+                    if (fotoPath != null)
+                    {
+                        fotoPath = DR.GetString(4);
+                        pctLivro.ImageLocation = fotoPath;
+                        pctLivro.Load();
+                    }
+                    else
+                    {
+                        pctLivro.Image = null;
+                    }
                 }
                 else
                 {
-                    pctLivro.Image = null;
+                    MessageBox.Show("ISBN inválido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                    txtIsbn.Clear();
+                    txtIsbn.Focus();
                 }
             }
-            else
+            else if (empVen == "Ven")
             {
-                MessageBox.Show("ISBN inválido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
-                txtIsbn.Clear();
-                txtIsbn.Focus();
+                MessageBox.Show("Livro selecionado não esta cadastrado para Empréstimo", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             Conexao.fecharConexao();
@@ -353,9 +406,20 @@ namespace LivrariaEBiblioteca
         {
             if (e.KeyCode == Keys.Enter)
             {
+
                 escanearLivro(txtIsbn.Text);
-                //codLivro = Convert.ToInt32(txtIdLivro.Text);
-                mskDataDevolucao.Focus();
+                codLivro = Convert.ToInt32(txtIdLivro.Text);
+                if (livros.checarEstoque(codLivro, "Emp") <= 0)
+                {
+                    lblDisponibilidade.Text = "Indisponivel";
+                    lblDisponibilidade.ForeColor = Color.Red;
+                }
+                else
+                {
+                    lblDisponibilidade.Text = "Disponivel";
+                    lblDisponibilidade.ForeColor = Color.Green;
+                }
+
             }
         }
         public int quantidadeRetorno(int index)
@@ -385,7 +449,6 @@ namespace LivrariaEBiblioteca
                 MessageBox.Show("Erro ao devolver livro.", "Erro");
             }
         }
-
     }
 }
 
