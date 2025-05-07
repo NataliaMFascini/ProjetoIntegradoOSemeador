@@ -65,13 +65,14 @@ namespace LivrariaEBiblioteca
 
         public void limparComponentes()
         {
+            ltbPesquisar.Items.Clear();
             txtIdLivro.Text = string.Empty;
             txtIsbn.Text = string.Empty;
             txtTitulo.Text = string.Empty;
             rdbIdLivro.Checked = false;
             rdbTitulo.Checked = false;
             rdbIsbn.Checked = false;
-            ltbPesquisar.Text = string.Empty;
+            
 
         }
 
