@@ -71,7 +71,7 @@ namespace LivrariaEBiblioteca
             rdbIdLivro.Checked = false;
             rdbTitulo.Checked = false;
             rdbIsbn.Checked = false;
-            ltbPesquisar.Text = string.Empty;
+            ltbPesquisar.Items.Clear();
 
         }
 

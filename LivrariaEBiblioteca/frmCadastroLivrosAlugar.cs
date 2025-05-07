@@ -74,6 +74,7 @@ namespace LivrariaEBiblioteca
             rdbEmprestimo.Checked = false;
             rdbVenda.Checked = false;
             txtIsbn.Focus();
+            txtIdLivro.Clear();
         }
 
         public void desabilitarCampos()
