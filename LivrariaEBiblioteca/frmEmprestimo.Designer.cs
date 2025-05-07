@@ -56,14 +56,17 @@
             this.lblNEmprestimo = new System.Windows.Forms.Label();
             this.txtNEmprestimo = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnDevolver = new System.Windows.Forms.Button();
             this.gpbDadosLivro = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lblBuscarLivro = new System.Windows.Forms.Label();
+            this.rdbDevolução = new System.Windows.Forms.RadioButton();
+            this.rdbEmprestimo = new System.Windows.Forms.RadioButton();
+            this.gpbAcao = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.pctLivro)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.gpbDadosLivro.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.gpbAcao.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblIdLivro
@@ -120,7 +123,7 @@
             this.ltbCarrinho.ItemHeight = 25;
             this.ltbCarrinho.Location = new System.Drawing.Point(31, 351);
             this.ltbCarrinho.Name = "ltbCarrinho";
-            this.ltbCarrinho.Size = new System.Drawing.Size(743, 129);
+            this.ltbCarrinho.Size = new System.Drawing.Size(577, 129);
             this.ltbCarrinho.TabIndex = 7;
             // 
             // lblIsbn
@@ -366,6 +369,7 @@
             this.txtNEmprestimo.Name = "txtNEmprestimo";
             this.txtNEmprestimo.Size = new System.Drawing.Size(267, 31);
             this.txtNEmprestimo.TabIndex = 1;
+            this.txtNEmprestimo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNEmprestimo_KeyDown);
             // 
             // tableLayoutPanel1
             // 
@@ -374,7 +378,6 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Controls.Add(this.btnDevolver, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnAdicionar, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnFinalizar, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnLimpar, 1, 0);
@@ -385,23 +388,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 80);
             this.tableLayoutPanel1.TabIndex = 31;
-            // 
-            // btnDevolver
-            // 
-            this.btnDevolver.BackColor = System.Drawing.Color.PowderBlue;
-            this.btnDevolver.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDevolver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDevolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDevolver.Image = ((System.Drawing.Image)(resources.GetObject("btnDevolver.Image")));
-            this.btnDevolver.Location = new System.Drawing.Point(403, 3);
-            this.btnDevolver.Name = "btnDevolver";
-            this.btnDevolver.Size = new System.Drawing.Size(194, 74);
-            this.btnDevolver.TabIndex = 12;
-            this.btnDevolver.Text = "Devolver";
-            this.btnDevolver.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDevolver.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnDevolver.UseVisualStyleBackColor = false;
-            this.btnDevolver.Click += new System.EventHandler(this.btnDevolver_Click);
             // 
             // gpbDadosLivro
             // 
@@ -451,6 +437,45 @@
             this.lblBuscarLivro.TabIndex = 54;
             this.lblBuscarLivro.Text = "Empréstimo";
             // 
+            // rdbDevolução
+            // 
+            this.rdbDevolução.AutoSize = true;
+            this.rdbDevolução.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbDevolução.Location = new System.Drawing.Point(6, 58);
+            this.rdbDevolução.Name = "rdbDevolução";
+            this.rdbDevolução.Size = new System.Drawing.Size(132, 29);
+            this.rdbDevolução.TabIndex = 55;
+            this.rdbDevolução.TabStop = true;
+            this.rdbDevolução.Text = "Devolução";
+            this.rdbDevolução.UseVisualStyleBackColor = true;
+            this.rdbDevolução.CheckedChanged += new System.EventHandler(this.rdbDevolução_CheckedChanged);
+            // 
+            // rdbEmprestimo
+            // 
+            this.rdbEmprestimo.AutoSize = true;
+            this.rdbEmprestimo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbEmprestimo.Location = new System.Drawing.Point(6, 28);
+            this.rdbEmprestimo.Name = "rdbEmprestimo";
+            this.rdbEmprestimo.Size = new System.Drawing.Size(143, 29);
+            this.rdbEmprestimo.TabIndex = 56;
+            this.rdbEmprestimo.TabStop = true;
+            this.rdbEmprestimo.Text = "Empréstimo";
+            this.rdbEmprestimo.UseVisualStyleBackColor = true;
+            this.rdbEmprestimo.CheckedChanged += new System.EventHandler(this.rdbEmprestimo_CheckedChanged);
+            // 
+            // gpbAcao
+            // 
+            this.gpbAcao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.gpbAcao.Controls.Add(this.rdbEmprestimo);
+            this.gpbAcao.Controls.Add(this.rdbDevolução);
+            this.gpbAcao.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpbAcao.Location = new System.Drawing.Point(614, 351);
+            this.gpbAcao.Name = "gpbAcao";
+            this.gpbAcao.Size = new System.Drawing.Size(160, 100);
+            this.gpbAcao.TabIndex = 6;
+            this.gpbAcao.TabStop = false;
+            this.gpbAcao.Text = "Ações";
+            // 
             // frmEmprestimo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -472,6 +497,7 @@
             this.Controls.Add(this.txtNEmprestimo);
             this.Controls.Add(this.lblDisponibilidade);
             this.Controls.Add(this.lblLocatario);
+            this.Controls.Add(this.gpbAcao);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(800, 600);
@@ -484,6 +510,8 @@
             this.gpbDadosLivro.ResumeLayout(false);
             this.gpbDadosLivro.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.gpbAcao.ResumeLayout(false);
+            this.gpbAcao.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -522,6 +550,8 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label lblBuscarLivro;
         private MySql.Data.MySqlClient.MySqlDataAdapter mySqlDataAdapter1;
-        private System.Windows.Forms.Button btnDevolver;
+        private System.Windows.Forms.RadioButton rdbDevolução;
+        private System.Windows.Forms.RadioButton rdbEmprestimo;
+        private System.Windows.Forms.GroupBox gpbAcao;
     }
 }
