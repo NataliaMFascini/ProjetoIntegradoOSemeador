@@ -93,7 +93,7 @@ namespace LivrariaEBiblioteca
             decimal tryParseDecimal;
             if (txtIsbn.Text.Equals(""))
             {
-                if(!int.TryParse(txtIsbn.Text, out tryParse))
+                if (!int.TryParse(txtIsbn.Text, out tryParse))
                 {
                     erroCampo("ISBN", "numérico");
                     return;
@@ -103,7 +103,7 @@ namespace LivrariaEBiblioteca
             }
             else if (txtTitulo.Text.Equals(""))
             {
-                if(int.TryParse(txtTitulo.Text, out tryParse))
+                if (int.TryParse(txtTitulo.Text, out tryParse))
                 {
                     erroCampo("Título", "alfabético");
                     return;
@@ -123,7 +123,7 @@ namespace LivrariaEBiblioteca
             }
             else if (txtEditora.Text.Equals(""))
             {
-                if(int.TryParse(txtEditora.Text, out tryParse))
+                if (int.TryParse(txtEditora.Text, out tryParse))
                 {
                     erroCampo("Editora", "alfabético");
                     return;
@@ -133,7 +133,7 @@ namespace LivrariaEBiblioteca
             }
             else if (txtValor.Text.Equals(""))
             {
-                if(!decimal.TryParse(txtValor.Text, out tryParseDecimal))
+                if (!decimal.TryParse(txtValor.Text, out tryParseDecimal))
                 {
                     erroCampo("Valor", "numérico");
                     return;
@@ -143,7 +143,7 @@ namespace LivrariaEBiblioteca
             }
             else if (cbbFormaPagamento.Items.Equals(""))
             {
-                if(int.TryParse(cbbFormaPagamento.Text, out tryParse))
+                if (int.TryParse(cbbFormaPagamento.Text, out tryParse))
                 {
                     erroCampo("Forma de Pagamento", "alfabético");
                     return;
@@ -185,17 +185,24 @@ namespace LivrariaEBiblioteca
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if(ltbCarrinho.Items.Count == 0)
+            frmBuscarLivro abrir = new frmBuscarLivro(this.nome, this.codUsu, this.cargo, "Venda");
+
+            if (ltbCarrinho.Items.Count != 0)
             {
                 DialogResult resultado = MessageBox.Show("Essa ação irá limpar o carrinho. Deseja continuar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-                if(resultado == DialogResult.Yes)
+                if (resultado == DialogResult.Yes)
                 {
-                    frmBuscarLivro abrir = new frmBuscarLivro(this.nome, this.codUsu, this.cargo, "Venda");
+                    abrir = new frmBuscarLivro(this.nome, this.codUsu, this.cargo, "Venda");
                     abrir.Show();
                     this.Hide();
                 }
             }
-            
+            else
+            {
+                abrir = new frmBuscarLivro(this.nome, this.codUsu, this.cargo, "Venda");
+                abrir.Show();
+                this.Hide();
+            }
         }
         public void escanearLivro(string isbn)
         {
@@ -265,7 +272,7 @@ namespace LivrariaEBiblioteca
                 codLivro = Convert.ToInt32(txtIdLivro.Text);
                 if (livros.checarEstoque(codLivro, "Ven") <= 5)
                 {
-                    MessageBox.Show("Resta " + livros.checarEstoque(codLivro, "Ven") + " em estoque.", "Aviso do estoque", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    MessageBox.Show("Resta " + livros.checarEstoque(codLivro, "Ven") + " unidades em estoque.", "Aviso do estoque", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 }
             }
         }
@@ -336,14 +343,15 @@ namespace LivrariaEBiblioteca
             int resp = 0;
             try
             {
-                comm.CommandText = "update tbEstoque set saidaVen = @saidaVen, empVen = @empVen where codLivro = @codLivro";
-                comm.CommandType = CommandType.Text;
-                for (int i = 0; i < Livros.ListaLivros.Count; i++)
+                for (int i = 0; i < livros.quantidadeLista(); i++)
                 {
+                    comm.CommandText = "update tbEstoque set saidaVen = @saidaVen, empVen = @empVen where codLivro = @codLivro";
+                    comm.CommandType = CommandType.Text;
+
                     comm.Parameters.Clear();
                     comm.Parameters.Add("@saidaVen", MySqlDbType.Int32).Value = pegarQuantLivro(i) + quantidadeRetorno(i);
                     comm.Parameters.Add("@empVen", MySqlDbType.VarChar, 3).Value = "Ven";
-                    comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
+                    comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.proximoLivro(i);
 
                     comm.Connection = Conexao.obterConexao();
 
@@ -383,11 +391,9 @@ namespace LivrariaEBiblioteca
 
                 for (int i = 0; i < Livros.ListaLivros.Count - 1; i++)
                 {
-                    if (Livros.ListaLivros[index].idLivro == Livros.ListaLivros[index + 1].idLivro)
-                    {
-                        comm.Parameters.Clear();
-                        comm.Parameters.Add("@codLivro", MySqlDbType.Int32, 20).Value = livros.codRetorno(i);
-                    }
+                    comm.Parameters.Clear();
+                    comm.Parameters.Add("@codLivro", MySqlDbType.Int32, 20).Value = livros.proximoLivro(i);
+
                 }
 
                 comm.Connection = Conexao.obterConexao();
@@ -479,7 +485,7 @@ namespace LivrariaEBiblioteca
             {
                 txtAutor.Focus();
             }
-            
+
         }
 
         private void txtAutor_KeyDown(object sender, KeyEventArgs e)
