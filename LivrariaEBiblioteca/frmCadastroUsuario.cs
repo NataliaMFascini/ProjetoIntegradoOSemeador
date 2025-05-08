@@ -181,7 +181,7 @@ namespace LivrariaEBiblioteca
                 erroCadastro("Nome Completo");
                 txtNomeCompleto.Focus();
             }
-            else if (mskCpf.Text.Equals("    .   .   -"))
+            else if (mskCpf.Text.Equals("    .   .   -") || !mskCpf.MaskFull)
             {
                 if(!int.TryParse(mskCpf.Text, out tryParse))
                 {
@@ -191,7 +191,7 @@ namespace LivrariaEBiblioteca
                 erroCadastro("CPF");
                 mskCpf.Focus();
             }
-            else if (mskTelefone.Text.Equals("(  )      -"))
+            else if (mskTelefone.Text.Equals("(  )      -") || !mskTelefone.MaskFull)
             {
                 if(!int.TryParse(mskTelefone.Text, out tryParse))
                 {
@@ -246,7 +246,7 @@ namespace LivrariaEBiblioteca
                 erroCadastro("Repetir senha");
                 txtRepetirSenha.Focus();
             }
-            else if (mskCep.Text.Equals("     -"))
+            else if (mskCep.Text.Equals("     -") || !mskCep.MaskFull)
             {
                 if(!int.TryParse(mskCep.Text, out tryParse))
                 {
@@ -597,7 +597,7 @@ namespace LivrariaEBiblioteca
                 erroCadastro("Nome Completo");
                 txtNomeCompleto.Focus();
             }
-            else if (mskCpf.Text.Equals("    .   .   -"))
+            else if (mskCpf.Text.Equals("    .   .   -") || !mskCpf.MaskFull)
             {
                 if (!int.TryParse(mskCpf.Text, out tryParse))
                 {
@@ -607,7 +607,7 @@ namespace LivrariaEBiblioteca
                 erroCadastro("CPF");
                 mskCpf.Focus();
             }
-            else if (mskTelefone.Text.Equals("(  )      -"))
+            else if (mskTelefone.Text.Equals("(  )      -") || !mskTelefone.MaskFull)
             {
                 if (!int.TryParse(mskTelefone.Text, out tryParse))
                 {
@@ -662,7 +662,7 @@ namespace LivrariaEBiblioteca
                 erroCadastro("Repetir senha");
                 txtRepetirSenha.Focus();
             }
-            else if (mskCep.Text.Equals("     -"))
+            else if (mskCep.Text.Equals("     -") || !mskCep.MaskFull)
             {
                 if (!int.TryParse(mskCep.Text, out tryParse))
                 {

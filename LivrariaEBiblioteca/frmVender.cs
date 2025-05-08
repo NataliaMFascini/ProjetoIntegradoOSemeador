@@ -23,6 +23,7 @@ namespace LivrariaEBiblioteca
         public string cargo;
         public int quantTotal = 0;
         public string fotoPath;
+        public string[] carrinho;
 
         Livros livros = new Livros();
 
@@ -52,6 +53,7 @@ namespace LivrariaEBiblioteca
 
             pesquisarPorNome(livro);
         }
+
 
         public void limparComponentes()
         {
@@ -185,6 +187,7 @@ namespace LivrariaEBiblioteca
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            carrinho = ltbCarrinho.Items.Cast<string>().ToArray();
             frmBuscarLivro abrir = new frmBuscarLivro(this.nome, this.codUsu, this.cargo, "Venda");
             
 
@@ -370,7 +373,7 @@ namespace LivrariaEBiblioteca
 
         public int quantidadeRetorno(int index)
         {
-            int quantTotal = 0;
+            int quantTotal = 1;
 
             for (int i = 0; i < Livros.ListaLivros.Count - 1; i++)
             {
@@ -390,12 +393,8 @@ namespace LivrariaEBiblioteca
                 comm.CommandText = "select saidaVen from tbEstoque where codLivro = @codLivro;";
                 comm.CommandType = CommandType.Text;
 
-                for (int i = 0; i < Livros.ListaLivros.Count - 1; i++)
-                {
-                    comm.Parameters.Clear();
-                    comm.Parameters.Add("@codLivro", MySqlDbType.Int32, 20).Value = livros.proximoLivro(i);
-
-                }
+                comm.Parameters.Clear();
+                comm.Parameters.Add("@codLivro", MySqlDbType.Int32, 20).Value = livros.proximoLivro(index);
 
                 comm.Connection = Conexao.obterConexao();
 
