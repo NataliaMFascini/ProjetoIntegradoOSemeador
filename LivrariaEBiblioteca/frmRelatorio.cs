@@ -35,8 +35,6 @@ namespace LivrariaEBiblioteca
             data1 = DateTime.MinValue.ToString("dd/MM/yyyy" + "00:00:00");
             data2 = DateTime.Now.ToString("dd/MM/yyyy" + "23:59:59");
 
-            dtpEntre.Value = Convert.ToDateTime("01/01/1753");
-            dtpAte.Value = DateTime.Now;
 
             mskDataEntre.Text = data1;
             mskDataAte.Text = data2;
@@ -63,8 +61,8 @@ namespace LivrariaEBiblioteca
                 comm.CommandType = CommandType.Text;
 
                 comm.Parameters.Clear();
-                comm.Parameters.AddWithValue("@dataCadastro1", dtpEntre.Value.ToString("dd/MM/yyyy"));
-                comm.Parameters.AddWithValue("@dataCadastro2", dtpAte.Value.ToString("dd/MM/yyyy"));
+                comm.Parameters.AddWithValue("@dataCadastro1", DateTime.Parse(data1));
+                comm.Parameters.AddWithValue("@dataCadastro2", DateTime.Parse(data2).AddDays(1));
 
                 comm.Connection = Conexao.obterConexao();
 
@@ -97,9 +95,6 @@ namespace LivrariaEBiblioteca
 
                 mskDataEntre.Text = data1;
                 mskDataAte.Text = data2;
-
-                dtpEntre.Value = Convert.ToDateTime("01/01/1753");
-                dtpAte.Value = DateTime.Now;
             }
         }
 
@@ -118,7 +113,7 @@ namespace LivrariaEBiblioteca
 
                 comm.Parameters.Clear();
                 comm.Parameters.AddWithValue("@dataCadastro1", DateTime.Parse(data1));
-                comm.Parameters.AddWithValue("@dataCadastro2", DateTime.Parse(data2));
+                comm.Parameters.AddWithValue("@dataCadastro2", DateTime.Parse(data2).AddDays(1));
 
                 comm.Connection = Conexao.obterConexao();
 
@@ -152,7 +147,7 @@ namespace LivrariaEBiblioteca
 
                 comm.Parameters.Clear();
                 comm.Parameters.AddWithValue("@dataCadastro1", DateTime.Parse(data1));
-                comm.Parameters.AddWithValue("@dataCadastro2", DateTime.Parse(data2));
+                comm.Parameters.AddWithValue("@dataCadastro2", DateTime.Parse(data2).AddDays(1));
 
                 comm.Connection = Conexao.obterConexao();
 
@@ -186,7 +181,7 @@ namespace LivrariaEBiblioteca
 
                 comm.Parameters.Clear();
                 comm.Parameters.AddWithValue("@dataCadastro1", DateTime.Parse(data1));
-                comm.Parameters.AddWithValue("@dataCadastro2", DateTime.Parse(data2));
+                comm.Parameters.AddWithValue("@dataCadastro2", DateTime.Parse(data2).AddDays(1));
 
                 comm.Connection = Conexao.obterConexao();
 
@@ -221,7 +216,7 @@ namespace LivrariaEBiblioteca
 
                 comm.Parameters.Clear();
                 comm.Parameters.AddWithValue("@dataCadastro1", DateTime.Parse(data1));
-                comm.Parameters.AddWithValue("@dataCadastro2", DateTime.Parse(data2));
+                comm.Parameters.AddWithValue("@dataCadastro2", DateTime.Parse(data2).AddDays(1));
 
                 comm.Connection = Conexao.obterConexao();
 
