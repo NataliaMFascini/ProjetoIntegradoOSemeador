@@ -155,6 +155,8 @@ namespace LivrariaEBiblioteca
                         if(!int.TryParse(txtDescricao.Text, out tryParse))
                         {
                             MessageBox.Show("Usar apenas números.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            txtDescricao.Clear();
+                            txtDescricao.Focus();
                             return;
                         }
                         pesquisarPorProntuario(Convert.ToInt32(txtDescricao.Text));
@@ -164,6 +166,8 @@ namespace LivrariaEBiblioteca
                         if(int.TryParse(txtDescricao.Text, out tryParse))
                         {
                             MessageBox.Show("Utilizar apenas letras.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            txtDescricao.Clear();
+                            txtDescricao.Focus();
                             return;
                         }
                         pesquisarPorNome(txtDescricao.Text);

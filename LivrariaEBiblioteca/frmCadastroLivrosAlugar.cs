@@ -175,6 +175,8 @@ namespace LivrariaEBiblioteca
                 if (!int.TryParse(txtIsbn.Text, out tryParse))
                 {
                     erroCampo("ISBN", "númerico");
+                    txtIsbn.Clear();
+                    txtIsbn.Focus();
                     return;
                 }
                 erroCadastro("ISBN");
@@ -185,6 +187,8 @@ namespace LivrariaEBiblioteca
                 if (int.TryParse(txtTitulo.Text, out tryParse))
                 {
                     erroCampo("Titulo", "alfabético");
+                    txtTitulo.Clear();
+                    txtTitulo.Focus();
                     return;
                 }
                 erroCadastro("Titulo");
@@ -195,6 +199,8 @@ namespace LivrariaEBiblioteca
                 if (int.TryParse(txtAutor.Text, out tryParse))
                 {
                     erroCampo("Autor", "alfabético");
+                    txtAutor.Clear();
+                    txtAutor.Focus();
                     return;
                 }
                 erroCadastro("Autor");
@@ -205,6 +211,8 @@ namespace LivrariaEBiblioteca
                 if (int.TryParse(txtEditora.Text, out tryParse))
                 {
                     erroCampo("Editora", "alfabético");
+                    txtEditora.Clear();
+                    txtEditora.Focus();
                     return;
                 }
                 erroCadastro("Editora");
@@ -215,6 +223,8 @@ namespace LivrariaEBiblioteca
                 if (!int.TryParse(txtAno.Text, out tryParse))
                 {
                     erroCampo("Ano", "númerico");
+                    txtAno.Clear();
+                    txtAno.Focus();
                     return;
                 }
                 erroCadastro("Ano");
@@ -225,6 +235,8 @@ namespace LivrariaEBiblioteca
                 if (!int.TryParse(txtQuantidade.Text, out tryParse))
                 {
                     erroCampo("Quantidade", "númerico");
+                    txtQuantidade.Clear();
+                    txtQuantidade.Focus();
                     return;
                 }
                 erroCadastro("Quantidade");
@@ -235,6 +247,8 @@ namespace LivrariaEBiblioteca
                 if (!decimal.TryParse(txtValor.Text, out tryParseDecimal))
                 {
                     erroCampo("Valor", "númerico");
+                    txtValor.Clear();
+                    txtValor.Focus();
                     return;
                 }
                 erroCadastro("Valor");
@@ -536,6 +550,8 @@ namespace LivrariaEBiblioteca
                 if (!int.TryParse(txtIsbn.Text, out tryParse))
                 {
                     erroCampo("ISBN", "númerico");
+                    txtIsbn.Clear();
+                    txtIsbn.Focus();
                     return;
                 }
                 erroCadastro("ISBN");
@@ -546,6 +562,8 @@ namespace LivrariaEBiblioteca
                 if (int.TryParse(txtTitulo.Text, out tryParse))
                 {
                     erroCampo("Titulo", "alfabético");
+                    txtTitulo.Clear();
+                    txtTitulo.Focus();
                     return;
                 }
                 erroCadastro("Titulo");
@@ -556,6 +574,8 @@ namespace LivrariaEBiblioteca
                 if (int.TryParse(txtAutor.Text, out tryParse))
                 {
                     erroCampo("Autor", "alfabético");
+                    txtAutor.Clear();
+                    txtAutor.Focus();
                     return;
                 }
                 erroCadastro("Autor");
@@ -566,6 +586,8 @@ namespace LivrariaEBiblioteca
                 if (int.TryParse(txtEditora.Text, out tryParse))
                 {
                     erroCampo("Editora", "alfabético");
+                    txtEditora.Clear();
+                    txtEditora.Focus();
                     return;
                 }
                 erroCadastro("Editora");
@@ -576,6 +598,8 @@ namespace LivrariaEBiblioteca
                 if (!int.TryParse(txtAno.Text, out tryParse))
                 {
                     erroCampo("Ano", "númerico");
+                    txtAno.Clear();
+                    txtAno.Focus();
                     return;
                 }
                 erroCadastro("Ano");
@@ -586,6 +610,8 @@ namespace LivrariaEBiblioteca
                 if (!int.TryParse(txtQuantidade.Text, out tryParse))
                 {
                     erroCampo("Quantidade", "númerico");
+                    txtQuantidade.Clear();
+                    txtQuantidade.Focus();
                     return;
                 }
                 erroCadastro("Quantidade");
@@ -596,15 +622,12 @@ namespace LivrariaEBiblioteca
                 if (!decimal.TryParse(txtValor.Text, out tryParseDecimal))
                 {
                     erroCampo("Valor", "númerico");
+                    txtValor.Clear();
+                    txtValor.Focus();
                     return;
                 }
                 erroCadastro("Valor");
                 txtValor.Focus();
-            }
-            else if (rdbEmprestimo.Checked == false && rdbVenda.Checked == false)
-            {
-                erroCadastro("Emprestimo ou Venda");
-
             }
             else
             {
