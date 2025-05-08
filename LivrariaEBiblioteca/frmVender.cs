@@ -23,8 +23,9 @@ namespace LivrariaEBiblioteca
         public string cargo;
         public int quantTotal = 0;
         public string fotoPath;
-        public string[] carrinho;
 
+        public int estoqueInicial = 0;
+        decimal custo = 0;
         Livros livros = new Livros();
 
         public frmVender()
@@ -52,6 +53,8 @@ namespace LivrariaEBiblioteca
             this.cargo = cargo;
 
             pesquisarPorNome(livro);
+
+            estoqueInicial = livros.checarEstoque(Convert.ToInt32(txtIdLivro.Text), "Ven");
         }
 
 
@@ -156,19 +159,21 @@ namespace LivrariaEBiblioteca
             else
             {
                 //Tem que separar por livro
+
                 separarLivros();
-                if (livros.checarEstoque(Convert.ToInt32(txtIdLivro.Text), "Ven") <= 5)
+                if (estoqueInicial <= 5 && estoqueInicial > 0)
                 {
-                    MessageBox.Show("Resta " + livros.checarEstoque(Convert.ToInt32(txtIdLivro.Text), "Ven") + " unidades em estoque.", "Aviso do estoque", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    MessageBox.Show("Resta " + estoqueInicial + " unidades em estoque.", "Aviso do estoque", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 }
-                else if (livros.checarEstoque(Convert.ToInt32(txtIdLivro.Text), "Ven") == 0)
+                else if (estoqueInicial <= 0)
                 {
                     MessageBox.Show("Não há mais esse livro em estoque.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
                     return;
                 }
                 ltbCarrinho.Items.Add(txtTitulo.Text + " - " + txtAutor.Text + " - R$ " + txtValor.Text);
 
-                valor = Convert.ToDecimal(txtValor.Text);
+                estoqueInicial --;
+                valor = custo;
 
                 valorTotal = valorTotal + valor;
                 txtValorTotal.Text = "R$" + valorTotal.ToString();
@@ -180,10 +185,11 @@ namespace LivrariaEBiblioteca
 
             livros.idLivro = Convert.ToInt32(txtIdLivro.Text);
             livros.nomeLivro = txtTitulo.Text;
-            livros.valorLivro = Convert.ToDecimal(txtValor.Text);
+            livros.valorLivro = custo;
 
             Livros.ListaLivros.Add(livros);
         }
+
         public void erroCadastro(string nomeCampo)
         {
             MessageBox.Show(nomeCampo + " é um campo obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
@@ -250,7 +256,8 @@ namespace LivrariaEBiblioteca
                         txtTitulo.Text = DR.GetString(2);
                         txtAutor.Text = DR.GetString(3);
                         txtEditora.Text = DR.GetString(4);
-                        txtValor.Text = "R$ " + Convert.ToString(DR.GetDecimal(5));
+                        custo = DR.GetDecimal(5);
+                        txtValor.Text = "R$ " + custo.ToString("0.00");
                         if (fotoPath != null)
                         {
                             fotoPath = DR.GetString(6);
@@ -280,6 +287,8 @@ namespace LivrariaEBiblioteca
             {
                 escanearLivro(txtIsbn.Text);
                 codLivro = Convert.ToInt32(txtIdLivro.Text);
+                estoqueInicial = livros.checarEstoque(Convert.ToInt32(txtIdLivro.Text), "Ven");
+
                 if (livros.checarEstoque(codLivro, "Ven") <= 5)
                 {
                     MessageBox.Show("Resta " + livros.checarEstoque(codLivro, "Ven") + " unidades em estoque.", "Aviso do estoque", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
@@ -473,7 +482,8 @@ namespace LivrariaEBiblioteca
                 txtTitulo.Text = DR.GetString(2);
                 txtAutor.Text = DR.GetString(3);
                 txtEditora.Text = DR.GetString(4);
-                txtValor.Text = "R$ " + Convert.ToString(DR.GetDecimal(5));
+                custo = DR.GetDecimal(5);
+                txtValor.Text = "R$ " + custo.ToString("0.00");
                 if (fotoPath != null)
                 {
                     fotoPath = DR.GetString(6);
