@@ -97,7 +97,7 @@ namespace LivrariaEBiblioteca
             {
                 if (!int.TryParse(txtIsbn.Text, out tryParse))
                 {
-                    erroCampo("ISBN", "numérico");                    
+                    erroCampo("ISBN", "numérico");
                     txtIsbn.Clear();
                     txtIsbn.Focus();
                     return;
@@ -155,10 +155,18 @@ namespace LivrariaEBiblioteca
             }
             else
             {
-                ltbCarrinho.Items.Add(txtTitulo.Text + " - " + txtAutor.Text + " - R$ " + txtValor.Text);
-
                 //Tem que separar por livro
                 separarLivros();
+                if (livros.checarEstoque(Convert.ToInt32(txtIdLivro.Text), "Ven") <= 5)
+                {
+                    MessageBox.Show("Resta " + livros.checarEstoque(Convert.ToInt32(txtIdLivro.Text), "Ven") + " unidades em estoque.", "Aviso do estoque", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                }
+                else if (livros.checarEstoque(Convert.ToInt32(txtIdLivro.Text), "Ven") == 0)
+                {
+                    MessageBox.Show("Não há mais esse livro em estoque.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                    return;
+                }
+                ltbCarrinho.Items.Add(txtTitulo.Text + " - " + txtAutor.Text + " - R$ " + txtValor.Text);
 
                 valor = Convert.ToDecimal(txtValor.Text);
 
@@ -187,26 +195,24 @@ namespace LivrariaEBiblioteca
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            carrinho = ltbCarrinho.Items.Cast<string>().ToArray();
             frmBuscarLivro abrir = new frmBuscarLivro(this.nome, this.codUsu, this.cargo, "Venda");
-            
 
-              if (ltbCarrinho.Items.Count != 0)
-              {
-                  DialogResult resultado = MessageBox.Show("Essa ação irá limpar o carrinho. Deseja continuar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-                  if (resultado == DialogResult.Yes)
-                  {
-                      abrir = new frmBuscarLivro(this.nome, this.codUsu, this.cargo, "Venda");
-                      abrir.Show();
-                      this.Hide();
-                  }
-              }
-              else
-              {
-                  abrir = new frmBuscarLivro(this.nome, this.codUsu, this.cargo, "Venda");
-                  abrir.Show();
-                  this.Hide();
-              }
+            if (ltbCarrinho.Items.Count != 0)
+            {
+                DialogResult resultado = MessageBox.Show("Essa ação irá limpar o carrinho. Deseja continuar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                if (resultado == DialogResult.Yes)
+                {
+                    abrir = new frmBuscarLivro(this.nome, this.codUsu, this.cargo, "Venda");
+                    abrir.Show();
+                    this.Hide();
+                }
+            }
+            else
+            {
+                abrir = new frmBuscarLivro(this.nome, this.codUsu, this.cargo, "Venda");
+                abrir.Show();
+                this.Hide();
+            }
         }
         public void escanearLivro(string isbn)
         {
@@ -244,7 +250,7 @@ namespace LivrariaEBiblioteca
                         txtTitulo.Text = DR.GetString(2);
                         txtAutor.Text = DR.GetString(3);
                         txtEditora.Text = DR.GetString(4);
-                        txtValor.Text = Convert.ToString(DR.GetDecimal(5));
+                        txtValor.Text = "R$ " + Convert.ToString(DR.GetDecimal(5));
                         if (fotoPath != null)
                         {
                             fotoPath = DR.GetString(6);
@@ -293,6 +299,7 @@ namespace LivrariaEBiblioteca
                 }
                 erroCadastro("Forma de Pagamento");
                 cbbFormaPagamento.Focus();
+                return;
             }
             if (ltbCarrinho.Items.Count != 0)
             {
@@ -466,7 +473,7 @@ namespace LivrariaEBiblioteca
                 txtTitulo.Text = DR.GetString(2);
                 txtAutor.Text = DR.GetString(3);
                 txtEditora.Text = DR.GetString(4);
-                txtValor.Text = Convert.ToString(DR.GetDecimal(5));
+                txtValor.Text = "R$ " + Convert.ToString(DR.GetDecimal(5));
                 if (fotoPath != null)
                 {
                     fotoPath = DR.GetString(6);

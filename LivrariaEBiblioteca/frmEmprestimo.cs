@@ -60,6 +60,8 @@ namespace LivrariaEBiblioteca
 
             string codLoc = txtLocatario.Text;
 
+            pesquisarPorNome(livro);
+
         }
         public void DesabilitarCampos()
         {
@@ -507,6 +509,42 @@ namespace LivrariaEBiblioteca
             if (e.KeyCode == Keys.Enter)
             {
                 checargemDevolucao(Convert.ToString(ltbCarrinho.Items));
+            }
+        }
+
+        public void pesquisarPorNome(string nome)
+        {
+            try
+            {
+                MySqlCommand comm = new MySqlCommand();
+                comm.CommandText = "select codLivro, isbn, nome, autor, editora, foto from tbLivro where nome = @nome;";
+                comm.CommandType = CommandType.Text;
+
+                comm.Parameters.Clear();
+                comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = nome;
+                comm.Connection = Conexao.obterConexao();
+
+                MySqlDataReader DR;
+                DR = comm.ExecuteReader();
+                DR.Read();
+
+                txtIdLivro.Text = Convert.ToString(DR.GetInt32(0));
+                txtIsbn.Text = DR.GetString(1);
+                txtTitulo.Text = DR.GetString(2);
+                txtAutor.Text = DR.GetString(3);
+                txtEditora.Text = DR.GetString(4);
+                if (fotoPath != null)
+                {
+                    fotoPath = DR.GetString(6);
+                    pctLivro.ImageLocation = fotoPath;
+                    pctLivro.Load();
+                }
+
+                Conexao.fecharConexao();
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao buscar informações do livro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
             }
         }
     }
