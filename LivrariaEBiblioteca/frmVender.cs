@@ -97,7 +97,9 @@ namespace LivrariaEBiblioteca
             {
                 if (!int.TryParse(txtIsbn.Text, out tryParse))
                 {
-                    erroCampo("ISBN", "numérico");
+                    erroCampo("ISBN", "numérico");                    
+                    txtIsbn.Clear();
+                    txtIsbn.Focus();
                     return;
                 }
                 erroCadastro("ISBN");
@@ -108,6 +110,8 @@ namespace LivrariaEBiblioteca
                 if (int.TryParse(txtTitulo.Text, out tryParse))
                 {
                     erroCampo("Título", "alfabético");
+                    txtTitulo.Clear();
+                    txtTitulo.Focus();
                     return;
                 }
                 erroCadastro("Titulo");
@@ -118,6 +122,8 @@ namespace LivrariaEBiblioteca
                 if (int.TryParse(txtAutor.Text, out tryParse))
                 {
                     erroCampo("Autor", "alfabético");
+                    txtAutor.Clear();
+                    txtAutor.Focus();
                     return;
                 }
                 erroCadastro("Autor");
@@ -128,6 +134,8 @@ namespace LivrariaEBiblioteca
                 if (int.TryParse(txtEditora.Text, out tryParse))
                 {
                     erroCampo("Editora", "alfabético");
+                    txtEditora.Clear();
+                    txtEditora.Focus();
                     return;
                 }
                 erroCadastro("Editora");
@@ -138,20 +146,12 @@ namespace LivrariaEBiblioteca
                 if (!decimal.TryParse(txtValor.Text, out tryParseDecimal))
                 {
                     erroCampo("Valor", "numérico");
+                    txtEditora.Clear();
+                    txtEditora.Focus();
                     return;
                 }
                 erroCadastro("Valor");
                 txtValor.Focus();
-            }
-            else if (cbbFormaPagamento.Items.Equals(""))
-            {
-                if (int.TryParse(cbbFormaPagamento.Text, out tryParse))
-                {
-                    erroCampo("Forma de Pagamento", "alfabético");
-                    return;
-                }
-                erroCadastro("Forma de Pagamento");
-                cbbFormaPagamento.Focus();
             }
             else
             {
@@ -283,6 +283,17 @@ namespace LivrariaEBiblioteca
 
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
+            int tryParse;
+            if (cbbFormaPagamento.Text.Equals(""))
+            {
+                if (int.TryParse(cbbFormaPagamento.Text, out tryParse))
+                {
+                    erroCampo("Forma de Pagamento", "alfabético");
+                    return;
+                }
+                erroCadastro("Forma de Pagamento");
+                cbbFormaPagamento.Focus();
+            }
             if (ltbCarrinho.Items.Count != 0)
             {
                 if (registrarVenda() == 1 && saidaEstoque() == 1)

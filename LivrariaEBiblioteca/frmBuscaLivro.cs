@@ -179,6 +179,8 @@ namespace LivrariaEBiblioteca
                     if(!int.TryParse(txtIdLivro.Text, out tryParse))
                     {
                         MessageBox.Show("Use apenas números.", "MENSAGEM DO SISTEMA", MessageBoxButtons.OK);
+                        txtIdLivro.Clear();
+                        txtIdLivro.Focus();
                         return;
                     }
                     comm.CommandText = "SELECT codLivro, nome, isbn, foto, empVen FROM tbLivro WHERE codLivro = @codLivro;";
@@ -192,6 +194,8 @@ namespace LivrariaEBiblioteca
                     if(int.TryParse(txtTitulo.Text, out tryParse))
                     {
                         MessageBox.Show("Use apenas letras.", "MENSAGEM DO SISTEMA", MessageBoxButtons.OK);
+                        txtTitulo.Clear();
+                        txtTitulo.Focus();
                         return;
                     }
                     comm.CommandText = "SELECT  codLivro, nome, isbn, foto, empVen FROM tbLivro WHERE nome LIKE '%" + descricao + "%';";
@@ -204,6 +208,8 @@ namespace LivrariaEBiblioteca
                     if (!int.TryParse(txtIsbn.Text, out tryParse))
                     {
                         MessageBox.Show("Use apenas números.", "MENSAGEM DO SISTEMA", MessageBoxButtons.OK);
+                        txtIsbn.Clear();
+                        txtIsbn.Focus();
                         return;
                     }
                     comm.CommandText = "SELECT codLivro, nome, isbn, foto, empVen FROM tbLivro WHERE isbn = @isbn;";

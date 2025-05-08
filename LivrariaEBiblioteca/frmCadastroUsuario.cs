@@ -173,9 +173,11 @@ namespace LivrariaEBiblioteca
             int tryParse;
             if (txtNomeCompleto.Text.Equals(""))
             {
-                if(int.TryParse(txtNomeCompleto.Text, out tryParse))
+                if (int.TryParse(txtNomeCompleto.Text, out tryParse))
                 {
                     erroCampo("Nome Completo", "Texto");
+                    txtNomeCompleto.Clear();
+                    txtNomeCompleto.Focus();
                     return;
                 }
                 erroCadastro("Nome Completo");
@@ -183,9 +185,11 @@ namespace LivrariaEBiblioteca
             }
             else if (mskCpf.Text.Equals("    .   .   -") || !mskCpf.MaskFull)
             {
-                if(!int.TryParse(mskCpf.Text, out tryParse))
+                if (!int.TryParse(mskCpf.Text, out tryParse))
                 {
                     erroCampo("CPF", "Número");
+                    mskCpf.Clear();
+                    mskCpf.Focus();
                     return;
                 }
                 erroCadastro("CPF");
@@ -193,9 +197,11 @@ namespace LivrariaEBiblioteca
             }
             else if (mskTelefone.Text.Equals("(  )      -") || !mskTelefone.MaskFull)
             {
-                if(!int.TryParse(mskTelefone.Text, out tryParse))
+                if (!int.TryParse(mskTelefone.Text, out tryParse))
                 {
                     erroCampo("Telefone", "Número");
+                    mskTelefone.Clear();
+                    mskTelefone.Focus();
                     return;
                 }
                 erroCadastro("Telefone");
@@ -203,9 +209,11 @@ namespace LivrariaEBiblioteca
             }
             else if (cbbCargo.Text.Equals(""))
             {
-                if(int.TryParse(cbbCargo.Text, out tryParse))
+                if (int.TryParse(cbbCargo.Text, out tryParse))
                 {
                     erroCampo("Cargo", "Texto");
+                    cbbCargo.Text = "";
+                    cbbCargo.Focus();
                     return;
                 }
                 erroCadastro("Cargo");
@@ -213,9 +221,11 @@ namespace LivrariaEBiblioteca
             }
             else if (txtEmail.Text.Equals(""))
             {
-                if(int.TryParse(txtEmail.Text, out tryParse))
+                if (int.TryParse(txtEmail.Text, out tryParse))
                 {
                     erroCampo("Email", "Texto");
+                    txtEmail.Clear();
+                    txtEmail.Focus();
                     return;
                 }
                 erroCadastro("Email");
@@ -223,9 +233,11 @@ namespace LivrariaEBiblioteca
             }
             else if (cbbDiaDeTrabalho.Text.Equals(""))
             {
-                if(int.TryParse(cbbDiaDeTrabalho.Text, out tryParse))
+                if (int.TryParse(cbbDiaDeTrabalho.Text, out tryParse))
                 {
                     erroCampo("Dia de trabalho", "Texto");
+                    cbbCargo.Text = "";
+                    cbbCargo.Focus();
                     return;
                 }
                 erroCadastro("Dia de trabalho");
@@ -248,9 +260,11 @@ namespace LivrariaEBiblioteca
             }
             else if (mskCep.Text.Equals("     -") || !mskCep.MaskFull)
             {
-                if(!int.TryParse(mskCep.Text, out tryParse))
+                if (!int.TryParse(mskCep.Text, out tryParse))
                 {
                     erroCampo("Cep", "Número");
+                    mskCep.Clear();
+                    mskCep.Focus();
                     return;
                 }
                 erroCadastro("Cep");
@@ -258,9 +272,11 @@ namespace LivrariaEBiblioteca
             }
             else if (txtLogradouro.Text.Equals(""))
             {
-                if(int.TryParse(txtLogradouro.Text, out tryParse))
+                if (int.TryParse(txtLogradouro.Text, out tryParse))
                 {
                     erroCampo("Logradouro", "Texto");
+                    txtLogradouro.Clear();
+                    txtLogradouro.Focus();
                     return;
                 }
                 erroCadastro("Lougradouro");
@@ -268,9 +284,11 @@ namespace LivrariaEBiblioteca
             }
             else if (txtNumero.Text.Equals(""))
             {
-                if(!int.TryParse(txtNumero.Text, out tryParse))
+                if (!int.TryParse(txtNumero.Text, out tryParse))
                 {
                     erroCampo("Numero", "Número");
+                    txtNumero.Clear();
+                    txtNumero.Focus();
                     return;
                 }
                 erroCadastro("Numero");
@@ -281,6 +299,8 @@ namespace LivrariaEBiblioteca
                 if (int.TryParse(txtComplemento.Text, out tryParse))
                 {
                     erroCampo("Complemento", "Texto");
+                    txtComplemento.Clear();
+                    txtComplemento.Focus();
                     return;
                 }
                 erroCadastro("Complemento");
@@ -288,9 +308,11 @@ namespace LivrariaEBiblioteca
             }
             else if (txtBairro.Text.Equals(""))
             {
-                if(int.TryParse(txtBairro.Text, out tryParse))
+                if (int.TryParse(txtBairro.Text, out tryParse))
                 {
                     erroCampo("Bairro", "Texto");
+                    txtBairro.Clear();
+                    txtBairro.Focus();
                     return;
                 }
                 erroCadastro("Bairro");
@@ -298,9 +320,11 @@ namespace LivrariaEBiblioteca
             }
             else if (txtCidade.Text.Equals(""))
             {
-                if(int.TryParse(txtCidade.Text, out tryParse))
+                if (int.TryParse(txtCidade.Text, out tryParse))
                 {
                     erroCampo("Cidade", "Texto");
+                    txtCidade.Clear();
+                    txtCidade.Focus();
                     return;
                 }
                 erroCadastro("Cidade");
@@ -308,9 +332,11 @@ namespace LivrariaEBiblioteca
             }
             else if (cbbEstado.Text.Equals(""))
             {
-                if(int.TryParse(cbbEstado.Text, out tryParse))
+                if (int.TryParse(cbbEstado.Text, out tryParse))
                 {
                     erroCampo("Estado", "Texto");
+                    cbbEstado.Text = "";
+                    cbbEstado.Focus();
                     return;
                 }
                 erroCadastro("Estado");
@@ -322,6 +348,9 @@ namespace LivrariaEBiblioteca
                 {
                     MessageBox.Show("Cadastro realizado com sucesso.");
                     limparCampos();
+                    btnNovo.Enabled = true;
+                    btnCadastra.Enabled = false;
+                    btnLimpar.Enabled = false;
                 }
                 else
                 {
@@ -532,7 +561,7 @@ namespace LivrariaEBiblioteca
             }
             else
             {
-                pnlBordaRepetir.BackColor = Color.WhiteSmoke;
+                pnlBordaRepetir.BackColor = Color.CadetBlue;
             }
         }
 
@@ -592,6 +621,8 @@ namespace LivrariaEBiblioteca
                 if (int.TryParse(txtNomeCompleto.Text, out tryParse))
                 {
                     erroCampo("Nome Completo", "Texto");
+                    txtNomeCompleto.Clear();
+                    txtNomeCompleto.Focus();
                     return;
                 }
                 erroCadastro("Nome Completo");
@@ -602,6 +633,8 @@ namespace LivrariaEBiblioteca
                 if (!int.TryParse(mskCpf.Text, out tryParse))
                 {
                     erroCampo("CPF", "Número");
+                    mskCpf.Clear();
+                    mskCpf.Focus();
                     return;
                 }
                 erroCadastro("CPF");
@@ -612,6 +645,8 @@ namespace LivrariaEBiblioteca
                 if (!int.TryParse(mskTelefone.Text, out tryParse))
                 {
                     erroCampo("Telefone", "Número");
+                    mskTelefone.Clear();
+                    mskTelefone.Focus();
                     return;
                 }
                 erroCadastro("Telefone");
@@ -622,6 +657,8 @@ namespace LivrariaEBiblioteca
                 if (int.TryParse(cbbCargo.Text, out tryParse))
                 {
                     erroCampo("Cargo", "Texto");
+                    cbbCargo.Text = "";
+                    cbbCargo.Focus();
                     return;
                 }
                 erroCadastro("Cargo");
@@ -632,6 +669,8 @@ namespace LivrariaEBiblioteca
                 if (int.TryParse(txtEmail.Text, out tryParse))
                 {
                     erroCampo("Email", "Texto");
+                    txtEmail.Clear();
+                    txtEmail.Focus();
                     return;
                 }
                 erroCadastro("Email");
@@ -642,6 +681,8 @@ namespace LivrariaEBiblioteca
                 if (int.TryParse(cbbDiaDeTrabalho.Text, out tryParse))
                 {
                     erroCampo("Dia de trabalho", "Texto");
+                    cbbCargo.Text = "";
+                    cbbCargo.Focus();
                     return;
                 }
                 erroCadastro("Dia de trabalho");
@@ -667,6 +708,8 @@ namespace LivrariaEBiblioteca
                 if (!int.TryParse(mskCep.Text, out tryParse))
                 {
                     erroCampo("Cep", "Número");
+                    mskCep.Clear();
+                    mskCep.Focus();
                     return;
                 }
                 erroCadastro("Cep");
@@ -677,6 +720,8 @@ namespace LivrariaEBiblioteca
                 if (int.TryParse(txtLogradouro.Text, out tryParse))
                 {
                     erroCampo("Logradouro", "Texto");
+                    txtLogradouro.Clear();
+                    txtLogradouro.Focus();
                     return;
                 }
                 erroCadastro("Lougradouro");
@@ -687,6 +732,8 @@ namespace LivrariaEBiblioteca
                 if (!int.TryParse(txtNumero.Text, out tryParse))
                 {
                     erroCampo("Numero", "Número");
+                    txtNumero.Clear();
+                    txtNumero.Focus();
                     return;
                 }
                 erroCadastro("Numero");
@@ -697,6 +744,8 @@ namespace LivrariaEBiblioteca
                 if (int.TryParse(txtComplemento.Text, out tryParse))
                 {
                     erroCampo("Complemento", "Texto");
+                    txtComplemento.Clear();
+                    txtComplemento.Focus();
                     return;
                 }
                 erroCadastro("Complemento");
@@ -707,6 +756,8 @@ namespace LivrariaEBiblioteca
                 if (int.TryParse(txtBairro.Text, out tryParse))
                 {
                     erroCampo("Bairro", "Texto");
+                    txtBairro.Clear();
+                    txtBairro.Focus();
                     return;
                 }
                 erroCadastro("Bairro");
@@ -717,6 +768,8 @@ namespace LivrariaEBiblioteca
                 if (int.TryParse(txtCidade.Text, out tryParse))
                 {
                     erroCampo("Cidade", "Texto");
+                    txtCidade.Clear();
+                    txtCidade.Focus();
                     return;
                 }
                 erroCadastro("Cidade");
@@ -727,6 +780,8 @@ namespace LivrariaEBiblioteca
                 if (int.TryParse(cbbEstado.Text, out tryParse))
                 {
                     erroCampo("Estado", "Texto");
+                    cbbEstado.Text = "";
+                    cbbEstado.Focus();
                     return;
                 }
                 erroCadastro("Estado");
@@ -819,7 +874,7 @@ namespace LivrariaEBiblioteca
 
         private void txtNumero_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 txtComplemento.Focus();
             }
