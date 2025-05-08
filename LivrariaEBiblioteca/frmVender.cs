@@ -186,23 +186,24 @@ namespace LivrariaEBiblioteca
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             frmBuscarLivro abrir = new frmBuscarLivro(this.nome, this.codUsu, this.cargo, "Venda");
+            
 
-            if (ltbCarrinho.Items.Count != 0)
-            {
-                DialogResult resultado = MessageBox.Show("Essa ação irá limpar o carrinho. Deseja continuar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-                if (resultado == DialogResult.Yes)
-                {
-                    abrir = new frmBuscarLivro(this.nome, this.codUsu, this.cargo, "Venda");
-                    abrir.Show();
-                    this.Hide();
-                }
-            }
-            else
-            {
-                abrir = new frmBuscarLivro(this.nome, this.codUsu, this.cargo, "Venda");
-                abrir.Show();
-                this.Hide();
-            }
+              if (ltbCarrinho.Items.Count != 0)
+              {
+                  DialogResult resultado = MessageBox.Show("Essa ação irá limpar o carrinho. Deseja continuar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                  if (resultado == DialogResult.Yes)
+                  {
+                      abrir = new frmBuscarLivro(this.nome, this.codUsu, this.cargo, "Venda");
+                      abrir.Show();
+                      this.Hide();
+                  }
+              }
+              else
+              {
+                  abrir = new frmBuscarLivro(this.nome, this.codUsu, this.cargo, "Venda");
+                  abrir.Show();
+                  this.Hide();
+              }
         }
         public void escanearLivro(string isbn)
         {
