@@ -49,8 +49,6 @@
             this.lblAte = new System.Windows.Forms.Label();
             this.mskDataEntre = new System.Windows.Forms.MaskedTextBox();
             this.mskDataAte = new System.Windows.Forms.MaskedTextBox();
-            this.dtpEntre = new System.Windows.Forms.DateTimePicker();
-            this.dtpAte = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorio)).BeginInit();
             this.tlpRelatorios.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -319,7 +317,7 @@
             // 
             this.lblAte.AutoSize = true;
             this.lblAte.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAte.Location = new System.Drawing.Point(249, 71);
+            this.lblAte.Location = new System.Drawing.Point(239, 71);
             this.lblAte.Name = "lblAte";
             this.lblAte.Size = new System.Drawing.Size(32, 25);
             this.lblAte.TabIndex = 7;
@@ -328,40 +326,22 @@
             // mskDataEntre
             // 
             this.mskDataEntre.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mskDataEntre.Location = new System.Drawing.Point(183, 19);
+            this.mskDataEntre.Location = new System.Drawing.Point(93, 68);
             this.mskDataEntre.Mask = "00/00/0000";
             this.mskDataEntre.Name = "mskDataEntre";
-            this.mskDataEntre.Size = new System.Drawing.Size(120, 31);
+            this.mskDataEntre.Size = new System.Drawing.Size(130, 31);
             this.mskDataEntre.TabIndex = 8;
             this.mskDataEntre.ValidatingType = typeof(System.DateTime);
             // 
             // mskDataAte
             // 
             this.mskDataAte.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mskDataAte.Location = new System.Drawing.Point(309, 19);
+            this.mskDataAte.Location = new System.Drawing.Point(277, 68);
             this.mskDataAte.Mask = "00/00/0000";
             this.mskDataAte.Name = "mskDataAte";
-            this.mskDataAte.Size = new System.Drawing.Size(120, 31);
+            this.mskDataAte.Size = new System.Drawing.Size(130, 31);
             this.mskDataAte.TabIndex = 9;
             this.mskDataAte.ValidatingType = typeof(System.DateTime);
-            // 
-            // dtpEntre
-            // 
-            this.dtpEntre.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpEntre.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpEntre.Location = new System.Drawing.Point(93, 68);
-            this.dtpEntre.Name = "dtpEntre";
-            this.dtpEntre.Size = new System.Drawing.Size(150, 31);
-            this.dtpEntre.TabIndex = 10;
-            // 
-            // dtpAte
-            // 
-            this.dtpAte.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpAte.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpAte.Location = new System.Drawing.Point(287, 68);
-            this.dtpAte.Name = "dtpAte";
-            this.dtpAte.Size = new System.Drawing.Size(150, 31);
-            this.dtpAte.TabIndex = 11;
             // 
             // frmRelatorio
             // 
@@ -369,8 +349,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CadetBlue;
             this.ClientSize = new System.Drawing.Size(800, 600);
-            this.Controls.Add(this.dtpAte);
-            this.Controls.Add(this.dtpEntre);
             this.Controls.Add(this.mskDataAte);
             this.Controls.Add(this.mskDataEntre);
             this.Controls.Add(this.lblAte);
@@ -416,7 +394,5 @@
         private System.Windows.Forms.Label lblAte;
         private System.Windows.Forms.MaskedTextBox mskDataEntre;
         private System.Windows.Forms.MaskedTextBox mskDataAte;
-        private System.Windows.Forms.DateTimePicker dtpEntre;
-        private System.Windows.Forms.DateTimePicker dtpAte;
     }
 }
