@@ -26,6 +26,8 @@ namespace LivrariaEBiblioteca
         public string cargo;
         public string fotoPath;
 
+        string nomeCheck;
+        string codLivroCheck;
 
         Livros livros = new Livros();
 
@@ -252,7 +254,7 @@ namespace LivrariaEBiblioteca
             for (int i = 0; i < Livros.ListaLivros.Count; i++)
             {
                 comm.Parameters.Clear();
-                comm.Parameters.Add("@saidaEmp", MySqlDbType.Int32).Value = pegarQuantLivro(i,"Entrada") + quantidadeRetorno(i);
+                comm.Parameters.Add("@saidaEmp", MySqlDbType.Int32).Value = pegarQuantLivro(i, "Entrada") + quantidadeRetorno(i);
                 comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = Livros.ListaLivros[i].idLivro;
 
                 comm.Connection = Conexao.obterConexao();
@@ -270,7 +272,7 @@ namespace LivrariaEBiblioteca
             return resp;
         }
 
-        public int pegarQuantLivro(int index, string entSai) 
+        public int pegarQuantLivro(int index, string entSai)
         {
             try
             {
@@ -316,7 +318,7 @@ namespace LivrariaEBiblioteca
                 MessageBox.Show("Erro ao pegar a quantidade do livro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
                 return 0;
             }
-}
+        }
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
             if (rdbDevolução.Checked)
@@ -372,7 +374,7 @@ namespace LivrariaEBiblioteca
             }
         }
 
-        public void checargemDevolucao(string codEmp)
+        public string checargemDevolucao(string codEmp)
         {
             MySqlCommand comm = new MySqlCommand();
             comm.CommandText = "select codLivro, nomeLivro from tbEmprestimo where codEmp = @codEmp;";
@@ -387,14 +389,17 @@ namespace LivrariaEBiblioteca
 
             ltbCarrinho.Items.Clear();
 
-        bool resp = DR.HasRows;
+            bool resp = DR.HasRows;
 
             if (resp)
             {
-                while (DR.Read())
-                {
-                    ltbCarrinho.Items.Add(DR.GetString(0) + ":" + DR.GetString(1));
-                }
+                //while (DR.Read())
+                //{
+                //    //ltbCarrinho.Items.Add(DR.GetString(0) + ":" + DR.GetString(1));
+
+                //}
+                codLivroCheck = DR.GetInt32(0).ToString();
+                nomeCheck = DR.GetString(1);
             }
             else
             {
@@ -402,9 +407,10 @@ namespace LivrariaEBiblioteca
                 txtNEmprestimo.Clear();
                 txtNEmprestimo.Focus();
             }
+            return codLivroCheck + " - " + nomeCheck;
         }
 
-            public void escanearLivro(string isbn)
+        public void escanearLivro(string isbn)
         {
             string empVen = "";
 
@@ -508,7 +514,8 @@ namespace LivrariaEBiblioteca
         {
             if (e.KeyCode == Keys.Enter)
             {
-                checargemDevolucao(Convert.ToString(ltbCarrinho.Items));
+                ltbCarrinho.Items.Add(checargemDevolucao(txtNEmprestimo.Text));
+                //checargemDevolucao(Convert.ToString(ltbCarrinho.Items));
             }
         }
 
