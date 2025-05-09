@@ -23,6 +23,10 @@ namespace LivrariaEBiblioteca
         public string fotoPath;
         public string nomeLivro;
         public string tipo;
+        public int estoque;
+
+        Livros livroPesquisa;
+
         public frmBuscarLivro()
         {
             InitializeComponent();
@@ -72,13 +76,13 @@ namespace LivrariaEBiblioteca
             rdbIdLivro.Checked = false;
             rdbTitulo.Checked = false;
             rdbIsbn.Checked = false;
-            
 
+            Livros.ListaLivros.Clear();
         }
 
         private void btnVender_Click(object sender, EventArgs e)
         {
-            if(ltbPesquisar.SelectedItems.Count == 0)
+            if (ltbPesquisar.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Selecione um livro para vender.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
@@ -89,7 +93,7 @@ namespace LivrariaEBiblioteca
             }
             else
             {
-                frmVender abrirVender = new frmVender(this.nome, this.codUsu, this.cargo, nomeLivro);
+                frmVender abrirVender = new frmVender(this.nome, this.codUsu, this.cargo, nomeLivro, estoque);
 
                 abrirVender.Show();
                 this.Hide();
@@ -98,7 +102,7 @@ namespace LivrariaEBiblioteca
 
         private void btnEmprestar_Click(object sender, EventArgs e)
         {
-            if(ltbPesquisar.SelectedItems.Count == 0)
+            if (ltbPesquisar.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Selecione um livro para emprestar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
@@ -149,7 +153,6 @@ namespace LivrariaEBiblioteca
                 this.Hide();
             }
         }
-
         private void rdbIdLivro_CheckedChanged(object sender, EventArgs e)
         {
             habilitarCampos();
@@ -176,10 +179,12 @@ namespace LivrariaEBiblioteca
 
                 if (rdbIdLivro.Checked)
                 {
-                    if(!int.TryParse(txtIdLivro.Text, out tryParse))
+                    if (!int.TryParse(txtIdLivro.Text, out tryParse))
                     {
                         MessageBox.Show("Use apenas números.", "MENSAGEM DO SISTEMA", MessageBoxButtons.OK);
                         txtIdLivro.Clear();
+                        txtTitulo.Clear();
+                        txtIsbn.Clear();
                         txtIdLivro.Focus();
                         return;
                     }
@@ -191,10 +196,12 @@ namespace LivrariaEBiblioteca
                 }
                 if (rdbTitulo.Checked)
                 {
-                    if(int.TryParse(txtTitulo.Text, out tryParse))
+                    if (int.TryParse(txtTitulo.Text, out tryParse))
                     {
                         MessageBox.Show("Use apenas letras.", "MENSAGEM DO SISTEMA", MessageBoxButtons.OK);
                         txtTitulo.Clear();
+                        txtIsbn.Clear();
+                        txtIdLivro.Focus();
                         txtTitulo.Focus();
                         return;
                     }
@@ -209,6 +216,8 @@ namespace LivrariaEBiblioteca
                     {
                         MessageBox.Show("Use apenas números.", "MENSAGEM DO SISTEMA", MessageBoxButtons.OK);
                         txtIsbn.Clear();
+                        txtIdLivro.Clear();
+                        txtTitulo.Clear();
                         txtIsbn.Focus();
                         return;
                     }
@@ -229,22 +238,27 @@ namespace LivrariaEBiblioteca
                 {
                     while (DR.Read())
                     {
-                            // Preenche os campos
-                            txtIdLivro.Text = DR.GetInt32(0).ToString();
-                            txtTitulo.Text = DR.GetString(1);
-                            txtIsbn.Text = DR.GetString(2);
-                            tipo = DR.GetString(4);
+                        tipo = DR.GetString(4);
 
-                            // Preenche a imagem
-                            if (fotoPath != null)
-                            {
-                                fotoPath = DR.GetString(3);
-                                pctLivro.ImageLocation = fotoPath;
-                                pctLivro.Load();
-                            }
+                        // Preenche a imagem
+                        if (fotoPath != null)
+                        {
+                            fotoPath = DR.GetString(3);
+                            pctLivro.ImageLocation = fotoPath;
+                            pctLivro.Load();
+                        }
 
-                            // Adiciona no ListBox
-                            ltbPesquisar.Items.Add(DR.GetString(1));
+                        // Adiciona no ListBox
+                        ltbPesquisar.Items.Add(DR.GetString(1));
+
+                        for (int i = 0; i < Convert.ToInt32(DR.Read()); i++)
+                        {
+                            livroPesquisa = new Livros();
+
+                            livroPesquisa.idLivro = DR.GetInt32(0);
+                            livroPesquisa.nomeLivro = DR.GetString(1);
+                            Livros.ListaLivros.Add(livroPesquisa);
+                        }
                     }
                 }
                 else
@@ -259,7 +273,7 @@ namespace LivrariaEBiblioteca
                 MessageBox.Show("Erro ao buscar livro.", "MENSAGEM DO SISTEMA", MessageBoxButtons.OK);
             }
         }
-
+        
         private void rdbIsbn_CheckedChanged_1(object sender, EventArgs e)
         {
             habilitarCampos();
@@ -271,12 +285,12 @@ namespace LivrariaEBiblioteca
 
         private void btnGerenciador_Click(object sender, EventArgs e)
         {
-            if(this.cargo == "Voluntario")
+            if (this.cargo == "Voluntario")
             {
                 MessageBox.Show("Você não tem permissão para acessar essa funcionalidade.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            if(ltbPesquisar.SelectedItems.Count == 0)
+            if (ltbPesquisar.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Selecione um livro para gerenciar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
@@ -290,13 +304,13 @@ namespace LivrariaEBiblioteca
         {
             if (e.KeyCode == Keys.Enter)
             {
-                btnBuscar_Click( sender, e);
+                btnBuscar_Click(sender, e);
             }
         }
 
         private void txtIsbn_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter) 
+            if (e.KeyCode == Keys.Enter)
             {
                 btnBuscar_Click(sender, e);
             }
@@ -311,7 +325,27 @@ namespace LivrariaEBiblioteca
         }
         private void ltbPesquisar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            nomeLivro = ltbPesquisar.SelectedItem.ToString();
+            if (ltbPesquisar.SelectedItem != null)
+            {
+                nomeLivro = ltbPesquisar.SelectedItem.ToString();
+
+                estoque = livroPesquisa.checarEstoque(Livros.ListaLivros[ltbPesquisar.SelectedIndex].idLivro, "Ven");
+                txtIdLivro.Text = livroPesquisa.codRetorno(ltbPesquisar.SelectedIndex).ToString();
+
+                if (estoque <= 5 && estoque > 0)
+                {
+                    MessageBox.Show("Resta " + estoque + " unidades em estoque.", "Aviso do estoque", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    btnVender.Enabled = true;
+                    btnEmprestar.Enabled = true;
+                }
+                else if (estoque <= 0)
+                {
+                    MessageBox.Show("Não há mais esse livro em estoque.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                    btnVender.Enabled = false;
+                    btnEmprestar.Enabled = false;
+                    return;
+                }
+            }
         }
     }
 }
