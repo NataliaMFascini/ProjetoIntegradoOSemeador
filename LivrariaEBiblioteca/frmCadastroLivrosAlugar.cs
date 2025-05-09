@@ -55,7 +55,7 @@ namespace LivrariaEBiblioteca
         public frmCadastroLivrosAlugar(string nome, int codusu, string cargo)
         {
             InitializeComponent();
-            habilitarCampos();
+            desabilitarCampos();
             this.nome = nome;
             this.codUsu = codusu;
             this.cargo = cargo;
