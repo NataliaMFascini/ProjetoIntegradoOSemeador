@@ -22,9 +22,11 @@ namespace LivrariaEBiblioteca
         public int codLoc = 0;
         public int codUsu = 0;
         public int codEmp = 0;
+
         public string nome;
         public string cargo;
         public string fotoPath;
+        public string nomeLivro;
 
         string nomeCheck;
         string codLivroCheck;
@@ -251,10 +253,10 @@ namespace LivrariaEBiblioteca
             comm.CommandText = "UPDATE tbEstoque SET entradaEmp = @entradaEmp WHERE codLivro = @codLivro";
             comm.CommandType = CommandType.Text;
 
-            for (int i = 0; i < Livros.ListaLivros.Count; i++)
+            for (int i = 0; i <= Livros.ListaLivros.Count; i++)
             {
                 comm.Parameters.Clear();
-                comm.Parameters.Add("@saidaEmp", MySqlDbType.Int32).Value = pegarQuantLivro(i, "Entrada") + quantidadeRetorno(i);
+                comm.Parameters.Add("@entradaEmp", MySqlDbType.Int32).Value = pegarQuantLivro(i, "Entrada") + quantidadeRetorno(i);
                 comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = Livros.ListaLivros[i].idLivro;
 
                 comm.Connection = Conexao.obterConexao();
@@ -266,8 +268,9 @@ namespace LivrariaEBiblioteca
                 {
                     MessageBox.Show("Erro ao retornar livro ao estoque: " + ex.Message);
                 }
-                Conexao.fecharConexao();
+
             }
+            Conexao.fecharConexao();
 
             return resp;
         }
@@ -323,7 +326,7 @@ namespace LivrariaEBiblioteca
         {
             if (rdbDevolução.Checked)
             {
-                if (retornoEstoque() > 0)
+                if (retornoEstoque() == 1)
                 {
                     MessageBox.Show("Livro devolvido e estoque atualizado!", "Sucesso");
                     limparCampos();
@@ -356,8 +359,6 @@ namespace LivrariaEBiblioteca
             }
         }
         public void separarLivros()
-
-
         {
             try
             {
@@ -388,6 +389,7 @@ namespace LivrariaEBiblioteca
             DR.Read();
 
             ltbCarrinho.Items.Clear();
+            Livros livros = new Livros();
 
             bool resp = DR.HasRows;
 
@@ -400,6 +402,9 @@ namespace LivrariaEBiblioteca
                 //}
                 codLivroCheck = DR.GetInt32(0).ToString();
                 nomeCheck = DR.GetString(1);
+                livros.idLivro = DR.GetInt32(0);
+                livros.nomeLivro = nomeCheck;
+                Livros.ListaLivros.Add(livros);
             }
             else
             {
@@ -407,7 +412,9 @@ namespace LivrariaEBiblioteca
                 txtNEmprestimo.Clear();
                 txtNEmprestimo.Focus();
             }
-            return codLivroCheck + " - " + nomeCheck;
+            
+
+            return codLivroCheck + ": " + nomeCheck;
         }
 
         public void escanearLivro(string isbn)
