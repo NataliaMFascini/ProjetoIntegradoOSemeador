@@ -102,29 +102,36 @@ namespace LivrariaEBiblioteca
             }
             catch(MySqlException)
             {
-                MessageBox.Show("Código não encontrado/não existe!", "MENSAGEM DO SISTEMA", MessageBoxButtons.OK);
+                MessageBox.Show("Código não encontrado/não existe.", "Erro.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         public void pesquisarPorNome(string descricao)
         {
-            MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select * from tbUsuario where nome like '%" + descricao + "%'";
-            comm.CommandType = CommandType.Text;
-
-            comm.Parameters.Clear();
-            comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = descricao;
-            comm.Connection = Conexao.obterConexao();
-
-            MySqlDataReader DR;
-            DR = comm.ExecuteReader();
-
-            while (DR.Read())
+            try
             {
-                ltbPesquisar.Items.Add(DR.GetString(1));
-            }
+                MySqlCommand comm = new MySqlCommand();
+                comm.CommandText = "select * from tbUsuario where nome like '%" + descricao + "%'";
+                comm.CommandType = CommandType.Text;
 
-            Conexao.fecharConexao();
+                comm.Parameters.Clear();
+                comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = descricao;
+                comm.Connection = Conexao.obterConexao();
+
+                MySqlDataReader DR;
+                DR = comm.ExecuteReader();
+
+                while (DR.Read())
+                {
+                    ltbPesquisar.Items.Add(DR.GetString(1));
+                }
+
+                Conexao.fecharConexao();
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Nome não encontrado/não existe.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnPesquisar_Click(object sender, EventArgs e)
@@ -132,7 +139,7 @@ namespace LivrariaEBiblioteca
             int tryParse;
             if (string.IsNullOrEmpty(txtDescricao.Text))
             {
-                MessageBox.Show("Favor prencher a descrição!");
+                MessageBox.Show("Favor prencher a descrição.");
                 txtDescricao.Focus();
             }
             else
@@ -141,7 +148,7 @@ namespace LivrariaEBiblioteca
                 {
                     if (!int.TryParse(txtDescricao.Text, out tryParse))
                     {
-                        MessageBox.Show("Favor preencher o campo com números inteiros!");
+                        MessageBox.Show("Favor preencher o campo com números inteiros.");
                         txtDescricao.Clear();
                         txtDescricao.Focus();
                         return;
@@ -152,7 +159,7 @@ namespace LivrariaEBiblioteca
                 {
                     if(int.TryParse(txtDescricao.Text, out tryParse))
                     {
-                        MessageBox.Show("Favor preencher o campo com letras!");
+                        MessageBox.Show("Favor preencher o campo com letras.");
                         txtDescricao.Clear();
                         txtDescricao.Focus();
                         return;

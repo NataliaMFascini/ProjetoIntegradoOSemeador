@@ -22,7 +22,7 @@ namespace LivrariaEBiblioteca
             if (pgbSplash.Value < 100)
             {
                 pgbSplash.Value = pgbSplash.Value + 10;
-                lblPorcentagem.Text = pgbSplash.Value.ToString() + "%";
+                lblPorcentagem.Text = tmrSplash.Interval.ToString() + "%";
             }
             else
             {
