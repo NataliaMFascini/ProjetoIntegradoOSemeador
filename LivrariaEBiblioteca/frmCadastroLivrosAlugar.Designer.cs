@@ -369,6 +369,7 @@
             this.txtTitulo.Name = "txtTitulo";
             this.txtTitulo.Size = new System.Drawing.Size(540, 31);
             this.txtTitulo.TabIndex = 3;
+            this.txtTitulo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTitulo_KeyDown);
             // 
             // txtEditora
             // 
@@ -410,6 +411,7 @@
             this.txtIsbn.Name = "txtIsbn";
             this.txtIsbn.Size = new System.Drawing.Size(221, 31);
             this.txtIsbn.TabIndex = 2;
+            this.txtIsbn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtIsbn_KeyDown);
             // 
             // lblIsbn
             // 

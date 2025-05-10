@@ -65,19 +65,25 @@ namespace LivrariaEBiblioteca
 
         public void limparComponentes()
         {
-            txtIdLivro.Text = string.Empty;
-            txtIsbn.Text = string.Empty;
-            txtTitulo.Text = string.Empty;
+            ltbPesquisar.Items.Clear();
+            txtIdLivro.Clear();
+            txtIsbn.Clear();
+            txtTitulo.Clear();
             rdbIdLivro.Checked = false;
             rdbTitulo.Checked = false;
             rdbIsbn.Checked = false;
-            ltbPesquisar.Text = string.Empty;
+            
 
         }
 
         private void btnVender_Click(object sender, EventArgs e)
         {
-            if(tipo == "Emp")
+            if(ltbPesquisar.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Selecione um livro para vender.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            if (tipo == "Emp")
             {
                 MessageBox.Show("Esse livro está reservado para empréstimo, não pode ser vendido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -92,6 +98,11 @@ namespace LivrariaEBiblioteca
 
         private void btnEmprestar_Click(object sender, EventArgs e)
         {
+            if(ltbPesquisar.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Selecione um livro para emprestar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
             if (tipo == "Ven")
             {
                 MessageBox.Show("Esse livro está reservado para venda, não pode ser emprestado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -157,67 +168,96 @@ namespace LivrariaEBiblioteca
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            MySqlCommand comm = new MySqlCommand();
-
-            if (rdbIdLivro.Checked)
+            int tryParse;
+            string descricao = txtTitulo.Text;
+            try
             {
-                comm.CommandText = "SELECT codLivro, nome, isbn, foto, empVen FROM tbLivro WHERE codLivro = @codLivro;";
-                comm.CommandType = CommandType.Text;
+                MySqlCommand comm = new MySqlCommand();
 
-                comm.Parameters.Clear();
-                comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = Convert.ToInt32(txtIdLivro.Text);
-            }
-            if (rdbTitulo.Checked)
-            {
-                comm.CommandText = "SELECT codLivro, nome, isbn, foto, empVen FROM tbLivro WHERE nome LIKE @nome;";
-                comm.CommandType = CommandType.Text;
-                comm.Parameters.Clear();
-                comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtTitulo.Text;
-            }
-            if (rdbIsbn.Checked)
-            {
-                comm.CommandText = "SELECT codLivro, nome, isbn, foto, empVen FROM tbLivro WHERE codLivro = @isbn;";
-                comm.CommandType = CommandType.Text;
-                comm.Parameters.Clear();
-                comm.Parameters.Add("@isbn", MySqlDbType.VarChar, 20).Value = txtIsbn.Text;
-            }
-
-            comm.Connection = Conexao.obterConexao();
-
-            MySqlDataReader DR = comm.ExecuteReader();
-
-            // Limpa o ListBox antes
-            ltbPesquisar.Items.Clear();
-
-            if (DR.HasRows)
-            {
-                while (DR.Read())
+                if (rdbIdLivro.Checked)
                 {
-                    // Preenche os campos
-                    txtIdLivro.Text = DR.GetInt32(0).ToString();
-                    txtTitulo.Text = DR.GetString(1);
-                    txtIsbn.Text = DR.GetString(2);
-                    tipo = DR.GetString(4);
-
-                    // Preenche a imagem
-                    if (fotoPath != null)
+                    if(!int.TryParse(txtIdLivro.Text, out tryParse))
                     {
-                        fotoPath = DR.GetString(3);
-                        pctLivro.ImageLocation = fotoPath;
-                        pctLivro.Load();
+                        MessageBox.Show("Use apenas números.", "MENSAGEM DO SISTEMA", MessageBoxButtons.OK);
+                        txtIdLivro.Clear();
+                        txtIdLivro.Focus();
+                        return;
                     }
+                    comm.CommandText = "SELECT codLivro, nome, isbn, foto, empVen FROM tbLivro WHERE codLivro = @codLivro;";
+                    comm.CommandType = CommandType.Text;
 
-                    // Adiciona no ListBox
-                    ltbPesquisar.Items.Add(DR.GetString(1));
+                    comm.Parameters.Clear();
+                    comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = Convert.ToInt32(txtIdLivro.Text);
                 }
+                if (rdbTitulo.Checked)
+                {
+                    if(int.TryParse(txtTitulo.Text, out tryParse))
+                    {
+                        MessageBox.Show("Use apenas letras.", "MENSAGEM DO SISTEMA", MessageBoxButtons.OK);
+                        txtTitulo.Clear();
+                        txtTitulo.Focus();
+                        return;
+                    }
+                    comm.CommandText = "SELECT  codLivro, nome, isbn, foto, empVen FROM tbLivro WHERE nome LIKE '%" + descricao + "%';";
+                    comm.CommandType = CommandType.Text;
+                    comm.Parameters.Clear();
+                    comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = descricao;
+                }
+                if (rdbIsbn.Checked)
+                {
+                    if (!int.TryParse(txtIsbn.Text, out tryParse))
+                    {
+                        MessageBox.Show("Use apenas números.", "MENSAGEM DO SISTEMA", MessageBoxButtons.OK);
+                        txtIsbn.Clear();
+                        txtIsbn.Focus();
+                        return;
+                    }
+                    comm.CommandText = "SELECT codLivro, nome, isbn, foto, empVen FROM tbLivro WHERE isbn = @isbn;";
+                    comm.CommandType = CommandType.Text;
+                    comm.Parameters.Clear();
+                    comm.Parameters.Add("@isbn", MySqlDbType.VarChar, 20).Value = txtIsbn.Text;
+                }
+
+                comm.Connection = Conexao.obterConexao();
+
+                MySqlDataReader DR = comm.ExecuteReader();
+
+                // Limpa o ListBox antes
+                ltbPesquisar.Items.Clear();
+
+                if (DR.HasRows)
+                {
+                    while (DR.Read())
+                    {
+                            // Preenche os campos
+                            txtIdLivro.Text = DR.GetInt32(0).ToString();
+                            txtTitulo.Text = DR.GetString(1);
+                            txtIsbn.Text = DR.GetString(2);
+                            tipo = DR.GetString(4);
+
+                            // Preenche a imagem
+                            if (fotoPath != null)
+                            {
+                                fotoPath = DR.GetString(3);
+                                pctLivro.ImageLocation = fotoPath;
+                                pctLivro.Load();
+                            }
+
+                            // Adiciona no ListBox
+                            ltbPesquisar.Items.Add(DR.GetString(1));
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Livro não encontrado.");
+                }
+
+                Conexao.fecharConexao();
             }
-            else
+            catch (MySqlException)
             {
-                MessageBox.Show("Livro não encontrado.");
+                MessageBox.Show("Erro ao buscar livro.", "MENSAGEM DO SISTEMA", MessageBoxButtons.OK);
             }
-
-            Conexao.fecharConexao();
-
         }
 
         private void rdbIsbn_CheckedChanged_1(object sender, EventArgs e)
@@ -226,10 +266,21 @@ namespace LivrariaEBiblioteca
             txtIsbn.Focus();
             txtTitulo.Enabled = false;
             txtIdLivro.Enabled = false;
+
         }
 
         private void btnGerenciador_Click(object sender, EventArgs e)
         {
+            if(this.cargo == "Voluntario")
+            {
+                MessageBox.Show("Você não tem permissão para acessar essa funcionalidade.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            if(ltbPesquisar.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Selecione um livro para gerenciar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
             string descricao = txtTitulo.Text;
             frmCadastroLivrosAlugar abrir = new frmCadastroLivrosAlugar(descricao, this.nome, this.codUsu, this.cargo);
             abrir.Show();

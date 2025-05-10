@@ -18,6 +18,8 @@ namespace LivrariaEBiblioteca
         public int codUsu;
         public string cargo;
         public string nomeRelatorio;
+        public string data1;
+        public string data2;
 
         DataGridViewPrinter dgvPrinter;
         public frmRelatorio()
@@ -30,6 +32,12 @@ namespace LivrariaEBiblioteca
             this.nome = nome;
             this.codUsu = codUsu;
             this.cargo = cargo;
+            data1 = DateTime.MinValue.ToString("dd/MM/yyyy" + "00:00:00");
+            data2 = DateTime.Now.ToString("dd/MM/yyyy" + "23:59:59");
+
+
+            mskDataEntre.Text = data1;
+            mskDataAte.Text = data2;
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
@@ -41,22 +49,37 @@ namespace LivrariaEBiblioteca
 
         private void btnListaLivros_Click(object sender, EventArgs e)
         {
-            nomeRelatorio = "Lista de Livros";
-            MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select codLivro as 'ID do livro', empVen as 'Tipo', isbn as 'ISBN', nome as 'Titulo', autor as 'Autor', quant as 'Quantidade', valor as 'Valor', editora as 'Editora', anoPublicacao as 'Ano de publicacao', dataCadastro as 'Data de registro' from tbLivro;";
-            comm.CommandType = CommandType.Text;
+            try
+            {
+                nomeRelatorio = "Lista de Livros";
+                MySqlCommand comm = new MySqlCommand();
 
-            comm.Connection = Conexao.obterConexao();
+                data1 = mskDataEntre.Text;
+                data2 = mskDataAte.Text;
 
-            MySqlDataAdapter adapter = new MySqlDataAdapter(comm);
+                comm.CommandText = "select codLivro as 'ID do livro', empVen as 'Tipo', isbn as 'ISBN', nome as 'Titulo', autor as 'Autor', quant as 'Quantidade', valor as 'Valor', editora as 'Editora', anoPublicacao as 'Ano de publicacao', dataCadastro as 'Data de registro' from tbLivro where dataCadastro between @dataCadastro1 and @dataCadastro2;";
+                comm.CommandType = CommandType.Text;
 
-            DataTable dataTable = new DataTable();
+                comm.Parameters.Clear();
+                comm.Parameters.AddWithValue("@dataCadastro1", DateTime.Parse(data1));
+                comm.Parameters.AddWithValue("@dataCadastro2", DateTime.Parse(data2).AddDays(1));
 
-            adapter.Fill(dataTable);
+                comm.Connection = Conexao.obterConexao();
 
-            dgvRelatorio.DataSource = dataTable;
+                MySqlDataAdapter adapter = new MySqlDataAdapter(comm);
 
-            Conexao.fecharConexao();
+                DataTable dataTable = new DataTable();
+
+                adapter.Fill(dataTable);
+
+                dgvRelatorio.DataSource = dataTable;
+
+                Conexao.fecharConexao();
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao buscar registro no banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)
@@ -64,107 +87,180 @@ namespace LivrariaEBiblioteca
             for (int i = 0; i < dgvRelatorio.RowCount; i++)
             {
                 dgvRelatorio.Rows[i].DataGridView.Columns.Clear();
+                mskDataEntre.Clear();
+                mskDataAte.Clear();
+
+                data1 = DateTime.MinValue.ToString("dd/MM/yyyy" + "00:00:00");
+                data2 = DateTime.Now.ToString("dd/MM/yyyy" + "23:59:59");
+
+                mskDataEntre.Text = data1;
+                mskDataAte.Text = data2;
             }
         }
 
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
-            nomeRelatorio = "Lista de Usuários";
-            MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select codUsu as 'ID do usuario', nome as 'Nome', cargo as 'Cargo', cpf as 'CPF', diaTrabalho as 'Dia de trabalho', telCel as 'Telefone', login as 'Login', email as 'E-mail', cep as 'CEP', logradouro as 'Endereco', numero as 'Numero', complemento as 'Complemento', bairro as 'Bairro', cidade as 'Cidade', estado as 'Estado', dataCadastro as 'Data de registro' from tbUsuario;";
-            comm.CommandType = CommandType.Text;
+            try
+            {
+                nomeRelatorio = "Lista de Usuários";
+                MySqlCommand comm = new MySqlCommand();
 
-            comm.Connection = Conexao.obterConexao();
+                data1 = mskDataEntre.Text;
+                data2 = mskDataAte.Text;
 
-            MySqlDataAdapter adapter = new MySqlDataAdapter(comm);
+                comm.CommandText = "select codUsu as 'ID do usuario', nome as 'Nome', cargo as 'Cargo', cpf as 'CPF', diaTrabalho as 'Dia de trabalho', telCel as 'Telefone', login as 'Login', email as 'E-mail', cep as 'CEP', logradouro as 'Endereco', numero as 'Numero', complemento as 'Complemento', bairro as 'Bairro', cidade as 'Cidade', estado as 'Estado', dataCadastro as 'Data de registro' from tbUsuario where dataCadastro between @dataCadastro1 and @dataCadastro2;";
+                comm.CommandType = CommandType.Text;
 
-            DataTable dataTable = new DataTable();
+                comm.Parameters.Clear();
+                comm.Parameters.AddWithValue("@dataCadastro1", DateTime.Parse(data1));
+                comm.Parameters.AddWithValue("@dataCadastro2", DateTime.Parse(data2).AddDays(1));
 
-            adapter.Fill(dataTable);
+                comm.Connection = Conexao.obterConexao();
 
-            dgvRelatorio.DataSource = dataTable;
+                MySqlDataAdapter adapter = new MySqlDataAdapter(comm);
 
-            Conexao.fecharConexao();
+                DataTable dataTable = new DataTable();
+
+                adapter.Fill(dataTable);
+
+                dgvRelatorio.DataSource = dataTable;
+
+                Conexao.fecharConexao();
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao buscar registro no banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnLocatarios_Click(object sender, EventArgs e)
         {
-            nomeRelatorio = "Lista de Locatários";
-            MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select codLoc as 'ID do Locatario', pront as 'Prontuario', nome as 'Nome', cpf as 'CPF', telCel as 'Telefone', email as 'E-mail', dataCadastro as 'Data de registro' from tbLocatario;";
-            comm.CommandType = CommandType.Text;
+            try
+            {
+                nomeRelatorio = "Lista de Locatários";
+                MySqlCommand comm = new MySqlCommand();
+                data1 = mskDataEntre.Text;
+                data2 = mskDataAte.Text;
 
-            comm.Connection = Conexao.obterConexao();
+                comm.CommandText = "select codLoc as 'ID do Locatario', pront as 'Prontuario', nome as 'Nome', cpf as 'CPF', telCel as 'Telefone', email as 'E-mail', dataCadastro as 'Data de registro' from tbLocatario;";
+                comm.CommandType = CommandType.Text;
 
-            MySqlDataAdapter adapter = new MySqlDataAdapter(comm);
+                comm.Parameters.Clear();
+                comm.Parameters.AddWithValue("@dataCadastro1", DateTime.Parse(data1));
+                comm.Parameters.AddWithValue("@dataCadastro2", DateTime.Parse(data2).AddDays(1));
 
-            DataTable dataTable = new DataTable();
+                comm.Connection = Conexao.obterConexao();
 
-            adapter.Fill(dataTable);
+                MySqlDataAdapter adapter = new MySqlDataAdapter(comm);
 
-            dgvRelatorio.DataSource = dataTable;
+                DataTable dataTable = new DataTable();
 
-            Conexao.fecharConexao();
+                adapter.Fill(dataTable);
+
+                dgvRelatorio.DataSource = dataTable;
+
+                Conexao.fecharConexao();
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao buscar registro no banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnVendas_Click(object sender, EventArgs e)
         {
-            nomeRelatorio = "Relatório de Vendas";
-            MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select codVenda as 'Numero de venda', dataVenda as 'Data da venda', nomeLivro as 'Titulo', valorTotal as 'Valor da venda', pagamento as 'Forma de pagamento', nomeVendedor as 'Nome do vendedor' from tbVendas;";
-            comm.CommandType = CommandType.Text;
+            try
+            {
+                nomeRelatorio = "Relatório de Vendas";
+                MySqlCommand comm = new MySqlCommand();
+                data1 = mskDataEntre.Text;
+                data2 = mskDataAte.Text;
 
-            comm.Connection = Conexao.obterConexao();
+                comm.CommandText = "select codVenda as 'Numero de venda', dataVenda as 'Data da venda', nomeLivro as 'Titulo', valorTotal as 'Valor da venda', pagamento as 'Forma de pagamento', nomeVendedor as 'Nome do vendedor' from tbVendas where dataCadastro between @dataCadastro1 and @dataCadastro2;";
+                comm.CommandType = CommandType.Text;
 
-            MySqlDataAdapter adapter = new MySqlDataAdapter(comm);
+                comm.Parameters.Clear();
+                comm.Parameters.AddWithValue("@dataCadastro1", DateTime.Parse(data1));
+                comm.Parameters.AddWithValue("@dataCadastro2", DateTime.Parse(data2).AddDays(1));
 
-            DataTable dataTable = new DataTable();
+                comm.Connection = Conexao.obterConexao();
 
-            adapter.Fill(dataTable);
+                MySqlDataAdapter adapter = new MySqlDataAdapter(comm);
 
-            dgvRelatorio.DataSource = dataTable;
+                DataTable dataTable = new DataTable();
 
-            Conexao.fecharConexao();
+                adapter.Fill(dataTable);
+
+                dgvRelatorio.DataSource = dataTable;
+
+                Conexao.fecharConexao();
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao buscar registro no banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnEmprestimos_Click(object sender, EventArgs e)
         {
-            nomeRelatorio = "Relatório de Empréstimos";
-            MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select codEmp as 'Numero de emprestimo', dataEmp as 'Data de emprestimo', dataDev as 'Data de devolucao', nomeVendedor as 'Nome do caixa', nomeLivro as 'Titulo', prontuario as 'Prontuario' from tbEmprestimo;";
-            comm.CommandType = CommandType.Text;
+            try
+            {
+                nomeRelatorio = "Relatório de Empréstimos";
+                MySqlCommand comm = new MySqlCommand();
+                data1 = mskDataEntre.Text;
+                data2 = mskDataAte.Text;
 
-            comm.Connection = Conexao.obterConexao();
+                comm.CommandText = "select codEmp as 'Numero de emprestimo', dataEmp as 'Data de emprestimo', dataDev as 'Data de devolucao', nomeVendedor as 'Nome do caixa', nomeLivro as 'Titulo', prontuario as 'Prontuario' from tbEmprestimo where dataCadastro between @dataCadastro1 and @dataCadastro2;";
+                comm.CommandType = CommandType.Text;
 
-            MySqlDataAdapter adapter = new MySqlDataAdapter(comm);
 
-            DataTable dataTable = new DataTable();
+                comm.Parameters.Clear();
+                comm.Parameters.AddWithValue("@dataCadastro1", DateTime.Parse(data1));
+                comm.Parameters.AddWithValue("@dataCadastro2", DateTime.Parse(data2).AddDays(1));
 
-            adapter.Fill(dataTable);
+                comm.Connection = Conexao.obterConexao();
 
-            dgvRelatorio.DataSource = dataTable;
+                MySqlDataAdapter adapter = new MySqlDataAdapter(comm);
 
-            Conexao.fecharConexao();
+                DataTable dataTable = new DataTable();
+
+                adapter.Fill(dataTable);
+
+                dgvRelatorio.DataSource = dataTable;
+
+                Conexao.fecharConexao();
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao buscar registro no banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnEstoque_Click(object sender, EventArgs e)
         {
-            nomeRelatorio = "Dados do Estoque";
-            MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select empVen as 'Tipo', nomeLivro as 'Titulo', entradaVen as 'Entrada de vendas', saidaVen as 'Saida de vendas', entradaEmp as 'Entrada de emprestimos', saidaEmp as 'Saida de emprestimos' from tbEstoque;";
-            comm.CommandType = CommandType.Text;
+            try
+            {
+                nomeRelatorio = "Dados do Estoque";
+                MySqlCommand comm = new MySqlCommand();
+                comm.CommandText = "select empVen as 'Tipo', nomeLivro as 'Titulo', entradaVen as 'Entrada de vendas', saidaVen as 'Saida de vendas', entradaEmp as 'Entrada de emprestimos', saidaEmp as 'Saida de emprestimos' from tbEstoque;";
+                comm.CommandType = CommandType.Text;
 
-            comm.Connection = Conexao.obterConexao();
+                comm.Connection = Conexao.obterConexao();
 
-            MySqlDataAdapter adapter = new MySqlDataAdapter(comm);
+                MySqlDataAdapter adapter = new MySqlDataAdapter(comm);
 
-            DataTable dataTable = new DataTable();
+                DataTable dataTable = new DataTable();
 
-            adapter.Fill(dataTable);
+                adapter.Fill(dataTable);
 
-            dgvRelatorio.DataSource = dataTable;
+                dgvRelatorio.DataSource = dataTable;
 
-            Conexao.fecharConexao();
+                Conexao.fecharConexao();
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao buscar registro no banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnImprimir_Click(object sender, EventArgs e)
@@ -220,31 +316,39 @@ namespace LivrariaEBiblioteca
         }
         private bool SetupThePrinting()
         {
-            PrintDialog MyPrintDialog = new PrintDialog();
-            MyPrintDialog.AllowCurrentPage = false;
-            MyPrintDialog.AllowPrintToFile = false;
-            MyPrintDialog.AllowSelection = false;
-            MyPrintDialog.AllowSomePages = false;
-            MyPrintDialog.PrintToFile = false;
-            MyPrintDialog.ShowHelp = false;
-            MyPrintDialog.ShowNetwork = false;
-
-            if (MyPrintDialog.ShowDialog() != DialogResult.OK)
+            try
             {
+                PrintDialog MyPrintDialog = new PrintDialog();
+                MyPrintDialog.AllowCurrentPage = false;
+                MyPrintDialog.AllowPrintToFile = false;
+                MyPrintDialog.AllowSelection = false;
+                MyPrintDialog.AllowSomePages = false;
+                MyPrintDialog.PrintToFile = false;
+                MyPrintDialog.ShowHelp = false;
+                MyPrintDialog.ShowNetwork = false;
+
+                if (MyPrintDialog.ShowDialog() != DialogResult.OK)
+                {
+                    return false;
+                }
+
+                pdcRelatorio.DocumentName = nomeRelatorio;
+                pdcRelatorio.PrinterSettings = MyPrintDialog.PrinterSettings;
+                pdcRelatorio.DefaultPageSettings = MyPrintDialog.PrinterSettings.DefaultPageSettings;
+                pdcRelatorio.DefaultPageSettings.Margins = new Margins(40, 40, 40, 40);
+
+                if (MessageBox.Show("Deseja que o relatório esteja centralizado?", "Pergunta - Centralizar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    dgvPrinter = new DataGridViewPrinter(dgvRelatorio, pdcRelatorio, true, true, nomeRelatorio, new Font("Tahoma", 18, FontStyle.Bold, GraphicsUnit.Point), Color.Black, true);
+                else
+                    dgvPrinter = new DataGridViewPrinter(dgvRelatorio, pdcRelatorio, false, true, nomeRelatorio, new Font("Tahoma", 18, FontStyle.Bold, GraphicsUnit.Point), Color.Black, true);
+
+                return true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao configurar a impressão.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
-            pdcRelatorio.DocumentName = nomeRelatorio;
-            pdcRelatorio.PrinterSettings = MyPrintDialog.PrinterSettings;
-            pdcRelatorio.DefaultPageSettings = MyPrintDialog.PrinterSettings.DefaultPageSettings;
-            pdcRelatorio.DefaultPageSettings.Margins = new Margins(40, 40, 40, 40);
-
-            if (MessageBox.Show("Deseja que o relatório esteja centralizado?", "Pergunta - Centralizar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                dgvPrinter = new DataGridViewPrinter(dgvRelatorio, pdcRelatorio, true, true, nomeRelatorio, new Font("Tahoma", 18, FontStyle.Bold, GraphicsUnit.Point), Color.Black, true);
-            else
-                dgvPrinter = new DataGridViewPrinter(dgvRelatorio, pdcRelatorio, false, true, nomeRelatorio, new Font("Tahoma", 18, FontStyle.Bold, GraphicsUnit.Point), Color.Black, true);
-
-            return true;
         }
     }
 }

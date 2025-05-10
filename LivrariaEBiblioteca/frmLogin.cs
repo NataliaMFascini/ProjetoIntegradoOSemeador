@@ -21,34 +21,48 @@ namespace LivrariaEBiblioteca
             InitializeComponent();
         }
 
-        //testando pull request
-
         private void btnEntrar_Click(object sender, EventArgs e)
         {
-            string usuario = txtUsuario.Text;
-            string senha = txtSenha.Text;
+            try
+            {
+                string usuario = txtUsuario.Text;
+                string senha = txtSenha.Text;
 
-            if (txtUsuario.Text.Equals(""))
-            {
-                MessageBox.Show("Insira um usuário.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtUsuario.Focus();
-            }
-            else if (txtSenha.Text.Equals(""))
-            {
-                MessageBox.Show("Insira a senha.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtSenha.Focus();
-            }
-            else
-            {
-
-                if (acessarSistema(usuario, senha))
+                if (txtUsuario.Text.Equals(""))
                 {
-                    frmMenuPrincipal abrir = new frmMenuPrincipal(cargo, nome, codUsu);
-                    abrir.Show();
-                    this.Hide();
+                    MessageBox.Show("Insira um usuário.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtUsuario.Focus();
+                }
+                else if (txtSenha.Text.Equals(""))
+                {
+                    MessageBox.Show("Insira a senha.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtSenha.Focus();
                 }
                 else
-                    MessageBox.Show("Usuário inexistente", "MENSAGEM DO SISTEMA", MessageBoxButtons.OK);
+                {
+                    if (acessarSistema(usuario, senha))
+                    {
+                        if (txtUsuario.Text != usuario || txtSenha.Text != senha)
+                        {
+                            MessageBox.Show("Usuário ou senha incorretos.", "MENSAGEM DO SISTEMA", MessageBoxButtons.OK);
+                            txtUsuario.Clear();
+                            txtSenha.Clear();
+                            txtUsuario.Focus();
+                            return;
+                        }
+                        frmMenuPrincipal abrir = new frmMenuPrincipal(cargo, nome, codUsu);
+                        abrir.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usuário inexistente.", "MENSAGEM DO SISTEMA", MessageBoxButtons.OK);
+                    }
+                }
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao acessar o banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -59,30 +73,37 @@ namespace LivrariaEBiblioteca
 
         public bool acessarSistema(string usuario, string senha)
         {
+            try
+            {
+                MySqlCommand comm = new MySqlCommand();
+                comm.CommandText = "select login, senha, cargo, nome, codUsu from tbUsuario where login = @login and senha = @senha";
+                comm.CommandType = CommandType.Text;
 
-            MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select login, senha, cargo, nome, codUsu from tbUsuario where login = @login and senha = @senha";
-            comm.CommandType = CommandType.Text;
+                comm.Connection = Conexao.obterConexao();
 
-            comm.Connection = Conexao.obterConexao();
+                comm.Parameters.Clear();
+                comm.Parameters.Add("@login", MySqlDbType.VarChar, 50).Value = usuario;
+                comm.Parameters.Add("@senha", MySqlDbType.VarChar, 20).Value = senha;
 
-            comm.Parameters.Clear();
-            comm.Parameters.Add("@login", MySqlDbType.VarChar, 50).Value = usuario;
-            comm.Parameters.Add("@senha", MySqlDbType.VarChar, 20).Value = senha;
+                MySqlDataReader DR;
+                DR = comm.ExecuteReader();
+                DR.Read();
 
-            MySqlDataReader DR;
-            DR = comm.ExecuteReader();
-            DR.Read();
-
-            bool resp = DR.HasRows;
-            cargo = DR.GetString(2);
-            nome = DR.GetString(3);
-            codUsu = DR.GetInt32(4);
+                bool resp = DR.HasRows;
+                cargo = DR.GetString(2);
+                nome = DR.GetString(3);
+                codUsu = DR.GetInt32(4);
 
 
-            Conexao.fecharConexao();
+                Conexao.fecharConexao();
 
-            return resp;
+                return resp;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao acessar o banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
 
         private void txtUsuario_KeyDown(object sender, KeyEventArgs e)
