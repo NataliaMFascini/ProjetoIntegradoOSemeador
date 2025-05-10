@@ -82,7 +82,7 @@
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
             this.btnBuscar.Location = new System.Drawing.Point(603, 3);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(194, 74);
+            this.btnBuscar.Size = new System.Drawing.Size(194, 94);
             this.btnBuscar.TabIndex = 15;
             this.btnBuscar.Text = "&Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -169,7 +169,7 @@
             this.btnFinalizar.Image = ((System.Drawing.Image)(resources.GetObject("btnFinalizar.Image")));
             this.btnFinalizar.Location = new System.Drawing.Point(403, 3);
             this.btnFinalizar.Name = "btnFinalizar";
-            this.btnFinalizar.Size = new System.Drawing.Size(194, 74);
+            this.btnFinalizar.Size = new System.Drawing.Size(194, 94);
             this.btnFinalizar.TabIndex = 14;
             this.btnFinalizar.Text = "&Finalizar";
             this.btnFinalizar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -187,7 +187,7 @@
             this.btnLimpar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpar.Image")));
             this.btnLimpar.Location = new System.Drawing.Point(203, 3);
             this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(194, 74);
+            this.btnLimpar.Size = new System.Drawing.Size(194, 94);
             this.btnLimpar.TabIndex = 13;
             this.btnLimpar.Text = "&Limpar";
             this.btnLimpar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -204,7 +204,7 @@
             this.btnAdicionar.Image = ((System.Drawing.Image)(resources.GetObject("btnAdicionar.Image")));
             this.btnAdicionar.Location = new System.Drawing.Point(3, 3);
             this.btnAdicionar.Name = "btnAdicionar";
-            this.btnAdicionar.Size = new System.Drawing.Size(194, 74);
+            this.btnAdicionar.Size = new System.Drawing.Size(194, 94);
             this.btnAdicionar.TabIndex = 12;
             this.btnAdicionar.Text = "&Adicionar";
             this.btnAdicionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -293,11 +293,11 @@
             this.tableLayoutPanel1.Controls.Add(this.btnLimpar, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnFinalizar, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 520);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 500);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 80);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 100);
             this.tableLayoutPanel1.TabIndex = 11;
             // 
             // gpbDadoslivro

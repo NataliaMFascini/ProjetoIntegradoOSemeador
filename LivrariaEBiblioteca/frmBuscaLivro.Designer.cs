@@ -200,9 +200,9 @@
             this.btnVender.Image = ((System.Drawing.Image)(resources.GetObject("btnVender.Image")));
             this.btnVender.Location = new System.Drawing.Point(3, 3);
             this.btnVender.Name = "btnVender";
-            this.btnVender.Size = new System.Drawing.Size(213, 74);
+            this.btnVender.Size = new System.Drawing.Size(213, 94);
             this.btnVender.TabIndex = 6;
-            this.btnVender.Text = "Vender";
+            this.btnVender.Text = "&Vender";
             this.btnVender.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnVender.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVender.UseVisualStyleBackColor = false;
@@ -217,9 +217,9 @@
             this.btnEmprestar.Image = ((System.Drawing.Image)(resources.GetObject("btnEmprestar.Image")));
             this.btnEmprestar.Location = new System.Drawing.Point(222, 3);
             this.btnEmprestar.Name = "btnEmprestar";
-            this.btnEmprestar.Size = new System.Drawing.Size(212, 74);
+            this.btnEmprestar.Size = new System.Drawing.Size(212, 94);
             this.btnEmprestar.TabIndex = 7;
-            this.btnEmprestar.Text = "Emprestar";
+            this.btnEmprestar.Text = "&Emprestar";
             this.btnEmprestar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEmprestar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEmprestar.UseVisualStyleBackColor = false;
@@ -242,11 +242,11 @@
             this.tableLayoutPanel2.Controls.Add(this.btnVender, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnEmprestar, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 520);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 500);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(633, 80);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(633, 100);
             this.tableLayoutPanel2.TabIndex = 5;
             // 
             // btnGerenciador
@@ -258,9 +258,9 @@
             this.btnGerenciador.Image = ((System.Drawing.Image)(resources.GetObject("btnGerenciador.Image")));
             this.btnGerenciador.Location = new System.Drawing.Point(440, 3);
             this.btnGerenciador.Name = "btnGerenciador";
-            this.btnGerenciador.Size = new System.Drawing.Size(190, 74);
+            this.btnGerenciador.Size = new System.Drawing.Size(190, 94);
             this.btnGerenciador.TabIndex = 12;
-            this.btnGerenciador.Text = "Gerenciador";
+            this.btnGerenciador.Text = "&Gerenciador";
             this.btnGerenciador.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGerenciador.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnGerenciador.UseVisualStyleBackColor = false;
@@ -317,7 +317,7 @@
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(161, 75);
             this.btnLimpar.TabIndex = 10;
-            this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.Text = "&Limpar";
             this.btnLimpar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLimpar.UseVisualStyleBackColor = false;
@@ -334,7 +334,7 @@
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(161, 75);
             this.btnBuscar.TabIndex = 11;
-            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.Text = "&Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBuscar.UseVisualStyleBackColor = false;

@@ -55,7 +55,7 @@
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(170, 74);
             this.btnVoltar.TabIndex = 0;
-            this.btnVoltar.Text = "Voltar";
+            this.btnVoltar.Text = "&Voltar";
             this.btnVoltar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVoltar.UseVisualStyleBackColor = false;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
@@ -136,9 +136,9 @@
             this.btnPesquisar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPesquisar.Location = new System.Drawing.Point(3, 3);
             this.btnPesquisar.Name = "btnPesquisar";
-            this.btnPesquisar.Size = new System.Drawing.Size(214, 74);
+            this.btnPesquisar.Size = new System.Drawing.Size(214, 94);
             this.btnPesquisar.TabIndex = 6;
-            this.btnPesquisar.Text = "Pesquisar";
+            this.btnPesquisar.Text = "&Buscar";
             this.btnPesquisar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPesquisar.UseVisualStyleBackColor = false;
             this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
@@ -153,9 +153,9 @@
             this.btnLimpar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLimpar.Location = new System.Drawing.Point(223, 3);
             this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(214, 74);
+            this.btnLimpar.Size = new System.Drawing.Size(214, 94);
             this.btnLimpar.TabIndex = 7;
-            this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.Text = "&Limpar";
             this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLimpar.UseVisualStyleBackColor = false;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
@@ -181,11 +181,11 @@
             this.tableLayoutPanel1.Controls.Add(this.btnPesquisar, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnLimpar, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 520);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 500);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 80);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 100);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // lblBuscarUsuario

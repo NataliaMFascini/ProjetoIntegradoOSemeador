@@ -370,9 +370,9 @@ namespace LivrariaEBiblioteca
                 comm.Parameters.Clear();
                 comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtNomeCompleto.Text;
                 comm.Parameters.Add("@cargo", MySqlDbType.VarChar, 50).Value = cbbCargo.SelectedItem;
-                comm.Parameters.Add("@cpf", MySqlDbType.VarChar, 14).Value = mskCpf.Text;
+                comm.Parameters.Add("@cpf", MySqlDbType.VarChar, 15).Value = mskCpf.Text;
                 comm.Parameters.Add("@diaTrabalho", MySqlDbType.VarChar, 15).Value = cbbDiaDeTrabalho.SelectedItem;
-                comm.Parameters.Add("@telCel", MySqlDbType.VarChar, 14).Value = mskTelefone.Text;
+                comm.Parameters.Add("@telCel", MySqlDbType.VarChar, 15).Value = mskTelefone.Text;
                 comm.Parameters.Add("@login", MySqlDbType.VarChar, 50).Value = txtLogin.Text;
                 comm.Parameters.Add("@senha", MySqlDbType.VarChar, 20).Value = txtSenha.Text;
                 comm.Parameters.Add("@email", MySqlDbType.VarChar, 100).Value = txtEmail.Text;
@@ -506,9 +506,9 @@ namespace LivrariaEBiblioteca
                 comm.Parameters.Clear();
                 comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtNomeCompleto.Text;
                 comm.Parameters.Add("@cargo", MySqlDbType.VarChar, 50).Value = cbbCargo.Text;
-                comm.Parameters.Add("@cpf", MySqlDbType.VarChar, 14).Value = mskCpf.Text;
+                comm.Parameters.Add("@cpf", MySqlDbType.VarChar, 15).Value = mskCpf.Text;
                 comm.Parameters.Add("@diaTrabalho", MySqlDbType.VarChar, 15).Value = cbbDiaDeTrabalho.Text;
-                comm.Parameters.Add("@telCel", MySqlDbType.VarChar, 10).Value = mskTelefone.Text;
+                comm.Parameters.Add("@telCel", MySqlDbType.VarChar, 15).Value = mskTelefone.Text;
                 comm.Parameters.Add("@login", MySqlDbType.VarChar, 50).Value = txtLogin.Text;
                 comm.Parameters.Add("@senha", MySqlDbType.VarChar, 20).Value = txtSenha.Text;
                 comm.Parameters.Add("@email", MySqlDbType.VarChar, 100).Value = txtEmail.Text;

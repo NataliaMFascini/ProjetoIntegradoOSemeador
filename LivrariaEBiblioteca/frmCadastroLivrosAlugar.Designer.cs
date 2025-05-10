@@ -134,7 +134,7 @@
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(194, 74);
             this.btnAdicionar.TabIndex = 13;
-            this.btnAdicionar.Text = "Adicionar";
+            this.btnAdicionar.Text = "&Adicionar";
             this.btnAdicionar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAdicionar.UseVisualStyleBackColor = false;
             this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
@@ -150,7 +150,7 @@
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(207, 74);
             this.btnBuscar.TabIndex = 18;
-            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.Text = "&Buscar";
             this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBuscar.UseVisualStyleBackColor = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click_1);
@@ -167,7 +167,7 @@
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(194, 74);
             this.btnAlterar.TabIndex = 15;
-            this.btnAlterar.Text = "Alterar";
+            this.btnAlterar.Text = "Al&terar";
             this.btnAlterar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAlterar.UseVisualStyleBackColor = false;
             this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
@@ -184,7 +184,7 @@
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(194, 74);
             this.btnLimpar.TabIndex = 16;
-            this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.Text = "&Limpar";
             this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLimpar.UseVisualStyleBackColor = false;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
@@ -201,7 +201,7 @@
             this.btnRemover.Name = "btnRemover";
             this.btnRemover.Size = new System.Drawing.Size(194, 74);
             this.btnRemover.TabIndex = 14;
-            this.btnRemover.Text = "Remover";
+            this.btnRemover.Text = "&Remover";
             this.btnRemover.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRemover.UseVisualStyleBackColor = false;
             this.btnRemover.Click += new System.EventHandler(this.btnRemover_Click);
@@ -218,7 +218,7 @@
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(209, 74);
             this.btnVoltar.TabIndex = 19;
-            this.btnVoltar.Text = "Voltar";
+            this.btnVoltar.Text = "&Voltar";
             this.btnVoltar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVoltar.UseVisualStyleBackColor = false;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
@@ -232,7 +232,7 @@
             this.btnAdicionarFoto.Name = "btnAdicionarFoto";
             this.btnAdicionarFoto.Size = new System.Drawing.Size(181, 83);
             this.btnAdicionarFoto.TabIndex = 7;
-            this.btnAdicionarFoto.Text = "Adicionar foto";
+            this.btnAdicionarFoto.Text = "Adicionar &foto";
             this.btnAdicionarFoto.UseVisualStyleBackColor = false;
             this.btnAdicionarFoto.Click += new System.EventHandler(this.btnAdicionarFoto_Click);
             // 

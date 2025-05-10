@@ -189,7 +189,7 @@
             this.btnAdicionarFoto.Name = "btnAdicionarFoto";
             this.btnAdicionarFoto.Size = new System.Drawing.Size(124, 68);
             this.btnAdicionarFoto.TabIndex = 18;
-            this.btnAdicionarFoto.Text = "Adicionar foto";
+            this.btnAdicionarFoto.Text = "Adicionar &foto";
             this.btnAdicionarFoto.UseVisualStyleBackColor = false;
             this.btnAdicionarFoto.Click += new System.EventHandler(this.btnAdicionarFoto_Click);
             // 
@@ -220,7 +220,7 @@
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(150, 74);
             this.btnLimpar.TabIndex = 22;
-            this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.Text = "&Limpar";
             this.btnLimpar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLimpar.UseVisualStyleBackColor = false;

@@ -293,8 +293,8 @@ namespace LivrariaEBiblioteca
                 comm.Parameters.Clear();
                 comm.Parameters.Add("@pront", MySqlDbType.Int64).Value = Convert.ToInt64(txtProntuario.Text);
                 comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtLocatario.Text;
-                comm.Parameters.Add("@cpf", MySqlDbType.VarChar, 14).Value = mskCpf.Text;
-                comm.Parameters.Add("@telCel", MySqlDbType.VarChar, 14).Value = mskTelefone.Text;
+                comm.Parameters.Add("@cpf", MySqlDbType.VarChar, 15).Value = mskCpf.Text;
+                comm.Parameters.Add("@telCel", MySqlDbType.VarChar, 15).Value = mskTelefone.Text;
                 comm.Parameters.Add("@email", MySqlDbType.VarChar, 50).Value = txtEmail.Text;
                 comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
 
@@ -414,8 +414,8 @@ namespace LivrariaEBiblioteca
                 comm.Parameters.Clear();
                 comm.Parameters.Add("@pront", MySqlDbType.Int32).Value = Convert.ToInt32(txtProntuario.Text);
                 comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtLocatario.Text;
-                comm.Parameters.Add("@cpf", MySqlDbType.VarChar, 14).Value = mskCpf.Text;
-                comm.Parameters.Add("@telCel", MySqlDbType.VarChar, 14).Value = mskTelefone.Text;
+                comm.Parameters.Add("@cpf", MySqlDbType.VarChar, 15).Value = mskCpf.Text;
+                comm.Parameters.Add("@telCel", MySqlDbType.VarChar, 15).Value = mskTelefone.Text;
                 comm.Parameters.Add("@email", MySqlDbType.VarChar, 50).Value = txtEmail.Text;
 
 
