@@ -92,7 +92,7 @@ namespace LivrariaEBiblioteca
                 MessageBox.Show("Esse livro está reservado para empréstimo, não pode ser vendido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
-            {
+            {                
                 frmVender abrirVender = new frmVender(this.nome, this.codUsu, this.cargo, nomeLivro, estoque);
 
                 abrirVender.Show();
@@ -112,7 +112,7 @@ namespace LivrariaEBiblioteca
                 MessageBox.Show("Esse livro está reservado para venda, não pode ser emprestado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
-            {
+            {                
                 frmEmprestimo abrirEmprestimo = new frmEmprestimo(this.nome, this.codUsu, this.cargo, nomeLivro);
 
                 abrirEmprestimo.Show();
@@ -209,7 +209,6 @@ namespace LivrariaEBiblioteca
             }
         }
 
-
         public void pesquisarPorId(int descricao)
         {
             try
@@ -228,7 +227,7 @@ namespace LivrariaEBiblioteca
                 DR.Read();
 
                 codLivroEstoque = DR.GetInt32(0);
-                ltbPesquisar.Items.Add(DR.GetString(1));
+                ltbPesquisar.Items.Add(DR.GetString(3));
                 fotoPath = DR.GetString(9);
                 mostrarFoto(fotoPath);
 
@@ -260,7 +259,7 @@ namespace LivrariaEBiblioteca
                 {
                     if (DR.HasRows)
                     {
-                        ltbPesquisar.Items.Add(DR.GetString(1));
+                        ltbPesquisar.Items.Add(DR.GetString(3));
                     }
                 }
 
@@ -292,7 +291,7 @@ namespace LivrariaEBiblioteca
                 DR.Read();
 
                 codLivroEstoque = DR.GetInt32(0);
-                ltbPesquisar.Items.Add(DR.GetString(1));
+                ltbPesquisar.Items.Add(DR.GetString(3));
                 fotoPath = DR.GetString(9);
                 mostrarFoto(fotoPath);
 
@@ -415,15 +414,14 @@ namespace LivrariaEBiblioteca
             if (ltbPesquisar.SelectedItem != null)
             {
                 nomeLivro = ltbPesquisar.SelectedItem.ToString();
-                
-                if(pegarEstoque(nomeLivro) <=5 && pegarEstoque(nomeLivro) > 0)
+                if (pegarEstoque(nomeLivro) <= 5 && pegarEstoque(nomeLivro) > 0)
                 {
-                    MessageBox.Show("Resta " + pegarEstoque(nomeLivro) +" unidades no estoque.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Resta " + pegarEstoque(nomeLivro) + " unidades no estoque.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     estoque = pegarEstoque(nomeLivro);
                     btnVender.Enabled = true;
                     btnEmprestar.Enabled = true;
                 }
-                if(pegarEstoque(nomeLivro) == 0)
+                if (pegarEstoque(nomeLivro) <= 0)
                 {
                     MessageBox.Show("Não há unidades em estoque.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     btnVender.Enabled = false;

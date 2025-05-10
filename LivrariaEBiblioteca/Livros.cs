@@ -51,10 +51,11 @@ namespace LivrariaEBiblioteca
             MySqlCommand comm = new MySqlCommand();
             if (empVen == "Ven")
             {
-                comm.CommandText = "select entradaVen, saidaVen, codLivro  from tbEstoque where codLivro like '%" + idLivro + "%';";
+                comm.CommandText = "select entradaVen, saidaVen, codLivro  from tbEstoque where codLivro = @codLivro;";
                 comm.CommandType = CommandType.Text;
 
                 comm.Parameters.Clear();
+                comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = idLivro;
 
                 comm.Connection = Conexao.obterConexao();
 
@@ -68,10 +69,11 @@ namespace LivrariaEBiblioteca
             }
             if (empVen == "Emp")
             {
-                comm.CommandText = "select entradaEmp, saidaEmp, codLivro  from tbEstoque where codLivro like '%" + idLivro + "%';";
+                comm.CommandText = "select entradaEmp, saidaEmp, codLivro  from tbEstoque where codLivro = @codLivro;";
                 comm.CommandType = CommandType.Text;
 
                 comm.Parameters.Clear();
+                comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = idLivro;
 
                 comm.Connection = Conexao.obterConexao();
 

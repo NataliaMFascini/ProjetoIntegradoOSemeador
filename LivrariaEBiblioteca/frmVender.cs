@@ -164,7 +164,14 @@ namespace LivrariaEBiblioteca
                 separarLivros();
                 if (estoqueInicial <= 5 && estoqueInicial > 0)
                 {
-                    MessageBox.Show("Resta " + estoqueInicial + " unidades em estoque.", "Aviso do estoque", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    if (estoqueInicial == 1)
+                    {
+                        MessageBox.Show("Essa é a última unidade no estoque.", "Aviso do estoque", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Resta " + estoqueInicial + " unidades em estoque.", "Aviso do estoque", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    }
                 }
                 else if (estoqueInicial <= 0)
                 {
@@ -315,7 +322,7 @@ namespace LivrariaEBiblioteca
             {
                 if (registrarVenda() == 1 && saidaEstoque() == 1)
                 {
-                    MessageBox.Show("Venda registrada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    MessageBox.Show("Venda registrada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                     limparComponentes();
                 }
                 else
@@ -381,7 +388,7 @@ namespace LivrariaEBiblioteca
                     comm.CommandType = CommandType.Text;
 
                     comm.Parameters.Clear();
-                    comm.Parameters.Add("@saidaVen", MySqlDbType.Int32).Value = pegarQuantLivro(i) + quantidadeRetorno(i);
+                    comm.Parameters.Add("@saidaVen", MySqlDbType.Int32).Value = quantidadeRetorno(i);
                     comm.Parameters.Add("@empVen", MySqlDbType.VarChar, 3).Value = "Ven";
                     comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.proximoLivro(i);
 
