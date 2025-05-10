@@ -388,7 +388,7 @@ namespace LivrariaEBiblioteca
                     comm.CommandType = CommandType.Text;
 
                     comm.Parameters.Clear();
-                    comm.Parameters.Add("@saidaVen", MySqlDbType.Int32).Value = quantidadeRetorno(i);
+                    comm.Parameters.Add("@saidaVen", MySqlDbType.Int32).Value = pegarQuantLivro(livros.proximoLivro(i)) + quantidadeRetorno(i);
                     comm.Parameters.Add("@empVen", MySqlDbType.VarChar, 3).Value = "Ven";
                     comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.proximoLivro(i);
 

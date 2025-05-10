@@ -90,7 +90,7 @@
             this.btnVender.Name = "btnVender";
             this.btnVender.Size = new System.Drawing.Size(208, 61);
             this.btnVender.TabIndex = 0;
-            this.btnVender.Text = "Vender";
+            this.btnVender.Text = "V&ender";
             this.btnVender.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnVender.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVender.UseVisualStyleBackColor = false;
@@ -239,7 +239,7 @@
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(208, 61);
             this.btnVoltar.TabIndex = 12;
-            this.btnVoltar.Text = "Voltar";
+            this.btnVoltar.Text = "&Voltar";
             this.btnVoltar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnVoltar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVoltar.UseVisualStyleBackColor = false;
@@ -256,7 +256,7 @@
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(194, 74);
             this.btnLimpar.TabIndex = 10;
-            this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.Text = "&Limpar";
             this.btnLimpar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLimpar.UseVisualStyleBackColor = false;
@@ -306,7 +306,7 @@
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(194, 74);
             this.btnAdicionar.TabIndex = 9;
-            this.btnAdicionar.Text = "Adicionar";
+            this.btnAdicionar.Text = "&Adicionar";
             this.btnAdicionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdicionar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAdicionar.UseVisualStyleBackColor = false;
@@ -323,7 +323,7 @@
             this.btnFinalizar.Name = "btnFinalizar";
             this.btnFinalizar.Size = new System.Drawing.Size(194, 74);
             this.btnFinalizar.TabIndex = 11;
-            this.btnFinalizar.Text = "Finalizar";
+            this.btnFinalizar.Text = "&Finalizar";
             this.btnFinalizar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnFinalizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnFinalizar.UseVisualStyleBackColor = false;
@@ -465,7 +465,7 @@
             // 
             // gpbAcao
             // 
-            this.gpbAcao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.gpbAcao.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.gpbAcao.Controls.Add(this.rdbEmprestimo);
             this.gpbAcao.Controls.Add(this.rdbDevolução);
             this.gpbAcao.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
