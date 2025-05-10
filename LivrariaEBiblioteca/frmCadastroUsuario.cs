@@ -460,26 +460,27 @@ namespace LivrariaEBiblioteca
 
         private void btnRemover_Click(object sender, EventArgs e)
         {
-            DialogResult resultado = MessageBox.Show("Deseja remover esse usuário?", "Mensagem do Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            DialogResult resultado = MessageBox.Show("Deseja remover esse usuário?", "Mensagem do sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (resultado == DialogResult.Yes)
             {
-                excluirUsuario(Convert.ToInt32(descricao));
+                excluirUsuario(codUsuBusca);
+                MessageBox.Show("Usuário removido com sucesso.", "Mensagem do sistema.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 limparCampos();
             }
         }
 
-        public int excluirUsuario(int codUsu)
+        public int excluirUsuario(int codUsuSelecionado)
         {
             try
             {
                 MySqlCommand comm = new MySqlCommand();
-                comm.CommandText = "";
+                comm.CommandText = "delete from tbLivro where codUsu = @codUsu;";
                 comm.CommandType = CommandType.Text;
 
                 comm.Connection = Conexao.obterConexao();
 
                 comm.Parameters.Clear();
-                comm.Parameters.Add("@codUsu", MySqlDbType.Int32).Value = codUsu;
+                comm.Parameters.Add("@codUsu", MySqlDbType.Int32).Value = codUsuSelecionado;
 
                 int resp = comm.ExecuteNonQuery();
 
@@ -494,12 +495,12 @@ namespace LivrariaEBiblioteca
             }
         }
 
-        public int alterarUsuario(int codUsu)
+        public int alterarUsuario(int codUsuSelecionado)
         {
             try
             {
                 MySqlCommand comm = new MySqlCommand();
-                comm.CommandText = "update tbUsuario set nome = @nome, cargo = @cargo,cpf = @cpf, diaTrabalho = @diaTrabalho, telCel = @telCel, login = @login, senha = @senha email = @email, cep = @cep, logradouro = @logradouro, numero = @numero, complemento = @complemento, bairro = @bairro, cidade = @cidade, estado = @estado, foto = @foto, dataCadastro = @dataCadastro";
+                comm.CommandText = "update tbUsuario set nome = @nome, cargo = @cargo, cpf = @cpf, diaTrabalho = @diaTrabalho, telCel = @telCel, login = @login, senha = @senha, email = @email, cep = @cep, logradouro = @logradouro, numero = @numero, complemento = @complemento, bairro = @bairro, cidade = @cidade, estado = @estado, foto = @foto, dataCadastro = @dataCadastro where codUsu = @codUsu";
                 comm.CommandType = CommandType.Text;
 
                 comm.Parameters.Clear();
@@ -524,6 +525,7 @@ namespace LivrariaEBiblioteca
                 }
                 comm.Parameters.Add("@foto", MySqlDbType.VarChar, 200).Value = fotoPath;
                 comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
+                comm.Parameters.Add("@codUsu", MySqlDbType.Int32).Value = codUsuSelecionado;
 
                 comm.Connection = Conexao.obterConexao();
 
@@ -791,11 +793,11 @@ namespace LivrariaEBiblioteca
             {
                 if (alterarUsuario(codUsuBusca) == 1)
                 {
-                    MessageBox.Show("Cadastro realizado com sucesso.");
+                    MessageBox.Show("Cadastro alterado com sucesso.");
                 }
                 else
                 {
-                    MessageBox.Show("Erro ao cadastrar usuário.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Erro ao alterar usuário.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

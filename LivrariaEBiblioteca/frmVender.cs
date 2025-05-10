@@ -25,7 +25,7 @@ namespace LivrariaEBiblioteca
         public string fotoPath;
 
         public int estoqueInicial = 0;
-        decimal custo = 0;
+        public decimal custo = 0;
         Livros livros = new Livros();
 
         public frmVender()
@@ -43,7 +43,7 @@ namespace LivrariaEBiblioteca
             this.cargo = cargo;
         }
 
-        public frmVender(string nomeUsu, int codUsuario, string cargo, string livro)
+        public frmVender(string nomeUsu, int codUsuario, string cargo, string livro, int estoquePesquisa)
         {
             InitializeComponent();
 
@@ -54,7 +54,7 @@ namespace LivrariaEBiblioteca
 
             pesquisarPorNome(livro);
 
-            estoqueInicial = livros.checarEstoque(Convert.ToInt32(txtIdLivro.Text), "Ven");
+            estoqueInicial = estoquePesquisa;
         }
 
 
@@ -71,6 +71,7 @@ namespace LivrariaEBiblioteca
             cbbFormaPagamento.Text = "";
 
             Livros.ListaLivros.Clear();
+            estoqueInicial = 0;
         }
 
         private void btnEmprestar_Click(object sender, EventArgs e)
@@ -172,7 +173,7 @@ namespace LivrariaEBiblioteca
                 }
                 ltbCarrinho.Items.Add(txtTitulo.Text + " - " + txtAutor.Text + " - R$ " + txtValor.Text);
 
-                estoqueInicial --;
+                estoqueInicial--;
                 valor = custo;
 
                 valorTotal = valorTotal + valor;
@@ -287,11 +288,11 @@ namespace LivrariaEBiblioteca
             {
                 escanearLivro(txtIsbn.Text);
                 codLivro = Convert.ToInt32(txtIdLivro.Text);
-                estoqueInicial = livros.checarEstoque(Convert.ToInt32(txtIdLivro.Text), "Ven");
+                estoqueInicial = livros.checarEstoque(codLivro, "Ven");
 
-                if (livros.checarEstoque(codLivro, "Ven") <= 5)
+                if (estoqueInicial <= 5 && estoqueInicial == 0)
                 {
-                    MessageBox.Show("Resta " + livros.checarEstoque(codLivro, "Ven") + " unidades em estoque.", "Aviso do estoque", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    MessageBox.Show("Resta " + estoqueInicial + " unidades em estoque.", "Aviso do estoque", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 }
             }
         }
@@ -404,7 +405,7 @@ namespace LivrariaEBiblioteca
 
             for (int i = 0; i < Livros.ListaLivros.Count - 1; i++)
             {
-                if (Livros.ListaLivros[index].idLivro == Livros.ListaLivros[i + 1].idLivro)
+                if (Livros.ListaLivros[i].idLivro == Livros.ListaLivros[i + 1].idLivro)
                 {
                     quantTotal++;
                 }
@@ -417,7 +418,7 @@ namespace LivrariaEBiblioteca
             try
             {
                 MySqlCommand comm = new MySqlCommand();
-                comm.CommandText = "select saidaVen from tbEstoque where codLivro = @codLivro;";
+                comm.CommandText = "select entradaVen from tbEstoque where codLivro = @codLivro;";
                 comm.CommandType = CommandType.Text;
 
                 comm.Parameters.Clear();
@@ -447,7 +448,9 @@ namespace LivrariaEBiblioteca
             {
                 valorTotal -= livros.valorRetorno(ltbCarrinho.SelectedIndex);
                 txtValorTotal.Text = "R$ " + valorTotal.ToString();
+                Livros.ListaLivros.RemoveAt(ltbCarrinho.SelectedIndex);
                 ltbCarrinho.Items.RemoveAt(ltbCarrinho.SelectedIndex);
+                estoqueInicial++;
             }
         }
 
@@ -457,7 +460,9 @@ namespace LivrariaEBiblioteca
             {
                 valorTotal -= livros.valorRetorno(ltbCarrinho.SelectedIndex);
                 txtValorTotal.Text = "R$ " + valorTotal.ToString();
+                Livros.ListaLivros.RemoveAt(ltbCarrinho.SelectedIndex);
                 ltbCarrinho.Items.RemoveAt(ltbCarrinho.SelectedIndex);
+                estoqueInicial++;
             }
         }
 
