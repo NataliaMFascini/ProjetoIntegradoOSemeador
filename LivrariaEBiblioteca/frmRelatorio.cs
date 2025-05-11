@@ -171,29 +171,37 @@ namespace LivrariaEBiblioteca
         {
             try
             {
-                nomeRelatorio = "Relatório de Vendas";
-                MySqlCommand comm = new MySqlCommand();
-                data1 = mskDataEntre.Text;
-                data2 = mskDataAte.Text;
+                if (this.cargo == "Diretor")
+                {
+                    nomeRelatorio = "Relatório de Vendas";
+                    MySqlCommand comm = new MySqlCommand();
+                    data1 = mskDataEntre.Text;
+                    data2 = mskDataAte.Text;
 
-                comm.CommandText = "select codVenda as 'Numero de venda', dataVenda as 'Data da venda', nomeLivro as 'Titulo', valorTotal as 'Valor da venda', pagamento as 'Forma de pagamento', nomeVendedor as 'Nome do vendedor' from tbVendas where dataCadastro between @dataCadastro1 and @dataCadastro2;";
-                comm.CommandType = CommandType.Text;
+                    comm.CommandText = "select codVenda as 'Numero de venda', dataVenda as 'Data da venda', nomeLivro as 'Titulo', valorTotal as 'Valor da venda', pagamento as 'Forma de pagamento', nomeVendedor as 'Nome do vendedor' from tbVendas where dataCadastro between @dataCadastro1 and @dataCadastro2;";
+                    comm.CommandType = CommandType.Text;
 
-                comm.Parameters.Clear();
-                comm.Parameters.AddWithValue("@dataCadastro1", DateTime.Parse(data1));
-                comm.Parameters.AddWithValue("@dataCadastro2", DateTime.Parse(data2).AddDays(1));
+                    comm.Parameters.Clear();
+                    comm.Parameters.AddWithValue("@dataCadastro1", DateTime.Parse(data1));
+                    comm.Parameters.AddWithValue("@dataCadastro2", DateTime.Parse(data2).AddDays(1));
 
-                comm.Connection = Conexao.obterConexao();
+                    comm.Connection = Conexao.obterConexao();
 
-                MySqlDataAdapter adapter = new MySqlDataAdapter(comm);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(comm);
 
-                DataTable dataTable = new DataTable();
+                    DataTable dataTable = new DataTable();
 
-                adapter.Fill(dataTable);
+                    adapter.Fill(dataTable);
 
-                dgvRelatorio.DataSource = dataTable;
+                    dgvRelatorio.DataSource = dataTable;
 
-                Conexao.fecharConexao();
+                    Conexao.fecharConexao();
+                }
+                else
+                {
+                    MessageBox.Show("Você não tem permissão para acessar esse relatório.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
             }
             catch (MySqlException)
             {

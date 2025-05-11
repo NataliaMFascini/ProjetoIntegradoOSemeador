@@ -41,6 +41,8 @@ namespace LivrariaEBiblioteca
             this.cargo = cargo;
             this.codUsu = codUsu;
             this.ultimaTela = ultimaTela;
+
+            
         }
 
         public void habilitarCampos()
@@ -53,6 +55,11 @@ namespace LivrariaEBiblioteca
             btnGerenciador.Enabled = true;
             btnVender.Enabled = true;
             btnEmprestar.Enabled = true;
+
+            if (this.cargo == "Voluntário")
+            {
+                btnGerenciador.Enabled = false;
+            }
         }
 
         public void desabilitarCampos()
@@ -226,6 +233,11 @@ namespace LivrariaEBiblioteca
                 MySqlDataReader DR = comm.ExecuteReader();
                 DR.Read();
 
+                if (!DR.HasRows)
+                {
+                    MessageBox.Show("Não há livros com esse ID.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
                 codLivroEstoque = DR.GetInt32(0);
                 ltbPesquisar.Items.Add(DR.GetString(3));
                 fotoPath = DR.GetString(9);
@@ -261,6 +273,11 @@ namespace LivrariaEBiblioteca
                     {
                         ltbPesquisar.Items.Add(DR.GetString(3));
                     }
+                    else
+                    {
+                        MessageBox.Show("Não há livros com esse nome.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+
                 }
 
                 Conexao.fecharConexao();
@@ -289,7 +306,10 @@ namespace LivrariaEBiblioteca
 
                 MySqlDataReader DR = comm.ExecuteReader();
                 DR.Read();
-
+                if (!DR.HasRows)
+                {
+                    MessageBox.Show("Não há livros com esse ISBN.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
                 codLivroEstoque = DR.GetInt32(0);
                 ltbPesquisar.Items.Add(DR.GetString(3));
                 fotoPath = DR.GetString(9);
@@ -381,8 +401,7 @@ namespace LivrariaEBiblioteca
                 MessageBox.Show("Selecione um livro para gerenciar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            string descricao = txtTitulo.Text;
-            frmCadastroLivrosAlugar abrir = new frmCadastroLivrosAlugar(descricao, this.nome, this.codUsu, this.cargo);
+            frmCadastroLivrosAlugar abrir = new frmCadastroLivrosAlugar(nomeLivro, this.nome, this.codUsu, this.cargo);
             abrir.Show();
             this.Hide();
         }

@@ -96,6 +96,11 @@ namespace LivrariaEBiblioteca
                 DR = comm.ExecuteReader();
                 DR.Read();
 
+                if (!DR.HasRows)
+                {
+                    MessageBox.Show("Não há usuários com esse ID.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
                 ltbPesquisar.Items.Add(DR.GetString(1));
 
                 Conexao.fecharConexao();
@@ -120,6 +125,11 @@ namespace LivrariaEBiblioteca
 
                 MySqlDataReader DR;
                 DR = comm.ExecuteReader();
+
+                if (!DR.HasRows)
+                {
+                    MessageBox.Show("Não há usuários com esse nome.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
 
                 while (DR.Read())
                 {

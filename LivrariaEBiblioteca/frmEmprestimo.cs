@@ -322,8 +322,78 @@ namespace LivrariaEBiblioteca
                 return 0;
             }
         }
+
+        public void erroCadastro(string nomeCampo)
+        {
+            MessageBox.Show(nomeCampo + " é um campo obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+        }
+        private void erroCampo(string nomeCampo, string tipoCampo)
+        {
+            MessageBox.Show(nomeCampo + " é um campo somente " + tipoCampo + ".", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+        }
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
+            int tryParse;
+
+            if (txtIsbn.Text.Equals(""))
+            {
+                if (!int.TryParse(txtIsbn.Text, out tryParse))
+                {
+                    erroCampo("ISBN", "numérico");
+                    txtIsbn.Clear();
+                    txtIsbn.Focus();
+                    return;
+                }
+                erroCadastro("ISBN");
+                txtIsbn.Focus();
+            }
+            else if (txtTitulo.Text.Equals(""))
+            {
+                if (int.TryParse(txtTitulo.Text, out tryParse))
+                {
+                    erroCampo("Título", "alfabético");
+                    txtTitulo.Clear();
+                    txtTitulo.Focus();
+                    return;
+                }
+                erroCadastro("Titulo");
+                txtTitulo.Focus();
+            }
+            else if (txtAutor.Text.Equals(""))
+            {
+                if (int.TryParse(txtAutor.Text, out tryParse))
+                {
+                    erroCampo("Autor", "alfabético");
+                    txtAutor.Clear();
+                    txtAutor.Focus();
+                    return;
+                }
+                erroCadastro("Autor");
+                txtAutor.Focus();
+            }
+            else if (txtEditora.Text.Equals(""))
+            {
+                if (int.TryParse(txtEditora.Text, out tryParse))
+                {
+                    erroCampo("Editora", "alfabético");
+                    txtEditora.Clear();
+                    txtEditora.Focus();
+                    return;
+                }
+                erroCadastro("Editora");
+                txtEditora.Focus();
+            } else if (txtLocatario.Text.Equals(""))
+            {
+                if (int.TryParse(txtEditora.Text, out tryParse))
+                {
+                    erroCampo("Locatário", "alfabético");
+                    txtLocatario.Clear();
+                    txtLocatario.Focus();
+                    return;
+                }
+                erroCadastro("Locatário");
+                txtLocatario.Focus();
+            }
             if (rdbDevolução.Checked)
             {
                 if (retornoEstoque() == 1)

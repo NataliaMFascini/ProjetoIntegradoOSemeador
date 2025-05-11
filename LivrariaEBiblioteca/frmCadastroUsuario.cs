@@ -32,9 +32,28 @@ namespace LivrariaEBiblioteca
         {
             InitializeComponent();
             desabilitarCampos();
+
             this.nome = nome;
             this.cargo = cargo;
             this.codUsu = codUsu;
+
+            if (this.cargo == "Voluntário")
+            {
+                cbbCargo.Items.Clear();
+                cbbCargo.Items.AddRange(new object[]
+                {
+                    "Voluntário"
+                });
+            }
+            else if (this.cargo == "Dirigente")
+            {
+                cbbCargo.Items.Clear();
+                cbbCargo.Items.AddRange(new object[]
+                {
+                    "Voluntário",
+                    "Dirigente"
+                });
+            }
         }
         //retorno da pesquisa
         public frmCadastroUsuario(string nome, int codUsu, string cargo, string descricao)
@@ -46,7 +65,28 @@ namespace LivrariaEBiblioteca
             this.cargo = cargo;
             this.codUsu = codUsu;
 
+            txtLogin.Enabled = false;
+
             pesquisarPorNome(descricao);
+            if (this.cargo == "Voluntário")
+            {
+                cbbCargo.Items.Clear();
+                cbbCargo.Items.AddRange(new object[]
+                {
+                    "Voluntário"
+                });
+                btnAlterar.Enabled = false;
+                btnRemover.Enabled = false;
+            }
+            else if (this.cargo == "Dirigente")
+            {
+                cbbCargo.Items.Clear();
+                cbbCargo.Items.AddRange(new object[]
+                {
+                    "Voluntário",
+                    "Dirigente"
+                });
+            }
         }
         public void desabilitarCampos()
         {
@@ -344,6 +384,16 @@ namespace LivrariaEBiblioteca
             }
             else
             {
+                if (this.cargo == "Voluntário" && cbbCargo.Text == "Dirigente" || cbbCargo.Text == "Diretor")
+                {
+                    MessageBox.Show("Você não tem permissão para realizar esse cadastro.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (this.cargo == "Dirigente" && cbbCargo.Text == "Diretor")
+                {
+                    MessageBox.Show("Você não tem permissão para realizar esse cadastro.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 if (cadastrarUsuario() == 1)
                 {
                     MessageBox.Show("Cadastro realizado com sucesso.");
@@ -387,6 +437,10 @@ namespace LivrariaEBiblioteca
                 {
                     fotoPath = "";
                 }
+                else
+                {
+                    fotoPath = ptbUsuario.ImageLocation;
+                }
                 comm.Parameters.Add("@foto", MySqlDbType.VarChar, 200).Value = fotoPath;
                 comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
 
@@ -405,6 +459,36 @@ namespace LivrariaEBiblioteca
             }
         }
 
+        public bool checarMudancaCpf(string nomeSelecionado)
+        {
+            try
+            {
+                MySqlCommand comm = new MySqlCommand();
+                comm.CommandText = "select cpf from tbUsuario where nome = @nome;";
+                comm.CommandType = CommandType.Text;
+
+                comm.Parameters.Clear();
+                comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = nomeSelecionado;
+
+                comm.Connection = Conexao.obterConexao();
+
+                MySqlDataReader DR = comm.ExecuteReader();
+                DR.Read();
+
+                Conexao.fecharConexao();
+                if (mskCpf.Text == DR.GetString(0))
+                {
+                    return false;
+                }
+
+                return true;
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao confirmar CPF.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
         public void buscaCEP(string cep)
         {
             var viaCEPService = ViaCepService.Default();
@@ -460,12 +544,20 @@ namespace LivrariaEBiblioteca
 
         private void btnRemover_Click(object sender, EventArgs e)
         {
-            DialogResult resultado = MessageBox.Show("Deseja remover esse usuário?", "Mensagem do sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-            if (resultado == DialogResult.Yes)
+            if (this.cargo == "Voluntário")
             {
-                excluirUsuario(codUsuBusca);
-                MessageBox.Show("Usuário removido com sucesso.", "Mensagem do sistema.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                limparCampos();
+                MessageBox.Show("Você não tem permissão para deletar esse usuário.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else
+            {
+                DialogResult resultado = MessageBox.Show("Deseja remover esse usuário?", "Mensagem do sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (resultado == DialogResult.Yes)
+                {
+                    excluirUsuario(codUsuBusca);
+                    MessageBox.Show("Usuário removido com sucesso.", "Mensagem do sistema.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    limparCampos();
+                }
             }
         }
 
@@ -500,32 +592,66 @@ namespace LivrariaEBiblioteca
             try
             {
                 MySqlCommand comm = new MySqlCommand();
-                comm.CommandText = "update tbUsuario set nome = @nome, cargo = @cargo, cpf = @cpf, diaTrabalho = @diaTrabalho, telCel = @telCel, login = @login, senha = @senha, email = @email, cep = @cep, logradouro = @logradouro, numero = @numero, complemento = @complemento, bairro = @bairro, cidade = @cidade, estado = @estado, foto = @foto, dataCadastro = @dataCadastro where codUsu = @codUsu";
-                comm.CommandType = CommandType.Text;
 
-                comm.Parameters.Clear();
-                comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtNomeCompleto.Text;
-                comm.Parameters.Add("@cargo", MySqlDbType.VarChar, 50).Value = cbbCargo.Text;
-                comm.Parameters.Add("@cpf", MySqlDbType.VarChar, 15).Value = mskCpf.Text;
-                comm.Parameters.Add("@diaTrabalho", MySqlDbType.VarChar, 15).Value = cbbDiaDeTrabalho.Text;
-                comm.Parameters.Add("@telCel", MySqlDbType.VarChar, 15).Value = mskTelefone.Text;
-                comm.Parameters.Add("@login", MySqlDbType.VarChar, 50).Value = txtLogin.Text;
-                comm.Parameters.Add("@senha", MySqlDbType.VarChar, 20).Value = txtSenha.Text;
-                comm.Parameters.Add("@email", MySqlDbType.VarChar, 100).Value = txtEmail.Text;
-                comm.Parameters.Add("@cep", MySqlDbType.VarChar, 9).Value = mskCep.Text;
-                comm.Parameters.Add("@logradouro", MySqlDbType.VarChar, 100).Value = txtLogradouro.Text;
-                comm.Parameters.Add("@numero", MySqlDbType.VarChar, 10).Value = txtNumero.Text;
-                comm.Parameters.Add("@complemento", MySqlDbType.VarChar, 100).Value = txtComplemento.Text;
-                comm.Parameters.Add("@bairro", MySqlDbType.VarChar, 50).Value = txtBairro.Text;
-                comm.Parameters.Add("@cidade", MySqlDbType.VarChar, 50).Value = txtCidade.Text;
-                comm.Parameters.Add("@estado", MySqlDbType.VarChar, 2).Value = cbbEstado.Text;
-                if (ptbUsuario.Image == null)
+                if (checarMudancaCpf(txtNomeCompleto.Text))
                 {
-                    fotoPath = "";
+                    comm.CommandText = "update tbUsuario set nome = @nome, cargo = @cargo, cpf = @cpf, diaTrabalho = @diaTrabalho, telCel = @telCel, senha = @senha, email = @email, cep = @cep, logradouro = @logradouro, numero = @numero, complemento = @complemento, bairro = @bairro, cidade = @cidade, estado = @estado, foto = @foto, dataCadastro = @dataCadastro where codUsu = @codUsu";
+                    comm.CommandType = CommandType.Text;
+
+                    comm.Parameters.Clear();
+                    comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtNomeCompleto.Text;
+                    comm.Parameters.Add("@cargo", MySqlDbType.VarChar, 50).Value = cbbCargo.Text;
+                    comm.Parameters.Add("@cpf", MySqlDbType.VarChar, 15).Value = mskCpf.Text;
+                    comm.Parameters.Add("@diaTrabalho", MySqlDbType.VarChar, 15).Value = cbbDiaDeTrabalho.Text;
+                    comm.Parameters.Add("@telCel", MySqlDbType.VarChar, 15).Value = mskTelefone.Text;
+                    comm.Parameters.Add("@senha", MySqlDbType.VarChar, 20).Value = txtSenha.Text;
+                    comm.Parameters.Add("@email", MySqlDbType.VarChar, 100).Value = txtEmail.Text;
+                    comm.Parameters.Add("@cep", MySqlDbType.VarChar, 9).Value = mskCep.Text;
+                    comm.Parameters.Add("@logradouro", MySqlDbType.VarChar, 100).Value = txtLogradouro.Text;
+                    comm.Parameters.Add("@numero", MySqlDbType.VarChar, 10).Value = txtNumero.Text;
+                    comm.Parameters.Add("@complemento", MySqlDbType.VarChar, 100).Value = txtComplemento.Text;
+                    comm.Parameters.Add("@bairro", MySqlDbType.VarChar, 50).Value = txtBairro.Text;
+                    comm.Parameters.Add("@cidade", MySqlDbType.VarChar, 50).Value = txtCidade.Text;
+                    comm.Parameters.Add("@estado", MySqlDbType.VarChar, 2).Value = cbbEstado.Text;
+                    if (ptbUsuario.Image == null)
+                    {
+                        fotoPath = "";
+                    }
+                    else
+                    {
+                        fotoPath = ptbUsuario.ImageLocation;
+                    }
+                    comm.Parameters.Add("@foto", MySqlDbType.VarChar, 200).Value = fotoPath;
+                    comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
+                    comm.Parameters.Add("@codUsu", MySqlDbType.Int32).Value = codUsuSelecionado;
                 }
-                comm.Parameters.Add("@foto", MySqlDbType.VarChar, 200).Value = fotoPath;
-                comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
-                comm.Parameters.Add("@codUsu", MySqlDbType.Int32).Value = codUsuSelecionado;
+                else
+                {
+                    comm.CommandText = "update tbUsuario set nome = @nome, cargo = @cargo, diaTrabalho = @diaTrabalho, telCel = @telCel, senha = @senha, email = @email, cep = @cep, logradouro = @logradouro, numero = @numero, complemento = @complemento, bairro = @bairro, cidade = @cidade, estado = @estado, foto = @foto, dataCadastro = @dataCadastro where codUsu = @codUsu";
+                    comm.CommandType = CommandType.Text;
+
+                    comm.Parameters.Clear();
+                    comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtNomeCompleto.Text;
+                    comm.Parameters.Add("@cargo", MySqlDbType.VarChar, 50).Value = cbbCargo.Text;
+                    comm.Parameters.Add("@diaTrabalho", MySqlDbType.VarChar, 15).Value = cbbDiaDeTrabalho.Text;
+                    comm.Parameters.Add("@telCel", MySqlDbType.VarChar, 15).Value = mskTelefone.Text;
+                    comm.Parameters.Add("@senha", MySqlDbType.VarChar, 20).Value = txtSenha.Text;
+                    comm.Parameters.Add("@email", MySqlDbType.VarChar, 100).Value = txtEmail.Text;
+                    comm.Parameters.Add("@cep", MySqlDbType.VarChar, 9).Value = mskCep.Text;
+                    comm.Parameters.Add("@logradouro", MySqlDbType.VarChar, 100).Value = txtLogradouro.Text;
+                    comm.Parameters.Add("@numero", MySqlDbType.VarChar, 10).Value = txtNumero.Text;
+                    comm.Parameters.Add("@complemento", MySqlDbType.VarChar, 100).Value = txtComplemento.Text;
+                    comm.Parameters.Add("@bairro", MySqlDbType.VarChar, 50).Value = txtBairro.Text;
+                    comm.Parameters.Add("@cidade", MySqlDbType.VarChar, 50).Value = txtCidade.Text;
+                    comm.Parameters.Add("@estado", MySqlDbType.VarChar, 2).Value = cbbEstado.Text;
+                    if (ptbUsuario.Image == null)
+                    {
+                        fotoPath = "";
+                    }
+                    comm.Parameters.Add("@foto", MySqlDbType.VarChar, 200).Value = fotoPath;
+                    comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
+                    comm.Parameters.Add("@codUsu", MySqlDbType.Int32).Value = codUsuSelecionado;
+                }
 
                 comm.Connection = Conexao.obterConexao();
 
@@ -545,6 +671,9 @@ namespace LivrariaEBiblioteca
         private void btnLimpar_Click(object sender, EventArgs e)
         {
             limparCampos();
+            desabilitarCampos();
+
+            btnNovo.Enabled = true;
             btnNovo.Focus();
         }
 
@@ -791,6 +920,16 @@ namespace LivrariaEBiblioteca
             }
             else
             {
+                if (this.cargo == "Voluntário" && cbbCargo.Text == "Dirigente" || cbbCargo.Text == "Diretor")
+                {
+                    MessageBox.Show("Você não tem permissão para realizar essa alteração.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (this.cargo == "Dirigente" && cbbCargo.Text == "Diretor")
+                {
+                    MessageBox.Show("Você não tem permissão para realizar essa alteração.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 if (alterarUsuario(codUsuBusca) == 1)
                 {
                     MessageBox.Show("Cadastro alterado com sucesso.");

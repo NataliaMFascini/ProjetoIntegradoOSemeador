@@ -27,16 +27,7 @@ namespace LivrariaEBiblioteca
             this.nome = nome;
             this.codUsu = codUsu;
             this.cargo = cargo;
-            if (cargo == "Voluntário")
-            {
-                btnCadastrarlivros.Enabled = false;
-                btnCadastrausuario.Enabled = false;
-                btnRelatorio.Enabled = false;
-            }else if(cargo == "Dirigente")
-            {
-                btnRelatorio.Enabled = false;
-                btnCadastrausuario.Enabled = false;
-            }
+            
         }
 
         private void btnEmprestimo_Click(object sender, EventArgs e)

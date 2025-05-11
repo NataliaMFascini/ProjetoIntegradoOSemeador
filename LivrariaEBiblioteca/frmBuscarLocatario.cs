@@ -95,6 +95,10 @@ namespace LivrariaEBiblioteca
                 MySqlDataReader DR;
                 DR = comm.ExecuteReader();
 
+                if (!DR.HasRows)
+                {
+                    MessageBox.Show("Não há locatários com esse prontuario.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
 
                 while (DR.Read())
                 {
@@ -105,7 +109,7 @@ namespace LivrariaEBiblioteca
             }
             catch (MySqlException)
             {
-                MessageBox.Show("Erro ao pesquisar por prontuario!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Erro ao pesquisar por prontuario.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -125,6 +129,11 @@ namespace LivrariaEBiblioteca
                 MySqlDataReader DR;
                 DR = comm.ExecuteReader();
 
+                if (!DR.HasRows)
+                {
+                    MessageBox.Show("Não há locatários com esse nome.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
                 while (DR.Read())
                 {
                     ltbPesquisar.Items.Add(DR.GetString(0));
@@ -134,7 +143,7 @@ namespace LivrariaEBiblioteca
             }
             catch (MySqlException)
             {
-                MessageBox.Show("Erro ao pesquisar por nome!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Erro ao pesquisar por nome.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -143,7 +152,7 @@ namespace LivrariaEBiblioteca
             int tryParse;
             if (string.IsNullOrEmpty(txtDescricao.Text))
             {
-                MessageBox.Show("Favor prencher a descrição!");
+                MessageBox.Show("Favor prencher a descrição.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtDescricao.Focus();
             }
             else
@@ -174,7 +183,7 @@ namespace LivrariaEBiblioteca
                     }
                 }catch (Exception)
                 {
-                    MessageBox.Show("Caractere invalido!!", "Erro", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    MessageBox.Show("Caractere invalido.", "Erro", MessageBoxButtons.OK,MessageBoxIcon.Error);
                 }
             }
         }
