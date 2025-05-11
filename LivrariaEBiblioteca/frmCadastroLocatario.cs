@@ -31,6 +31,12 @@ namespace LivrariaEBiblioteca
             this.cargo = cargo;
             this.nome = nome;
             this.codUsu = codUsu;
+
+            if (this.cargo == "Voluntário")
+            {
+                btnRemover.Enabled = false;
+                btnAlterar.Enabled = false;
+            }
         }
         public frmCadastroLocatario(string nome, int codUsu, string cargo, string locatario)
         {
@@ -42,6 +48,12 @@ namespace LivrariaEBiblioteca
             this.codUsu = codUsu;
             this.locatario = locatario;
             pesquisarPorNome(locatario);
+
+            if (this.cargo == "Voluntário")
+            {
+                btnRemover.Enabled = false;
+                btnAlterar.Enabled = false;
+            }
         }
         public frmCadastroLocatario(string nome, int codUsu, string cargo, int prontuario)
         {
@@ -53,6 +65,12 @@ namespace LivrariaEBiblioteca
             this.codUsu = codUsu;
             this.prontuario = prontuario;
             pesquisarPorProntuario(prontuario);
+
+            if (this.cargo == "Voluntário")
+            {
+                btnRemover.Enabled = false;
+                btnAlterar.Enabled = false;
+            }
         }
 
         public void pesquisarPorNome(string locatario)

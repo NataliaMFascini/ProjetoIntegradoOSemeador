@@ -388,7 +388,7 @@ namespace LivrariaEBiblioteca
                     comm.CommandType = CommandType.Text;
 
                     comm.Parameters.Clear();
-                    comm.Parameters.Add("@saidaVen", MySqlDbType.Int32).Value = pegarQuantLivro(livros.proximoLivro(i)) + quantidadeRetorno(i);
+                    comm.Parameters.Add("@saidaVen", MySqlDbType.Int32).Value = pegarQuantSaida(livros.proximoLivro(i)) + quantidadeRetorno(i);
                     comm.Parameters.Add("@empVen", MySqlDbType.VarChar, 3).Value = "Ven";
                     comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.proximoLivro(i);
 
@@ -405,7 +405,6 @@ namespace LivrariaEBiblioteca
             }
             return resp;
         }
-
         public int quantidadeRetorno(int index)
         {
             int quantTotal = 1;
@@ -426,6 +425,35 @@ namespace LivrariaEBiblioteca
             {
                 MySqlCommand comm = new MySqlCommand();
                 comm.CommandText = "select entradaVen from tbEstoque where codLivro = @codLivro;";
+                comm.CommandType = CommandType.Text;
+
+                comm.Parameters.Clear();
+                comm.Parameters.Add("@codLivro", MySqlDbType.Int32, 20).Value = livros.proximoLivro(index);
+
+                comm.Connection = Conexao.obterConexao();
+
+                MySqlDataReader DR;
+                DR = comm.ExecuteReader();
+                DR.Read();
+
+                int quant = DR.GetInt32(0);
+
+                Conexao.fecharConexao();
+                return quant;
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao pegar a quantidade do livro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                return 0;
+            }
+        }
+
+        public int pegarQuantSaida(int index)
+        {
+            try
+            {
+                MySqlCommand comm = new MySqlCommand();
+                comm.CommandText = "select saidaVen from tbEstoque where codLivro = @codLivro;";
                 comm.CommandType = CommandType.Text;
 
                 comm.Parameters.Clear();

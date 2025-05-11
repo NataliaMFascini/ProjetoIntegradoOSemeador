@@ -50,6 +50,12 @@ namespace LivrariaEBiblioteca
             this.codUsu = codusu;
             this.cargo = cargo;
 
+            if(this.cargo == "Voluntário")
+            {
+                btnRemover.Enabled = false;
+                btnAlterar.Enabled = false;
+            }
+
             pesquisarPorNome(livro);
         }
         public frmCadastroLivrosAlugar(string nome, int codusu, string cargo)
@@ -59,6 +65,12 @@ namespace LivrariaEBiblioteca
             this.nome = nome;
             this.codUsu = codusu;
             this.cargo = cargo;
+            
+            if (this.cargo == "Voluntário")
+            {
+                btnRemover.Enabled = false;
+                btnAlterar.Enabled = false;
+            }
         }
 
         public void limparCampos()
@@ -409,6 +421,10 @@ namespace LivrariaEBiblioteca
                     {
                         fotoPath = "";
                     }
+                    else
+                    {
+                        fotoPath = pctLivro.ImageLocation;
+                    }
                     comm.Parameters.Add("@foto", MySqlDbType.VarChar, 200).Value = fotoPath;
                     comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
                 }
@@ -521,6 +537,10 @@ namespace LivrariaEBiblioteca
                 if (pctLivro.Image == null)
                 {
                     fotoPath = "";
+                }
+                else
+                {
+                    fotoPath = pctLivro.ImageLocation;
                 }
                 comm.Parameters.Add("@foto", MySqlDbType.VarChar, 200).Value = fotoPath;
                 comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
