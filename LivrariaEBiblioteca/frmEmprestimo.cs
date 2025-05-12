@@ -27,9 +27,8 @@ namespace LivrariaEBiblioteca
         public string cargo;
         public string fotoPath;
         public string nomeLivro;
+        public DateTime dataEmprestimo;
 
-        string nomeCheck;
-        string codLivroCheck;
 
         Livros livros = new Livros();
 
@@ -88,17 +87,10 @@ namespace LivrariaEBiblioteca
             ltbCarrinho.Items.Clear();
 
         }
-        public void ReceberDadosLivro(string titulo, string isbn, string idLivro)
-        {
-            txtTitulo.Text = titulo;
-            txtIsbn.Text = isbn;
-            txtIdLivro.Text = idLivro;
 
-        }
-
-        public Boolean checarComponentes()
+        public bool checarComponentes()
         {
-            Boolean result = true;
+            bool result = true;
             if (txtTitulo.Text.Equals(""))
             {
                 MessageBox.Show("Favor, informe o título do livro", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -132,7 +124,6 @@ namespace LivrariaEBiblioteca
         {
             if (checarComponentes())
             {
-
                 if (!mskDataDevolucao.Equals("  /  /    ") && mskDataDevolucao.MaskFull)
                 {
                     ltbCarrinho.Items.Add(txtTitulo.Text = " Devolução:" + mskDataDevolucao.Text);
@@ -171,11 +162,11 @@ namespace LivrariaEBiblioteca
 
         public int registrarEmprestimo()
         {
-
-            MySqlCommand comm = new MySqlCommand();
+            try
+                MySqlCommand comm = new MySqlCommand();
             int resp = 0;
 
-            comm.CommandText = "insert into tbEmprestimo( dataEmp, nomeVendedor, nomeLivro, prontuario, codLivro) values (@dataEmp, @nomeVendedor, @nomeLivro, @prontuario, @codLivro);";
+            comm.CommandText = "insert into tbEmprestimo(dataEmp, nomeVendedor, nomeLivro, prontuario, dataCadastro, codLivro) values (@dataEmp, @nomeVendedor, @nomeLivro, @prontuario, @dataCadastro, @codLivro);";
             comm.CommandType = CommandType.Text;
 
             for (int i = 0; i < Livros.ListaLivros.Count; i++)
@@ -183,30 +174,57 @@ namespace LivrariaEBiblioteca
                 comm.Parameters.Clear();
 
                 comm.Parameters.Add("@dataEmp", MySqlDbType.DateTime).Value = DateTime.Now;
-
-                //if (!mskDataDevolucao.Equals("  /  /    ") && mskDataDevolucao.MaskFull)
-                //{
-                //    // Converte o texto para DateTime
-                //    DateTime dataConvertida = DateTime.ParseExact(mskDataDevolucao.Text, "dd/MM/yyyy", null);
-
-                //    // Cria e configura o comando
-                //    comm.Parameters.Add("@dataDev", MySqlDbType.DateTime).Value = dataConvertida;
-                //}
-
                 comm.Parameters.Add("@nomeVendedor", MySqlDbType.VarChar, 100).Value = this.nome;
                 comm.Parameters.Add("@nomeLivro", MySqlDbType.VarChar, 100).Value = livros.nomeRetorno(i);
                 comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
-                //comm.Parameters.Add("@codLoc", MySqlDbType.Int32).Value = codLoc;
                 comm.Parameters.Add("@prontuario", MySqlDbType.Int32).Value = Convert.ToInt32(txtLocatario.Text);
+                comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
                 comm.Connection = Conexao.obterConexao();
 
                 try
                 {
                     resp = comm.ExecuteNonQuery();
                 }
-                catch (MySqlException ex)
+                catch (MySqlException)
                 {
-                    MessageBox.Show("Erro no banco: " + ex.Message);
+                    MessageBox.Show("Erro ao registrar empréstimo.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+
+                Conexao.fecharConexao();
+            }
+
+            return resp;
+            }
+        }
+
+        public int registrarRetorno()
+        {
+            int resp = 0;
+
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = "insert into tbEmprestimo(dataDev, nomeVendedor, nomeLivro, prontuario, dataCadastro, codLivro) values (@dataDev, @nomeVendedor, @nomeLivro, @prontuario, @dataCadastro, @codLivro);";
+            comm.CommandType = CommandType.Text;
+
+            for (int i = 0; i < Livros.ListaLivros.Count; i++)
+            {
+                comm.Parameters.Clear();
+
+                comm.Parameters.Add("@dataDev", MySqlDbType.DateTime).Value = DateTime.Now;
+                comm.Parameters.Add("@nomeVendedor", MySqlDbType.VarChar, 100).Value = this.nome;
+                comm.Parameters.Add("@nomeLivro", MySqlDbType.VarChar, 100).Value = livros.nomeRetorno(i);
+                comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
+                comm.Parameters.Add("@prontuario", MySqlDbType.Int32).Value = Convert.ToInt32(txtLocatario.Text);
+                comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
+                comm.Connection = Conexao.obterConexao();
+
+                try
+                {
+                    resp = comm.ExecuteNonQuery();
+                }
+                catch (MySqlException)
+                {
+                    MessageBox.Show("Erro ao registrar empréstimo.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
 
@@ -221,22 +239,23 @@ namespace LivrariaEBiblioteca
             MySqlCommand comm = new MySqlCommand();
             int resp = 0;
 
-            comm.CommandText = "update tbEstoque set saidaEmp = @saidaEmp where codLivro = @codLivro";
+            comm.CommandText = "update tbEstoque set saidaEmp = @saidaEmp, disponibilidade = @disponibilidade where codLivro = @codLivro";
             comm.CommandType = CommandType.Text;
             for (int i = 0; i < Livros.ListaLivros.Count; i++)
             {
                 comm.Parameters.Clear();
-                comm.Parameters.Add("@saidaEmp", MySqlDbType.Int32).Value = pegarQuantLivro(i, "Saida") + quantidadeRetorno(i);
-                comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.codRetorno(i);
+                comm.Parameters.Add("@saidaEmp", MySqlDbType.Int32).Value = pegarQuantLivro(livros.proximoLivro(i), "Saida") + quantidadeRetorno(i);
+                comm.Parameters.Add("@disponibilidade", MySqlDbType.VarChar).Value = "N";
+                comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.proximoLivro(i);
 
                 comm.Connection = Conexao.obterConexao();
                 try
                 {
                     resp = comm.ExecuteNonQuery();
                 }
-                catch (MySqlException ex)
+                catch (MySqlException)
                 {
-                    MessageBox.Show("Erro no banco: " + ex.Message);
+                    MessageBox.Show("Erro ao registrar empréstimo no estoque.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
                 Conexao.fecharConexao();
@@ -250,23 +269,24 @@ namespace LivrariaEBiblioteca
             MySqlCommand comm = new MySqlCommand();
             int resp = 0;
 
-            comm.CommandText = "UPDATE tbEstoque SET entradaEmp = @entradaEmp WHERE codLivro = @codLivro";
+            comm.CommandText = "UPDATE tbEstoque SET entradaEmp = @entradaEmp, disponibilidade = @disponibilidade WHERE codLivro = @codLivro";
             comm.CommandType = CommandType.Text;
 
-            for (int i = 0; i <= Livros.ListaLivros.Count; i++)
+            for (int i = 0; i < livros.quantidadeLista(); i++)
             {
                 comm.Parameters.Clear();
-                comm.Parameters.Add("@entradaEmp", MySqlDbType.Int32).Value = pegarQuantLivro(i, "Entrada") + quantidadeRetorno(i);
-                comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = Livros.ListaLivros[i].idLivro;
+                comm.Parameters.Add("@entradaEmp", MySqlDbType.Int32).Value = pegarQuantLivro(livros.proximoLivro(i), "Entrada") + quantidadeRetorno(i);
+                comm.Parameters.Add("@disponibilidade", MySqlDbType.VarChar).Value = "S";
+                comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.proximoLivro(i);
 
                 comm.Connection = Conexao.obterConexao();
                 try
                 {
                     resp = comm.ExecuteNonQuery();
                 }
-                catch (MySqlException ex)
+                catch (MySqlException)
                 {
-                    MessageBox.Show("Erro ao retornar livro ao estoque: " + ex.Message);
+                    MessageBox.Show("Erro ao retornar livro ao estoque.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             }
@@ -285,7 +305,7 @@ namespace LivrariaEBiblioteca
                 {
                     comm.CommandText = "select entradaEmp from tbEstoque where codLivro = @codLivro;";
                 }
-                else
+                if (entSai == "Saida")
                 {
                     comm.CommandText = "select saidaEmp from tbEstoque where codLivro = @codLivro;";
                 }
@@ -293,27 +313,18 @@ namespace LivrariaEBiblioteca
                 comm.CommandType = CommandType.Text;
 
                 comm.Parameters.Clear();
-                comm.Parameters.Add("@codLivro", MySqlDbType.Int32, 20).Value = livros.codRetorno(index);
-
+                comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.proximoLivro(index);
 
                 comm.Connection = Conexao.obterConexao();
 
+                MySqlDataReader DR;
+                DR = comm.ExecuteReader();
+                DR.Read();
 
-                MySqlDataReader DR = comm.ExecuteReader();
+                int quant = DR.GetInt32(0);
 
-
-                if (DR.Read())
-                {
-                    int quant = DR.GetInt32(0); // Pega a quantidade do banco
-                    Conexao.fecharConexao(); // Fecha a conexão
-                    return quant;
-                }
-                else
-                {
-
-                    Conexao.fecharConexao();
-                    return 0;
-                }
+                Conexao.fecharConexao();
+                return quant;
             }
             catch (MySqlException)
             {
@@ -382,7 +393,8 @@ namespace LivrariaEBiblioteca
                 }
                 erroCadastro("Editora");
                 txtEditora.Focus();
-            } else if (txtLocatario.Text.Equals(""))
+            }
+            else if (txtLocatario.Text.Equals(""))
             {
                 if (int.TryParse(txtEditora.Text, out tryParse))
                 {
@@ -396,9 +408,9 @@ namespace LivrariaEBiblioteca
             }
             if (rdbDevolução.Checked)
             {
-                if (retornoEstoque() == 1)
+                if (retornoEstoque() == 1 && registrarRetorno() == 1)
                 {
-                    MessageBox.Show("Livro devolvido e estoque atualizado!", "Sucesso");
+                    MessageBox.Show("Livro devolvido e estoque atualizado.", "Sucesso");
                     limparCampos();
                     Livros.ListaLivros.Clear(); // limpar a lista
                 }
@@ -414,7 +426,7 @@ namespace LivrariaEBiblioteca
                 {
                     if (registrarEmprestimo() == 1 && saidaEstoque() == 1)
                     {
-                        MessageBox.Show("Empréstimo registrada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                        MessageBox.Show("Empréstimo registrado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                         limparCampos();
                     }
                     else
@@ -445,100 +457,105 @@ namespace LivrariaEBiblioteca
             }
         }
 
-        public string checargemDevolucao(string codEmp)
+        public void checagemDevolucao(int prontuario, string campo)
         {
-            MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select codLivro, nomeLivro from tbEmprestimo where codEmp = @codEmp;";
-            comm.CommandType = CommandType.Text;
-
-            comm.Parameters.Clear();
-            comm.Parameters.Add("@codEmp", MySqlDbType.VarChar, 1000).Value = codEmp;
-            comm.Connection = Conexao.obterConexao();
-            MySqlDataReader DR;
-            DR = comm.ExecuteReader();
-            DR.Read();
-
-            ltbCarrinho.Items.Clear();
-            Livros livros = new Livros();
-
-            bool resp = DR.HasRows;
-
-            if (resp)
+            try
             {
-                //while (DR.Read())
-                //{
-                //    //ltbCarrinho.Items.Add(DR.GetString(0) + ":" + DR.GetString(1));
+                MySqlCommand comm = new MySqlCommand();
+                if (campo == "Numero")
+                {
+                    comm.CommandText = "select codLivro, nomeLivro from tbEmprestimo where codEmp = @codEmp;";
+                    comm.CommandType = CommandType.Text;
 
-                //}
-                codLivroCheck = DR.GetInt32(0).ToString();
-                nomeCheck = DR.GetString(1);
-                livros.idLivro = DR.GetInt32(0);
-                livros.nomeLivro = nomeCheck;
-                Livros.ListaLivros.Add(livros);
+                    comm.Parameters.Clear();
+                    comm.Parameters.Add("@codEmp", MySqlDbType.Int32).Value = prontuario;
+                }
+                if (campo == "Locatario")
+                {
+                    comm.CommandText = "select codLivro, nomeLivro from tbEmprestimo where prontuario = @prontuario;";
+                    comm.CommandType = CommandType.Text;
+
+                    comm.Parameters.Clear();
+                    comm.Parameters.Add("@prontuario", MySqlDbType.Int32).Value = prontuario;
+                }
+
+                ltbCarrinho.Items.Clear();
+                comm.Connection = Conexao.obterConexao();
+
+                MySqlDataReader DR;
+                DR = comm.ExecuteReader();
+
+                while (DR.Read())
+                {
+                    ltbCarrinho.Items.Add(DR.GetString(1));
+                }
             }
-            else
+            catch (MySqlException)
             {
-                MessageBox.Show("Nº de empréstimo inválido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
-                txtNEmprestimo.Clear();
-                txtNEmprestimo.Focus();
+                MessageBox.Show("Erro ao checar empréstimos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
 
-            return codLivroCheck + ": " + nomeCheck;
         }
 
         public void escanearLivro(string isbn)
         {
-            string empVen = "";
-
-            MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select codLivro, nome, autor, editora, foto, empVen from tbLivro where isbn = @isbn;";
-            comm.CommandType = CommandType.Text;
-
-            comm.Parameters.Clear();
-            comm.Parameters.Add("@isbn", MySqlDbType.VarChar, 13).Value = isbn;
-            comm.Connection = Conexao.obterConexao();
-            MySqlDataReader DR;
-            DR = comm.ExecuteReader();
-            DR.Read();
-
-            bool resp = DR.HasRows;
-
-            empVen = DR.GetString(5);
-
-            if (empVen == "Emp")
+            try
             {
+                string empVen = "";
 
-                if (resp)
+                MySqlCommand comm = new MySqlCommand();
+                comm.CommandText = "select codLivro, nome, autor, editora, foto, empVen from tbLivro where isbn = @isbn;";
+                comm.CommandType = CommandType.Text;
+
+                comm.Parameters.Clear();
+                comm.Parameters.Add("@isbn", MySqlDbType.VarChar, 13).Value = isbn;
+                comm.Connection = Conexao.obterConexao();
+                MySqlDataReader DR;
+                DR = comm.ExecuteReader();
+                DR.Read();
+
+                bool resp = DR.HasRows;
+
+                empVen = DR.GetString(5);
+
+                if (empVen == "Emp")
                 {
-                    txtIdLivro.Text = Convert.ToString(DR.GetInt32(0));
-                    txtTitulo.Text = DR.GetString(1);
-                    txtAutor.Text = DR.GetString(2);
-                    txtEditora.Text = DR.GetString(3);
-                    if (fotoPath != null)
+
+                    if (resp)
                     {
-                        fotoPath = DR.GetString(4);
-                        pctLivro.ImageLocation = fotoPath;
-                        pctLivro.Load();
+                        txtIdLivro.Text = Convert.ToString(DR.GetInt32(0));
+                        txtTitulo.Text = DR.GetString(1);
+                        txtAutor.Text = DR.GetString(2);
+                        txtEditora.Text = DR.GetString(3);
+                        if (fotoPath != null)
+                        {
+                            fotoPath = DR.GetString(4);
+                            pctLivro.ImageLocation = fotoPath;
+                            pctLivro.Load();
+                        }
+                        else
+                        {
+                            pctLivro.Image = null;
+                        }
                     }
                     else
                     {
-                        pctLivro.Image = null;
+                        MessageBox.Show("ISBN inválido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                        txtIsbn.Clear();
+                        txtIsbn.Focus();
                     }
                 }
-                else
+                else if (empVen == "Ven")
                 {
-                    MessageBox.Show("ISBN inválido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
-                    txtIsbn.Clear();
-                    txtIsbn.Focus();
+                    MessageBox.Show("Livro selecionado não esta cadastrado para Empréstimo", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-            else if (empVen == "Ven")
-            {
-                MessageBox.Show("Livro selecionado não esta cadastrado para Empréstimo", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
 
-            Conexao.fecharConexao();
+                Conexao.fecharConexao();
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao escanear livro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error );
+            }
 
         }
 
@@ -546,7 +563,6 @@ namespace LivrariaEBiblioteca
         {
             if (e.KeyCode == Keys.Enter)
             {
-
                 escanearLivro(txtIsbn.Text);
                 txtLocatario.Focus();
                 codLivro = Convert.ToInt32(txtIdLivro.Text);
@@ -567,9 +583,9 @@ namespace LivrariaEBiblioteca
         {
             int quantTotal = 1;
 
-            for (int i = 0; i < Livros.ListaLivros.Count; i++)
+            for (int i = 0; i < Livros.ListaLivros.Count - 1; i++)
             {
-                if (i != index && Livros.ListaLivros[i].idLivro == Livros.ListaLivros[index].idLivro)
+                if (Livros.ListaLivros[i].idLivro == Livros.ListaLivros[i + 1].idLivro)
                 {
                     quantTotal++;
                 }
@@ -591,8 +607,31 @@ namespace LivrariaEBiblioteca
         {
             if (e.KeyCode == Keys.Enter)
             {
-                ltbCarrinho.Items.Add(checargemDevolucao(txtNEmprestimo.Text));
-                //checargemDevolucao(Convert.ToString(ltbCarrinho.Items));
+                checagemDevolucao(Convert.ToInt32(txtNEmprestimo.Text), "Numero");
+                ltbCarrinho.SetSelected(0, true);
+                listaDeDevolucao();
+            }
+        }
+
+        private void txtLocatario_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                checagemDevolucao(Convert.ToInt32(txtLocatario.Text), "Locatario");
+                ltbCarrinho.SetSelected(0, true);
+                listaDeDevolucao();
+            }
+        }
+
+        public void listaDeDevolucao()
+        {
+            Livros livrosDev = new Livros();
+            for (int i = 0; i < ltbCarrinho.Items.Count; i++)
+            {
+                livrosDev.nomeLivro = ltbCarrinho.Items[i].ToString();
+                livrosDev.idLivro = livrosDev.pegarID(livrosDev.nomeLivro);
+
+                Livros.ListaLivros.Add(livrosDev);
             }
         }
 
@@ -630,6 +669,43 @@ namespace LivrariaEBiblioteca
             {
                 MessageBox.Show("Erro ao buscar informações do livro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
             }
+        }
+
+        private void ltbCarrinho_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    Livros.ListaLivros.RemoveAt(ltbCarrinho.SelectedIndex);
+                    ltbCarrinho.Items.RemoveAt(ltbCarrinho.SelectedIndex);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao remover item do carrinho.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ltbCarrinho_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Delete)
+                {
+                    Livros.ListaLivros.RemoveAt(ltbCarrinho.SelectedIndex);
+                    ltbCarrinho.Items.RemoveAt(ltbCarrinho.SelectedIndex);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Erro ao remover item do carrinho.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ltbCarrinho_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            pesquisarPorNome(ltbCarrinho.SelectedItem.ToString());
         }
     }
 }

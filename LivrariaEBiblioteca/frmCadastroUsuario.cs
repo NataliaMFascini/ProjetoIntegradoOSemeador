@@ -432,7 +432,7 @@ namespace LivrariaEBiblioteca
                 comm.Parameters.Add("@complemento", MySqlDbType.VarChar, 100).Value = txtComplemento.Text;
                 comm.Parameters.Add("@bairro", MySqlDbType.VarChar, 50).Value = txtBairro.Text;
                 comm.Parameters.Add("@cidade", MySqlDbType.VarChar, 50).Value = txtCidade.Text;
-                comm.Parameters.Add("@estado", MySqlDbType.VarChar, 2).Value = cbbEstado;
+                comm.Parameters.Add("@estado", MySqlDbType.VarChar, 2).Value = cbbEstado.Text;
                 if (ptbUsuario.Image == null)
                 {
                     fotoPath = "";

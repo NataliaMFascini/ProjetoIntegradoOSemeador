@@ -49,22 +49,7 @@ namespace LivrariaEBiblioteca
             this.locatario = locatario;
             pesquisarPorNome(locatario);
 
-            if (this.cargo == "Voluntário")
-            {
-                btnRemover.Enabled = false;
-                btnAlterar.Enabled = false;
-            }
-        }
-        public frmCadastroLocatario(string nome, int codUsu, string cargo, int prontuario)
-        {
-            InitializeComponent();
-            desabilitarCampos();
-            habilitarCamposBusca();
-            this.cargo = cargo;
-            this.nome = nome;
-            this.codUsu = codUsu;
-            this.prontuario = prontuario;
-            pesquisarPorProntuario(prontuario);
+            listaDoLocatario(Convert.ToInt32(txtProntuario.Text));
 
             if (this.cargo == "Voluntário")
             {
@@ -101,6 +86,35 @@ namespace LivrariaEBiblioteca
             catch (MySqlException)
             {
                 MessageBox.Show("Locatário não encontrado.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void listaDoLocatario(int prontuario)
+        {
+            try
+            {
+                MySqlCommand comm = new MySqlCommand();
+                comm.CommandText = "select nomeLivro from tbEmprestimo where prontuario = @prontuario;";
+                comm.CommandType = CommandType.Text;
+
+                comm.Parameters.Clear();
+                comm.Parameters.Add("@prontuario", MySqlDbType.Int32).Value = prontuario;
+
+                comm.Connection = Conexao.obterConexao();
+
+                MySqlDataReader DR;
+                DR = comm.ExecuteReader();
+
+                while (DR.Read())
+                {
+                    ltbListadelivros.Items.Add(DR.GetString(0));
+                }
+
+                Conexao.fecharConexao();
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao pegar o histórico de empréstimo.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

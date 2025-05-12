@@ -479,25 +479,39 @@ namespace LivrariaEBiblioteca
 
         private void ltbCarrinho_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            try
             {
-                valorTotal -= livros.valorRetorno(ltbCarrinho.SelectedIndex);
-                txtValorTotal.Text = "R$ " + valorTotal.ToString();
-                Livros.ListaLivros.RemoveAt(ltbCarrinho.SelectedIndex);
-                ltbCarrinho.Items.RemoveAt(ltbCarrinho.SelectedIndex);
-                estoqueInicial++;
+                if (e.Button == MouseButtons.Left)
+                {
+                    valorTotal -= livros.valorRetorno(ltbCarrinho.SelectedIndex);
+                    txtValorTotal.Text = "R$ " + valorTotal.ToString();
+                    Livros.ListaLivros.RemoveAt(ltbCarrinho.SelectedIndex);
+                    ltbCarrinho.Items.RemoveAt(ltbCarrinho.SelectedIndex);
+                    estoqueInicial++;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao remover item do carrinho.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void ltbCarrinho_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Delete)
+            try
             {
-                valorTotal -= livros.valorRetorno(ltbCarrinho.SelectedIndex);
-                txtValorTotal.Text = "R$ " + valorTotal.ToString();
-                Livros.ListaLivros.RemoveAt(ltbCarrinho.SelectedIndex);
-                ltbCarrinho.Items.RemoveAt(ltbCarrinho.SelectedIndex);
-                estoqueInicial++;
+                if (e.KeyCode == Keys.Delete)
+                {
+                    valorTotal -= livros.valorRetorno(ltbCarrinho.SelectedIndex);
+                    txtValorTotal.Text = "R$ " + valorTotal.ToString();
+                    Livros.ListaLivros.RemoveAt(ltbCarrinho.SelectedIndex);
+                    ltbCarrinho.Items.RemoveAt(ltbCarrinho.SelectedIndex);
+                    estoqueInicial++;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao remover item do carrinho.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
