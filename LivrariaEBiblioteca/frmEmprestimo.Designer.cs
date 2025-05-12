@@ -125,6 +125,9 @@
             this.ltbCarrinho.Name = "ltbCarrinho";
             this.ltbCarrinho.Size = new System.Drawing.Size(577, 129);
             this.ltbCarrinho.TabIndex = 7;
+            this.ltbCarrinho.SelectedIndexChanged += new System.EventHandler(this.ltbCarrinho_SelectedIndexChanged);
+            this.ltbCarrinho.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ltbCarrinho_KeyDown);
+            this.ltbCarrinho.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ltbCarrinho_MouseDoubleClick);
             // 
             // lblIsbn
             // 
@@ -227,6 +230,7 @@
             this.txtLocatario.Name = "txtLocatario";
             this.txtLocatario.Size = new System.Drawing.Size(267, 31);
             this.txtLocatario.TabIndex = 2;
+            this.txtLocatario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLocatario_KeyDown);
             // 
             // btnVoltar
             // 

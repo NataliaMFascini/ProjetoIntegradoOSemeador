@@ -124,5 +124,29 @@ namespace LivrariaEBiblioteca
             }
             return proximoId;
         }
+
+        public int pegarID(string nomeLivroPesquisa)
+        {
+            int idLivroPesquisa = 0;
+
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = "select codLivro from tbLivro where nome = @nome;";
+            comm.CommandType = CommandType.Text;
+
+            comm.Parameters.Clear();
+            comm.Parameters.Add("@nome", MySqlDbType.VarChar).Value = nomeLivroPesquisa;
+
+            comm.Connection = Conexao.obterConexao();
+
+            MySqlDataReader DR;
+            DR = comm.ExecuteReader();
+            DR.Read();
+
+            idLivroPesquisa = DR.GetInt32(0);
+
+            Conexao.fecharConexao();
+
+            return idLivroPesquisa;
+        }
     }
 }
