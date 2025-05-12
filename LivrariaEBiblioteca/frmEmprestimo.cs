@@ -162,7 +162,6 @@ namespace LivrariaEBiblioteca
 
         public int registrarEmprestimo()
         {
-            try
                 MySqlCommand comm = new MySqlCommand();
             int resp = 0;
 
