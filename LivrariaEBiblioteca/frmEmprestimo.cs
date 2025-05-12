@@ -253,7 +253,7 @@ namespace LivrariaEBiblioteca
             comm.CommandText = "UPDATE tbEstoque SET entradaEmp = @entradaEmp WHERE codLivro = @codLivro";
             comm.CommandType = CommandType.Text;
 
-            for (int i = 0; i <= Livros.ListaLivros.Count; i++)
+            for (int i = 0; i < Livros.ListaLivros.Count; i++)
             {
                 comm.Parameters.Clear();
                 comm.Parameters.Add("@entradaEmp", MySqlDbType.Int32).Value = pegarQuantLivro(i, "Entrada") + quantidadeRetorno(i);
@@ -445,7 +445,48 @@ namespace LivrariaEBiblioteca
             }
         }
 
-        public string checargemDevolucao(string codEmp)
+        //public string checargemDevolucao(string codEmp)
+        //{
+        //    MySqlCommand comm = new MySqlCommand();
+        //    comm.CommandText = "select codLivro, nomeLivro from tbEmprestimo where codEmp = @codEmp;";
+        //    comm.CommandType = CommandType.Text;
+
+        //    comm.Parameters.Clear();
+        //    comm.Parameters.Add("@codEmp", MySqlDbType.VarChar, 1000).Value = codEmp;
+        //    comm.Connection = Conexao.obterConexao();
+        //    MySqlDataReader DR;
+        //    DR = comm.ExecuteReader();
+        //    DR.Read();
+
+        //    ltbCarrinho.Items.Clear();
+        //    Livros livros = new Livros();
+
+        //    bool resp = DR.HasRows;
+
+        //    if (resp)
+        //    {
+        //        //while (DR.Read())
+        //        //{
+        //        //    //ltbCarrinho.Items.Add(DR.GetString(0) + ":" + DR.GetString(1));
+
+        //        //}
+        //        codLivroCheck = DR.GetInt32(0).ToString();
+        //        nomeCheck = DR.GetString(1);
+        //        livros.idLivro = DR.GetInt32(0);
+        //        livros.nomeLivro = nomeCheck;
+        //        Livros.ListaLivros.Add(livros);
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Nº de empréstimo inválido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+        //        txtNEmprestimo.Clear();
+        //        txtNEmprestimo.Focus();
+        //    }
+
+
+        //    return codLivroCheck + ": " + nomeCheck;
+        //}
+        private string checarDevolucao(string codEmp)
         {
             MySqlCommand comm = new MySqlCommand();
             comm.CommandText = "select codLivro, nomeLivro from tbEmprestimo where codEmp = @codEmp;";
@@ -454,27 +495,22 @@ namespace LivrariaEBiblioteca
             comm.Parameters.Clear();
             comm.Parameters.Add("@codEmp", MySqlDbType.VarChar, 1000).Value = codEmp;
             comm.Connection = Conexao.obterConexao();
-            MySqlDataReader DR;
-            DR = comm.ExecuteReader();
-            DR.Read();
+            MySqlDataReader DR = comm.ExecuteReader();
 
             ltbCarrinho.Items.Clear();
             Livros livros = new Livros();
+            string resultado = string.Empty;
 
-            bool resp = DR.HasRows;
-
-            if (resp)
+            if (DR.Read())
             {
-                //while (DR.Read())
-                //{
-                //    //ltbCarrinho.Items.Add(DR.GetString(0) + ":" + DR.GetString(1));
-
-                //}
                 codLivroCheck = DR.GetInt32(0).ToString();
                 nomeCheck = DR.GetString(1);
+
                 livros.idLivro = DR.GetInt32(0);
                 livros.nomeLivro = nomeCheck;
+
                 Livros.ListaLivros.Add(livros);
+                resultado = codLivroCheck + ": " + nomeCheck;
             }
             else
             {
@@ -482,9 +518,9 @@ namespace LivrariaEBiblioteca
                 txtNEmprestimo.Clear();
                 txtNEmprestimo.Focus();
             }
-            
 
-            return codLivroCheck + ": " + nomeCheck;
+            Conexao.fecharConexao();
+            return resultado;
         }
 
         public void escanearLivro(string isbn)
@@ -587,15 +623,26 @@ namespace LivrariaEBiblioteca
             txtNEmprestimo.Enabled = false;
         }
 
+        //private void txtNEmprestimo_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if (e.KeyCode == Keys.Enter)
+        //    {
+        //        ltbCarrinho.Items.Add(checarDevolucao(txtNEmprestimo.Text));
+        //        //checargemDevolucao(Convert.ToString(ltbCarrinho.Items));
+        //    }
+        //}
         private void txtNEmprestimo_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                ltbCarrinho.Items.Add(checargemDevolucao(txtNEmprestimo.Text));
-                //checargemDevolucao(Convert.ToString(ltbCarrinho.Items));
+                string resultado = checarDevolucao(txtNEmprestimo.Text);
+
+                if (!string.IsNullOrEmpty(resultado))
+                {
+                    ltbCarrinho.Items.Add(resultado);
+                }
             }
         }
-
         public void pesquisarPorNome(string nome)
         {
             try
