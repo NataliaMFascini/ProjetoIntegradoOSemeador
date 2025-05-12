@@ -162,7 +162,7 @@ namespace LivrariaEBiblioteca
 
         public int registrarEmprestimo()
         {
-                MySqlCommand comm = new MySqlCommand();
+            MySqlCommand comm = new MySqlCommand();
             int resp = 0;
 
             comm.CommandText = "insert into tbEmprestimo(dataEmp, nomeVendedor, nomeLivro, prontuario, dataCadastro, codLivro) values (@dataEmp, @nomeVendedor, @nomeLivro, @prontuario, @dataCadastro, @codLivro);";
@@ -194,8 +194,8 @@ namespace LivrariaEBiblioteca
             }
 
             return resp;
-            }
         }
+
 
         public int registrarRetorno()
         {
@@ -393,11 +393,11 @@ namespace LivrariaEBiblioteca
                 erroCadastro("Editora");
                 txtEditora.Focus();
             }
-            else if (txtLocatario.Text.Equals(""))
+            else if (txtLocatario.Text.Equals("") || !int.TryParse(txtLocatario.Text, out tryParse))
             {
-                if (int.TryParse(txtEditora.Text, out tryParse))
+                if (!int.TryParse(txtLocatario.Text, out tryParse))
                 {
-                    erroCampo("Locatário", "alfabético");
+                    erroCampo("Locatário", "numérico");
                     txtLocatario.Clear();
                     txtLocatario.Focus();
                     return;
@@ -553,7 +553,7 @@ namespace LivrariaEBiblioteca
             }
             catch (MySqlException)
             {
-                MessageBox.Show("Erro ao escanear livro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error );
+                MessageBox.Show("Erro ao escanear livro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
