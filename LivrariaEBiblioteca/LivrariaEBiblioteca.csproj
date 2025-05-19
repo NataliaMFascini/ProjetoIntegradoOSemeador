@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -135,11 +135,11 @@
     <Compile Include="Conexao.cs" />
     <Compile Include="DataGridViewPrinter.cs" />
     <Compile Include="FormState.cs" />
-    <Compile Include="frmBuscarFuncionario.cs">
+    <Compile Include="frmBuscarUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmBuscarFuncionario.Designer.cs">
-      <DependentUpon>frmBuscarFuncionario.cs</DependentUpon>
+    <Compile Include="frmBuscarUsuario.Designer.cs">
+      <DependentUpon>frmBuscarUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="frmBuscarLocatario.cs">
       <SubType>Form</SubType>
@@ -153,11 +153,11 @@
     <Compile Include="frmEmprestimo.Designer.cs">
       <DependentUpon>frmEmprestimo.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCadastroLivrosAlugar.cs">
+    <Compile Include="frmCadastroLivros.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCadastroLivrosAlugar.Designer.cs">
-      <DependentUpon>frmCadastroLivrosAlugar.cs</DependentUpon>
+    <Compile Include="frmCadastroLivros.Designer.cs">
+      <DependentUpon>frmCadastroLivros.cs</DependentUpon>
     </Compile>
     <Compile Include="frmCadastroLocatario.cs">
       <SubType>Form</SubType>
@@ -211,14 +211,14 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WinApi.cs" />
-    <EmbeddedResource Include="frmBuscarFuncionario.resx">
-      <DependentUpon>frmBuscarFuncionario.cs</DependentUpon>
+    <EmbeddedResource Include="frmBuscarUsuario.resx">
+      <DependentUpon>frmBuscarUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmBuscarLocatario.resx">
       <DependentUpon>frmBuscarLocatario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCadastroLivrosAlugar.resx">
-      <DependentUpon>frmCadastroLivrosAlugar.cs</DependentUpon>
+    <EmbeddedResource Include="frmCadastroLivros.resx">
+      <DependentUpon>frmCadastroLivros.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCadastroLocatario.resx">
       <DependentUpon>frmCadastroLocatario.cs</DependentUpon>

@@ -62,6 +62,7 @@
             this.rdbDevolução = new System.Windows.Forms.RadioButton();
             this.rdbEmprestimo = new System.Windows.Forms.RadioButton();
             this.gpbAcao = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pctLivro)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.gpbDadosLivro.SuspendLayout();
@@ -323,7 +324,7 @@
             this.btnFinalizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFinalizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFinalizar.Image = ((System.Drawing.Image)(resources.GetObject("btnFinalizar.Image")));
-            this.btnFinalizar.Location = new System.Drawing.Point(603, 3);
+            this.btnFinalizar.Location = new System.Drawing.Point(403, 3);
             this.btnFinalizar.Name = "btnFinalizar";
             this.btnFinalizar.Size = new System.Drawing.Size(194, 74);
             this.btnFinalizar.TabIndex = 11;
@@ -382,9 +383,10 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Controls.Add(this.button1, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnAdicionar, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnFinalizar, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnLimpar, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnFinalizar, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 520);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -480,6 +482,23 @@
             this.gpbAcao.TabStop = false;
             this.gpbAcao.Text = "Ações";
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.PowderBlue;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(603, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(194, 74);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "&Buscar";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmEmprestimo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -557,5 +576,6 @@
         private System.Windows.Forms.RadioButton rdbDevolução;
         private System.Windows.Forms.RadioButton rdbEmprestimo;
         private System.Windows.Forms.GroupBox gpbAcao;
+        private System.Windows.Forms.Button button1;
     }
 }
