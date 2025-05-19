@@ -41,8 +41,6 @@ namespace LivrariaEBiblioteca
             this.cargo = cargo;
             this.codUsu = codUsu;
             this.ultimaTela = ultimaTela;
-
-            
         }
 
         public void habilitarCampos()
@@ -83,8 +81,6 @@ namespace LivrariaEBiblioteca
             rdbIdLivro.Checked = false;
             rdbTitulo.Checked = false;
             rdbIsbn.Checked = false;
-
-
         }
 
         private void btnVender_Click(object sender, EventArgs e)
@@ -99,7 +95,7 @@ namespace LivrariaEBiblioteca
                 MessageBox.Show("Esse livro está reservado para empréstimo, não pode ser vendido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
-            {                
+            {
                 frmVender abrirVender = new frmVender(this.nome, this.codUsu, this.cargo, nomeLivro, estoque);
 
                 abrirVender.Show();
@@ -119,7 +115,7 @@ namespace LivrariaEBiblioteca
                 MessageBox.Show("Esse livro está reservado para venda, não pode ser emprestado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
-            {                
+            {
                 frmEmprestimo abrirEmprestimo = new frmEmprestimo(this.nome, this.codUsu, this.cargo, nomeLivro);
 
                 abrirEmprestimo.Show();
@@ -143,7 +139,7 @@ namespace LivrariaEBiblioteca
             }
             if (ultimaTela == "Cadastro")
             {
-                frmCadastroLivrosAlugar abrir = new frmCadastroLivrosAlugar(this.nome, this.codUsu, this.cargo);
+                frmCadastroLivros abrir = new frmCadastroLivros(this.nome, this.codUsu, this.cargo);
                 abrir.Show();
                 this.Hide();
             }
@@ -153,7 +149,7 @@ namespace LivrariaEBiblioteca
                 abrir.Show();
                 this.Hide();
             }
-            if (ultimaTela == "Emprestimo")
+            if (ultimaTela == "Empréstimo")
             {
                 frmEmprestimo abrir = new frmEmprestimo(this.nome, this.codUsu, this.cargo);
                 abrir.Show();
@@ -177,42 +173,79 @@ namespace LivrariaEBiblioteca
             txtIsbn.Enabled = false;
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        public bool checarCampos()
+        {
+            if (rdbIdLivro.Checked && txtIdLivro.Text.Equals(""))
+            {
+                MessageBox.Show("Favor preencher o ID.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtIdLivro.Focus();
+                return false;
+            }
+            else if (rdbIsbn.Checked && txtIsbn.Text.Equals(""))
+            {
+                MessageBox.Show("Favor preencher o ISBN.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtIsbn.Focus();
+                return false;
+            }
+            else if (rdbTitulo.Checked && txtTitulo.Text.Equals(""))
+            {
+                MessageBox.Show("Favor preencher o Título.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtTitulo.Focus();
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool checarCharactere()
         {
             int tryParse;
 
-            if (rdbIdLivro.Checked)
+            if (!int.TryParse(txtIdLivro.Text, out tryParse))
             {
-                if (!int.TryParse(txtIdLivro.Text, out tryParse))
-                {
-                    MessageBox.Show("Use apenas números.", "Mensagem do sistema", MessageBoxButtons.OK);
-                    txtIdLivro.Clear();
-                    txtIdLivro.Focus();
-                    return;
-                }
-                pesquisarPorId(Convert.ToInt32(txtIdLivro.Text));
+                MessageBox.Show("Use apenas números.", "Mensagem do sistema", MessageBoxButtons.OK);
+                txtIdLivro.Clear();
+                txtIdLivro.Focus();
+                return false;
             }
-            if (rdbTitulo.Checked)
+            else if (int.TryParse(txtTitulo.Text, out tryParse))
             {
-                if (int.TryParse(txtTitulo.Text, out tryParse))
-                {
-                    MessageBox.Show("Use apenas letras.", "Mensagem do sistema", MessageBoxButtons.OK);
-                    txtTitulo.Clear();
-                    txtTitulo.Focus();
-                    return;
-                }
-                pesquisarPorNome(txtTitulo.Text);
+                MessageBox.Show("Use apenas letras.", "Mensagem do sistema", MessageBoxButtons.OK);
+                txtTitulo.Clear();
+                txtTitulo.Focus();
+                return false;
             }
-            if (rdbIsbn.Checked)
+            else if (!int.TryParse(txtIsbn.Text, out tryParse))
             {
-                if (!int.TryParse(txtIsbn.Text, out tryParse))
+                MessageBox.Show("Use apenas números.", "Mensagem do sistema", MessageBoxButtons.OK);
+                txtIsbn.Clear();
+                txtIsbn.Focus();
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            if (checarCharactere() && checarCampos())
+            {
+                if (rdbIdLivro.Checked)
                 {
-                    MessageBox.Show("Use apenas números.", "Mensagem do sistema", MessageBoxButtons.OK);
-                    txtIsbn.Clear();
-                    txtIsbn.Focus();
-                    return;
+                    pesquisarPorId(Convert.ToInt32(txtIdLivro.Text));
                 }
-                pesquisarPorIsbn(Convert.ToInt32(txtIsbn.Text));
+                if (rdbTitulo.Checked)
+                {
+                    pesquisarPorNome(txtTitulo.Text);
+                }
+                if (rdbIsbn.Checked)
+                {
+                    pesquisarPorIsbn(Convert.ToInt32(txtIsbn.Text));
+                }
             }
         }
 
@@ -343,12 +376,12 @@ namespace LivrariaEBiblioteca
 
                 codLivroEstoque = DR.GetInt32(7);
                 tipo = DR.GetString(5);
-                if(tipo == "Ven")
+                if (tipo == "Ven")
                 {
                     estoqueEnt = DR.GetInt32(1);
                     estoqueSai = DR.GetInt32(2);
                 }
-                if(tipo == "Emp")
+                if (tipo == "Emp")
                 {
                     estoqueEnt = DR.GetInt32(3);
                     estoqueSai = DR.GetInt32(4);
@@ -386,7 +419,6 @@ namespace LivrariaEBiblioteca
             txtIsbn.Focus();
             txtTitulo.Enabled = false;
             txtIdLivro.Enabled = false;
-
         }
 
         private void btnGerenciador_Click(object sender, EventArgs e)
@@ -401,7 +433,7 @@ namespace LivrariaEBiblioteca
                 MessageBox.Show("Selecione um livro para gerenciar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            frmCadastroLivrosAlugar abrir = new frmCadastroLivrosAlugar(nomeLivro, this.nome, this.codUsu, this.cargo);
+            frmCadastroLivros abrir = new frmCadastroLivros(nomeLivro, this.nome, this.codUsu, this.cargo);
             abrir.Show();
             this.Hide();
         }

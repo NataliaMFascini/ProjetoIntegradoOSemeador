@@ -208,203 +208,270 @@ namespace LivrariaEBiblioteca
             this.Hide();
         }
 
-        private void btnCadastra_Click(object sender, EventArgs e)
+        public bool checarCharactere()
         {
             int tryParse;
+            if (int.TryParse(txtNomeCompleto.Text, out tryParse))
+            {
+                erroCampo("Nome Completo", "Texto");
+                txtNomeCompleto.Clear();
+                txtNomeCompleto.Focus();
+                return false;
+            }
+            else if (!int.TryParse(mskCpf.Text, out tryParse))
+            {
+                erroCampo("CPF", "Número");
+                mskCpf.Clear();
+                mskCpf.Focus();
+                return false;
+            }
+            else if (!int.TryParse(mskTelefone.Text, out tryParse))
+            {
+                erroCampo("Telefone", "Número");
+                mskTelefone.Clear();
+                mskTelefone.Focus();
+                return false;
+            }
+            else if (int.TryParse(cbbCargo.Text, out tryParse))
+            {
+                erroCampo("Cargo", "Texto");
+                cbbCargo.Text = "";
+                cbbCargo.Focus();
+                return false;
+            }
+            else if (int.TryParse(txtEmail.Text, out tryParse))
+            {
+                erroCampo("Email", "Texto");
+                txtEmail.Clear();
+                txtEmail.Focus();
+                return false;
+            }
+            else if (int.TryParse(cbbDiaDeTrabalho.Text, out tryParse))
+            {
+                erroCampo("Dia de trabalho", "Texto");
+                cbbCargo.Text = "";
+                cbbCargo.Focus();
+                return false;
+            }
+            else if (!int.TryParse(mskCep.Text, out tryParse))
+            {
+                erroCampo("Cep", "Número");
+                mskCep.Clear();
+                mskCep.Focus();
+                return false;
+            }
+            else if (int.TryParse(txtLogradouro.Text, out tryParse))
+            {
+                erroCampo("Logradouro", "Texto");
+                txtLogradouro.Clear();
+                txtLogradouro.Focus();
+                return false;
+            }
+            else if (!int.TryParse(txtNumero.Text, out tryParse))
+            {
+                erroCampo("Numero", "Número");
+                txtNumero.Clear();
+                txtNumero.Focus();
+                return false;
+            }
+            else if (int.TryParse(txtComplemento.Text, out tryParse))
+            {
+                erroCampo("Complemento", "Texto");
+                txtComplemento.Clear();
+                txtComplemento.Focus();
+                return false;
+            }
+            else if (int.TryParse(txtBairro.Text, out tryParse))
+            {
+                erroCampo("Bairro", "Texto");
+                txtBairro.Clear();
+                txtBairro.Focus();
+                return false;
+            }
+            else if (int.TryParse(txtCidade.Text, out tryParse))
+            {
+                erroCampo("Cidade", "Texto");
+                txtCidade.Clear();
+                txtCidade.Focus();
+                return false;
+            }
+            else if (int.TryParse(cbbEstado.Text, out tryParse))
+            {
+                erroCampo("Estado", "Texto");
+                cbbEstado.Text = "";
+                cbbEstado.Focus();
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool checarCampos()
+        {
             if (txtNomeCompleto.Text.Equals(""))
             {
-                if (int.TryParse(txtNomeCompleto.Text, out tryParse))
-                {
-                    erroCampo("Nome Completo", "Texto");
-                    txtNomeCompleto.Clear();
-                    txtNomeCompleto.Focus();
-                    return;
-                }
                 erroCadastro("Nome Completo");
                 txtNomeCompleto.Focus();
+                return false;
             }
             else if (mskCpf.Text.Equals("    .   .   -") || !mskCpf.MaskFull)
             {
-                if (!int.TryParse(mskCpf.Text, out tryParse))
-                {
-                    erroCampo("CPF", "Número");
-                    mskCpf.Clear();
-                    mskCpf.Focus();
-                    return;
-                }
                 erroCadastro("CPF");
                 mskCpf.Focus();
+                return false;
             }
             else if (mskTelefone.Text.Equals("(  )      -") || !mskTelefone.MaskFull)
             {
-                if (!int.TryParse(mskTelefone.Text, out tryParse))
-                {
-                    erroCampo("Telefone", "Número");
-                    mskTelefone.Clear();
-                    mskTelefone.Focus();
-                    return;
-                }
                 erroCadastro("Telefone");
                 mskTelefone.Focus();
+                return false;
             }
             else if (cbbCargo.Text.Equals(""))
             {
-                if (int.TryParse(cbbCargo.Text, out tryParse))
-                {
-                    erroCampo("Cargo", "Texto");
-                    cbbCargo.Text = "";
-                    cbbCargo.Focus();
-                    return;
-                }
                 erroCadastro("Cargo");
                 cbbCargo.Focus();
+                return false;
             }
             else if (txtEmail.Text.Equals(""))
             {
-                if (int.TryParse(txtEmail.Text, out tryParse))
-                {
-                    erroCampo("Email", "Texto");
-                    txtEmail.Clear();
-                    txtEmail.Focus();
-                    return;
-                }
                 erroCadastro("Email");
                 txtEmail.Focus();
+                return false;
             }
             else if (cbbDiaDeTrabalho.Text.Equals(""))
             {
-                if (int.TryParse(cbbDiaDeTrabalho.Text, out tryParse))
-                {
-                    erroCampo("Dia de trabalho", "Texto");
-                    cbbCargo.Text = "";
-                    cbbCargo.Focus();
-                    return;
-                }
                 erroCadastro("Dia de trabalho");
                 cbbDiaDeTrabalho.Focus();
+                return false;
             }
             else if (txtLogin.Text.Equals(""))
             {
                 erroCadastro("Login");
                 txtLogin.Focus();
+                return false;
             }
             else if (txtSenha.Text.Equals(""))
             {
                 erroCadastro("Senha");
                 txtSenha.Focus();
+                return false;
             }
             else if (txtRepetirSenha.Text.Equals(""))
             {
                 erroCadastro("Repetir senha");
                 txtRepetirSenha.Focus();
+                return false;
             }
             else if (mskCep.Text.Equals("     -") || !mskCep.MaskFull)
             {
-                if (!int.TryParse(mskCep.Text, out tryParse))
-                {
-                    erroCampo("Cep", "Número");
-                    mskCep.Clear();
-                    mskCep.Focus();
-                    return;
-                }
                 erroCadastro("Cep");
                 mskCep.Focus();
+                return false;
             }
             else if (txtLogradouro.Text.Equals(""))
             {
-                if (int.TryParse(txtLogradouro.Text, out tryParse))
-                {
-                    erroCampo("Logradouro", "Texto");
-                    txtLogradouro.Clear();
-                    txtLogradouro.Focus();
-                    return;
-                }
                 erroCadastro("Lougradouro");
                 txtLogradouro.Focus();
+                return false;
             }
             else if (txtNumero.Text.Equals(""))
             {
-                if (!int.TryParse(txtNumero.Text, out tryParse))
-                {
-                    erroCampo("Numero", "Número");
-                    txtNumero.Clear();
-                    txtNumero.Focus();
-                    return;
-                }
                 erroCadastro("Numero");
                 txtNumero.Focus();
+                return false;
             }
             else if (txtComplemento.Text.Equals(""))
             {
-                if (int.TryParse(txtComplemento.Text, out tryParse))
-                {
-                    erroCampo("Complemento", "Texto");
-                    txtComplemento.Clear();
-                    txtComplemento.Focus();
-                    return;
-                }
                 erroCadastro("Complemento");
                 txtComplemento.Focus();
+                return false;
             }
             else if (txtBairro.Text.Equals(""))
             {
-                if (int.TryParse(txtBairro.Text, out tryParse))
-                {
-                    erroCampo("Bairro", "Texto");
-                    txtBairro.Clear();
-                    txtBairro.Focus();
-                    return;
-                }
                 erroCadastro("Bairro");
                 txtBairro.Focus();
+                return false;
             }
             else if (txtCidade.Text.Equals(""))
             {
-                if (int.TryParse(txtCidade.Text, out tryParse))
-                {
-                    erroCampo("Cidade", "Texto");
-                    txtCidade.Clear();
-                    txtCidade.Focus();
-                    return;
-                }
                 erroCadastro("Cidade");
                 txtCidade.Focus();
+                return false;
             }
             else if (cbbEstado.Text.Equals(""))
             {
-                if (int.TryParse(cbbEstado.Text, out tryParse))
-                {
-                    erroCampo("Estado", "Texto");
-                    cbbEstado.Text = "";
-                    cbbEstado.Focus();
-                    return;
-                }
                 erroCadastro("Estado");
                 cbbEstado.Focus();
+                return false;
             }
             else
             {
-                if (this.cargo == "Voluntário" && cbbCargo.Text == "Dirigente" || cbbCargo.Text == "Diretor")
+                return true;
+            }
+        }
+
+        public bool checarPermissao(string acao)
+        {
+            if (acao == "Cadastro")
+            {
+                if (this.cargo == "Voluntário")
+                {
+                    if(cbbCargo.Text != "Voluntário")
+                    {
+                        return false;
+                    }
+                }
+                else if (this.cargo == "Dirigente")
+                {
+                    if (cbbCargo.Text == "Diretor")
+                    {
+                        return false;
+                    }
+                }
+            }
+            else if (acao == "Alterar" || acao == "Remover")
+            {
+                if (this.cargo == "Voluntário")
+                {
+                    return false;
+                }
+                else if (this.cargo == "Dirigente")
+                {
+                    if (cbbCargo.Text == "Diretor")
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        private void btnCadastra_Click(object sender, EventArgs e)
+        {
+            if (checarCampos() && checarCharactere())
+            {
+                if (!checarPermissao("Cadastro"))
                 {
                     MessageBox.Show("Você não tem permissão para realizar esse cadastro.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
-                }
-                if (this.cargo == "Dirigente" && cbbCargo.Text == "Diretor")
-                {
-                    MessageBox.Show("Você não tem permissão para realizar esse cadastro.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                if (cadastrarUsuario() == 1)
-                {
-                    MessageBox.Show("Cadastro realizado com sucesso.");
-                    limparCampos();
-                    btnNovo.Enabled = true;
-                    btnCadastra.Enabled = false;
-                    btnLimpar.Enabled = false;
                 }
                 else
                 {
-                    MessageBox.Show("Erro ao cadastrar usuário.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (cadastrarUsuario() == 1)
+                    {
+                        MessageBox.Show("Cadastro realizado com sucesso.");
+                        limparCampos();
+                        btnNovo.Enabled = true;
+                        btnCadastra.Enabled = false;
+                        btnLimpar.Enabled = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao cadastrar usuário.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -514,10 +581,9 @@ namespace LivrariaEBiblioteca
 
         private void mskCep_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
             {
                 buscaCEP(mskCep.Text);
-
             }
         }
 
@@ -544,7 +610,7 @@ namespace LivrariaEBiblioteca
 
         private void btnRemover_Click(object sender, EventArgs e)
         {
-            if (this.cargo == "Voluntário")
+            if (!checarPermissao("Remover"))
             {
                 MessageBox.Show("Você não tem permissão para deletar esse usuário.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -679,7 +745,7 @@ namespace LivrariaEBiblioteca
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            frmBuscarFuncionario abrir = new frmBuscarFuncionario(this.nome, this.codUsu, this.cargo, "Usuario");
+            frmBuscarUsuario abrir = new frmBuscarUsuario(this.nome, this.codUsu, this.cargo, "Usuario");
             abrir.Show();
             this.Hide();
         }
@@ -746,200 +812,31 @@ namespace LivrariaEBiblioteca
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            int tryParse;
-            if (txtNomeCompleto.Text.Equals(""))
+            if (checarCampos() && checarCharactere())
             {
-                if (int.TryParse(txtNomeCompleto.Text, out tryParse))
+                if (!checarPermissao("Alterar"))
                 {
-                    erroCampo("Nome Completo", "Texto");
-                    txtNomeCompleto.Clear();
-                    txtNomeCompleto.Focus();
+                    MessageBox.Show("Você não tem permissão para alterar esse cadastro.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
-                }
-                erroCadastro("Nome Completo");
-                txtNomeCompleto.Focus();
-            }
-            else if (mskCpf.Text.Equals("    .   .   -") || !mskCpf.MaskFull)
-            {
-                if (!int.TryParse(mskCpf.Text, out tryParse))
-                {
-                    erroCampo("CPF", "Número");
-                    mskCpf.Clear();
-                    mskCpf.Focus();
-                    return;
-                }
-                erroCadastro("CPF");
-                mskCpf.Focus();
-            }
-            else if (mskTelefone.Text.Equals("(  )      -") || !mskTelefone.MaskFull)
-            {
-                if (!int.TryParse(mskTelefone.Text, out tryParse))
-                {
-                    erroCampo("Telefone", "Número");
-                    mskTelefone.Clear();
-                    mskTelefone.Focus();
-                    return;
-                }
-                erroCadastro("Telefone");
-                mskTelefone.Focus();
-            }
-            else if (cbbCargo.Text.Equals(""))
-            {
-                if (int.TryParse(cbbCargo.Text, out tryParse))
-                {
-                    erroCampo("Cargo", "Texto");
-                    cbbCargo.Text = "";
-                    cbbCargo.Focus();
-                    return;
-                }
-                erroCadastro("Cargo");
-                cbbCargo.Focus();
-            }
-            else if (txtEmail.Text.Equals(""))
-            {
-                if (int.TryParse(txtEmail.Text, out tryParse))
-                {
-                    erroCampo("Email", "Texto");
-                    txtEmail.Clear();
-                    txtEmail.Focus();
-                    return;
-                }
-                erroCadastro("Email");
-                txtEmail.Focus();
-            }
-            else if (cbbDiaDeTrabalho.Text.Equals(""))
-            {
-                if (int.TryParse(cbbDiaDeTrabalho.Text, out tryParse))
-                {
-                    erroCampo("Dia de trabalho", "Texto");
-                    cbbCargo.Text = "";
-                    cbbCargo.Focus();
-                    return;
-                }
-                erroCadastro("Dia de trabalho");
-                cbbDiaDeTrabalho.Focus();
-            }
-            else if (txtLogin.Text.Equals(""))
-            {
-                erroCadastro("Login");
-                txtLogin.Focus();
-            }
-            else if (txtSenha.Text.Equals(""))
-            {
-                erroCadastro("Senha");
-                txtSenha.Focus();
-            }
-            else if (txtRepetirSenha.Text.Equals(""))
-            {
-                erroCadastro("Repetir senha");
-                txtRepetirSenha.Focus();
-            }
-            else if (mskCep.Text.Equals("     -") || !mskCep.MaskFull)
-            {
-                if (!int.TryParse(mskCep.Text, out tryParse))
-                {
-                    erroCampo("Cep", "Número");
-                    mskCep.Clear();
-                    mskCep.Focus();
-                    return;
-                }
-                erroCadastro("Cep");
-                mskCep.Focus();
-            }
-            else if (txtLogradouro.Text.Equals(""))
-            {
-                if (int.TryParse(txtLogradouro.Text, out tryParse))
-                {
-                    erroCampo("Logradouro", "Texto");
-                    txtLogradouro.Clear();
-                    txtLogradouro.Focus();
-                    return;
-                }
-                erroCadastro("Lougradouro");
-                txtLogradouro.Focus();
-            }
-            else if (txtNumero.Text.Equals(""))
-            {
-                if (!int.TryParse(txtNumero.Text, out tryParse))
-                {
-                    erroCampo("Numero", "Número");
-                    txtNumero.Clear();
-                    txtNumero.Focus();
-                    return;
-                }
-                erroCadastro("Numero");
-                txtNumero.Focus();
-            }
-            else if (txtComplemento.Text.Equals(""))
-            {
-                if (int.TryParse(txtComplemento.Text, out tryParse))
-                {
-                    erroCampo("Complemento", "Texto");
-                    txtComplemento.Clear();
-                    txtComplemento.Focus();
-                    return;
-                }
-                erroCadastro("Complemento");
-                txtComplemento.Focus();
-            }
-            else if (txtBairro.Text.Equals(""))
-            {
-                if (int.TryParse(txtBairro.Text, out tryParse))
-                {
-                    erroCampo("Bairro", "Texto");
-                    txtBairro.Clear();
-                    txtBairro.Focus();
-                    return;
-                }
-                erroCadastro("Bairro");
-                txtBairro.Focus();
-            }
-            else if (txtCidade.Text.Equals(""))
-            {
-                if (int.TryParse(txtCidade.Text, out tryParse))
-                {
-                    erroCampo("Cidade", "Texto");
-                    txtCidade.Clear();
-                    txtCidade.Focus();
-                    return;
-                }
-                erroCadastro("Cidade");
-                txtCidade.Focus();
-            }
-            else if (cbbEstado.Text.Equals(""))
-            {
-                if (int.TryParse(cbbEstado.Text, out tryParse))
-                {
-                    erroCampo("Estado", "Texto");
-                    cbbEstado.Text = "";
-                    cbbEstado.Focus();
-                    return;
-                }
-                erroCadastro("Estado");
-                cbbEstado.Focus();
-            }
-            else
-            {
-                if (this.cargo == "Voluntário" && cbbCargo.Text == "Dirigente" || cbbCargo.Text == "Diretor")
-                {
-                    MessageBox.Show("Você não tem permissão para realizar essa alteração.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                if (this.cargo == "Dirigente" && cbbCargo.Text == "Diretor")
-                {
-                    MessageBox.Show("Você não tem permissão para realizar essa alteração.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                if (alterarUsuario(codUsuBusca) == 1)
-                {
-                    MessageBox.Show("Cadastro alterado com sucesso.");
                 }
                 else
                 {
-                    MessageBox.Show("Erro ao alterar usuário.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (alterarUsuario(codUsuBusca) == 1)
+                    {
+                        MessageBox.Show("Cadastro alterado com sucesso.");
+                        limparCampos();
+                        btnNovo.Enabled = true;
+                        btnCadastra.Enabled = false;
+                        btnLimpar.Enabled = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao alterar cadastro do usuário.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
+
 
         private void txtNomeCompleto_KeyDown(object sender, KeyEventArgs e)
         {
