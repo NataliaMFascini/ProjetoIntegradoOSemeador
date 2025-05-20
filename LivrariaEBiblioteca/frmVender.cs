@@ -28,11 +28,6 @@ namespace LivrariaEBiblioteca
         public decimal custo = 0;
         Livros livros = new Livros();
 
-        public frmVender()
-        {
-            InitializeComponent();
-        }
-
         public frmVender(string nomeUsu, int codUsuario, string cargo)
         {
             InitializeComponent();
@@ -56,7 +51,6 @@ namespace LivrariaEBiblioteca
 
             estoqueInicial = estoquePesquisa;
         }
-
 
         public void limparComponentes()
         {

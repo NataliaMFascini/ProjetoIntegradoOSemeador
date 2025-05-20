@@ -224,7 +224,7 @@ namespace LivrariaEBiblioteca
                 if (DR.HasRows)
                 {
                     MessageBox.Show("Prontuário já cadastrado.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtProntuario.Focus();
+                    btnGerarPront.Focus();
                     Conexao.fecharConexao();
                     return false;
                 }
@@ -239,63 +239,121 @@ namespace LivrariaEBiblioteca
             }
         }
 
-        private void btnCadastrar_Click(object sender, EventArgs e)
+        public bool checarCpf()
+        {
+            try
+            {
+                MySqlCommand comm = new MySqlCommand();
+                comm.CommandText = "select cpf from tbLocatario where pront = @pront;";
+                comm.CommandType = CommandType.Text;
+
+                comm.Connection = Conexao.obterConexao();
+
+                comm.Parameters.Clear();
+                comm.Parameters.Add("@pront", MySqlDbType.LongBlob).Value = txtProntuario.Text;
+
+
+                MySqlDataReader DR;
+                DR = comm.ExecuteReader();
+                DR.Read();
+
+                Conexao.fecharConexao();
+
+                if (DR.HasRows)
+                {
+                    if (DR.GetString(0).Equals(mskCpf.Text))
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao verificar prontuário.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        public bool checarCaractere()
         {
             int tryParse;
+            if (int.TryParse(txtLocatario.Text, out tryParse))
+            {
+                erroCampo("Locatário", "Texto");
+                txtLocatario.Clear();
+                txtLocatario.Focus();
+                return false;
+            }
+            else if (!int.TryParse(mskCpf.Text, out tryParse))
+            {
+                erroCampo("CPF", "Número");
+                mskCpf.Clear();
+                mskCpf.Focus();
+                return false;
+            }
+            else if (int.TryParse(txtEmail.Text, out tryParse))
+            {
+                erroCampo("Email", "Texto");
+                txtEmail.Clear();
+                txtEmail.Focus();
+                return false;
+            }
+            else if (!int.TryParse(mskTelefone.Text, out tryParse))
+            {
+                erroCampo("Telefone", "Número");
+                mskTelefone.Clear();
+                mskTelefone.Focus();
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool checarCampos()
+        {
             if (txtLocatario.Text.Equals(""))
             {
-                if (int.TryParse(txtLocatario.Text, out tryParse))
-                {
-                    erroCampo("Locatário", "Texto");
-                    txtLocatario.Clear();
-                    txtLocatario.Focus();
-                    return;
-                }
                 erroCadastro("Locatario");
                 txtLocatario.Focus();
+                return false;
             }
             else if (mskCpf.Text.Equals("    .   .   -") || !mskCpf.MaskFull)
             {
-                if (!int.TryParse(mskCpf.Text, out tryParse))
-                {
-                    erroCampo("CPF", "Número");
-                    mskCpf.Clear();
-                    mskCpf.Focus();
-                    return;
-                }
                 erroCadastro("CPF");
                 mskCpf.Focus();
+                return false;
             }
             else if (txtEmail.Text.Equals(""))
             {
-                if (int.TryParse(txtEmail.Text, out tryParse))
-                {
-                    erroCampo("Email", "Texto");
-                    txtEmail.Clear();
-                    txtEmail.Focus();
-                    return;
-                }
                 erroCadastro("Email");
                 txtEmail.Focus();
+                return false;
             }
             else if (mskTelefone.Text.Equals("(  )     -") || !mskTelefone.MaskFull)
             {
-                if (!int.TryParse(mskTelefone.Text, out tryParse))
-                {
-                    erroCampo("Telefone", "Número");
-                    mskTelefone.Clear();
-                    mskTelefone.Focus();
-                    return;
-                }
                 erroCadastro("Telefone");
                 mskTelefone.Focus();
+                return false;
             }
             else if (txtProntuario.Text.Equals(""))
             {
                 erroCadastro("Prontuario");
                 btnGerarPront.Focus();
+                return false;
             }
             else
+            {
+                return true;
+            }
+        }
+
+        private void btnCadastrar_Click(object sender, EventArgs e)
+        {
+            if (checarCampos() && checarCaractere())
             {
                 if (cadastrarLocatario() == 1)
                 {
@@ -440,16 +498,30 @@ namespace LivrariaEBiblioteca
             try
             {
                 MySqlCommand comm = new MySqlCommand();
-                comm.CommandText = "update tbLocatario set nome = @nome, cpf = @cpf, telCel = @telCel, email = @email where pront = @pront;";
-                comm.CommandType = CommandType.Text;
 
-                comm.Parameters.Clear();
-                comm.Parameters.Add("@pront", MySqlDbType.Int32).Value = Convert.ToInt32(txtProntuario.Text);
-                comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtLocatario.Text;
-                comm.Parameters.Add("@cpf", MySqlDbType.VarChar, 15).Value = mskCpf.Text;
-                comm.Parameters.Add("@telCel", MySqlDbType.VarChar, 15).Value = mskTelefone.Text;
-                comm.Parameters.Add("@email", MySqlDbType.VarChar, 50).Value = txtEmail.Text;
+                if (checarCpf())
+                {
+                    comm.CommandText = "update tbLocatario set nome = @nome, cpf = @cpf, telCel = @telCel, email = @email where pront = @pront;";
+                    comm.CommandType = CommandType.Text;
 
+                    comm.Parameters.Clear();
+                    comm.Parameters.Add("@pront", MySqlDbType.Int32).Value = Convert.ToInt32(txtProntuario.Text);
+                    comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtLocatario.Text;
+                    comm.Parameters.Add("@cpf", MySqlDbType.VarChar, 15).Value = mskCpf.Text;
+                    comm.Parameters.Add("@telCel", MySqlDbType.VarChar, 15).Value = mskTelefone.Text;
+                    comm.Parameters.Add("@email", MySqlDbType.VarChar, 50).Value = txtEmail.Text;
+                }
+                else
+                {
+                    comm.CommandText = "update tbLocatario set nome = @nome, telCel = @telCel, email = @email where pront = @pront;";
+                    comm.CommandType = CommandType.Text;
+
+                    comm.Parameters.Clear();
+                    comm.Parameters.Add("@pront", MySqlDbType.Int32).Value = Convert.ToInt32(txtProntuario.Text);
+                    comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtLocatario.Text;
+                    comm.Parameters.Add("@telCel", MySqlDbType.VarChar, 15).Value = mskTelefone.Text;
+                    comm.Parameters.Add("@email", MySqlDbType.VarChar, 50).Value = txtEmail.Text;
+                }
 
                 comm.Connection = Conexao.obterConexao();
 
@@ -464,61 +536,11 @@ namespace LivrariaEBiblioteca
                 MessageBox.Show("Erro ao alterar locatário.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
                 return 0;
             }
-
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            int tryParse;
-            if (txtLocatario.Text.Equals(""))
-            {
-                if (int.TryParse(txtLocatario.Text, out tryParse))
-                {
-                    erroCampo("Locatário", "Texto");
-                    txtLocatario.Clear();
-                    txtLocatario.Focus();
-                    return;
-                }
-                erroCadastro("Locatario");
-                txtLocatario.Focus();
-            }
-            else if (mskCpf.Text.Equals("    .   .   -") || !mskCpf.MaskFull)
-            {
-                if (!int.TryParse(mskCpf.Text, out tryParse))
-                {
-                    erroCampo("CPF", "Número");
-                    mskCpf.Clear();
-                    mskCpf.Focus();
-                    return;
-                }
-                erroCadastro("CPF");
-                mskCpf.Focus();
-            }
-            else if (txtEmail.Text.Equals(""))
-            {
-                if (int.TryParse(txtEmail.Text, out tryParse))
-                {
-                    erroCampo("Email", "Texto");
-                    txtEmail.Clear();
-                    txtEmail.Focus();
-                    return;
-                }
-                erroCadastro("Email");
-                txtEmail.Focus();
-            }
-            else if (mskTelefone.Text.Equals("(  )     -") || !mskTelefone.MaskFull)
-            {
-                if (!int.TryParse(mskTelefone.Text, out tryParse))
-                {
-                    erroCampo("Telefone", "Número");
-                    mskTelefone.Clear();
-                    mskTelefone.Focus();
-                    return;
-                }
-                erroCadastro("Telefone");
-                mskTelefone.Focus();
-            }
-            else
+            if (checarCampos() && checarCaractere())
             {
                 if (alterarLocatario(Convert.ToInt32(txtProntuario.Text)) == 1)
                 {
