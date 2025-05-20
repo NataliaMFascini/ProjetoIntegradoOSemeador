@@ -147,6 +147,12 @@
     <Compile Include="frmBuscarLocatario.Designer.cs">
       <DependentUpon>frmBuscarLocatario.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDevolucao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDevolucao.Designer.cs">
+      <DependentUpon>frmDevolucao.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmEmprestimo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -225,6 +231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCadastroUsuario.resx">
       <DependentUpon>frmCadastroUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDevolucao.resx">
+      <DependentUpon>frmDevolucao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmEmprestimo.resx">
       <DependentUpon>frmEmprestimo.cs</DependentUpon>

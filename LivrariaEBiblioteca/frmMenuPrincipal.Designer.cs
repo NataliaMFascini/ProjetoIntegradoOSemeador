@@ -40,6 +40,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -53,11 +54,11 @@
             this.btnEmprestimo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEmprestimo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEmprestimo.Image = ((System.Drawing.Image)(resources.GetObject("btnEmprestimo.Image")));
-            this.btnEmprestimo.Location = new System.Drawing.Point(455, 3);
+            this.btnEmprestimo.Location = new System.Drawing.Point(343, 3);
             this.btnEmprestimo.Name = "btnEmprestimo";
-            this.btnEmprestimo.Size = new System.Drawing.Size(222, 309);
+            this.btnEmprestimo.Size = new System.Drawing.Size(164, 309);
             this.btnEmprestimo.TabIndex = 3;
-            this.btnEmprestimo.Text = "Empréstimo";
+            this.btnEmprestimo.Text = "&Empréstimo";
             this.btnEmprestimo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnEmprestimo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnEmprestimo.UseVisualStyleBackColor = false;
@@ -74,9 +75,9 @@
             this.btnBuscarlivros.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscarlivros.Image")));
             this.btnBuscarlivros.Location = new System.Drawing.Point(3, 3);
             this.btnBuscarlivros.Name = "btnBuscarlivros";
-            this.btnBuscarlivros.Size = new System.Drawing.Size(220, 309);
+            this.btnBuscarlivros.Size = new System.Drawing.Size(164, 309);
             this.btnBuscarlivros.TabIndex = 1;
-            this.btnBuscarlivros.Text = "Buscar livros";
+            this.btnBuscarlivros.Text = "&Buscar livros";
             this.btnBuscarlivros.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnBuscarlivros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnBuscarlivros.UseVisualStyleBackColor = false;
@@ -91,11 +92,11 @@
             this.btnVendas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVendas.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVendas.Image = ((System.Drawing.Image)(resources.GetObject("btnVendas.Image")));
-            this.btnVendas.Location = new System.Drawing.Point(229, 3);
+            this.btnVendas.Location = new System.Drawing.Point(173, 3);
             this.btnVendas.Name = "btnVendas";
-            this.btnVendas.Size = new System.Drawing.Size(220, 309);
+            this.btnVendas.Size = new System.Drawing.Size(164, 309);
             this.btnVendas.TabIndex = 2;
-            this.btnVendas.Text = "Vendas";
+            this.btnVendas.Text = "&Vendas";
             this.btnVendas.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnVendas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnVendas.UseVisualStyleBackColor = false;
@@ -113,7 +114,7 @@
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(161, 75);
             this.btnSair.TabIndex = 9;
-            this.btnSair.Text = "Sair";
+            this.btnSair.Text = "&Sair";
             this.btnSair.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSair.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSair.UseVisualStyleBackColor = false;
@@ -135,7 +136,7 @@
             this.btnCadastroLocatario.Name = "btnCadastroLocatario";
             this.btnCadastroLocatario.Size = new System.Drawing.Size(193, 186);
             this.btnCadastroLocatario.TabIndex = 6;
-            this.btnCadastroLocatario.Text = "Cadastrar Locatário";
+            this.btnCadastroLocatario.Text = "Cadastrar &locatário";
             this.btnCadastroLocatario.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnCadastroLocatario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastroLocatario.UseVisualStyleBackColor = false;
@@ -157,7 +158,7 @@
             this.btnCadastrarlivros.Name = "btnCadastrarlivros";
             this.btnCadastrarlivros.Size = new System.Drawing.Size(193, 186);
             this.btnCadastrarlivros.TabIndex = 7;
-            this.btnCadastrarlivros.Text = "Cadastrar livros";
+            this.btnCadastrarlivros.Text = "&Cadastrar livros";
             this.btnCadastrarlivros.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnCadastrarlivros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarlivros.UseVisualStyleBackColor = false;
@@ -180,7 +181,7 @@
             this.btnCadastrausuario.Name = "btnCadastrausuario";
             this.btnCadastrausuario.Size = new System.Drawing.Size(193, 186);
             this.btnCadastrausuario.TabIndex = 5;
-            this.btnCadastrausuario.Text = "Cadastrar usuário";
+            this.btnCadastrausuario.Text = "Cadastrar &usuário";
             this.btnCadastrausuario.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnCadastrausuario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrausuario.UseVisualStyleBackColor = false;
@@ -202,7 +203,7 @@
             this.btnRelatorio.Name = "btnRelatorio";
             this.btnRelatorio.Size = new System.Drawing.Size(194, 186);
             this.btnRelatorio.TabIndex = 8;
-            this.btnRelatorio.Text = "Relatório";
+            this.btnRelatorio.Text = "&Relatório";
             this.btnRelatorio.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnRelatorio.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRelatorio.UseVisualStyleBackColor = false;
@@ -214,10 +215,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Controls.Add(this.button1, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnBuscarlivros, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnVendas, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnEmprestimo, 2, 0);
@@ -259,6 +262,25 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "Menu principal";
             // 
+            // button1
+            // 
+            this.button1.AutoSize = true;
+            this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.button1.BackColor = System.Drawing.Color.PowderBlue;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(513, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(164, 309);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "&Devolução";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -297,5 +319,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -86,5 +86,12 @@ namespace LivrariaEBiblioteca
             abrir.Show();
             this.Hide();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmDevolucao abrir = new frmDevolucao(this.nome, this.codUsu, this.cargo);
+            abrir.Show();
+            this.Hide();
+        }
     }
 }
