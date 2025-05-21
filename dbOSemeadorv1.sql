@@ -1,15 +1,15 @@
---deletar depois
+-- deletar depois
 drop database dbOSemeador;
---deletar depois
+-- deletar depois
 create database dbOSemeador;
 
 use dbOSemeador;
 
---Tabela usuario
+-- Tabela usuario
 create table tbUsuario(
 codUsu int not null auto_increment,
 nome varchar(100) not null,
-cargo varchar(50) default 'Voluntario' check(cargo in('Voluntario', 'Dirigente', 'Diretor')),
+cargo varchar(50) default 'Voluntário' check(cargo in('Voluntário', 'Dirigente', 'Diretor')),
 cpf char(15) not null unique,
 diaTrabalho varchar(15) check(diaTrabalho in ('Segunda-feira', 'Terca-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sabado', 'Domingo')),
 telCel char(16)not null,
@@ -31,7 +31,7 @@ primary key (codUsu)
 insert into tbUsuario(nome, cargo, cpf, diaTrabalho, telCel, login, senha, email, cep, logradouro, numero, complemento, bairro, cidade, estado, foto, dataCadastro) 
 	values ('Eduardo Fascini', 'Diretor', '004.564.158-74', 'Segunda-feira', '(11)98624-2300', 'admin', '123', 'eduardo@conversoft.com.br', '04805-340', 'Rua Gomes Pedrosa', '56', 'Nenhum', 'Cidade Dutra', 'Sao Paulo', 'SP', null, CURRENT_TIMESTAMP);
 
---tabela locatarios
+-- tabela locatarios
 create table tbLocatario(
 codLoc int not null auto_increment,
 pront int not null,
@@ -43,7 +43,7 @@ dataCadastro dateTime,
 primary key(codLoc)
 );
 
---Tabela livros
+-- Tabela livros
 create table tbLivro(
 codLivro int not null auto_increment,
 empVen char(3) not null check (empVen in ('Emp', 'Ven')),
@@ -59,7 +59,7 @@ dataCadastro dateTime,
 primary key (codLivro)
 );
 
---Tabela Emprestimo
+-- Tabela Emprestimo
 create table tbEmprestimo(
 codEmp int not null auto_increment,
 dataEmp dateTime,
@@ -74,7 +74,7 @@ primary key(codEmp),
 foreign key(codLivro) references tbLivro(codLivro)
 );
 
---tabela vendas
+-- tabela vendas
 create table tbVendas(
 codVenda int not null auto_increment,
 dataVenda dateTime,
@@ -90,7 +90,7 @@ foreign key (codLivro) references tbLivro(codLivro),
 foreign key (codUsu) references tbUsuario(codUsu)
 );
 
---tabela estoque(talvez mudar)
+-- tabela estoque(talvez mudar)
 create table tbEstoque(
 codEsto int not null auto_increment,
 empVen char(3) not null check (empVen in ('Emp', 'Ven')),
@@ -105,7 +105,7 @@ primary key(codEsto),
 foreign key (codLivro) references tbLivro(codLivro)
 );
 
---visualizar
+-- visualizar
 desc tbUsuario;
 desc tbLocatario;
 desc tbLivro;
