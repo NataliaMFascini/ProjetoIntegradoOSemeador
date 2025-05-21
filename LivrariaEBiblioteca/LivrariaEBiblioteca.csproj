@@ -219,6 +219,7 @@
     <Compile Include="WinApi.cs" />
     <EmbeddedResource Include="frmBuscarUsuario.resx">
       <DependentUpon>frmBuscarUsuario.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmBuscarLocatario.resx">
       <DependentUpon>frmBuscarLocatario.cs</DependentUpon>
