@@ -43,7 +43,7 @@
             this.lblEditora = new System.Windows.Forms.Label();
             this.lblLocatario = new System.Windows.Forms.Label();
             this.txtEditora = new System.Windows.Forms.TextBox();
-            this.txtLocatario = new System.Windows.Forms.TextBox();
+            this.txtProntuario = new System.Windows.Forms.TextBox();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.lblDataEmprestimo = new System.Windows.Forms.Label();
@@ -52,7 +52,7 @@
             this.btnFinalizar = new System.Windows.Forms.Button();
             this.lblDisponibilidade = new System.Windows.Forms.Label();
             this.lblNEmprestimo = new System.Windows.Forms.Label();
-            this.txtNEmprestimo = new System.Windows.Forms.TextBox();
+            this.txtNomeLoc = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.gpbDadosLivro = new System.Windows.Forms.GroupBox();
@@ -121,7 +121,6 @@
             this.ltbCarrinho.Name = "ltbCarrinho";
             this.ltbCarrinho.Size = new System.Drawing.Size(733, 154);
             this.ltbCarrinho.TabIndex = 7;
-            this.ltbCarrinho.SelectedIndexChanged += new System.EventHandler(this.ltbCarrinho_SelectedIndexChanged);
             this.ltbCarrinho.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ltbCarrinho_KeyDown);
             this.ltbCarrinho.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ltbCarrinho_MouseDoubleClick);
             // 
@@ -217,16 +216,16 @@
             this.txtEditora.Size = new System.Drawing.Size(305, 31);
             this.txtEditora.TabIndex = 5;
             // 
-            // txtLocatario
+            // txtProntuario
             // 
-            this.txtLocatario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLocatario.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLocatario.Location = new System.Drawing.Point(497, 131);
-            this.txtLocatario.MaxLength = 100;
-            this.txtLocatario.Name = "txtLocatario";
-            this.txtLocatario.Size = new System.Drawing.Size(267, 31);
-            this.txtLocatario.TabIndex = 2;
-            this.txtLocatario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLocatario_KeyDown);
+            this.txtProntuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtProntuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProntuario.Location = new System.Drawing.Point(497, 131);
+            this.txtProntuario.MaxLength = 100;
+            this.txtProntuario.Name = "txtProntuario";
+            this.txtProntuario.Size = new System.Drawing.Size(267, 31);
+            this.txtProntuario.TabIndex = 2;
+            this.txtProntuario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtProntuario_KeyDown);
             // 
             // btnVoltar
             // 
@@ -338,15 +337,15 @@
             this.lblNEmprestimo.TabIndex = 0;
             this.lblNEmprestimo.Text = "Nome";
             // 
-            // txtNEmprestimo
+            // txtNomeLoc
             // 
-            this.txtNEmprestimo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNEmprestimo.Enabled = false;
-            this.txtNEmprestimo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNEmprestimo.Location = new System.Drawing.Point(497, 189);
-            this.txtNEmprestimo.Name = "txtNEmprestimo";
-            this.txtNEmprestimo.Size = new System.Drawing.Size(267, 31);
-            this.txtNEmprestimo.TabIndex = 1;
+            this.txtNomeLoc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNomeLoc.Enabled = false;
+            this.txtNomeLoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNomeLoc.Location = new System.Drawing.Point(497, 189);
+            this.txtNomeLoc.Name = "txtNomeLoc";
+            this.txtNomeLoc.Size = new System.Drawing.Size(267, 31);
+            this.txtNomeLoc.TabIndex = 1;
             // 
             // tableLayoutPanel1
             // 
@@ -463,10 +462,10 @@
             this.Controls.Add(this.dtpDataEmprestimo);
             this.Controls.Add(this.ltbCarrinho);
             this.Controls.Add(this.pctLivro);
-            this.Controls.Add(this.txtLocatario);
+            this.Controls.Add(this.txtProntuario);
             this.Controls.Add(this.lblNEmprestimo);
             this.Controls.Add(this.lblDataEmprestimo);
-            this.Controls.Add(this.txtNEmprestimo);
+            this.Controls.Add(this.txtNomeLoc);
             this.Controls.Add(this.lblDisponibilidade);
             this.Controls.Add(this.lblLocatario);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -502,7 +501,7 @@
         private System.Windows.Forms.Label lblEditora;
         private System.Windows.Forms.Label lblLocatario;
         private System.Windows.Forms.TextBox txtEditora;
-        private System.Windows.Forms.TextBox txtLocatario;
+        private System.Windows.Forms.TextBox txtProntuario;
         private System.Windows.Forms.Button btnVoltar;
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.Label lblDataEmprestimo;
@@ -511,7 +510,7 @@
         private System.Windows.Forms.Button btnFinalizar;
         private System.Windows.Forms.Label lblDisponibilidade;
         private System.Windows.Forms.Label lblNEmprestimo;
-        private System.Windows.Forms.TextBox txtNEmprestimo;
+        private System.Windows.Forms.TextBox txtNomeLoc;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.GroupBox gpbDadosLivro;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;

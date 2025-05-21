@@ -155,6 +155,12 @@ namespace LivrariaEBiblioteca
                 abrir.Show();
                 this.Hide();
             }
+            if(ultimaTela == "Devolução")
+            {
+                frmDevolucao abrir = new frmDevolucao(this.nome, this.codUsu, this.cargo);
+                abrir.Show();
+                this.Hide();
+            }
         }
 
         private void rdbIdLivro_CheckedChanged(object sender, EventArgs e)
