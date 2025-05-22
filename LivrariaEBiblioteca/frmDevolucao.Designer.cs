@@ -36,6 +36,7 @@
             this.btnVoltar = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.btnAdicionar = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnFinalizar = new System.Windows.Forms.Button();
             this.gpbDadosLivro = new System.Windows.Forms.GroupBox();
@@ -52,14 +53,13 @@
             this.ltbCarrinho = new System.Windows.Forms.ListBox();
             this.pctLivro = new System.Windows.Forms.PictureBox();
             this.dtpDataEmprestimo = new System.Windows.Forms.DateTimePicker();
-            this.txtLocatario = new System.Windows.Forms.TextBox();
+            this.txtProntuario = new System.Windows.Forms.TextBox();
             this.lblNEmprestimo = new System.Windows.Forms.Label();
             this.lblDataDevolucao = new System.Windows.Forms.Label();
             this.lblDataEmprestimo = new System.Windows.Forms.Label();
-            this.txtNEmprestimo = new System.Windows.Forms.TextBox();
+            this.txtNomeLoc = new System.Windows.Forms.TextBox();
             this.lblLocatario = new System.Windows.Forms.Label();
             this.dtpDevolucao = new System.Windows.Forms.DateTimePicker();
-            this.btnAdicionar = new System.Windows.Forms.Button();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.gpbDadosLivro.SuspendLayout();
@@ -180,6 +180,22 @@
             this.btnBuscar.UseVisualStyleBackColor = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
+            // btnAdicionar
+            // 
+            this.btnAdicionar.BackColor = System.Drawing.Color.PowderBlue;
+            this.btnAdicionar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAdicionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdicionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdicionar.Image = ((System.Drawing.Image)(resources.GetObject("btnAdicionar.Image")));
+            this.btnAdicionar.Location = new System.Drawing.Point(3, 3);
+            this.btnAdicionar.Name = "btnAdicionar";
+            this.btnAdicionar.Size = new System.Drawing.Size(194, 74);
+            this.btnAdicionar.TabIndex = 9;
+            this.btnAdicionar.Text = "&Remover";
+            this.btnAdicionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAdicionar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAdicionar.UseVisualStyleBackColor = false;
+            // 
             // btnLimpar
             // 
             this.btnLimpar.BackColor = System.Drawing.Color.PowderBlue;
@@ -298,6 +314,7 @@
             // 
             this.txtAutor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAutor.Enabled = false;
             this.txtAutor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAutor.Location = new System.Drawing.Point(6, 173);
             this.txtAutor.MaxLength = 100;
@@ -307,6 +324,7 @@
             // 
             // txtEditora
             // 
+            this.txtEditora.Enabled = false;
             this.txtEditora.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEditora.Location = new System.Drawing.Point(6, 231);
             this.txtEditora.MaxLength = 50;
@@ -318,6 +336,7 @@
             // 
             this.txtTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTitulo.Enabled = false;
             this.txtTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTitulo.Location = new System.Drawing.Point(6, 115);
             this.txtTitulo.MaxLength = 100;
@@ -327,6 +346,7 @@
             // 
             // txtIsbn
             // 
+            this.txtIsbn.Enabled = false;
             this.txtIsbn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIsbn.Location = new System.Drawing.Point(176, 59);
             this.txtIsbn.MaxLength = 20;
@@ -346,6 +366,7 @@
             this.ltbCarrinho.Name = "ltbCarrinho";
             this.ltbCarrinho.Size = new System.Drawing.Size(733, 154);
             this.ltbCarrinho.TabIndex = 59;
+            this.ltbCarrinho.SelectedIndexChanged += new System.EventHandler(this.ltbCarrinho_SelectedIndexChanged);
             // 
             // pctLivro
             // 
@@ -366,15 +387,16 @@
             this.dtpDataEmprestimo.Size = new System.Drawing.Size(155, 31);
             this.dtpDataEmprestimo.TabIndex = 68;
             // 
-            // txtLocatario
+            // txtProntuario
             // 
-            this.txtLocatario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLocatario.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLocatario.Location = new System.Drawing.Point(497, 131);
-            this.txtLocatario.MaxLength = 100;
-            this.txtLocatario.Name = "txtLocatario";
-            this.txtLocatario.Size = new System.Drawing.Size(267, 31);
-            this.txtLocatario.TabIndex = 66;
+            this.txtProntuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtProntuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProntuario.Location = new System.Drawing.Point(497, 131);
+            this.txtProntuario.MaxLength = 100;
+            this.txtProntuario.Name = "txtProntuario";
+            this.txtProntuario.Size = new System.Drawing.Size(267, 31);
+            this.txtProntuario.TabIndex = 66;
+            this.txtProntuario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLocatario_KeyDown);
             // 
             // lblNEmprestimo
             // 
@@ -409,15 +431,15 @@
             this.lblDataEmprestimo.TabIndex = 63;
             this.lblDataEmprestimo.Text = "Data de Empréstimo";
             // 
-            // txtNEmprestimo
+            // txtNomeLoc
             // 
-            this.txtNEmprestimo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNEmprestimo.Enabled = false;
-            this.txtNEmprestimo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNEmprestimo.Location = new System.Drawing.Point(497, 189);
-            this.txtNEmprestimo.Name = "txtNEmprestimo";
-            this.txtNEmprestimo.Size = new System.Drawing.Size(267, 31);
-            this.txtNEmprestimo.TabIndex = 65;
+            this.txtNomeLoc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNomeLoc.Enabled = false;
+            this.txtNomeLoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNomeLoc.Location = new System.Drawing.Point(497, 189);
+            this.txtNomeLoc.Name = "txtNomeLoc";
+            this.txtNomeLoc.Size = new System.Drawing.Size(267, 31);
+            this.txtNomeLoc.TabIndex = 65;
             // 
             // lblLocatario
             // 
@@ -441,22 +463,6 @@
             this.dtpDevolucao.Size = new System.Drawing.Size(155, 31);
             this.dtpDevolucao.TabIndex = 69;
             // 
-            // btnAdicionar
-            // 
-            this.btnAdicionar.BackColor = System.Drawing.Color.PowderBlue;
-            this.btnAdicionar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAdicionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdicionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdicionar.Image = ((System.Drawing.Image)(resources.GetObject("btnAdicionar.Image")));
-            this.btnAdicionar.Location = new System.Drawing.Point(3, 3);
-            this.btnAdicionar.Name = "btnAdicionar";
-            this.btnAdicionar.Size = new System.Drawing.Size(194, 74);
-            this.btnAdicionar.TabIndex = 9;
-            this.btnAdicionar.Text = "&Remover";
-            this.btnAdicionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAdicionar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAdicionar.UseVisualStyleBackColor = false;
-            // 
             // frmDevolucao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -465,11 +471,11 @@
             this.ClientSize = new System.Drawing.Size(800, 600);
             this.Controls.Add(this.dtpDevolucao);
             this.Controls.Add(this.dtpDataEmprestimo);
-            this.Controls.Add(this.txtLocatario);
+            this.Controls.Add(this.txtProntuario);
             this.Controls.Add(this.lblNEmprestimo);
             this.Controls.Add(this.lblDataDevolucao);
             this.Controls.Add(this.lblDataEmprestimo);
-            this.Controls.Add(this.txtNEmprestimo);
+            this.Controls.Add(this.txtNomeLoc);
             this.Controls.Add(this.lblLocatario);
             this.Controls.Add(this.gpbDadosLivro);
             this.Controls.Add(this.ltbCarrinho);
@@ -519,11 +525,11 @@
         private System.Windows.Forms.ListBox ltbCarrinho;
         private System.Windows.Forms.PictureBox pctLivro;
         private System.Windows.Forms.DateTimePicker dtpDataEmprestimo;
-        private System.Windows.Forms.TextBox txtLocatario;
+        private System.Windows.Forms.TextBox txtProntuario;
         private System.Windows.Forms.Label lblNEmprestimo;
         private System.Windows.Forms.Label lblDataDevolucao;
         private System.Windows.Forms.Label lblDataEmprestimo;
-        private System.Windows.Forms.TextBox txtNEmprestimo;
+        private System.Windows.Forms.TextBox txtNomeLoc;
         private System.Windows.Forms.Label lblLocatario;
         private System.Windows.Forms.DateTimePicker dtpDevolucao;
         private System.Windows.Forms.Button btnAdicionar;
