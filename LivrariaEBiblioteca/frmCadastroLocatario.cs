@@ -94,7 +94,7 @@ namespace LivrariaEBiblioteca
             try
             {
                 MySqlCommand comm = new MySqlCommand();
-                comm.CommandText = "select nomeLivro from tbEmprestimo where prontuario = @prontuario;";
+                comm.CommandText = "select nomeLivro, dataEmp, dataDev from tbEmprestimo where prontuario = @prontuario;";
                 comm.CommandType = CommandType.Text;
 
                 comm.Parameters.Clear();
@@ -107,7 +107,7 @@ namespace LivrariaEBiblioteca
 
                 while (DR.Read())
                 {
-                    ltbListadelivros.Items.Add(DR.GetString(0));
+                    ltbListadelivros.Items.Add(DR.GetString(0) + " - " + DR.GetDateTime(1).ToString() + " - " + DR.GetDateTime(2).ToString());
                 }
 
                 Conexao.fecharConexao();
