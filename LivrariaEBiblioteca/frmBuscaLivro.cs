@@ -208,26 +208,12 @@ namespace LivrariaEBiblioteca
         public bool checarCharactere()
         {
             int tryParse;
-
-            if (!int.TryParse(txtIdLivro.Text, out tryParse))
-            {
-                MessageBox.Show("Use apenas números.", "Mensagem do sistema", MessageBoxButtons.OK);
-                txtIdLivro.Clear();
-                txtIdLivro.Focus();
-                return false;
-            }
-            else if (int.TryParse(txtTitulo.Text, out tryParse))
+                        
+            if (int.TryParse(txtTitulo.Text, out tryParse))
             {
                 MessageBox.Show("Use apenas letras.", "Mensagem do sistema", MessageBoxButtons.OK);
                 txtTitulo.Clear();
                 txtTitulo.Focus();
-                return false;
-            }
-            else if (!int.TryParse(txtIsbn.Text, out tryParse))
-            {
-                MessageBox.Show("Use apenas números.", "Mensagem do sistema", MessageBoxButtons.OK);
-                txtIsbn.Clear();
-                txtIsbn.Focus();
                 return false;
             }
             else
@@ -380,17 +366,17 @@ namespace LivrariaEBiblioteca
                 MySqlDataReader DR = comm.ExecuteReader();
                 DR.Read();
 
-                codLivroEstoque = DR.GetInt32(7);
-                tipo = DR.GetString(5);
+                codLivroEstoque = DR.GetInt32(6);
+                tipo = DR.GetString(1);
                 if (tipo == "Ven")
                 {
-                    estoqueEnt = DR.GetInt32(1);
-                    estoqueSai = DR.GetInt32(2);
+                    estoqueEnt = DR.GetInt32(2);
+                    estoqueSai = DR.GetInt32(3);
                 }
                 if (tipo == "Emp")
                 {
-                    estoqueEnt = DR.GetInt32(3);
-                    estoqueSai = DR.GetInt32(4);
+                    estoqueEnt = DR.GetInt32(4);
+                    estoqueSai = DR.GetInt32(5);
                 }
 
                 estoque = estoqueEnt - estoqueSai;
@@ -485,6 +471,22 @@ namespace LivrariaEBiblioteca
                     btnEmprestar.Enabled = false;
                     return;
                 }
+            }
+        }
+
+        private void txtIsbn_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtIdLivro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }

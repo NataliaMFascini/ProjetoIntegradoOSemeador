@@ -100,6 +100,7 @@
             this.txtIdLivro.Name = "txtIdLivro";
             this.txtIdLivro.Size = new System.Drawing.Size(135, 31);
             this.txtIdLivro.TabIndex = 2;
+            this.txtIdLivro.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtIdLivro_KeyDown);
             // 
             // pctLivro
             // 
@@ -136,6 +137,7 @@
             // 
             // txtIsbn
             // 
+            this.txtIsbn.Enabled = false;
             this.txtIsbn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIsbn.Location = new System.Drawing.Point(176, 59);
             this.txtIsbn.MaxLength = 20;

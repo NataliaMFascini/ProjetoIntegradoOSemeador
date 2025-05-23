@@ -99,11 +99,14 @@ saidaVen int default 0 check(saidaVen >= 0),
 entradaEmp int default 0 check(entradaEmp >= 0),
 saidaEmp int default 0 check(saidaEmp >= 0),
 nomeLivro varchar(100),
-disponibilidade char(1) default 'S' check (disponibilidade in ('S', 'N'),
+disponibilidade char(1) default 'S' check (disponibilidade in ('S', 'N')),
 codLivro int not null,
-primary key(codEsto),
+primary key (codEsto),
 foreign key (codLivro) references tbLivro(codLivro)
 );
+
+insert into tbEstoque(empVen, entradaEmp, nomeLivro,  disponibilidade, codLivro) values ('Emp', 1, 'Logica de Programacao', 'S', 3);
+
 
 -- visualizar
 desc tbUsuario;

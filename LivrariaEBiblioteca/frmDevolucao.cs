@@ -19,7 +19,9 @@ namespace LivrariaEBiblioteca
 
         public string nomeLoc;
 
-        public string fotoPath; 
+        public string fotoPath;
+
+        Livros livrosDev = new Livros();
 
         public frmDevolucao()
         {
@@ -101,7 +103,7 @@ namespace LivrariaEBiblioteca
             limparCampos();
         }
 
-        public void listaDoLocatario(int prontuario)
+        public void listaDoLocatario(long prontuario)
         {
             try
             {
@@ -110,7 +112,7 @@ namespace LivrariaEBiblioteca
                 comm.CommandType = CommandType.Text;
 
                 comm.Parameters.Clear();
-                comm.Parameters.Add("@prontuario", MySqlDbType.Int32).Value = prontuario;
+                comm.Parameters.Add("@prontuario", MySqlDbType.Int64).Value = prontuario;
 
                 comm.Connection = Conexao.obterConexao();
 
@@ -143,7 +145,7 @@ namespace LivrariaEBiblioteca
             }
         }
 
-        public void pegarNomeLoc(int prontuario)
+        public void pegarNomeLoc(long prontuario)
         {
             try
             {
@@ -152,7 +154,7 @@ namespace LivrariaEBiblioteca
                 comm.CommandType = CommandType.Text;
 
                 comm.Parameters.Clear();
-                comm.Parameters.Add("@prontuario", MySqlDbType.Int32).Value = prontuario;
+                comm.Parameters.Add("@prontuario", MySqlDbType.Int64).Value = prontuario;
 
                 comm.Connection = Conexao.obterConexao();
 
@@ -167,6 +169,37 @@ namespace LivrariaEBiblioteca
             catch (MySqlException)
             {
                 MessageBox.Show("Erro ao pegar o nome do locatário.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void pegarDataEmp(long prontuario)
+        {
+            try
+            {
+                MySqlCommand comm = new MySqlCommand();
+                comm.CommandText = "select dataEmp from tbEmprestimo where prontuario = @prontuario and nomeLivro = @nomeLivro;";
+                comm.CommandType = CommandType.Text;
+
+                comm.Parameters.Clear();
+
+                comm.Parameters.Add("@prontuario", MySqlDbType.Int64).Value = prontuario;
+                comm.Parameters.Add("@nomeLivro", MySqlDbType.VarChar, 100).Value = ltbCarrinho.SelectedItem.ToString();
+
+                comm.Connection = Conexao.obterConexao();
+                MySqlDataReader DR;
+                DR = comm.ExecuteReader();
+                DR.Read();
+
+                if (DR.HasRows)
+                {
+                    dtpDataEmprestimo.Value = DR.GetDateTime(0);
+                }
+
+                Conexao.fecharConexao();
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao encontrar a data em que o empréstimo foi realizado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -185,6 +218,156 @@ namespace LivrariaEBiblioteca
             if (ltbCarrinho.SelectedItem != null)
             {
                 pesquisarPorNome(ltbCarrinho.SelectedItem.ToString());
+                pegarDataEmp(Convert.ToInt64(txtProntuario.Text));
+            }
+        }
+
+        private void btnRemover_Click(object sender, EventArgs e)
+        {
+            if (ltbCarrinho.SelectedItem != null)
+            {
+                Livros.ListaLivros.RemoveAt(ltbCarrinho.SelectedIndex);
+                ltbCarrinho.Items.RemoveAt(ltbCarrinho.SelectedIndex);
+            }
+        }
+
+        private void btnFinalizar_Click(object sender, EventArgs e)
+        {
+            if (registarDevolucao() == 1 && atualizarEstoque() == 1)
+            {
+                MessageBox.Show("Devolução realizada com sucesso.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        public int registarDevolucao()
+        {
+            try
+            {
+                MySqlCommand comm = new MySqlCommand();
+                comm.CommandText = "update tbEmprestimo set dataDev = @dataDev where prontuario = @prontuario and codLivro = @codLivro;";
+                comm.CommandType = CommandType.Text;
+
+                for (int i = 0; i < Livros.ListaLivros.Count; i++)
+                {
+                    comm.Parameters.Clear();
+                    comm.Parameters.Add("@dataDev", MySqlDbType.DateTime).Value = DateTime.Now;
+                    comm.Parameters.Add("@prontuario", MySqlDbType.Int64).Value = Convert.ToInt64(txtProntuario.Text);
+                    comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livrosDev.proximoLivro(i);
+                }
+                comm.Connection = Conexao.obterConexao();
+
+                int resp = comm.ExecuteNonQuery();
+
+                Conexao.fecharConexao();
+
+                return resp;
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao registrar devolução.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0;
+            }
+        }
+
+        public int atualizarEstoque()
+        {
+            MySqlCommand comm = new MySqlCommand();
+            int resp = 0;
+            try
+            {
+                for (int i = 0; i < livrosDev.quantidadeLista(); i++)
+                {
+                    comm.CommandText = "update tbEstoque set entradaEmp = @entradaEmp, empVen = @empVen where codLivro = @codLivro";
+                    comm.CommandType = CommandType.Text;
+
+                    comm.Parameters.Clear();
+                    comm.Parameters.Add("@saidaVen", MySqlDbType.Int32).Value = pegarQuantSaida(livrosDev.proximoLivro(i)) + quantidadeRetorno(i);
+                    comm.Parameters.Add("@empVen", MySqlDbType.VarChar, 3).Value = "Emp";
+                    comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livrosDev.proximoLivro(i);
+
+                    comm.Connection = Conexao.obterConexao();
+
+                    resp = comm.ExecuteNonQuery();
+
+                    Conexao.fecharConexao();
+                }
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Livro não registrado no estoque.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return resp;
+        }
+
+        public int quantidadeRetorno(int index)
+        {
+            int quantTotal = 1;
+
+            for (int i = 0; i < Livros.ListaLivros.Count - 1; i++)
+            {
+                if (Livros.ListaLivros[i].idLivro == Livros.ListaLivros[i + 1].idLivro)
+                {
+                    quantTotal++;
+                }
+            }
+            return quantTotal;
+        }
+
+        public int pegarQuantLivro(int index)
+        {
+            try
+            {
+                MySqlCommand comm = new MySqlCommand();
+                comm.CommandText = "select entradaEmp from tbEstoque where codLivro = @codLivro;";
+                comm.CommandType = CommandType.Text;
+
+                comm.Parameters.Clear();
+                comm.Parameters.Add("@codLivro", MySqlDbType.Int32, 20).Value = livrosDev.proximoLivro(index);
+
+                comm.Connection = Conexao.obterConexao();
+
+                MySqlDataReader DR;
+                DR = comm.ExecuteReader();
+                DR.Read();
+
+                int quant = DR.GetInt32(0);
+
+                Conexao.fecharConexao();
+                return quant;
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao pegar a quantidade do livro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                return 0;
+            }
+        }
+
+        public int pegarQuantSaida(int index)
+        {
+            try
+            {
+                MySqlCommand comm = new MySqlCommand();
+                comm.CommandText = "select saidaEmp from tbEstoque where codLivro = @codLivro;";
+                comm.CommandType = CommandType.Text;
+
+                comm.Parameters.Clear();
+                comm.Parameters.Add("@codLivro", MySqlDbType.Int32, 20).Value = livrosDev.proximoLivro(index);
+
+                comm.Connection = Conexao.obterConexao();
+
+                MySqlDataReader DR;
+                DR = comm.ExecuteReader();
+                DR.Read();
+
+                int quant = DR.GetInt32(0);
+
+                Conexao.fecharConexao();
+                return quant;
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao pegar a quantidade do livro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                return 0;
             }
         }
     }

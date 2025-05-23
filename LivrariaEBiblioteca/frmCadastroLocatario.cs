@@ -286,25 +286,11 @@ namespace LivrariaEBiblioteca
                 txtLocatario.Focus();
                 return false;
             }
-            else if (!int.TryParse(mskCpf.Text, out tryParse))
-            {
-                erroCampo("CPF", "Número");
-                mskCpf.Clear();
-                mskCpf.Focus();
-                return false;
-            }
             else if (int.TryParse(txtEmail.Text, out tryParse))
             {
                 erroCampo("Email", "Texto");
                 txtEmail.Clear();
                 txtEmail.Focus();
-                return false;
-            }
-            else if (!int.TryParse(mskTelefone.Text, out tryParse))
-            {
-                erroCampo("Telefone", "Número");
-                mskTelefone.Clear();
-                mskTelefone.Focus();
                 return false;
             }
             else

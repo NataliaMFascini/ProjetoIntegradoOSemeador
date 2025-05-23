@@ -179,6 +179,7 @@
             this.txtIsbn.Size = new System.Drawing.Size(136, 31);
             this.txtIsbn.TabIndex = 2;
             this.txtIsbn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtIsbn_KeyDown);
+            this.txtIsbn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIsbn_KeyPress);
             // 
             // txtIdLivro
             // 
@@ -190,6 +191,7 @@
             this.txtIdLivro.Size = new System.Drawing.Size(136, 31);
             this.txtIdLivro.TabIndex = 1;
             this.txtIdLivro.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtIdLivro_KeyDown);
+            this.txtIdLivro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdLivro_KeyPress);
             // 
             // btnVender
             // 

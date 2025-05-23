@@ -423,11 +423,11 @@ namespace LivrariaEBiblioteca
                 string tipo;
 
                 MySqlCommand comm = new MySqlCommand();
-                comm.CommandText = "select codLivro, nome, autor, editora, foto, empVen from tbLivro where isbn = @isbn;";
+                comm.CommandText = "select isbn, nome, autor, editora, foto, empVen from tbLivro where codLivro = @codLivro;";
                 comm.CommandType = CommandType.Text;
 
                 comm.Parameters.Clear();
-                comm.Parameters.Add("@isbn", MySqlDbType.VarChar, 13).Value = isbn;
+                comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = isbn;
                 comm.Connection = Conexao.obterConexao();
                 MySqlDataReader DR;
                 DR = comm.ExecuteReader();
@@ -441,7 +441,7 @@ namespace LivrariaEBiblioteca
                 {
                     if (tipo.Equals("Emp"))
                     {
-                        txtIdLivro.Text = Convert.ToString(DR.GetInt32(0));
+                        txtIsbn.Text = Convert.ToString(DR.GetInt32(0));
                         txtTitulo.Text = DR.GetString(1);
                         txtAutor.Text = DR.GetString(2);
                         txtEditora.Text = DR.GetString(3);
@@ -618,6 +618,33 @@ namespace LivrariaEBiblioteca
             frmDevolucao abrir = new frmDevolucao(this.nome, this.codUsu, this.cargo);
             abrir.Show();
             this.Hide();
+        }
+
+        private void txtIdLivro_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    escanearLivro(txtIdLivro.Text);
+                    txtProntuario.Focus();
+                    codLivro = Convert.ToInt32(txtIdLivro.Text);
+                    if (livros.checarEstoque(codLivro, "Emp") <= 0 || !checarDisp(codLivro))
+                    {
+                        lblDisponibilidade.Text = "Indisponivel";
+                        lblDisponibilidade.ForeColor = Color.Red;
+                    }
+                    else
+                    {
+                        lblDisponibilidade.Text = "Disponivel";
+                        lblDisponibilidade.ForeColor = Color.Green;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("ID não encontrado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
