@@ -177,14 +177,7 @@ namespace LivrariaEBiblioteca
         {
             int tryParse;
             decimal tryParseDecimal;
-            if (!int.TryParse(txtIsbn.Text, out tryParse))
-            {
-                erroCampo("ISBN", "númerico");
-                txtIsbn.Clear();
-                txtIsbn.Focus();
-                return false;
-            }
-            else if (int.TryParse(txtTitulo.Text, out tryParse))
+            if (int.TryParse(txtTitulo.Text, out tryParse))
             {
                 erroCampo("Titulo", "alfabético");
                 txtTitulo.Clear();
@@ -425,16 +418,17 @@ namespace LivrariaEBiblioteca
                     if (rdbEmprestimo.Checked)
                     {
                         comm.Parameters.Add("@empVen", MySqlDbType.VarChar, 3).Value = "Emp";
+                        comm.Parameters.Add("@valor", MySqlDbType.Decimal).Value = 0.00;
                     }
                     if (rdbVenda.Checked)
                     {
                         comm.Parameters.Add("@empVen", MySqlDbType.VarChar, 3).Value = "Ven";
+                        comm.Parameters.Add("@valor", MySqlDbType.Decimal).Value = Convert.ToDecimal(txtValor.Text);
                     }
                     comm.Parameters.Add("@isbn", MySqlDbType.VarChar, 20).Value = txtIsbn.Text;
                     comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtTitulo.Text;
                     comm.Parameters.Add("@autor", MySqlDbType.VarChar, 100).Value = txtAutor.Text;
                     comm.Parameters.Add("@quant", MySqlDbType.Int32).Value = Convert.ToInt32(txtQuantidade.Text);
-                    comm.Parameters.Add("@valor", MySqlDbType.Decimal).Value = Convert.ToDecimal(txtValor.Text);
                     comm.Parameters.Add("@editora", MySqlDbType.VarChar, 50).Value = txtEditora.Text;
                     comm.Parameters.Add("@anoPublicacao", MySqlDbType.Int32).Value = Convert.ToInt32(txtAno.Text);
                     if (pctLivro.Image == null)
@@ -500,6 +494,8 @@ namespace LivrariaEBiblioteca
             {
                 excluirLivro(Convert.ToInt32(txtIdLivro.Text));
                 limparCampos();
+                desabilitarCampos();
+                btnAdicionar.Enabled = true;
             }
         }
 
@@ -605,7 +601,7 @@ namespace LivrariaEBiblioteca
                 MySqlCommand comm = new MySqlCommand();
                 if (rdbVenda.Checked)
                 {
-                    comm.CommandText = "insert into tbEstoque(entradaVen, empVen, nomeLivro, codLivro) values (@entradaVen, @empVen, @nomeLivro, @codLivro);";
+                    comm.CommandText = "insert into tbEstoque(empVen, entradaVen, nomeLivro, disponibilidade, codLivro) values (@empVen, @entradaVen, @nomeLivro, @disponibilidade, @codLivro);";
                     comm.CommandType = CommandType.Text;
 
                     comm.Parameters.Clear();
@@ -616,7 +612,7 @@ namespace LivrariaEBiblioteca
                 }
                 if (rdbEmprestimo.Checked)
                 {
-                    comm.CommandText = "insert into tbEstoque(entradaEmp, empVen, nomeLivro) values (@entradaEmp, @empVen,@nomeLivro);";
+                    comm.CommandText = "insert into tbEstoque(empVen, entradaEmp, nomeLivro,  disponibilidade, codLivro) values (@empVen, @entradaEmp, @nomeLivro, @disponibilidade, @codLivro);";
                     comm.CommandType = CommandType.Text;
 
                     comm.Parameters.Clear();
@@ -624,6 +620,11 @@ namespace LivrariaEBiblioteca
                     comm.Parameters.Add("@empVen", MySqlDbType.VarChar, 3).Value = "Emp";
                     comm.Parameters.Add("@nomeLivro", MySqlDbType.VarChar, 100).Value = txtTitulo.Text;
                     comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = pegarIDLivro();
+                }
+
+                if (Convert.ToInt32(txtQuantidade.Text) == 0)
+                {
+                    comm.Parameters.Add("@disponibilidade", MySqlDbType.VarChar, 1).Value = "N";
                 }
 
                 comm.Connection = Conexao.obterConexao();
@@ -707,6 +708,14 @@ namespace LivrariaEBiblioteca
             if (e.KeyCode == Keys.Enter)
             {
                 txtAutor.Focus();
+            }
+        }
+
+        private void txtIsbn_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }

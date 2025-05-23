@@ -36,7 +36,7 @@
             this.btnVoltar = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.btnAdicionar = new System.Windows.Forms.Button();
+            this.btnRemover = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnFinalizar = new System.Windows.Forms.Button();
             this.gpbDadosLivro = new System.Windows.Forms.GroupBox();
@@ -151,7 +151,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.Controls.Add(this.btnBuscar, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnAdicionar, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnRemover, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnLimpar, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnFinalizar, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -180,21 +180,22 @@
             this.btnBuscar.UseVisualStyleBackColor = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // btnAdicionar
+            // btnRemover
             // 
-            this.btnAdicionar.BackColor = System.Drawing.Color.PowderBlue;
-            this.btnAdicionar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAdicionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdicionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdicionar.Image = ((System.Drawing.Image)(resources.GetObject("btnAdicionar.Image")));
-            this.btnAdicionar.Location = new System.Drawing.Point(3, 3);
-            this.btnAdicionar.Name = "btnAdicionar";
-            this.btnAdicionar.Size = new System.Drawing.Size(194, 74);
-            this.btnAdicionar.TabIndex = 9;
-            this.btnAdicionar.Text = "&Remover";
-            this.btnAdicionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAdicionar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAdicionar.UseVisualStyleBackColor = false;
+            this.btnRemover.BackColor = System.Drawing.Color.PowderBlue;
+            this.btnRemover.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnRemover.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemover.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemover.Image = ((System.Drawing.Image)(resources.GetObject("btnRemover.Image")));
+            this.btnRemover.Location = new System.Drawing.Point(3, 3);
+            this.btnRemover.Name = "btnRemover";
+            this.btnRemover.Size = new System.Drawing.Size(194, 74);
+            this.btnRemover.TabIndex = 9;
+            this.btnRemover.Text = "&Remover";
+            this.btnRemover.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRemover.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRemover.UseVisualStyleBackColor = false;
+            this.btnRemover.Click += new System.EventHandler(this.btnRemover_Click);
             // 
             // btnLimpar
             // 
@@ -228,6 +229,7 @@
             this.btnFinalizar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnFinalizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnFinalizar.UseVisualStyleBackColor = false;
+            this.btnFinalizar.Click += new System.EventHandler(this.btnFinalizar_Click);
             // 
             // gpbDadosLivro
             // 
@@ -532,6 +534,6 @@
         private System.Windows.Forms.TextBox txtNomeLoc;
         private System.Windows.Forms.Label lblLocatario;
         private System.Windows.Forms.DateTimePicker dtpDevolucao;
-        private System.Windows.Forms.Button btnAdicionar;
+        private System.Windows.Forms.Button btnRemover;
     }
 }
