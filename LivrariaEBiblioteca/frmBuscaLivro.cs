@@ -116,7 +116,7 @@ namespace LivrariaEBiblioteca
             }
             else
             {
-                frmEmprestimo abrirEmprestimo = new frmEmprestimo(this.nome, this.codUsu, this.cargo, nomeLivro);
+                frmEmprestimo abrirEmprestimo = new frmEmprestimo(this.nome, this.codUsu, this.cargo, nomeLivro, estoque);
 
                 abrirEmprestimo.Show();
                 this.Hide();
@@ -366,7 +366,7 @@ namespace LivrariaEBiblioteca
                 MySqlDataReader DR = comm.ExecuteReader();
                 DR.Read();
 
-                codLivroEstoque = DR.GetInt32(6);
+                codLivroEstoque = DR.GetInt32(8);
                 tipo = DR.GetString(1);
                 if (tipo == "Ven")
                 {

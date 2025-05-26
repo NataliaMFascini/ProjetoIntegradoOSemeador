@@ -233,9 +233,20 @@ namespace LivrariaEBiblioteca
 
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
-            if (registarDevolucao() == 1 && atualizarEstoque() == 1)
+            if (ltbCarrinho.Items.Count != 0)
             {
-                MessageBox.Show("Devolução realizada com sucesso.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (registarDevolucao() == 1 && atualizarEstoque() == 1)
+                {
+                    MessageBox.Show("Devolução realizada com sucesso.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao registrar devolução.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Não há livros para devolver.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -281,7 +292,7 @@ namespace LivrariaEBiblioteca
                     comm.CommandType = CommandType.Text;
 
                     comm.Parameters.Clear();
-                    comm.Parameters.Add("@saidaVen", MySqlDbType.Int32).Value = pegarQuantSaida(livrosDev.proximoLivro(i)) + quantidadeRetorno(i);
+                    comm.Parameters.Add("@entradaEmp", MySqlDbType.Int32).Value = pegarQuantLivro(livrosDev.proximoLivro(i)) + quantidadeRetorno(i);
                     comm.Parameters.Add("@empVen", MySqlDbType.VarChar, 3).Value = "Emp";
                     comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livrosDev.proximoLivro(i);
 
