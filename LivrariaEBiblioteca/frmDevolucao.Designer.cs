@@ -287,7 +287,7 @@
             // 
             this.lblIsbn.AutoSize = true;
             this.lblIsbn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIsbn.Location = new System.Drawing.Point(176, 31);
+            this.lblIsbn.Location = new System.Drawing.Point(147, 31);
             this.lblIsbn.Name = "lblIsbn";
             this.lblIsbn.Size = new System.Drawing.Size(60, 25);
             this.lblIsbn.TabIndex = 0;
@@ -350,10 +350,10 @@
             // 
             this.txtIsbn.Enabled = false;
             this.txtIsbn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIsbn.Location = new System.Drawing.Point(176, 59);
+            this.txtIsbn.Location = new System.Drawing.Point(147, 57);
             this.txtIsbn.MaxLength = 20;
             this.txtIsbn.Name = "txtIsbn";
-            this.txtIsbn.Size = new System.Drawing.Size(135, 31);
+            this.txtIsbn.Size = new System.Drawing.Size(164, 31);
             this.txtIsbn.TabIndex = 1;
             // 
             // ltbCarrinho

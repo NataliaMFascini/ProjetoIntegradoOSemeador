@@ -129,15 +129,7 @@ namespace LivrariaEBiblioteca
         {
             int tryParse;
             decimal tryParseDecimal;
-
-            if (!int.TryParse(txtIsbn.Text, out tryParse))
-            {
-                erroCampo("ISBN", "numérico");
-                txtIsbn.Clear();
-                txtIsbn.Focus();
-                return false;
-            }
-            else if (int.TryParse(txtTitulo.Text, out tryParse))
+            if (int.TryParse(txtTitulo.Text, out tryParse))
             {
                 erroCampo("Título", "alfabético");
                 txtTitulo.Clear();
@@ -324,7 +316,7 @@ namespace LivrariaEBiblioteca
         {
             int tryParse;
             if (cbbFormaPagamento.Text.Equals(""))
-            {                
+            {
                 erroCadastro("Forma de Pagamento");
                 cbbFormaPagamento.Focus();
                 return;
@@ -562,6 +554,10 @@ namespace LivrariaEBiblioteca
                     pctLivro.ImageLocation = fotoPath;
                     pctLivro.Load();
                 }
+                else
+                {
+                    pctLivro.Image = null;
+                }
 
                 Conexao.fecharConexao();
             }
@@ -609,6 +605,14 @@ namespace LivrariaEBiblioteca
             if (e.KeyCode == Keys.Enter)
             {
                 cbbFormaPagamento.Focus();
+            }
+        }
+
+        private void txtIsbn_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }
