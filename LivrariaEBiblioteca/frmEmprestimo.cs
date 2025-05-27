@@ -357,7 +357,7 @@ namespace LivrariaEBiblioteca
                     comm.Parameters.Clear();
                     comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.proximoLivro(i);
 
-                    if (pegarQuantLivro(i) - pegarQuantSaida(i) <= 0)
+                    if (livros.checarEstoque(i, "Emp") <= 0)
                     {
                         comm.Parameters.Add("@disponibilidade", MySqlDbType.VarChar, 1).Value = "N";
                     }
@@ -510,7 +510,7 @@ namespace LivrariaEBiblioteca
                 else
                 {
                     MessageBox.Show("ID inválido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
-                    txtIsbn.Focus();
+                    txtIdLivro.Focus();
                 }
 
                 Conexao.fecharConexao();
