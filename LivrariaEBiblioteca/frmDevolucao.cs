@@ -108,7 +108,7 @@ namespace LivrariaEBiblioteca
             try
             {
                 MySqlCommand comm = new MySqlCommand();
-                comm.CommandText = "select nomeLivro from tbEmprestimo where prontuario = @prontuario;";
+                comm.CommandText = "select nomeLivro from tbEmprestimo where prontuario = @prontuario and dataDev is null;";
                 comm.CommandType = CommandType.Text;
 
                 comm.Parameters.Clear();
@@ -238,6 +238,8 @@ namespace LivrariaEBiblioteca
                 if (registarDevolucao() == 1 && atualizarEstoque() == 1)
                 {
                     MessageBox.Show("Devolução realizada com sucesso.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    confirmarEstoque();
+                    limparCampos();
                 }
                 else
                 {
@@ -352,34 +354,39 @@ namespace LivrariaEBiblioteca
                 return 0;
             }
         }
-
-        public int pegarQuantSaida(int index)
+        public void confirmarEstoque()
         {
+            MySqlCommand comm = new MySqlCommand();
             try
             {
-                MySqlCommand comm = new MySqlCommand();
-                comm.CommandText = "select saidaEmp from tbEstoque where codLivro = @codLivro;";
-                comm.CommandType = CommandType.Text;
+                for (int i = 0; i < livrosDev.quantidadeLista(); i++)
+                {
+                    comm.CommandText = "update tbEstoque set disponibilidade = @disponibilidade where codLivro = @codLivro";
+                    comm.CommandType = CommandType.Text;
 
-                comm.Parameters.Clear();
-                comm.Parameters.Add("@codLivro", MySqlDbType.Int32, 20).Value = livrosDev.proximoLivro(index);
+                    comm.Parameters.Clear();
+                    comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livrosDev.proximoLivro(i);
 
-                comm.Connection = Conexao.obterConexao();
+                    if (livrosDev.checarEstoque(livrosDev.proximoLivro(i), "Emp") <= 0)
+                    {
+                        comm.Parameters.Add("@disponibilidade", MySqlDbType.VarChar, 1).Value = "N";
+                    }
+                    else
+                    {
+                        comm.Parameters.Add("@disponibilidade", MySqlDbType.VarChar, 1).Value = "S";
+                    }
 
-                MySqlDataReader DR;
-                DR = comm.ExecuteReader();
-                DR.Read();
+                    comm.Connection = Conexao.obterConexao();
 
-                int quant = DR.GetInt32(0);
+                    int resp = comm.ExecuteNonQuery();
 
-                Conexao.fecharConexao();
-                return quant;
+                    Conexao.fecharConexao();
+                }
             }
-            catch (MySqlException)
+            catch (Exception)
             {
-                MessageBox.Show("Erro ao pegar a quantidade do livro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
-                return 0;
+                MessageBox.Show("Erro ao checar disponibilidade.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+        }        
     }
 }

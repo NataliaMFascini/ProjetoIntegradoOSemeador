@@ -250,7 +250,7 @@ namespace LivrariaEBiblioteca
             {
                 nomeRelatorio = "Dados do Estoque";
                 MySqlCommand comm = new MySqlCommand();
-                comm.CommandText = "select empVen as 'Tipo', nomeLivro as 'Titulo', entradaVen as 'Entrada de vendas', saidaVen as 'Saida de vendas', entradaEmp as 'Entrada de emprestimos', saidaEmp as 'Saida de emprestimos' from tbEstoque;";
+                comm.CommandText = "select empVen as 'Tipo', nomeLivro as 'Titulo', entradaVen as 'Entrada de vendas', saidaVen as 'Saida de vendas', entradaEmp as 'Entrada de emprestimos', saidaEmp as 'Saida de emprestimos', disponibilidade as 'Disponibilidade' from tbEstoque;";
                 comm.CommandType = CommandType.Text;
 
                 comm.Connection = Conexao.obterConexao();

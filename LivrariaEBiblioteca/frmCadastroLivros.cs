@@ -649,23 +649,38 @@ namespace LivrariaEBiblioteca
                 MySqlCommand comm = new MySqlCommand();
                 if (rdbVenda.Checked)
                 {
-                    comm.CommandText = "update tbEstoque set entradaVen = @entradaVen, empVen = @empVen where codLivro = @codLivro;";
+                    comm.CommandText = "update tbEstoque set entradaVen = @entradaVen, empVen = @empVen, disponibilidade = @disponibilidade where codLivro = @codLivro;";
                     comm.CommandType = CommandType.Text;
 
                     comm.Parameters.Clear();
                     comm.Parameters.Add("@entradaVen", MySqlDbType.Int32).Value = pegarQuantLivro() + Convert.ToInt32(txtQuantidade.Text);
                     comm.Parameters.Add("@empVen", MySqlDbType.VarChar, 3).Value = "Ven";
                     comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = codLivro;
+                    if(Convert.ToInt32(txtQuantidade.Text) != 0)
+                    {
+                        comm.Parameters.Add("@disponibilidade", MySqlDbType.VarChar, 1).Value = "S";
+                    }else
+                    {
+                        comm.Parameters.Add("@disponibilidade", MySqlDbType.VarChar, 1).Value = "N";
+                    }
                 }
                 if (rdbEmprestimo.Checked)
                 {
-                    comm.CommandText = "update tbEstoque set entradaEmp = @entradaEmp, empVen = @empVen where codLivro = @codLivro;";
+                    comm.CommandText = "update tbEstoque set entradaEmp = @entradaEmp, empVen = @empVen, disponibilidade = @disponibilidade where codLivro = @codLivro;";
                     comm.CommandType = CommandType.Text;
 
                     comm.Parameters.Clear();
                     comm.Parameters.Add("@entradaEmp", MySqlDbType.Int32).Value = pegarQuantLivro() + Convert.ToInt32(txtQuantidade.Text);
                     comm.Parameters.Add("@empVen", MySqlDbType.VarChar, 3).Value = "Emp";
                     comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = codLivro;
+                    if (Convert.ToInt32(txtQuantidade.Text) != 0)
+                    {
+                        comm.Parameters.Add("@disponibilidade", MySqlDbType.VarChar, 1).Value = "S";
+                    }
+                    else
+                    {
+                        comm.Parameters.Add("@disponibilidade", MySqlDbType.VarChar, 1).Value = "N";
+                    }
                 }
 
                 comm.Connection = Conexao.obterConexao();
