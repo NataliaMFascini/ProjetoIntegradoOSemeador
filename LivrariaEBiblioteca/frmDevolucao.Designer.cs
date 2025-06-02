@@ -109,6 +109,7 @@
             this.btnEmprestimo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEmprestimo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEmprestimo.UseVisualStyleBackColor = false;
+            this.btnEmprestimo.Click += new System.EventHandler(this.btnEmprestimo_Click);
             // 
             // btnVender
             // 
@@ -125,6 +126,7 @@
             this.btnVender.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnVender.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVender.UseVisualStyleBackColor = false;
+            this.btnVender.Click += new System.EventHandler(this.btnVender_Click);
             // 
             // btnVoltar
             // 

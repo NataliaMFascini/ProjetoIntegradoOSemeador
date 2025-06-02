@@ -156,7 +156,6 @@
             // 
             // txtProntuario
             // 
-            this.txtProntuario.Enabled = false;
             this.txtProntuario.Location = new System.Drawing.Point(24, 59);
             this.txtProntuario.MaxLength = 100;
             this.txtProntuario.Name = "txtProntuario";

@@ -632,7 +632,7 @@ namespace LivrariaEBiblioteca
             try
             {
                 MySqlCommand comm = new MySqlCommand();
-                comm.CommandText = "delete from tbLivro where codUsu = @codUsu;";
+                comm.CommandText = "delete from tbUsuario where codUsu = @codUsu;";
                 comm.CommandType = CommandType.Text;
 
                 comm.Connection = Conexao.obterConexao();

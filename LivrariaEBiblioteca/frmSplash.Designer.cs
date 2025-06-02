@@ -42,10 +42,10 @@
             this.pgbSplash.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pgbSplash.Location = new System.Drawing.Point(192, 497);
+            this.pgbSplash.MarqueeAnimationSpeed = 10;
             this.pgbSplash.Name = "pgbSplash";
             this.pgbSplash.Size = new System.Drawing.Size(399, 48);
             this.pgbSplash.Step = 1;
-            this.pgbSplash.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.pgbSplash.TabIndex = 0;
             // 
             // lblPorcentagem
@@ -75,7 +75,7 @@
             // tmrSplash
             // 
             this.tmrSplash.Enabled = true;
-            this.tmrSplash.Interval = 500;
+            this.tmrSplash.Interval = 1;
             this.tmrSplash.Tick += new System.EventHandler(this.tmrSplash_Tick);
             // 
             // frmSplash

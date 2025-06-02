@@ -175,7 +175,7 @@ namespace LivrariaEBiblioteca
             txtEmail.Enabled = true;
             mskTelefone.Enabled = true;
             btnLimpar.Enabled = true;
-            btnGerarPront.Enabled = false;
+            btnGerarPront.Enabled = true;
         }
 
         public void desabilitarCampos()
@@ -184,6 +184,7 @@ namespace LivrariaEBiblioteca
             btnRemover.Enabled = false;
             btnCadastrar.Enabled = false;
             btnLimpar.Enabled = false;
+            txtProntuario.Enabled = false;
             txtEmail.Enabled = false;
             txtLocatario.Enabled = false;
             mskCpf.Enabled = false;
@@ -444,6 +445,7 @@ namespace LivrariaEBiblioteca
         {
             btnCadastrar.Enabled = true;
             btnLimpar.Enabled = true;
+            txtProntuario.Enabled = true;
             txtEmail.Enabled = true;
             txtLocatario.Enabled = true;
             mskCpf.Enabled = true;

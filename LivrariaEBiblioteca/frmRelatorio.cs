@@ -51,13 +51,13 @@ namespace LivrariaEBiblioteca
         {
             try
             {
-                nomeRelatorio = "Lista de Livros";
+                nomeRelatorio = "O Semeador - Lista de Livros da Livraria";
                 MySqlCommand comm = new MySqlCommand();
 
                 data1 = mskDataEntre.Text;
                 data2 = mskDataAte.Text;
 
-                comm.CommandText = "select codLivro as 'ID do livro', empVen as 'Tipo', isbn as 'ISBN', nome as 'Titulo', autor as 'Autor', quant as 'Quantidade', valor as 'Valor', editora as 'Editora', anoPublicacao as 'Ano de publicacao', dataCadastro as 'Data de registro' from tbLivro where dataCadastro between @dataCadastro1 and @dataCadastro2;";
+                comm.CommandText = "select codLivro as 'ID do livro', isbn as 'ISBN', nome as 'Titulo', autor as 'Autor', quant as 'Quantidade', valor as 'Valor', editora as 'Editora', anoPublicacao as 'Ano de publicacao', dataCadastro as 'Data de registro' from tbLivroL where dataCadastro between @dataCadastro1 and @dataCadastro2;";
                 comm.CommandType = CommandType.Text;
 
                 comm.Parameters.Clear();
@@ -102,7 +102,7 @@ namespace LivrariaEBiblioteca
         {
             try
             {
-                nomeRelatorio = "Lista de Usuários";
+                nomeRelatorio = "O Semeador - Lista de Usuários";
                 MySqlCommand comm = new MySqlCommand();
 
                 data1 = mskDataEntre.Text;
@@ -137,7 +137,7 @@ namespace LivrariaEBiblioteca
         {
             try
             {
-                nomeRelatorio = "Lista de Locatários";
+                nomeRelatorio = "O Semeador - Lista de Locatários";
                 MySqlCommand comm = new MySqlCommand();
                 data1 = mskDataEntre.Text;
                 data2 = mskDataAte.Text;
@@ -173,7 +173,7 @@ namespace LivrariaEBiblioteca
             {
                 if (this.cargo == "Diretor")
                 {
-                    nomeRelatorio = "Relatório de Vendas";
+                    nomeRelatorio = "O Semeador - Relatório de Vendas";
                     MySqlCommand comm = new MySqlCommand();
                     data1 = mskDataEntre.Text;
                     data2 = mskDataAte.Text;
@@ -213,7 +213,7 @@ namespace LivrariaEBiblioteca
         {
             try
             {
-                nomeRelatorio = "Relatório de Empréstimos";
+                nomeRelatorio = "O Semeador - Relatório de Empréstimos";
                 MySqlCommand comm = new MySqlCommand();
                 data1 = mskDataEntre.Text;
                 data2 = mskDataAte.Text;
@@ -248,9 +248,9 @@ namespace LivrariaEBiblioteca
         {
             try
             {
-                nomeRelatorio = "Dados do Estoque";
+                nomeRelatorio = "O Semeador - Estoque da Livraria";
                 MySqlCommand comm = new MySqlCommand();
-                comm.CommandText = "select empVen as 'Tipo', nomeLivro as 'Titulo', entradaVen as 'Entrada de vendas', saidaVen as 'Saida de vendas', entradaEmp as 'Entrada de emprestimos', saidaEmp as 'Saida de emprestimos', disponibilidade as 'Disponibilidade' from tbEstoque;";
+                comm.CommandText = "select nomeLivro as 'Titulo', entradaVen as 'Entrada de vendas', saidaVen as 'Saida de vendas', disponibilidade as 'Disponibilidade' from tbEstoqueL;";
                 comm.CommandType = CommandType.Text;
 
                 comm.Connection = Conexao.obterConexao();
@@ -356,6 +356,68 @@ namespace LivrariaEBiblioteca
             {
                 MessageBox.Show("Erro ao configurar a impressão.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
+            }
+        }
+
+        private void btnListaBiblioteca_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                nomeRelatorio = "O Semeador - Lista de Livros da Biblioteca";
+                MySqlCommand comm = new MySqlCommand();
+
+                data1 = mskDataEntre.Text;
+                data2 = mskDataAte.Text;
+
+                comm.CommandText = "select codLivro as 'ID do livro', isbn as 'ISBN', nome as 'Titulo', autor as 'Autor', quant as 'Quantidade', editora as 'Editora', anoPublicacao as 'Ano de publicacao', dataCadastro as 'Data de registro' from tbLivroB where dataCadastro between @dataCadastro1 and @dataCadastro2;";
+                comm.CommandType = CommandType.Text;
+
+                comm.Parameters.Clear();
+                comm.Parameters.AddWithValue("@dataCadastro1", DateTime.Parse(data1));
+                comm.Parameters.AddWithValue("@dataCadastro2", DateTime.Parse(data2).AddDays(1));
+
+                comm.Connection = Conexao.obterConexao();
+
+                MySqlDataAdapter adapter = new MySqlDataAdapter(comm);
+
+                DataTable dataTable = new DataTable();
+
+                adapter.Fill(dataTable);
+
+                dgvRelatorio.DataSource = dataTable;
+
+                Conexao.fecharConexao();
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao buscar registro no banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnEstoqueB_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                nomeRelatorio = "O Semeador - Estoque da Biblioteca";
+                MySqlCommand comm = new MySqlCommand();
+                comm.CommandText = "select nomeLivro as 'Titulo', entradaEmp as 'Entrada de emprestimos', saidaEmp as 'Saida de emprestimos', disponibilidade as 'Disponibilidade' from tbEstoqueB;";
+                comm.CommandType = CommandType.Text;
+
+                comm.Connection = Conexao.obterConexao();
+
+                MySqlDataAdapter adapter = new MySqlDataAdapter(comm);
+
+                DataTable dataTable = new DataTable();
+
+                adapter.Fill(dataTable);
+
+                dgvRelatorio.DataSource = dataTable;
+
+                Conexao.fecharConexao();
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro ao buscar registro no banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

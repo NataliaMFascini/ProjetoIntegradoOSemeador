@@ -40,7 +40,7 @@ namespace LivrariaEBiblioteca
             try
             {
                 MySqlCommand comm = new MySqlCommand();
-                comm.CommandText = "select codLivro, isbn, nome, autor, editora, foto from tbLivro where nome = @nome;";
+                comm.CommandText = "select codLivro, isbn, nome, autor, editora, foto from tbLivroB where nome = @nome;";
                 comm.CommandType = CommandType.Text;
 
                 comm.Parameters.Clear();
@@ -139,7 +139,7 @@ namespace LivrariaEBiblioteca
             for (int i = 0; i < ltbCarrinho.Items.Count; i++)
             {
                 livrosDev.nomeLivro = ltbCarrinho.Items[i].ToString();
-                livrosDev.idLivro = livrosDev.pegarID(livrosDev.nomeLivro);
+                livrosDev.idLivro = livrosDev.pegarID(livrosDev.nomeLivro, "emprestimo");
 
                 Livros.ListaLivros.Add(livrosDev);
             }
@@ -290,12 +290,11 @@ namespace LivrariaEBiblioteca
             {
                 for (int i = 0; i < livrosDev.quantidadeLista(); i++)
                 {
-                    comm.CommandText = "update tbEstoque set entradaEmp = @entradaEmp, empVen = @empVen where codLivro = @codLivro";
+                    comm.CommandText = "update tbEstoqueB set entradaEmp = @entradaEmp where codLivro = @codLivro";
                     comm.CommandType = CommandType.Text;
 
                     comm.Parameters.Clear();
                     comm.Parameters.Add("@entradaEmp", MySqlDbType.Int32).Value = pegarQuantLivro(livrosDev.proximoLivro(i)) + quantidadeRetorno(i);
-                    comm.Parameters.Add("@empVen", MySqlDbType.VarChar, 3).Value = "Emp";
                     comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livrosDev.proximoLivro(i);
 
                     comm.Connection = Conexao.obterConexao();
@@ -331,7 +330,7 @@ namespace LivrariaEBiblioteca
             try
             {
                 MySqlCommand comm = new MySqlCommand();
-                comm.CommandText = "select entradaEmp from tbEstoque where codLivro = @codLivro;";
+                comm.CommandText = "select entradaEmp from tbEstoqueB where codLivro = @codLivro;";
                 comm.CommandType = CommandType.Text;
 
                 comm.Parameters.Clear();
@@ -361,7 +360,7 @@ namespace LivrariaEBiblioteca
             {
                 for (int i = 0; i < livrosDev.quantidadeLista(); i++)
                 {
-                    comm.CommandText = "update tbEstoque set disponibilidade = @disponibilidade where codLivro = @codLivro";
+                    comm.CommandText = "update tbEstoqueB set disponibilidade = @disponibilidade where codLivro = @codLivro";
                     comm.CommandType = CommandType.Text;
 
                     comm.Parameters.Clear();
@@ -387,6 +386,20 @@ namespace LivrariaEBiblioteca
             {
                 MessageBox.Show("Erro ao checar disponibilidade.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }        
+        }
+
+        private void btnEmprestimo_Click(object sender, EventArgs e)
+        {
+            frmEmprestimo abrir = new frmEmprestimo(nome, codUsu, cargo);
+            abrir.Show();
+            this.Hide();
+        }
+
+        private void btnVender_Click(object sender, EventArgs e)
+        {
+            frmVender abrir = new frmVender(nome, codUsu, cargo);
+            abrir.Show();
+            this.Hide();
+        }
     }
 }

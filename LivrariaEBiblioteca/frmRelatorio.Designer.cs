@@ -31,12 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRelatorio));
             this.dgvRelatorio = new System.Windows.Forms.DataGridView();
             this.tlpRelatorios = new System.Windows.Forms.TableLayoutPanel();
-            this.btnEstoque = new System.Windows.Forms.Button();
+            this.btnListaBiblioteca = new System.Windows.Forms.Button();
+            this.btnListaLivros = new System.Windows.Forms.Button();
+            this.btnEstoqueL = new System.Windows.Forms.Button();
             this.btnEmprestimos = new System.Windows.Forms.Button();
             this.btnVendas = new System.Windows.Forms.Button();
             this.btnLocatarios = new System.Windows.Forms.Button();
             this.btnUsuarios = new System.Windows.Forms.Button();
-            this.btnListaLivros = new System.Windows.Forms.Button();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -49,6 +50,7 @@
             this.lblAte = new System.Windows.Forms.Label();
             this.mskDataEntre = new System.Windows.Forms.MaskedTextBox();
             this.mskDataAte = new System.Windows.Forms.MaskedTextBox();
+            this.btnEstoqueB = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorio)).BeginInit();
             this.tlpRelatorios.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -76,44 +78,80 @@
             this.tlpRelatorios.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tlpRelatorios.ColumnCount = 1;
             this.tlpRelatorios.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpRelatorios.Controls.Add(this.btnEstoque, 0, 5);
-            this.tlpRelatorios.Controls.Add(this.btnEmprestimos, 0, 4);
-            this.tlpRelatorios.Controls.Add(this.btnVendas, 0, 3);
-            this.tlpRelatorios.Controls.Add(this.btnLocatarios, 0, 2);
-            this.tlpRelatorios.Controls.Add(this.btnUsuarios, 0, 1);
+            this.tlpRelatorios.Controls.Add(this.btnEstoqueB, 0, 7);
+            this.tlpRelatorios.Controls.Add(this.btnListaBiblioteca, 0, 1);
             this.tlpRelatorios.Controls.Add(this.btnListaLivros, 0, 0);
-            this.tlpRelatorios.Controls.Add(this.btnVoltar, 0, 6);
+            this.tlpRelatorios.Controls.Add(this.btnEstoqueL, 0, 6);
+            this.tlpRelatorios.Controls.Add(this.btnEmprestimos, 0, 5);
+            this.tlpRelatorios.Controls.Add(this.btnVendas, 0, 4);
+            this.tlpRelatorios.Controls.Add(this.btnLocatarios, 0, 3);
+            this.tlpRelatorios.Controls.Add(this.btnUsuarios, 0, 2);
             this.tlpRelatorios.Dock = System.Windows.Forms.DockStyle.Right;
             this.tlpRelatorios.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tlpRelatorios.Location = new System.Drawing.Point(620, 0);
             this.tlpRelatorios.Name = "tlpRelatorios";
-            this.tlpRelatorios.RowCount = 7;
-            this.tlpRelatorios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tlpRelatorios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tlpRelatorios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tlpRelatorios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tlpRelatorios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tlpRelatorios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tlpRelatorios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tlpRelatorios.RowCount = 8;
+            this.tlpRelatorios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tlpRelatorios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tlpRelatorios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tlpRelatorios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tlpRelatorios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tlpRelatorios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tlpRelatorios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tlpRelatorios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tlpRelatorios.Size = new System.Drawing.Size(180, 600);
             this.tlpRelatorios.TabIndex = 4;
             // 
-            // btnEstoque
+            // btnListaBiblioteca
             // 
-            this.btnEstoque.BackColor = System.Drawing.Color.PowderBlue;
-            this.btnEstoque.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnEstoque.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEstoque.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEstoque.Image = ((System.Drawing.Image)(resources.GetObject("btnEstoque.Image")));
-            this.btnEstoque.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnEstoque.Location = new System.Drawing.Point(3, 428);
-            this.btnEstoque.Name = "btnEstoque";
-            this.btnEstoque.Size = new System.Drawing.Size(174, 79);
-            this.btnEstoque.TabIndex = 10;
-            this.btnEstoque.Text = "&Dados do estoque";
-            this.btnEstoque.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnEstoque.UseVisualStyleBackColor = false;
-            this.btnEstoque.Click += new System.EventHandler(this.btnEstoque_Click);
+            this.btnListaBiblioteca.BackColor = System.Drawing.Color.PowderBlue;
+            this.btnListaBiblioteca.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnListaBiblioteca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnListaBiblioteca.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListaBiblioteca.Image = ((System.Drawing.Image)(resources.GetObject("btnListaBiblioteca.Image")));
+            this.btnListaBiblioteca.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnListaBiblioteca.Location = new System.Drawing.Point(3, 78);
+            this.btnListaBiblioteca.Name = "btnListaBiblioteca";
+            this.btnListaBiblioteca.Size = new System.Drawing.Size(174, 69);
+            this.btnListaBiblioteca.TabIndex = 11;
+            this.btnListaBiblioteca.Text = "Livros da &biblioteca";
+            this.btnListaBiblioteca.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnListaBiblioteca.UseVisualStyleBackColor = false;
+            this.btnListaBiblioteca.Click += new System.EventHandler(this.btnListaBiblioteca_Click);
+            // 
+            // btnListaLivros
+            // 
+            this.btnListaLivros.BackColor = System.Drawing.Color.PowderBlue;
+            this.btnListaLivros.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnListaLivros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnListaLivros.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListaLivros.Image = ((System.Drawing.Image)(resources.GetObject("btnListaLivros.Image")));
+            this.btnListaLivros.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnListaLivros.Location = new System.Drawing.Point(3, 3);
+            this.btnListaLivros.Name = "btnListaLivros";
+            this.btnListaLivros.Size = new System.Drawing.Size(174, 69);
+            this.btnListaLivros.TabIndex = 5;
+            this.btnListaLivros.Text = "&Livros da livraria";
+            this.btnListaLivros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnListaLivros.UseVisualStyleBackColor = false;
+            this.btnListaLivros.Click += new System.EventHandler(this.btnListaLivros_Click);
+            // 
+            // btnEstoqueL
+            // 
+            this.btnEstoqueL.BackColor = System.Drawing.Color.PowderBlue;
+            this.btnEstoqueL.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnEstoqueL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEstoqueL.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEstoqueL.Image = ((System.Drawing.Image)(resources.GetObject("btnEstoqueL.Image")));
+            this.btnEstoqueL.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEstoqueL.Location = new System.Drawing.Point(3, 453);
+            this.btnEstoqueL.Name = "btnEstoqueL";
+            this.btnEstoqueL.Size = new System.Drawing.Size(174, 69);
+            this.btnEstoqueL.TabIndex = 10;
+            this.btnEstoqueL.Text = "Es&toque da livraria";
+            this.btnEstoqueL.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEstoqueL.UseVisualStyleBackColor = false;
+            this.btnEstoqueL.Click += new System.EventHandler(this.btnEstoque_Click);
             // 
             // btnEmprestimos
             // 
@@ -122,9 +160,9 @@
             this.btnEmprestimos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEmprestimos.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEmprestimos.Image = ((System.Drawing.Image)(resources.GetObject("btnEmprestimos.Image")));
-            this.btnEmprestimos.Location = new System.Drawing.Point(3, 343);
+            this.btnEmprestimos.Location = new System.Drawing.Point(3, 378);
             this.btnEmprestimos.Name = "btnEmprestimos";
-            this.btnEmprestimos.Size = new System.Drawing.Size(174, 79);
+            this.btnEmprestimos.Size = new System.Drawing.Size(174, 69);
             this.btnEmprestimos.TabIndex = 9;
             this.btnEmprestimos.Text = "Relatorio de &empréstimos";
             this.btnEmprestimos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -139,9 +177,9 @@
             this.btnVendas.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVendas.Image = ((System.Drawing.Image)(resources.GetObject("btnVendas.Image")));
             this.btnVendas.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnVendas.Location = new System.Drawing.Point(3, 258);
+            this.btnVendas.Location = new System.Drawing.Point(3, 303);
             this.btnVendas.Name = "btnVendas";
-            this.btnVendas.Size = new System.Drawing.Size(174, 79);
+            this.btnVendas.Size = new System.Drawing.Size(174, 69);
             this.btnVendas.TabIndex = 8;
             this.btnVendas.Text = "&Relatório de vendas";
             this.btnVendas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -156,9 +194,9 @@
             this.btnLocatarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLocatarios.Image = ((System.Drawing.Image)(resources.GetObject("btnLocatarios.Image")));
             this.btnLocatarios.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnLocatarios.Location = new System.Drawing.Point(3, 173);
+            this.btnLocatarios.Location = new System.Drawing.Point(3, 228);
             this.btnLocatarios.Name = "btnLocatarios";
-            this.btnLocatarios.Size = new System.Drawing.Size(174, 79);
+            this.btnLocatarios.Size = new System.Drawing.Size(174, 69);
             this.btnLocatarios.TabIndex = 7;
             this.btnLocatarios.Text = "Lista de l&ocatários";
             this.btnLocatarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -173,31 +211,14 @@
             this.btnUsuarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUsuarios.Image = ((System.Drawing.Image)(resources.GetObject("btnUsuarios.Image")));
             this.btnUsuarios.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnUsuarios.Location = new System.Drawing.Point(3, 88);
+            this.btnUsuarios.Location = new System.Drawing.Point(3, 153);
             this.btnUsuarios.Name = "btnUsuarios";
-            this.btnUsuarios.Size = new System.Drawing.Size(174, 79);
+            this.btnUsuarios.Size = new System.Drawing.Size(174, 69);
             this.btnUsuarios.TabIndex = 6;
             this.btnUsuarios.Text = "Lista de &usuários";
             this.btnUsuarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnUsuarios.UseVisualStyleBackColor = false;
             this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
-            // 
-            // btnListaLivros
-            // 
-            this.btnListaLivros.BackColor = System.Drawing.Color.PowderBlue;
-            this.btnListaLivros.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnListaLivros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnListaLivros.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnListaLivros.Image = ((System.Drawing.Image)(resources.GetObject("btnListaLivros.Image")));
-            this.btnListaLivros.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnListaLivros.Location = new System.Drawing.Point(3, 3);
-            this.btnListaLivros.Name = "btnListaLivros";
-            this.btnListaLivros.Size = new System.Drawing.Size(174, 79);
-            this.btnListaLivros.TabIndex = 5;
-            this.btnListaLivros.Text = "&Lista de livros";
-            this.btnListaLivros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnListaLivros.UseVisualStyleBackColor = false;
-            this.btnListaLivros.Click += new System.EventHandler(this.btnListaLivros_Click);
             // 
             // btnVoltar
             // 
@@ -207,9 +228,9 @@
             this.btnVoltar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVoltar.Image = ((System.Drawing.Image)(resources.GetObject("btnVoltar.Image")));
             this.btnVoltar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnVoltar.Location = new System.Drawing.Point(3, 513);
+            this.btnVoltar.Location = new System.Drawing.Point(468, 3);
             this.btnVoltar.Name = "btnVoltar";
-            this.btnVoltar.Size = new System.Drawing.Size(174, 84);
+            this.btnVoltar.Size = new System.Drawing.Size(149, 74);
             this.btnVoltar.TabIndex = 11;
             this.btnVoltar.Text = "&Voltar";
             this.btnVoltar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -226,7 +247,7 @@
             this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnImprimir.Location = new System.Drawing.Point(3, 3);
             this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(200, 74);
+            this.btnImprimir.Size = new System.Drawing.Size(149, 74);
             this.btnImprimir.TabIndex = 2;
             this.btnImprimir.Text = "&Imprimir";
             this.btnImprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -235,13 +256,15 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.Controls.Add(this.btnExportar, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnLimpar, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnImprimir, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnVoltar, 3, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableLayoutPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 520);
@@ -259,9 +282,9 @@
             this.btnExportar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportar.Image = ((System.Drawing.Image)(resources.GetObject("btnExportar.Image")));
             this.btnExportar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExportar.Location = new System.Drawing.Point(209, 3);
+            this.btnExportar.Location = new System.Drawing.Point(158, 3);
             this.btnExportar.Name = "btnExportar";
-            this.btnExportar.Size = new System.Drawing.Size(200, 74);
+            this.btnExportar.Size = new System.Drawing.Size(149, 74);
             this.btnExportar.TabIndex = 4;
             this.btnExportar.Text = "E&xportar";
             this.btnExportar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -276,9 +299,9 @@
             this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpar.Image")));
             this.btnLimpar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnLimpar.Location = new System.Drawing.Point(415, 3);
+            this.btnLimpar.Location = new System.Drawing.Point(313, 3);
             this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(202, 74);
+            this.btnLimpar.Size = new System.Drawing.Size(149, 74);
             this.btnLimpar.TabIndex = 3;
             this.btnLimpar.Text = "Li&mpar";
             this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -343,6 +366,23 @@
             this.mskDataAte.TabIndex = 9;
             this.mskDataAte.ValidatingType = typeof(System.DateTime);
             // 
+            // btnEstoqueB
+            // 
+            this.btnEstoqueB.BackColor = System.Drawing.Color.PowderBlue;
+            this.btnEstoqueB.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnEstoqueB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEstoqueB.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEstoqueB.Image = ((System.Drawing.Image)(resources.GetObject("btnEstoqueB.Image")));
+            this.btnEstoqueB.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEstoqueB.Location = new System.Drawing.Point(3, 528);
+            this.btnEstoqueB.Name = "btnEstoqueB";
+            this.btnEstoqueB.Size = new System.Drawing.Size(174, 69);
+            this.btnEstoqueB.TabIndex = 12;
+            this.btnEstoqueB.Text = "Estoque da b&iblioteca";
+            this.btnEstoqueB.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEstoqueB.UseVisualStyleBackColor = false;
+            this.btnEstoqueB.Click += new System.EventHandler(this.btnEstoqueB_Click);
+            // 
             // frmRelatorio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -385,7 +425,7 @@
         private System.Windows.Forms.Button btnVoltar;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button btnLimpar;
-        private System.Windows.Forms.Button btnEstoque;
+        private System.Windows.Forms.Button btnEstoqueL;
         private System.Drawing.Printing.PrintDocument pdcRelatorio;
         private System.Windows.Forms.PrintDialog pdiaRelatorio;
         private System.Windows.Forms.Button btnExportar;
@@ -394,5 +434,7 @@
         private System.Windows.Forms.Label lblAte;
         private System.Windows.Forms.MaskedTextBox mskDataEntre;
         private System.Windows.Forms.MaskedTextBox mskDataAte;
+        private System.Windows.Forms.Button btnListaBiblioteca;
+        private System.Windows.Forms.Button btnEstoqueB;
     }
 }

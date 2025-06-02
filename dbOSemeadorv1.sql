@@ -43,15 +43,28 @@ dataCadastro dateTime,
 primary key(codLoc)
 );
 
--- Tabela livros
-create table tbLivro(
+-- Tabela Livraria(Vendas)
+create table tbLivroL(
 codLivro int not null auto_increment,
-empVen char(3) not null check (empVen in ('Emp', 'Ven')),
 isbn char(20) not null,
 nome varchar(100) not null,
 autor varchar(100) not null,
 quant int not null default 0 check(quant >= 0),
 valor decimal(9,2) not null default 0 check(valor >= 0),
+editora varchar(50),
+anoPublicacao int,
+foto varchar(200),
+dataCadastro dateTime,
+primary key (codLivro)
+);
+
+-- Tabela Biblioteca(Emprestimos)
+create table tbLivroB(
+codLivro int not null auto_increment,
+isbn char(20) not null,
+nome varchar(100) not null,
+autor varchar(100) not null,
+quant int not null default 0 check(quant >= 0),
 editora varchar(50),
 anoPublicacao int,
 foto varchar(200),
@@ -71,7 +84,7 @@ nomeVendedor varchar(100),
 dataCadastro dateTime,
 codLivro int not null,
 primary key(codEmp),
-foreign key(codLivro) references tbLivro(codLivro)
+foreign key(codLivro) references tbLivroB(codLivro)
 );
 
 -- tabela vendas
@@ -86,39 +99,48 @@ dataCadastro dateTime,
 codLivro int not null,
 codUsu int not null,
 primary key(codVenda),
-foreign key (codLivro) references tbLivro(codLivro),
+foreign key (codLivro) references tbLivroL(codLivro),
 foreign key (codUsu) references tbUsuario(codUsu)
 );
 
 -- tabela estoque(talvez mudar)
-create table tbEstoque(
+create table tbEstoqueL(
 codEsto int not null auto_increment,
-empVen char(3) not null check (empVen in ('Emp', 'Ven')),
 entradaVen int default 0 check(entradaVen >= 0),
 saidaVen int default 0 check(saidaVen >= 0),
+nomeLivro varchar(100),
+disponibilidade char(1) default 'S' check (disponibilidade in ('S', 'N')),
+codLivro int not null,
+primary key (codEsto),
+foreign key (codLivro) references tbLivroL(codLivro)
+);
+
+create table tbEstoqueB(
+codEsto int not null auto_increment,
 entradaEmp int default 0 check(entradaEmp >= 0),
 saidaEmp int default 0 check(saidaEmp >= 0),
 nomeLivro varchar(100),
 disponibilidade char(1) default 'S' check (disponibilidade in ('S', 'N')),
 codLivro int not null,
 primary key (codEsto),
-foreign key (codLivro) references tbLivro(codLivro)
+foreign key (codLivro) references tbLivroB(codLivro)
 );
-
-insert into tbEstoque(empVen, entradaEmp, nomeLivro,  disponibilidade, codLivro) values ('Emp', 1, 'Logica de Programacao', 'S', 3);
-
 
 -- visualizar
 desc tbUsuario;
 desc tbLocatario;
-desc tbLivro;
+desc tbLivroL;
+desc tbLivroB;
 desc tbEmprestimo;
 desc tbVendas;
-desc tbEstoque;
+desc tbEstoqueL;
+desc tbEstoqueB;
 
-select * from tbLivro;
+select * from tbLivroL;
+select * from tbLivroB;
 select * from tbUsuario;
 select * from tbLocatario;
 select * from tbVendas;
 select * from tbEmprestimo;
-select * from tbEstoque;
+select * from tbEstoqueL;
+select * from tbEstoqueB;

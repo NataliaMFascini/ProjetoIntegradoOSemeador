@@ -19,10 +19,13 @@ namespace LivrariaEBiblioteca
 
         private void tmrSplash_Tick(object sender, EventArgs e)
         {
-            if (pgbSplash.Value < 100)
+            int contagem = 0;
+
+            if (pgbSplash.Value < 100 && contagem < 100)
             {
-                pgbSplash.Value = pgbSplash.Value + 10;
-                lblPorcentagem.Text = pgbSplash.Value.ToString() + "%";
+                pgbSplash.Value = pgbSplash.Value + 1;
+                contagem = pgbSplash.Value;
+                lblPorcentagem.Text = contagem + "%";
             }
             else
             {
