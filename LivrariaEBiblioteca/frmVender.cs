@@ -239,11 +239,9 @@ namespace LivrariaEBiblioteca
         public void escanearLivro(string isbn)
         {
             try
-            {
-                string tipo;
-
+            {                
                 MySqlCommand comm = new MySqlCommand();
-                comm.CommandText = "select codLivro, empVen, nome, autor, editora, valor, foto from tbLivro where isbn = @isbn;";
+                comm.CommandText = "select codLivro, nome, autor, editora, valor, foto from tbLivroL where isbn = @isbn;";
                 comm.CommandType = CommandType.Text;
 
                 comm.Parameters.Clear();
@@ -258,28 +256,17 @@ namespace LivrariaEBiblioteca
 
                 if (resp)
                 {
-                    tipo = DR.GetString(1);
-
-                    if (tipo.Equals("Emp"))
+                    txtIdLivro.Text = Convert.ToString(DR.GetInt32(0));
+                    txtTitulo.Text = DR.GetString(1);
+                    txtAutor.Text = DR.GetString(2);
+                    txtEditora.Text = DR.GetString(3);
+                    custo = DR.GetDecimal(4);
+                    txtValor.Text = "R$ " + custo.ToString("0.00");
+                    if (fotoPath != null)
                     {
-                        MessageBox.Show("Esse livro não está disponível para venda.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
-                        txtIsbn.Clear();
-                        txtIsbn.Focus();
-                    }
-                    else
-                    {
-                        txtIdLivro.Text = Convert.ToString(DR.GetInt32(0));
-                        txtTitulo.Text = DR.GetString(2);
-                        txtAutor.Text = DR.GetString(3);
-                        txtEditora.Text = DR.GetString(4);
-                        custo = DR.GetDecimal(5);
-                        txtValor.Text = "R$ " + custo.ToString("0.00");
-                        if (fotoPath != null)
-                        {
-                            fotoPath = DR.GetString(6);
-                            pctLivro.ImageLocation = fotoPath;
-                            pctLivro.Load();
-                        }
+                        fotoPath = DR.GetString(5);
+                        pctLivro.ImageLocation = fotoPath;
+                        pctLivro.Load();
                     }
                 }
                 else
@@ -393,7 +380,7 @@ namespace LivrariaEBiblioteca
             {
                 for (int i = 0; i < livros.quantidadeLista(); i++)
                 {
-                    comm.CommandText = "update tbEstoque set saidaVen = @saidaVen, empVen = @empVen where codLivro = @codLivro";
+                    comm.CommandText = "update tbEstoqueL set saidaVen = @saidaVen, empVen = @empVen where codLivro = @codLivro";
                     comm.CommandType = CommandType.Text;
 
                     comm.Parameters.Clear();
@@ -434,7 +421,7 @@ namespace LivrariaEBiblioteca
             try
             {
                 MySqlCommand comm = new MySqlCommand();
-                comm.CommandText = "select entradaVen from tbEstoque where codLivro = @codLivro;";
+                comm.CommandText = "select entradaVen from tbEstoqueL where codLivro = @codLivro;";
                 comm.CommandType = CommandType.Text;
 
                 comm.Parameters.Clear();
@@ -463,7 +450,7 @@ namespace LivrariaEBiblioteca
             try
             {
                 MySqlCommand comm = new MySqlCommand();
-                comm.CommandText = "select saidaVen from tbEstoque where codLivro = @codLivro;";
+                comm.CommandText = "select saidaVen from tbEstoqueL where codLivro = @codLivro;";
                 comm.CommandType = CommandType.Text;
 
                 comm.Parameters.Clear();
@@ -530,7 +517,7 @@ namespace LivrariaEBiblioteca
             try
             {
                 MySqlCommand comm = new MySqlCommand();
-                comm.CommandText = "select codLivro, isbn, nome, autor, editora, valor, foto from tbLivro where nome = @nome;";
+                comm.CommandText = "select codLivro, isbn, nome, autor, editora, valor, foto from tbLivroL where nome = @nome;";
                 comm.CommandType = CommandType.Text;
 
                 comm.Parameters.Clear();

@@ -155,7 +155,7 @@ namespace LivrariaEBiblioteca
                 abrir.Show();
                 this.Hide();
             }
-            if(ultimaTela == "Devolução")
+            if (ultimaTela == "Devolução")
             {
                 frmDevolucao abrir = new frmDevolucao(this.nome, this.codUsu, this.cargo);
                 abrir.Show();
@@ -167,6 +167,8 @@ namespace LivrariaEBiblioteca
         {
             habilitarCampos();
             txtIdLivro.Focus();
+            txtTitulo.Clear();
+            txtIsbn.Clear();
             txtTitulo.Enabled = false;
             txtIsbn.Enabled = false;
         }
@@ -175,6 +177,8 @@ namespace LivrariaEBiblioteca
         {
             habilitarCampos();
             txtTitulo.Focus();
+            txtIsbn.Clear();
+            txtIdLivro.Clear();
             txtIdLivro.Enabled = false;
             txtIsbn.Enabled = false;
         }
@@ -208,7 +212,7 @@ namespace LivrariaEBiblioteca
         public bool checarCharactere()
         {
             int tryParse;
-                        
+
             if (int.TryParse(txtTitulo.Text, out tryParse))
             {
                 MessageBox.Show("Use apenas letras.", "Mensagem do sistema", MessageBoxButtons.OK);
@@ -226,17 +230,24 @@ namespace LivrariaEBiblioteca
         {
             if (checarCharactere() && checarCampos())
             {
-                if (rdbIdLivro.Checked)
+                try
                 {
-                    pesquisarPorId(Convert.ToInt32(txtIdLivro.Text));
+                    if (rdbIdLivro.Checked)
+                    {
+                        pesquisarPorId(Convert.ToInt32(txtIdLivro.Text));
+                    }
+                    if (rdbTitulo.Checked)
+                    {
+                        pesquisarPorNome(txtTitulo.Text);
+                    }
+                    if (rdbIsbn.Checked)
+                    {
+                        pesquisarPorIsbn(Convert.ToInt32(txtIsbn.Text));
+                    }
                 }
-                if (rdbTitulo.Checked)
+                catch (Exception)
                 {
-                    pesquisarPorNome(txtTitulo.Text);
-                }
-                if (rdbIsbn.Checked)
-                {
-                    pesquisarPorIsbn(Convert.ToInt32(txtIsbn.Text));
+                    MessageBox.Show("Erro ao realizar busca.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -246,8 +257,16 @@ namespace LivrariaEBiblioteca
             try
             {
                 MySqlCommand comm = new MySqlCommand();
-                comm.CommandText = "select * from tbLivro where codLivro = @codLivro;";
-                comm.CommandType = CommandType.Text;
+                if (rdbLivraria.Checked)
+                {
+                    comm.CommandText = "select codLivro, nome, foto from tbLivroL where codLivro = @codLivro;";
+                    comm.CommandType = CommandType.Text;
+                }
+                if (rdbBiblioteca.Checked)
+                {
+                    comm.CommandText = "select codLivro, nome, foto from tbLivroB where codLivro = @codLivro;";
+                    comm.CommandType = CommandType.Text;
+                }
 
                 comm.Parameters.Clear();
                 comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = descricao;
@@ -264,8 +283,8 @@ namespace LivrariaEBiblioteca
                 }
 
                 codLivroEstoque = DR.GetInt32(0);
-                ltbPesquisar.Items.Add(DR.GetString(3));
-                fotoPath = DR.GetString(9);
+                ltbPesquisar.Items.Add(DR.GetString(1));
+                fotoPath = DR.GetString(2);
                 mostrarFoto(fotoPath);
 
                 Conexao.fecharConexao();
@@ -281,8 +300,16 @@ namespace LivrariaEBiblioteca
             try
             {
                 MySqlCommand comm = new MySqlCommand();
-                comm.CommandText = "select * from tbLivro where nome like '%" + descricao + "%';";
-                comm.CommandType = CommandType.Text;
+                if (rdbLivraria.Checked)
+                {
+                    comm.CommandText = "select * from tbLivroL where nome like '%" + descricao + "%';";
+                    comm.CommandType = CommandType.Text;
+                }
+                if (rdbBiblioteca.Checked)
+                {
+                    comm.CommandText = "select * from tbLivroB where nome like '%" + descricao + "%';";
+                    comm.CommandType = CommandType.Text;
+                }
 
                 comm.Parameters.Clear();
                 comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = descricao;
@@ -319,9 +346,16 @@ namespace LivrariaEBiblioteca
             try
             {
                 MySqlCommand comm = new MySqlCommand();
-                comm.CommandText = "select * from tbLivro where isbn = @isbn;";
-                comm.CommandType = CommandType.Text;
-
+                if (rdbLivraria.Checked)
+                {
+                    comm.CommandText = "select codLivro, nome, foto from tbLivroL where isbn = @isbn;";
+                    comm.CommandType = CommandType.Text;
+                }
+                if (rdbBiblioteca.Checked)
+                {
+                    comm.CommandText = "select codLivro, nome, foto from tbLivroB where isbn = @isbn;";
+                    comm.CommandType = CommandType.Text;
+                }
                 comm.Parameters.Clear();
                 comm.Parameters.Add("@isbn", MySqlDbType.Int32).Value = descricao;
 
@@ -336,8 +370,8 @@ namespace LivrariaEBiblioteca
                     MessageBox.Show("Não há livros com esse ISBN.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 codLivroEstoque = DR.GetInt32(0);
-                ltbPesquisar.Items.Add(DR.GetString(3));
-                fotoPath = DR.GetString(9);
+                ltbPesquisar.Items.Add(DR.GetString(1));
+                fotoPath = DR.GetString(2);
                 mostrarFoto(fotoPath);
 
                 Conexao.fecharConexao();
@@ -349,16 +383,22 @@ namespace LivrariaEBiblioteca
         }
 
         public int pegarEstoque(string livroSelecionado)
-        {
-            string tipo;
+        {            
             int estoqueEnt = 0;
             int estoqueSai = 0;
             try
             {
                 MySqlCommand comm = new MySqlCommand();
-                comm.CommandText = "select * from tbEstoque where nomeLivro = @nomeLivro";
-                comm.CommandType = CommandType.Text;
-
+                if (rdbLivraria.Checked)
+                {
+                    comm.CommandText = "select * from tbEstoqueL where nomeLivro = @nomeLivro";
+                    comm.CommandType = CommandType.Text;
+                }
+                if (rdbBiblioteca.Checked)
+                {
+                    comm.CommandText = "select * from tbEstoqueB where nomeLivro = @nomeLivro";
+                    comm.CommandType = CommandType.Text;
+                }
                 comm.Parameters.Clear();
                 comm.Parameters.Add("@nomeLivro", MySqlDbType.VarChar, 100).Value = livroSelecionado;
 
@@ -367,17 +407,9 @@ namespace LivrariaEBiblioteca
                 DR.Read();
 
                 codLivroEstoque = DR.GetInt32(8);
-                tipo = DR.GetString(1);
-                if (tipo == "Ven")
-                {
-                    estoqueEnt = DR.GetInt32(2);
-                    estoqueSai = DR.GetInt32(3);
-                }
-                if (tipo == "Emp")
-                {
-                    estoqueEnt = DR.GetInt32(4);
-                    estoqueSai = DR.GetInt32(5);
-                }
+
+                estoqueEnt = DR.GetInt32(1);
+                estoqueSai = DR.GetInt32(2);
 
                 estoque = estoqueEnt - estoqueSai;
 
@@ -405,10 +437,12 @@ namespace LivrariaEBiblioteca
             }
         }
 
-        private void rdbIsbn_CheckedChanged_1(object sender, EventArgs e)
+        private void rdbIsbn_CheckedChanged(object sender, EventArgs e)
         {
             habilitarCampos();
             txtIsbn.Focus();
+            txtTitulo.Clear();
+            txtIdLivro.Clear();
             txtTitulo.Enabled = false;
             txtIdLivro.Enabled = false;
         }
@@ -425,9 +459,18 @@ namespace LivrariaEBiblioteca
                 MessageBox.Show("Selecione um livro para gerenciar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            frmCadastroLivros abrir = new frmCadastroLivros(nomeLivro, this.nome, this.codUsu, this.cargo);
-            abrir.Show();
-            this.Hide();
+            if (rdbBiblioteca.Checked)
+            {
+                frmCadastroLivros abrir = new frmCadastroLivros(nomeLivro, "emprestimo", this.nome, this.codUsu, this.cargo);
+                abrir.Show();
+                this.Hide();
+            }
+            if (rdbLivraria.Checked)
+            {
+                frmCadastroLivros abrir = new frmCadastroLivros(nomeLivro, "venda", this.nome, this.codUsu, this.cargo);
+                abrir.Show();
+                this.Hide();
+            }
         }
         private void txtIdLivro_KeyDown(object sender, KeyEventArgs e)
         {

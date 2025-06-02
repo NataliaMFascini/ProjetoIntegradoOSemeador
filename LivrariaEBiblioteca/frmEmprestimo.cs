@@ -321,14 +321,12 @@ namespace LivrariaEBiblioteca
             {
                 for (int i = 0; i < livros.quantidadeLista(); i++)
                 {
-                    comm.CommandText = "update tbEstoque set saidaEmp = @saidaEmp, empVen = @empVen where codLivro = @codLivro";
+                    comm.CommandText = "update tbEstoqueB set saidaEmp = @saidaEmp where codLivro = @codLivro";
                     comm.CommandType = CommandType.Text;
 
                     comm.Parameters.Clear();
                     comm.Parameters.Add("@saidaEmp", MySqlDbType.Int32).Value = pegarQuantSaida(livros.proximoLivro(i)) + quantidadeRetorno(i);
-                    comm.Parameters.Add("@empVen", MySqlDbType.VarChar, 3).Value = "Emp";
                     comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.proximoLivro(i);
-
 
                     comm.Connection = Conexao.obterConexao();
 
@@ -351,7 +349,7 @@ namespace LivrariaEBiblioteca
             {
                 for (int i = 0; i < livros.quantidadeLista(); i++)
                 {
-                    comm.CommandText = "update tbEstoque set disponibilidade = @disponibilidade where codLivro = @codLivro";
+                    comm.CommandText = "update tbEstoqueB set disponibilidade = @disponibilidade where codLivro = @codLivro";
                     comm.CommandType = CommandType.Text;
 
                     comm.Parameters.Clear();
@@ -398,7 +396,7 @@ namespace LivrariaEBiblioteca
             try
             {
                 MySqlCommand comm = new MySqlCommand();
-                comm.CommandText = "select entradaEmp from tbEstoque where codLivro = @codLivro;";
+                comm.CommandText = "select entradaEmp from tbEstoqueB where codLivro = @codLivro;";
                 comm.CommandType = CommandType.Text;
 
                 comm.Parameters.Clear();
@@ -427,7 +425,7 @@ namespace LivrariaEBiblioteca
             try
             {
                 MySqlCommand comm = new MySqlCommand();
-                comm.CommandText = "select saidaEmp from tbEstoque where codLivro = @codLivro;";
+                comm.CommandText = "select saidaEmp from tbEstoqueB where codLivro = @codLivro;";
                 comm.CommandType = CommandType.Text;
 
                 comm.Parameters.Clear();
@@ -465,10 +463,8 @@ namespace LivrariaEBiblioteca
         {
             try
             {
-                string tipo;
-
                 MySqlCommand comm = new MySqlCommand();
-                comm.CommandText = "select empVen, isbn, nome, autor, editora, foto from tbLivro where codLivro = @codLivro;";
+                comm.CommandText = "select isbn, nome, autor, editora, foto from tbLivroB where codLivro = @codLivro;";
                 comm.CommandType = CommandType.Text;
 
                 comm.Parameters.Clear();
@@ -481,30 +477,22 @@ namespace LivrariaEBiblioteca
 
                 bool resp = DR.HasRows;
 
-                tipo = DR.GetString(0);
 
                 if (resp)
                 {
-                    if (tipo.Equals("Emp"))
+                    txtIsbn.Text = DR.GetString(0);
+                    txtTitulo.Text = DR.GetString(1);
+                    txtAutor.Text = DR.GetString(2);
+                    txtEditora.Text = DR.GetString(3);
+                    if (fotoPath != null)
                     {
-                        txtIsbn.Text = DR.GetString(1);
-                        txtTitulo.Text = DR.GetString(2);
-                        txtAutor.Text = DR.GetString(3);
-                        txtEditora.Text = DR.GetString(4);
-                        if (fotoPath != null)
-                        {
-                            fotoPath = DR.GetString(5);
-                            pctLivro.ImageLocation = fotoPath;
-                            pctLivro.Load();
-                        }
-                        else
-                        {
-                            pctLivro.Image = null;
-                        }
+                        fotoPath = DR.GetString(4);
+                        pctLivro.ImageLocation = fotoPath;
+                        pctLivro.Load();
                     }
                     else
                     {
-                        MessageBox.Show("Livro selecionado não esta cadastrado para Empréstimo", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        pctLivro.Image = null;
                     }
                 }
                 else
@@ -525,7 +513,7 @@ namespace LivrariaEBiblioteca
         public bool checarDisp(int codLivro)
         {
             MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select disponibilidade from tbEstoque where codLivro = @codLivro";
+            comm.CommandText = "select disponibilidade from tbEstoqueB where codLivro = @codLivro";
             comm.CommandType = CommandType.Text;
 
             comm.Parameters.Clear();
@@ -682,7 +670,7 @@ namespace LivrariaEBiblioteca
             try
             {
                 MySqlCommand comm = new MySqlCommand();
-                comm.CommandText = "select codLivro, isbn, nome, autor, editora, foto from tbLivro where nome = @nome;";
+                comm.CommandText = "select codLivro, isbn, nome, autor, editora, foto from tbLivroB where nome = @nome;";
                 comm.CommandType = CommandType.Text;
 
                 comm.Parameters.Clear();

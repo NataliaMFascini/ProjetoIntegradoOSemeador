@@ -51,7 +51,7 @@ namespace LivrariaEBiblioteca
             MySqlCommand comm = new MySqlCommand();
             if (empVen == "Ven")
             {
-                comm.CommandText = "select entradaVen, saidaVen, codLivro  from tbEstoque where codLivro = @codLivro;";
+                comm.CommandText = "select entradaVen, saidaVen, codLivro  from tbEstoqueL where codLivro = @codLivro;";
                 comm.CommandType = CommandType.Text;
 
                 comm.Parameters.Clear();
@@ -69,7 +69,7 @@ namespace LivrariaEBiblioteca
             }
             if (empVen == "Emp")
             {
-                comm.CommandText = "select entradaEmp, saidaEmp, codLivro  from tbEstoque where codLivro = @codLivro;";
+                comm.CommandText = "select entradaEmp, saidaEmp, codLivro  from tbEstoqueB where codLivro = @codLivro;";
                 comm.CommandType = CommandType.Text;
 
                 comm.Parameters.Clear();
@@ -125,14 +125,21 @@ namespace LivrariaEBiblioteca
             return proximoId;
         }
 
-        public int pegarID(string nomeLivroPesquisa)
+        public int pegarID(string nomeLivroPesquisa, string tipoPesquisa)
         {
             int idLivroPesquisa = 0;
 
             MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select codLivro from tbLivro where nome = @nome;";
-            comm.CommandType = CommandType.Text;
-
+            if (tipoPesquisa == "emprestimo")
+            {
+                comm.CommandText = "select codLivro from tbLivroB where nome = @nome;";
+                comm.CommandType = CommandType.Text;
+            }
+            if (tipoPesquisa == "venda")
+            {
+                comm.CommandText = "select codLivro from tbLivroL where nome = @nome;";
+                comm.CommandType = CommandType.Text;
+            }
             comm.Parameters.Clear();
             comm.Parameters.Add("@nome", MySqlDbType.VarChar).Value = nomeLivroPesquisa;
 

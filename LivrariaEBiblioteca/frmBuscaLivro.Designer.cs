@@ -51,6 +51,9 @@
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblEm = new System.Windows.Forms.Label();
+            this.rdbBiblioteca = new System.Windows.Forms.RadioButton();
+            this.rdbLivraria = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pctLivro)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -186,7 +189,7 @@
             this.txtIdLivro.Enabled = false;
             this.txtIdLivro.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdLivro.Location = new System.Drawing.Point(178, 192);
-            this.txtIdLivro.MaxLength = 10;
+            this.txtIdLivro.MaxLength = 5;
             this.txtIdLivro.Name = "txtIdLivro";
             this.txtIdLivro.Size = new System.Drawing.Size(136, 31);
             this.txtIdLivro.TabIndex = 1;
@@ -289,7 +292,7 @@
             this.rdbIsbn.TabIndex = 16;
             this.rdbIsbn.Text = "ISBN";
             this.rdbIsbn.UseVisualStyleBackColor = true;
-            this.rdbIsbn.CheckedChanged += new System.EventHandler(this.rdbIsbn_CheckedChanged_1);
+            this.rdbIsbn.CheckedChanged += new System.EventHandler(this.rdbIsbn_CheckedChanged);
             // 
             // btnVoltar
             // 
@@ -362,12 +365,51 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(167, 600);
             this.tableLayoutPanel1.TabIndex = 9;
             // 
+            // lblEm
+            // 
+            this.lblEm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblEm.AutoSize = true;
+            this.lblEm.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEm.Location = new System.Drawing.Point(178, 124);
+            this.lblEm.Name = "lblEm";
+            this.lblEm.Size = new System.Drawing.Size(49, 25);
+            this.lblEm.TabIndex = 17;
+            this.lblEm.Text = "Em:";
+            // 
+            // rdbBiblioteca
+            // 
+            this.rdbBiblioteca.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rdbBiblioteca.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbBiblioteca.Location = new System.Drawing.Point(368, 122);
+            this.rdbBiblioteca.Name = "rdbBiblioteca";
+            this.rdbBiblioteca.Size = new System.Drawing.Size(131, 29);
+            this.rdbBiblioteca.TabIndex = 19;
+            this.rdbBiblioteca.Text = "Biblioteca";
+            this.rdbBiblioteca.UseVisualStyleBackColor = true;
+            // 
+            // rdbLivraria
+            // 
+            this.rdbLivraria.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rdbLivraria.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbLivraria.Location = new System.Drawing.Point(245, 122);
+            this.rdbLivraria.Name = "rdbLivraria";
+            this.rdbLivraria.Size = new System.Drawing.Size(105, 29);
+            this.rdbLivraria.TabIndex = 18;
+            this.rdbLivraria.Text = "Livraria";
+            this.rdbLivraria.UseVisualStyleBackColor = true;
+            // 
             // frmBuscarLivro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CadetBlue;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.rdbBiblioteca);
+            this.Controls.Add(this.rdbLivraria);
+            this.Controls.Add(this.lblEm);
             this.Controls.Add(this.rdbTitulo);
             this.Controls.Add(this.rdbIsbn);
             this.Controls.Add(this.lblBuscarLivro);
@@ -425,5 +467,8 @@
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label lblEm;
+        private System.Windows.Forms.RadioButton rdbBiblioteca;
+        private System.Windows.Forms.RadioButton rdbLivraria;
     }
 }
