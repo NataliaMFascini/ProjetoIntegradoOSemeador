@@ -355,7 +355,7 @@ namespace LivrariaEBiblioteca
                     comm.Parameters.Clear();
                     comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.proximoLivro(i);
 
-                    if (livros.checarEstoque(i, "Emp") <= 0)
+                    if (livros.checarEstoque(livros.proximoLivro(i), "Emp") <= 0)
                     {
                         comm.Parameters.Add("@disponibilidade", MySqlDbType.VarChar, 1).Value = "N";
                     }

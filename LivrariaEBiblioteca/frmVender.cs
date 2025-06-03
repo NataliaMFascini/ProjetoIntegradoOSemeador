@@ -150,13 +150,6 @@ namespace LivrariaEBiblioteca
                 txtEditora.Focus();
                 return false;
             }
-            else if (!decimal.TryParse(txtValor.Text, out tryParseDecimal))
-            {
-                erroCampo("Valor", "numérico");
-                txtEditora.Clear();
-                txtEditora.Focus();
-                return false;
-            }
             else
             {
                 return true;
@@ -186,7 +179,7 @@ namespace LivrariaEBiblioteca
                     MessageBox.Show("Não há mais esse livro em estoque.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
                     return;
                 }
-                ltbCarrinho.Items.Add(txtTitulo.Text + " - " + txtAutor.Text + " - R$ " + txtValor.Text);
+                ltbCarrinho.Items.Add(txtTitulo.Text + " - " + txtAutor.Text + " - " + txtValor.Text);
 
                 estoqueInicial--;
                 valor = custo;
@@ -347,7 +340,7 @@ namespace LivrariaEBiblioteca
                 {
                     comm.Parameters.Clear();
 
-                    comm.Parameters.Add("@dataVenda", MySqlDbType.DateTime).Value = DateTime.Now;
+                    comm.Parameters.Add("@dataVenda", MySqlDbType.DateTime).Value = dtpDataVenda.Value;
                     comm.Parameters.Add("@nomeLivro", MySqlDbType.VarChar, 100).Value = livros.nomeRetorno(i);
                     comm.Parameters.Add("@valorTotal", MySqlDbType.Decimal).Value = livros.valorRetorno(i);
                     comm.Parameters.Add("@pagamento", MySqlDbType.VarChar, 50).Value = cbbFormaPagamento.Text;
@@ -380,12 +373,11 @@ namespace LivrariaEBiblioteca
             {
                 for (int i = 0; i < livros.quantidadeLista(); i++)
                 {
-                    comm.CommandText = "update tbEstoqueL set saidaVen = @saidaVen, empVen = @empVen where codLivro = @codLivro";
+                    comm.CommandText = "update tbEstoqueL set saidaVen = @saidaVen where codLivro = @codLivro";
                     comm.CommandType = CommandType.Text;
 
                     comm.Parameters.Clear();
                     comm.Parameters.Add("@saidaVen", MySqlDbType.Int32).Value = pegarQuantSaida(livros.proximoLivro(i)) + quantidadeRetorno(i);
-                    comm.Parameters.Add("@empVen", MySqlDbType.VarChar, 3).Value = "Ven";
                     comm.Parameters.Add("@codLivro", MySqlDbType.Int32).Value = livros.proximoLivro(i);
 
                     comm.Connection = Conexao.obterConexao();

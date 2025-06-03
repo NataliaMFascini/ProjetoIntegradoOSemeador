@@ -44,12 +44,12 @@ namespace LivrariaEBiblioteca
             return valor;
         }
 
-        public int checarEstoque(int idLivro, string empVen)
+        public int checarEstoque(int idLivro, string tipo)
         {
             int estoque = 0;
 
             MySqlCommand comm = new MySqlCommand();
-            if (empVen == "Ven")
+            if (tipo == "Ven")
             {
                 comm.CommandText = "select entradaVen, saidaVen, codLivro  from tbEstoqueL where codLivro = @codLivro;";
                 comm.CommandType = CommandType.Text;
@@ -67,7 +67,7 @@ namespace LivrariaEBiblioteca
 
                 Conexao.fecharConexao();
             }
-            if (empVen == "Emp")
+            if (tipo == "Emp")
             {
                 comm.CommandText = "select entradaEmp, saidaEmp, codLivro  from tbEstoqueB where codLivro = @codLivro;";
                 comm.CommandType = CommandType.Text;

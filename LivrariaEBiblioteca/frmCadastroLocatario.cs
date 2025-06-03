@@ -445,6 +445,7 @@ namespace LivrariaEBiblioteca
         {
             btnCadastrar.Enabled = true;
             btnLimpar.Enabled = true;
+            btnGerarPront.Enabled = true;
             txtProntuario.Enabled = true;
             txtEmail.Enabled = true;
             txtLocatario.Enabled = true;
