@@ -329,8 +329,6 @@ namespace LivrariaEBiblioteca
         {
             if (checarCampos() && checarCharactere())
             {
-                if (checarLivro())
-                {
                     if (cadastrarLivro() == 1 && adicionarEstoque() == 1)
                     {
                         MessageBox.Show("Cadastro realizado com sucesso.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -342,7 +340,7 @@ namespace LivrariaEBiblioteca
                     {
                         MessageBox.Show("Erro ao cadastrar livro.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                }
+                
             }
         }
 
@@ -498,30 +496,23 @@ namespace LivrariaEBiblioteca
                     comm.CommandType = CommandType.Text;
 
                     comm.Parameters.Clear();
-                    try
-                    {
-                        comm.Parameters.Add("@isbn", MySqlDbType.VarChar, 20).Value = txtIsbn.Text;
-                        comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtTitulo.Text;
-                        comm.Parameters.Add("@autor", MySqlDbType.VarChar, 100).Value = txtAutor.Text;
-                        comm.Parameters.Add("@quant", MySqlDbType.Int32).Value = Convert.ToInt32(txtQuantidade.Text);
-                        comm.Parameters.Add("@editora", MySqlDbType.VarChar, 50).Value = txtEditora.Text;
-                        comm.Parameters.Add("@anoPublicacao", MySqlDbType.Int32).Value = Convert.ToInt32(txtAno.Text);
-                        if (pctLivro.Image == null)
-                        {
-                            fotoPath = "";
-                        }
-                        else
-                        {
-                            fotoPath = pctLivro.ImageLocation;
-                        }
-                        comm.Parameters.Add("@foto", MySqlDbType.VarChar, 200).Value = fotoPath;
-                        comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show("Valor inválido.", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
-                    }
 
+                    comm.Parameters.Add("@isbn", MySqlDbType.VarChar, 20).Value = txtIsbn.Text;
+                    comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtTitulo.Text;
+                    comm.Parameters.Add("@autor", MySqlDbType.VarChar, 100).Value = txtAutor.Text;
+                    comm.Parameters.Add("@quant", MySqlDbType.Int32).Value = Convert.ToInt32(txtQuantidade.Text);
+                    comm.Parameters.Add("@editora", MySqlDbType.VarChar, 50).Value = txtEditora.Text;
+                    comm.Parameters.Add("@anoPublicacao", MySqlDbType.Int32).Value = Convert.ToInt32(txtAno.Text);
+                    if (pctLivro.Image == null)
+                    {
+                        fotoPath = "";
+                    }
+                    else
+                    {
+                        fotoPath = pctLivro.ImageLocation;
+                    }
+                    comm.Parameters.Add("@foto", MySqlDbType.VarChar, 200).Value = fotoPath;
+                    comm.Parameters.Add("@dataCadastro", MySqlDbType.DateTime).Value = DateTime.Now;
                 }
 
                 comm.Connection = Conexao.obterConexao();
@@ -623,7 +614,7 @@ namespace LivrariaEBiblioteca
                 }
                 if (rdbVenda.Checked)
                 {
-                    comm.CommandText = "update tbLivroB set codLivro = @codLivro, isbn = @isbn, nome = @nome, autor = @autor, quant = @quant, valor = @valor, editora = @editora, anoPublicacao = @anoPublicacao, foto = @foto, dataCadastro = @dataCadastro where codLivro = @codLivro;";
+                    comm.CommandText = "update tbLivroL set codLivro = @codLivro, isbn = @isbn, nome = @nome, autor = @autor, quant = @quant, valor = @valor, editora = @editora, anoPublicacao = @anoPublicacao, foto = @foto, dataCadastro = @dataCadastro where codLivro = @codLivro;";
                     comm.CommandType = CommandType.Text;
                 }
                 comm.Parameters.Clear();
@@ -803,7 +794,15 @@ namespace LivrariaEBiblioteca
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txtTitulo.Focus();
+                if (checarLivro())
+                {
+                    txtTitulo.Focus();
+                }
+                else
+                {
+                    txtIsbn.Clear();
+                    txtIsbn.Focus();
+                }
             }
         }
 
